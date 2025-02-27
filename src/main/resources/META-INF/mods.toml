@@ -1,0 +1,49 @@
+modLoader="javafml" #mandatory
+loaderVersion="[43,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license="LGPL-3.0"
+#issueTrackerURL="https://github.com/SodiumZH/Days-with-Monster-Girls"
+[[mods]] #mandatory
+modId="nffgirlsgaia" #mandatory
+version="0.1.27" #mandatory
+displayName="NFF: Girls - Grimoire of Gaia Addon" #mandatory
+#updateJSONURL="https://change.me.example.invalid/updates.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/befriendmobs-days-with-monster-girls" 
+#logoFile="examplemod.png" #optional
+credits="SodiumZH" #optional
+authors="SodiumZH" #optional
+description='''NFF Girls support of Grimore of Gaia. More girls to be friends!'''
+
+[[dependencies.nffgirlsgaia]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[43,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+    
+[[dependencies.nffgirlsgaia]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.2,1.19.3)"
+    ordering="NONE"
+    side="BOTH"
+    
+[[dependencies.nffgirlsgaia]]
+    modId="nffservices"
+    mandatory=true
+    versionRange="[0.1.27, 0.1.28)"
+    ordering="NONE"
+    side="BOTH"  
+    
+[[dependencies.nffgirlsgaia]]
+    modId="nffgirls"
+    mandatory=true
+    versionRange="[0.1.28, 0.1.29)"
+    ordering="NONE"
+    side="BOTH"  
+    
+[[dependencies.nffgirlsgaia]]
+    modId="grimoireofgaia"
+    mandatory=true
+    versionRange="[3.0.0-alpha.6, 4)"
+    ordering="NONE"
+    side="BOTH"
