@@ -5,6 +5,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.sodiumzh.nff.girls.gaia.registries.NFFGirlsGaiaEntityTypes;
+import net.sodiumzh.nff.girls.gaia.registries.NFFGirlsGaiaItems;
 
 @Mod(NFFGirlsGaia.MOD_ID)
 public class NFFGirlsGaia
@@ -17,6 +18,7 @@ public class NFFGirlsGaia
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         
         NFFGirlsGaiaEntityTypes.ENTITY_TYPES.register(modEventBus);
+        NFFGirlsGaiaItems.ITEMS.register(modEventBus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
