@@ -8,7 +8,7 @@ import net.sodiumzh.nff.girls.entity.hmag.HmagHarpyEntity;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.*;
 import net.sodiumzh.nff.girls.subsystem.baublesystem.NFFGirlsBaubleRegistrations;
-import net.sodiumzh.nff.services.subsystem.baublesystem.RegisterBaubleEquippableMobsEvent;
+import net.sodiumzh.nff.services.subsystems.baublesystem.RegisterBaubleEquippableMobsEvent;
 
 @EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NFFGirlsGaiaBaubles

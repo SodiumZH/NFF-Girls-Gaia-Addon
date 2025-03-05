@@ -15,20 +15,16 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.sodiumzh.nautils.entity.MobApplicableItemTable;
 import net.sodiumzh.nautils.statics.NaUtilsLevelStatics;
-import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamedSunSensitiveMob;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
 import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingAttackGoal;
-import net.sodiumzh.nff.girls.inventory.NFFGirlsThreeBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
+import net.sodiumzh.nff.girls.inventory.*;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFFlyingLandGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFFlyingRandomMoveGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFOwnerHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFOwnerHurtTargetGoal;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.*;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.target.*;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
@@ -86,7 +82,7 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
 
     @Override
     public NFFTamedInventoryMenu makeMenu(int containerId, Inventory playerInventory, Container container) {
-        return new NFFGirlsThreeBaublesInventoryMenu(containerId, playerInventory, container, this);
+        return new NFFGirlsHmagThreeBaublesInventoryMenu(containerId, playerInventory, container, this);
     }
 
     @Override
@@ -139,7 +135,7 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
                 if (!this.mob.asMob().getMoveControl().hasWanted()) {
                     if (!NaUtilsLevelStatics.isAboveVoid(this.mob.asMob().blockPosition(), this.mob.asMob())) {
                         BlockPos pos;
-                        for(pos = this.mob.asMob().blockPosition(); this.mob.asMob().level().getBlockState(pos).isAir() && pos.getY() >= this.mob.asMob().level().getMinBuildHeight(); pos = pos.below()) {
+                        for(pos = this.mob.asMob().blockPosition(); this.mob.asMob().level.getBlockState(pos).isAir() && pos.getY() >= this.mob.asMob().level.getMinBuildHeight(); pos = pos.below()) {
                         }
 
                         pos = pos.above((int) Math.ceil(this.mob.asMob().getEyeHeight()));

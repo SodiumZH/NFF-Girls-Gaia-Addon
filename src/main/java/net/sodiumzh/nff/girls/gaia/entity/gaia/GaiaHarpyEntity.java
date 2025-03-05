@@ -19,13 +19,10 @@ import net.sodiumzh.nff.girls.entity.hmag.HmagHarpyEntity;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsFourBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFLeapAtOwnerGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFLeapAtTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFMeleeAttackGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFWaterAvoidingRandomStrollGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFOwnerHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFOwnerHurtTargetGoal;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.*;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtByTargetGoal;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtTargetGoal;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 
