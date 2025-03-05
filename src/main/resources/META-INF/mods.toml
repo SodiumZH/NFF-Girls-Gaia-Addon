@@ -4,7 +4,7 @@ license="LGPL-3.0"
 #issueTrackerURL="https://github.com/SodiumZH/Days-with-Monster-Girls"
 [[mods]] #mandatory
 modId="nffgirlsgaia" #mandatory
-version="0.1.27" #mandatory
+version="0.1.28" #mandatory
 displayName="NFF: Girls - Grimoire of Gaia Addon" #mandatory
 #updateJSONURL="https://change.me.example.invalid/updates.json"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/befriendmobs-days-with-monster-girls" 
@@ -30,7 +30,7 @@ description='''NFF Girls support of Grimore of Gaia. More girls to be friends!''
 [[dependencies.nffgirlsgaia]]
     modId="nffservices"
     mandatory=true
-    versionRange="[0.1.27, 0.1.28)"
+    versionRange="[0.1.28, 0.1.29)"
     ordering="NONE"
     side="BOTH"  
     
@@ -44,6 +44,6 @@ description='''NFF Girls support of Grimore of Gaia. More girls to be friends!''
 [[dependencies.nffgirlsgaia]]
     modId="grimoireofgaia"
     mandatory=true
-    versionRange="[3.0.0-alpha.6, 4)"
+    versionRange="[3.0.0-alpha.14, 4)"
     ordering="NONE"
     side="BOTH"

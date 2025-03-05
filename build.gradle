@@ -188,7 +188,7 @@ dependencies {
 		jarJar.pin(it, "${minecraft_version}-${services_version}")
 	}
     implementation fg.deobf("curse.maven:hmag-537613:5391696")
-    implementation fg.deobf("curse.maven:gog4-228948:4683679")
+    implementation fg.deobf("curse.maven:gog4-228948:5678609")
 
 	implementation fg.deobf("curse.maven:jade-324717:4433884")
 	implementation fg.deobf("curse.maven:tf-227639:4389567")
