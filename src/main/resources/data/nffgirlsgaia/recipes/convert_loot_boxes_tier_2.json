@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shapeless",
+
+	"ingredients":[
+		{
+		"item": "nffgirlsgaia:evil_grindstone"
+		},
+		{
+        "tag": "nffgirlsgaia:gaia_loot_boxes_tier_2"
+        }
+	],
+
+	"result":{
+		"item": "hmag:evil_crystal_fragment",
+		"count": 6
+	}
+}

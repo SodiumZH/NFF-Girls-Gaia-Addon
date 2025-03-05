@@ -1,0 +1,13 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+The Banshee is a non-material spirit which can easily get through solid blocks. They fly in the sky of the Plateau bioms
+at night but vanish immediately under the sun.
+<NEWLINE>
+The method of getting friendly with the Banshee is the same as their HMaG variants. As they can be attracted by death,
+you must put 8 Wither Roses around, and carry a Wither effect. Then you can give them items to get friendly. They love
+Soul Cake Slice, and also receives Soul Apple and Soul Powder.
+<NEWLINE>
+After getting friendly, they will still vanish under the sun, but this can be prevented by equip them with a Resistance Amulet
+or a Soul Amulet.

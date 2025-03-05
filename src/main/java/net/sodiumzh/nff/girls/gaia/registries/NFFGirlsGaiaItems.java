@@ -13,6 +13,7 @@ import net.sodiumzh.nautils.statics.NaUtilsCompatStatics;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.item.EvilGrindstoneItem;
 import net.sodiumzh.nff.girls.gaia.item.NFFGirlsGaiaCitadelBookItem;
+import net.sodiumzh.nff.girls.registry.NFFGirlsTabs;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -42,18 +43,19 @@ public class NFFGirlsGaiaItems {
         return res;
     }
 
-   /* public static final RegistryObject<EvilGrindstoneItem> EVIL_GRINDSTONE = register("evil_grindstone",
-        () -> new EvilGrindstoneItem(new Item.Properties()).descTranslatable("desc.nffgirls.evil_grindstone").cast());
-*/
+    public static final RegistryObject<EvilGrindstoneItem> EVIL_GRINDSTONE = register("evil_grindstone",
+        () -> new EvilGrindstoneItem(new Item.Properties().stacksTo(1)).descTranslatable("desc.nffgirlsgaia.evil_grindstone").cast());
+
     public static final RegistryObject<Item> MOB_DICT = registerModDependent("mob_dictionary", "citadel",
         () -> new NFFGirlsGaiaCitadelBookItem(new Item.Properties()));
 
 
     @SubscribeEvent
     public static void putTabs(BuildCreativeModeTabContentsEvent event) {
-        for (var item: ITEMS.getEntries()) {
-            if (!NO_TAB.contains(item)) event.accept(item);
-        }
+        if (event.getTab().equals(NFFGirlsTabs.TAB.get()))
+            for (var item: ITEMS.getEntries()) {
+                if (!NO_TAB.contains(item)) event.accept(item);
+            }
     }
 
 }

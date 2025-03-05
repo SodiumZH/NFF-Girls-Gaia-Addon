@@ -1,0 +1,12 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+The Harpy is a common creature found in the Plain, Forest and Badlands.
+<NEWLINE>
+The method of getting friendly with the Harpy is similar to their HMaG variants. To get friendly with a Harpy,
+instead dropping the item on the ground, you need to directly give them items by right-clicking.
+As the progress increases, they will get Strength effect. Each 20% progress will
+provide 1 level of the effect.
+<NEWLINE>
+The Harpy's favorite item is the Golden Apple, and also receives the Golden Tropical Fish and cooked meat.

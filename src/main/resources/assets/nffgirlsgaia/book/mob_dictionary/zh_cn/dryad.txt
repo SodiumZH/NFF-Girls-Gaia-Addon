@@ -1,0 +1,17 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+    树妖是树木的精灵，经常能在森林生
+<NEWLINE>
+物群系中发现，是一种中立生物。
+<NEWLINE>
+    要使树妖变得友好，你需要首先投掷
+<NEWLINE>
+药水付与其再生III效果超过10秒，随后
+<NEWLINE>
+给予道具。树妖最喜欢治愈莓果、随机莓
+<NEWLINE>
+果、经验莓果和神秘花瓣，也接受孢子花
+<NEWLINE>
+和其他花。

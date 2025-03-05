@@ -1,0 +1,7 @@
+{
+  "desc": "Mobs with this tag will be neutral to players with Undead Affinity effect, despite if they're really undead mobs.",
+  "replace" : false,
+  "values" : [
+    "grimoireofgaia:dullahan"
+  ]
+}

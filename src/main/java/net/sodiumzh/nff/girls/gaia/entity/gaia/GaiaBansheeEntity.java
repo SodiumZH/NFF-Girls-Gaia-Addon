@@ -16,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.sodiumzh.nautils.entity.MobApplicableItemTable;
 import net.sodiumzh.nautils.statics.NaUtilsLevelStatics;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
+import net.sodiumzh.nff.girls.entity.INFFGirlsTamedSunSensitiveMob;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
@@ -34,7 +35,7 @@ import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 
 import java.util.Arrays;
 
-public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamed {
+public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensitiveMob {
     /* Initialization */
 
     public GaiaBansheeEntity(EntityType<? extends GaiaBansheeEntity> pEntityType, Level pLevel)

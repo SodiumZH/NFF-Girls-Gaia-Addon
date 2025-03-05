@@ -1,0 +1,11 @@
+{
+  "desc": "",
+  "replace" : false,
+  "values" : [
+    "grimoireofgaia:box_gold",
+    "grimoireofgaia:chest_dungeon",
+    "grimoireofgaia:chest_desert",
+    "grimoireofgaia:chest_jungle",
+    "grimoireofgaia:bag_book"
+  ]
+}

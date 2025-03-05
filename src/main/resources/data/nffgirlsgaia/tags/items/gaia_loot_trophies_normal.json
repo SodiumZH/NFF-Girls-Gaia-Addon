@@ -1,0 +1,17 @@
+{
+  "desc": "",
+  "replace" : false,
+  "values" : [
+    "grimoireofgaia:deco_garden_gnome",
+    "grimoireofgaia:deco_mandragora_pot",
+    "grimoireofgaia:deco_nest_harpy",
+    "grimoireofgaia:doll_creeper_girl",
+    "grimoireofgaia:doll_dryad",
+    "grimoireofgaia:doll_dullahan",
+    "grimoireofgaia:doll_ender_girl",
+    "grimoireofgaia:doll_maid",
+    "grimoireofgaia:doll_mermaid",
+    "grimoireofgaia:doll_nine_tails",
+    "grimoireofgaia:doll_slime_girl"
+  ]
+}

@@ -1,4 +1,4 @@
-package net.sodiumzh.nff.girls.gaia.events.hooks;
+package net.sodiumzh.nff.girls.gaia.events;
 
 import gaia.entity.AbstractGaiaEntity;
 import net.minecraftforge.eventbus.api.Cancelable;

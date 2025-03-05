@@ -1,0 +1,11 @@
+{
+  "desc": "",
+  "replace" : false,
+  "values" : [
+    "grimoireofgaia:box_diamond",
+    "grimoireofgaia:bag_record",
+    "grimoireofgaia:box_old",
+    "grimoireofgaia:box_egg",
+    "grimoireofgaia:box_hat"
+  ]
+}

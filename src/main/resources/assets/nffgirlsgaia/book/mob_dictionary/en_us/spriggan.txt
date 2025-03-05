@@ -1,0 +1,12 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+The Spriggan is the spirit of plants, found at night in the Forest biomes. Unlike Dryads, they are much more hostile and
+fierce, and are able to get invisible when attacking their target.
+<NEWLINE>
+To get friendly with a Spriggan, you must give them Regenerate III effect of over 10 seconds with the splash potion, and
+then give them items. They love Cureberries, Randomberries, XP Berries and Mysterious Petals, and also receives
+Spore Blossoms and other flowers.
+<NEWLINE>
+After getting friendly, they will no longer hide themselves.

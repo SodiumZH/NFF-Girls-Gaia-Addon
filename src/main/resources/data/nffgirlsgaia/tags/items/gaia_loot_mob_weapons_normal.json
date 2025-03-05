@@ -1,0 +1,20 @@
+{
+  "desc": "",
+  "replace" : false,
+  "values" : [
+    "grimoireofgaia:cursed_metal_sword",
+    "grimoireofgaia:metal_club",
+    "grimoireofgaia:fan",
+    "grimoireofgaia:fan_fire",
+    "grimoireofgaia:fan_ice",
+    "grimoireofgaia:metal_dagger",
+    "grimoireofgaia:zombie_staff",
+    "grimoireofgaia:skeleton_staff",
+    "grimoireofgaia:cave_spider_staff",
+    "grimoireofgaia:magic_staff",
+    "grimoireofgaia:stone_shield",
+    "grimoireofgaia:iron_shield",
+    "grimoireofgaia:bone_shield",
+    "grimoireofgaia:gold_shield"
+  ]
+}

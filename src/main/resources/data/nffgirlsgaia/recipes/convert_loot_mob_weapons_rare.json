@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shapeless",
+
+	"ingredients":[
+		{
+		"item": "nffgirlsgaia:evil_grindstone"
+		},
+		{
+        "tag": "nffgirlsgaia:gaia_loot_mob_weapons_rare"
+        }
+	],
+
+	"result":{
+		"item": "nffgirls:death_crystal_fragment",
+		"count": 8
+	}
+}

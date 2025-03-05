@@ -12,17 +12,21 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.sodiumzh.nautils.math.HtmlColors;
 import net.sodiumzh.nautils.math.LinearColor;
+import net.sodiumzh.nautils.statics.NaUtilsInfoStatics;
+import net.sodiumzh.nff.girls.client.gui.screen.CitadelBasedMobDictionaryGUI;
 
 @OnlyIn(Dist.CLIENT)
 public class NFFGirlsGaiaCitadelMobDictScreen extends GuiBasicBook {
     private static final ResourceLocation ROOT = new ResourceLocation("nffgirlsgaia:book/mob_dictionary/root.json");
+    private static final String TITLE_TRANSLATION_KEY = "dict.nffgirlsgaia.title";
+    private static final String TEXT_FILE_DIR = "nffgirlsgaia:book/mob_dictionary/";
 
     public NFFGirlsGaiaCitadelMobDictScreen(ItemStack bookStack) {
-        super(bookStack, Component.translatable("dict.nffgirlsgaia.title"));
+        super(bookStack, Component.translatable(TITLE_TRANSLATION_KEY));
     }
 
     public NFFGirlsGaiaCitadelMobDictScreen(ItemStack bookStack, String page) {
-        super(bookStack, Component.translatable("dict.nffgirlsgaia.title"));
+        super(bookStack, Component.translatable(TITLE_TRANSLATION_KEY));
         String dir = this.getTextFileDirectory();
         this.currentPageJSON = new ResourceLocation(dir + page + ".json");
     }
@@ -40,11 +44,19 @@ public class NFFGirlsGaiaCitadelMobDictScreen extends GuiBasicBook {
             stack.pushPose();
             stack.translate((double)k, (double)l, 0.0);
             stack.scale(2.75F, 2.75F, 2.75F);
+            //this.itemRenderer.renderGuiItem(new ItemStack((ItemLike) NFFGirlsItems.TAB_ICON.get()), 25, 14);
+            //this.itemRenderer.blitOffset = 0.0F;
             stack.popPose();
             RenderSystem.applyModelViewMatrix();
         }
 
+       /* RenderLaviathan.renderWithoutShaking = true;
+        RenderMurmurBody.renderWithHead = true;
+        RenderUnderminer.renderWithPickaxe = true;*/
         super.render(matrixStack, x, y, partialTicks);
+       /* RenderLaviathan.renderWithoutShaking = false;
+        RenderMurmurBody.renderWithHead = false;
+        RenderUnderminer.renderWithPickaxe = false;*/
     }
 
     protected int getBindingColor() {
@@ -56,14 +68,14 @@ public class NFFGirlsGaiaCitadelMobDictScreen extends GuiBasicBook {
     }
 
     public String getTextFileDirectory() {
-        return "nffgirlsgaia:book/mob_dictionary/";
+        return TEXT_FILE_DIR;
     }
 
     public static void openGUI(ItemStack itemStackIn) {
-        Minecraft.getInstance().setScreen(new NFFGirlsGaiaCitadelMobDictScreen(itemStackIn));
+        Minecraft.getInstance().setScreen(new CitadelBasedMobDictionaryGUI(itemStackIn));
     }
 
     public static void openGUI(ItemStack itemStackIn, String page) {
-        Minecraft.getInstance().setScreen(new NFFGirlsGaiaCitadelMobDictScreen(itemStackIn, page));
+        Minecraft.getInstance().setScreen(new CitadelBasedMobDictionaryGUI(itemStackIn, page));
     }
 }
