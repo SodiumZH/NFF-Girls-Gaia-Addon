@@ -1,0 +1,23 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+    魅魔是下界常见的一种下级恶魔，能
+<NEWLINE>
+够在攻击时回复自身生命值。
+<NEWLINE>
+    使魅魔友好化的方法与小恶魔（HMaG）
+<NEWLINE>
+类似。你需要将道具丢到地上，魅魔会试图
+<NEWLINE>
+捡起并像猪灵一样端详一段时间，随后消
+<NEWLINE>
+耗之。魅魔最喜欢下界之星和金苹果，也接
+<NEWLINE>
+受黄金热带鱼、镶金黑石、柠檬、绯红
+<NEWLINE>
+菌、诡异菌和苹果。
+<NEWLINE>
+    不像小恶魔，魅魔不能定位远古残
+<NEWLINE>
+骸。（未来可能会加入）

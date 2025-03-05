@@ -1,0 +1,11 @@
+{
+  "desc": "",
+  "replace" : false,
+  "values" : [
+    "grimoireofgaia:box_iron",
+    "grimoireofgaia:box_overworld",
+    "grimoireofgaia:box_nether",
+    "grimoireofgaia:box_end",
+    "grimoireofgaia:bag_arrows"
+  ]
+}

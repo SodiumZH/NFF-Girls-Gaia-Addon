@@ -1,0 +1,9 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+The dryad is the spirit of the trees, found frequently in the Forest biomes. They are neutral mobs.
+<NEWLINE>
+To get friendly with a Dryad, you must give them Regenerate III effect of over 10 seconds with the splash potion, and
+then give them items. They love Cureberries, Randomberries, XP Berries and Mysterious Petals, and also receives
+Spore Blossoms and other flowers.

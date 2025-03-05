@@ -1,0 +1,13 @@
+{
+  "item.nffgirlsgaia.mob_dictionary": "NFF Girls 生物词典 - 盖亚魔典增刊",
+  "item.nffgirlsgaia.evil_grindstone": "邪恶砂轮",
+
+  "entity.nffgirlsgaia.gaia_dryad": "树妖",
+  "entity.nffgirlsgaia.gaia_spriggan": "树精",
+  "entity.nffgirlsgaia.gaia_dullahan": "无头骑士",
+  "entity.nffgirlsgaia.gaia_banshee": "女鬼",
+  "entity.nffgirlsgaia.gaia_harpy": "鹰身女妖",
+  "entity.nffgirlsgaia.gaia_succubus": "魅魔",
+
+  "desc.nffgirlsgaia.evil_grindstone": "与一些战利品合成将其转化为邪恶水晶碎片。可重复使用。"
+}

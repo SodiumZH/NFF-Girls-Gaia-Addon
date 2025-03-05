@@ -1,0 +1,14 @@
+{
+  "item.nffgirlsgaia.mob_dictionary": "NFF-Girls Mob Dictionary - Grimoire of Gaia Supplement",
+  "item.nffgirlsgaia.evil_grindstone": "Evil Grindstone",
+
+  "entity.nffgirlsgaia.gaia_dryad": "Dryad",
+  "entity.nffgirlsgaia.gaia_spriggan": "Spriggan",
+  "entity.nffgirlsgaia.gaia_dullahan": "Dullahan",
+  "entity.nffgirlsgaia.gaia_banshee": "Banshee",
+  "entity.nffgirlsgaia.gaia_harpy": "Harpy",
+  "entity.nffgirlsgaia.gaia_succubus": "Succubus",
+
+  "desc.nffgirlsgaia.evil_grindstone": "Craft with some loots to transform them into Evil Crystal Fragments. Reusable.",
+  "dict.nffgirlsgaia.title": "NFF-Girls Mob Dictionary - Grimoire of Gaia Supplement"
+}

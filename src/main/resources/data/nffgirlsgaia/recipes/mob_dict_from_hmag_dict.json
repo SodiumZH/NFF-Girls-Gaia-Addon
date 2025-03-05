@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+
+  "ingredients":[
+    {
+      "item": "nffgirls:mob_dictionary"
+    },
+    {
+      "item": "minecraft:iron_nugget"
+    }
+  ],
+
+  "result":{
+    "item": "nffgirlsgaia:mob_dictionary",
+    "count": 1
+  }
+}

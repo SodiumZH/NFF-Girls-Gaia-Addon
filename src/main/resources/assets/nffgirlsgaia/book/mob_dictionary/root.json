@@ -1,0 +1,96 @@
+{
+  "parent": "",
+  "text": "root.txt",
+  "title": "dict.nffgirlsgaia.title",
+  "entity_buttons": [
+    {
+      "entity": "grimoireofgaia:dryad",
+      "x": 230,
+      "y": 10,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "dryad.json",
+      "hover_text": "entity.grimoireofgaia.dryad"
+    },
+    {
+      "entity": "grimoireofgaia:spriggan",
+      "x": 270,
+      "y": 10,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "spriggan.json",
+      "hover_text": "entity.grimoireofgaia.spriggan"
+    },
+    {
+      "entity": "grimoireofgaia:banshee",
+      "x": 230,
+      "y": 50,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "banshee.json",
+      "hover_text": "entity.grimoireofgaia.banshee"
+    },
+    {
+      "entity": "grimoireofgaia:dullahan",
+      "x": 270,
+      "y": 50,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "dullahan.json",
+      "hover_text": "entity.grimoireofgaia.dullahan"
+    },
+    {
+      "entity": "grimoireofgaia:succubus",
+      "x": 310,
+      "y": 50,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "succubus.json",
+      "hover_text": "entity.grimoireofgaia.succubus"
+    },
+    {
+      "entity": "grimoireofgaia:harpy",
+      "x": 350,
+      "y": 50,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "harpy.json",
+      "hover_text": "entity.grimoireofgaia.harpy"
+    }
+  ],
+  "linked_page_buttons": [
+  ],
+  "images": [
+
+  ],
+  "item_renders": [
+
+  ],
+  "recipes": [
+
+  ],
+  "tabula_renders": [
+
+  ],
+  "entity_renders": [
+
+  ]
+}

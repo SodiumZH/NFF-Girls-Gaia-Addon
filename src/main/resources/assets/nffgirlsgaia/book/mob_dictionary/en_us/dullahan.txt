@@ -1,0 +1,9 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+The Dullahan is a scary creature which hold their own head, found in the Plateau biomes. They hold a Cursed Metal Sword
+as weapon, but the sword don't have any special effects.
+<NEWLINE>
+The method of getting friendly with the Dullahan is the same as their HMaG variants. You can give them items while carrying
+an Undead Affinity effect. They love Soul Cake Slice, and also receive Soul Apple and Soul Powder.

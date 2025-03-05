@@ -1,0 +1,12 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+The Succubus is a common low-level demon in the Nether. They are able to heal themselves when attacking their target.
+<NEWLINE>
+The method of getting friendly with the Harpy is similar to Imps (HMaG). You must drop the item on the ground. They will
+pick the item up, watch it for a few seconds
+like the Piglin, and consume the item. The Succubus' favorite items are  Nether Star and Golden Apple, and also receive
+the Golden Tropical Fish, Gilded Blackstone, Lemon, Crimson Fungus, Warped Fungus and Apple.
+<NEWLINE>
+Unlike Imps, they are not able to locate the Ancient Debris. (May be added in the future)

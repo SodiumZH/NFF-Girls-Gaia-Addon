@@ -1,0 +1,21 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+    树精是植物的精灵，能够在晚上的森
+<NEWLINE>
+林群系找到。不同于树妖，树精更加不友
+<NEWLINE>
+善且凶猛，而且在攻击目标时能够隐身。
+<NEWLINE>
+    要使树精变得友好，你需要首先投掷
+<NEWLINE>
+药水付与其再生III效果超过10秒，随后
+<NEWLINE>
+给予道具。树精最喜欢治愈莓果、随机莓
+<NEWLINE>
+果、经验莓果和神秘花瓣，也接受孢子花
+<NEWLINE>
+和其他花。
+<NEWLINE>
+在友好化后，树精不会再隐身。

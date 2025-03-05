@@ -1,0 +1,11 @@
+{
+  "desc": "",
+  "replace" : false,
+  "values" : [
+    "grimoireofgaia:bust_gorgon",
+    "grimoireofgaia:bust_minotaur",
+    "grimoireofgaia:bust_sphinx",
+    "grimoireofgaia:bust_valkyrie",
+    "grimoireofgaia:bust_vampire"
+  ]
+}

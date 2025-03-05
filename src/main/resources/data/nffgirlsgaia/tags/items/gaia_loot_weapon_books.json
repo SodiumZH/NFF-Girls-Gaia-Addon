@@ -1,0 +1,16 @@
+{
+  "desc": "",
+  "replace" : false,
+  "values" : [
+    "grimoireofgaia:weapon_book",
+    "grimoireofgaia:weapon_book_freezing",
+    "grimoireofgaia:weapon_book_nightmare",
+    "grimoireofgaia:weapon_book_metal",
+    "grimoireofgaia:weapon_book_ender",
+    "grimoireofgaia:weapon_book_hunger",
+    "grimoireofgaia:weapon_book_battle",
+    "grimoireofgaia:weapon_book_nature",
+    "grimoireofgaia:weapon_book_wither",
+    "grimoireofgaia:weapon_book_buff"
+  ]
+}

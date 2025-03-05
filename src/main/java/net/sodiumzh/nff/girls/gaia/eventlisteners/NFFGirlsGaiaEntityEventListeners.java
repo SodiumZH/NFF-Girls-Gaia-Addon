@@ -1,7 +1,6 @@
-package net.sodiumzh.nff.girls.gaia.events;
+package net.sodiumzh.nff.girls.gaia.eventlisteners;
 
 import gaia.capability.CapabilityHandler;
-import gaia.config.GaiaConfig;
 import gaia.entity.AbstractGaiaEntity;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,12 +12,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.tamingprocesses.hmag.HmagBansheeTamingProcess;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
-import net.sodiumzh.nff.girls.gaia.events.hooks.GaiaMobFinalizeSpawnEvent;
+import net.sodiumzh.nff.girls.gaia.events.GaiaMobFinalizeSpawnEvent;
 import net.sodiumzh.nff.services.entity.capability.CNFFTamable;
 import net.sodiumzh.nff.services.event.entity.NFFMobTamedEvent;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class NFFGirlsGaiaEntityEvents
+public class NFFGirlsGaiaEntityEventListeners
 {
 	// BM events
 	@SubscribeEvent

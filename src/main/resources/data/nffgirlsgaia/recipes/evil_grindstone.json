@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    "EEE",
+    "EGE"
+  ],
+
+  "key":{
+
+    "E":{
+      "item": "hmag:evil_crystal_fragment"
+    },
+
+    "G":{
+      "item": "minecraft:grindstone"
+    }
+  },
+
+  "result":{
+    "item": "nffgirlsgaia:evil_grindstone",
+    "count": 1
+  }
+}

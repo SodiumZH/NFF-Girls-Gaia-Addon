@@ -1,8 +1,7 @@
 package net.sodiumzh.nff.girls.gaia.mixins;
 
 import net.sodiumzh.nautils.mixin.NaUtilsMixin;
-import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
-import net.sodiumzh.nff.girls.gaia.events.hooks.GaiaMobFinalizeSpawnEvent;
+import net.sodiumzh.nff.girls.gaia.events.GaiaMobFinalizeSpawnEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -17,7 +16,6 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
 
 @Mixin(AbstractGaiaEntity.class)
 public class NFFGirlsAbstractGaiaEntityMixin implements NaUtilsMixin<AbstractGaiaEntity>
