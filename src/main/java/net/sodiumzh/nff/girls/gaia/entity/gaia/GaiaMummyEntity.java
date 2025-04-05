@@ -1,10 +1,10 @@
 package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
-import gaia.entity.Spriggan;
+import gaia.entity.Mummy;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
-import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -15,30 +15,31 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.sodiumzh.nautils.entity.MobApplicableItemTable;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
+import net.sodiumzh.nff.girls.entity.INFFGirlsTamedSunSensitiveMob;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtByTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtTargetGoal;
-import net.sodiumzh.nff.girls.inventory.NFFGirlsHmagThreeBaublesInventoryMenu;
+import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsFourBaublesDefaultInventoryMenu;
+import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsFourBaublesInventoryMenu;
+import net.sodiumzh.nff.girls.inventory.NFFGirlsThreeBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
 import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFMeleeAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFWaterAvoidingRandomStrollGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFHurtByTargetGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFOwnerHurtByTargetGoal;
+import net.sodiumzh.nff.services.entity.taming.INFFTamed;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 
-public class GaiaSprigganEntity extends Spriggan implements INFFGirlsTamed {
-
-    public GaiaSprigganEntity(EntityType<? extends GaiaSprigganEntity> pEntityType, Level pLevel) {
+public class GaiaMummyEntity extends Mummy implements INFFGirlsTamedSunSensitiveMob {
+    public GaiaMummyEntity(EntityType<? extends GaiaMummyEntity> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.xpReward = 0;
         Arrays.fill(this.armorDropChances, 0);
@@ -62,13 +63,17 @@ public class GaiaSprigganEntity extends Spriggan implements INFFGirlsTamed {
         targetSelector.addGoal(6, new NFFGirlsNearestHostileToOwnerTargetGoal(this));
     }
 
-	@Override
-	public void aiStep()
-	{
-		super.aiStep();
-        if (this.hasEffect(MobEffects.INVISIBILITY) && this.getEffect(MobEffects.INVISIBILITY).getDuration() <= 20)
-            this.removeEffect(MobEffects.INVISIBILITY);
-	}
+    @Override
+    public void aiStep()
+    {
+        super.aiStep();
+    }
+
+    // Just make GaiaMummyEntity.hurt present in the stacktrace, so that
+    // Gravemite summoned by friendly Mummy can be identified and modified AI on spawn
+    public boolean hurt(DamageSource source, float damage) {
+        return super.hurt(source, damage);
+    }
 
     /* Interaction */
 
@@ -77,19 +82,19 @@ public class GaiaSprigganEntity extends Spriggan implements INFFGirlsTamed {
     @Override
     public MobApplicableItemTable getHealingItems()
     {
-        return NFFGirlsHealingItems.PLANT.get();
+        return NFFGirlsHealingItems.UNDEAD.get();
     }
 
     /* Inventory */
 
     @Override
     public NFFTamedMobInventory createAdditionalInventory() {
-        return new NFFTamedMobInventoryWithHandItems(3, this);
+        return new NFFTamedMobInventoryWithHandItems(6, this);
     }
 
     @Override
     public NFFTamedInventoryMenu makeMenu(int containerId, Inventory playerInventory, Container container) {
-        return new NFFGirlsHmagThreeBaublesInventoryMenu(containerId, playerInventory, container, this);
+        return new NFFGirlsHandItemsFourBaublesDefaultInventoryMenu(containerId, playerInventory, container, this);
     }
 
     /* Save and Load */

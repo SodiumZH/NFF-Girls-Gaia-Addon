@@ -20,5 +20,6 @@ public class NFFGirlsGaiaClientSetupEventHandlers
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_HARPY.get(), HarpyRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_BANSHEE.get(), BansheeRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_SUCCUBUS.get(), SuccubusRenderer::new);
+		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_MUMMY.get(), MummyRenderer::new);
 	}
 }

@@ -64,7 +64,12 @@ public class NFFGirlsGaiaEntityTypes extends NFFGirlsEntityTypes
 			.setUpdateInterval(3)
 			.setShouldReceiveVelocityUpdates(false));
 
-
+	public static final RegistryObject<EntityType<GaiaMummyEntity>> GAIA_MUMMY =
+		registerBM("gaia_mummy", GaiaMummyEntity::new, builder -> builder
+			.sized(0.6F, 1.99F)
+			.setTrackingRange(8)
+			.setUpdateInterval(3)
+			.setShouldReceiveVelocityUpdates(false));
 
 	@SubscribeEvent
 	public static void onAttributeCreate(EntityAttributeCreationEvent event) {	

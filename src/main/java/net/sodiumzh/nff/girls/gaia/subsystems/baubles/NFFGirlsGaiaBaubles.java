@@ -22,5 +22,6 @@ public class NFFGirlsGaiaBaubles
 		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaHarpyEntity.class, 0, 4);
 		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaBansheeEntity.class, 0, 3);
 		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaSuccubusEntity.class, 2, 4);
+		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaMummyEntity.class, 2, 6);
 	}
 }

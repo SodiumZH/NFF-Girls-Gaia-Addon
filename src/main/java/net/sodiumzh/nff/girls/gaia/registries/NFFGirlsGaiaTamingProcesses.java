@@ -16,10 +16,10 @@ public class NFFGirlsGaiaTamingProcesses {
             RegistryEntryCollection.create(NFFRegistries.TAMING_PROCESSES, NFFGirlsGaia.MOD_ID);
 
     public static final NaUtilsRegistry.Accessor<NFFTamingProcess> GAIA_DRYAD = TAMING_PROCESSES.register(
-            "gaia_dryad",  () -> new HmagAlrauneTamingProcess().setItemGivingTableOverride(NFFGirlsTamingItems.PLANT_B::get));
+            "gaia_dryad",  () -> new HmagAlrauneTamingProcess().setItemGivingTableOverride(NFFGirlsTamingItems.PLANT_B));
 
     public static final NaUtilsRegistry.Accessor<NFFTamingProcess> GAIA_ANIMAL_A = TAMING_PROCESSES.register(
-        "gaia_animal_a",  () -> new GaiaAnimalTamingProcess().setItemGivingTableOverride(NFFGirlsTamingItems.ANIMAL_A::get));
+        "gaia_animal_a",  () -> new GaiaAnimalTamingProcess().setItemGivingTableOverride(NFFGirlsTamingItems.ANIMAL_A));
 
 
 }
