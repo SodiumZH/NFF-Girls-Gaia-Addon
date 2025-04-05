@@ -187,29 +187,24 @@ dependencies {
 	jarJar(group: 'net.sodiumzh', name: 'nffservices', version: "[${minecraft_version}-${services_version},)"){
 		jarJar.pin(it, "${minecraft_version}-${services_version}")
 	}
-    implementation fg.deobf("curse.maven:hmag-537613:5391696")
-    implementation fg.deobf("curse.maven:gog4-228948:4683679")
+    implementation fg.deobf("curse.maven:hmag-537613:6198467")
+    implementation fg.deobf("curse.maven:gog4-228948:5678610")
 
-	implementation fg.deobf("curse.maven:jade-324717:4433884")
-	implementation fg.deobf("curse.maven:tf-227639:4389567")
+	implementation fg.deobf("curse.maven:jade-324717:6106101")
+	implementation fg.deobf("curse.maven:twilightforest-227639:5468648")
 
-	//implementation fg.deobf("curse.maven:mobpets-941037:4907694")
-	implementation fg.deobf("curse.maven:patchouli-306770:4031402")
+	implementation fg.deobf("curse.maven:patchouli-306770:6164575")
 	
 	// Testing compat mods
-	implementation fg.deobf("curse.maven:moonlight-499980:4312303")
-	implementation fg.deobf("curse.maven:testdummy-225738:4410143")
-	implementation fg.deobf("curse.maven:citadel-331936:4556677")
-	implementation fg.deobf("curse.maven:alexsmobs-426558:4159154")
-	//implementation fg.deobf("curse.maven:iceandfire-264231:5037952")
-	implementation fg.deobf("curse.maven:bop-220318:4473556")
-	implementation fg.deobf("curse.maven:terrablender-563928:4618490")
-	implementation fg.deobf("curse.maven:corgilib-693313:4554111")
-	implementation fg.deobf("curse.maven:geckolib-388172:4407241")
-	implementation fg.deobf("curse.maven:byg-247560:5116293")
-	implementation fg.deobf("curse.maven:assortedtools-409802:4651299")
-	//implementation fg.deobf("curse.maven:gog4-228948:4683680")
-
+	implementation fg.deobf("curse.maven:citadel-331936:6002521")
+	implementation fg.deobf("curse.maven:alexsmobs-426558:5698791")
+	implementation fg.deobf("curse.maven:iceandfire-264231:5633453")
+    implementation fg.deobf("curse.maven:enigmatic-legacy-336184:5600004")
+    implementation fg.deobf("curse.maven:curios-309927:6238756")
+    implementation fg.deobf("curse.maven:patchouli-306770:6164575")
+    implementation fg.deobf("curse.maven:caelus-308989:5281700")
+    //implementation fg.deobf("curse.maven:selene-499980:6310930")
+    //implementation fg.deobf("curse.maven:testdummy-225738:6237015")
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
