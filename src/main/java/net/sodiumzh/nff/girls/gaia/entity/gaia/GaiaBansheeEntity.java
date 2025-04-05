@@ -2,6 +2,7 @@ package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Banshee;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Container;
@@ -30,9 +31,11 @@ import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFHurtByTargetGo
 import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFOwnerHurtByTargetGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFOwnerHurtTargetGoal;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;
+import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 
 public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensitiveMob {
@@ -95,6 +98,13 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
     }
 
     protected SoundEvent getChargeAttackSound() {return SoundEvents.VEX_CHARGE;}
+
+    @Override
+    @Nonnull
+    public Component getTypeName() {
+        EntityType<?> typeBefore = NFFTamingMapping.getTypeBefore(this);
+        return typeBefore != null ? typeBefore.getDescription() : super.getTypeName();
+    }
 
     public static class ChargeAttackGoal extends NFFGirlsGaiaFlyingAttackGoal {
 

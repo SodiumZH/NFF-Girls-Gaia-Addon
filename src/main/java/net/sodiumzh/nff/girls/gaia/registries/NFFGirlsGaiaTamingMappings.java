@@ -15,28 +15,32 @@ public class NFFGirlsGaiaTamingMappings
 	public static void registerTamingMapping(NFFTamingMappingRegisterEvent event)
 	{
 		event.register(
-				new ResourceLocation(GrimoireOfGaia.MOD_ID, "dryad"),
-				new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_dryad"),
-				NFFGirlsGaiaTamingProcesses.GAIA_DRYAD::get);
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "dryad"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_dryad"),
+			NFFGirlsGaiaTamingProcesses.GAIA_DRYAD);
 		event.register(
-				new ResourceLocation(GrimoireOfGaia.MOD_ID, "spriggan"),
-				new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_spriggan"),
-				NFFGirlsTamingProcesses.HMAG_ALRAUNE::get);
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "spriggan"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_spriggan"),
+			NFFGirlsTamingProcesses.HMAG_ALRAUNE);
 		event.register(
-				new ResourceLocation(GrimoireOfGaia.MOD_ID, "dullahan"),
-				new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_dullahan"),
-				NFFGirlsTamingProcesses.VANILLA_UNDEAD_B::get);
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "dullahan"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_dullahan"),
+			NFFGirlsTamingProcesses.VANILLA_UNDEAD_B);
 		event.register(
 			new ResourceLocation(GrimoireOfGaia.MOD_ID, "harpy"),
 			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_harpy"),
-			NFFGirlsGaiaTamingProcesses.GAIA_ANIMAL_A::get);
+			NFFGirlsGaiaTamingProcesses.GAIA_ANIMAL_A);
 		event.register(
 			new ResourceLocation(GrimoireOfGaia.MOD_ID, "banshee"),
 			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_banshee"),
-			NFFGirlsTamingProcesses.HMAG_BANSHEE::get);
+			NFFGirlsTamingProcesses.HMAG_BANSHEE);
 		event.register(
 			new ResourceLocation(GrimoireOfGaia.MOD_ID, "succubus"),
 			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_succubus"),
-			NFFGirlsTamingProcesses.HMAG_IMP::get);
+			NFFGirlsTamingProcesses.HMAG_IMP);
+		event.register(
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "mummy"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_mummy"),
+			NFFGirlsTamingProcesses.VANILLA_UNDEAD_A);
 	}
 }

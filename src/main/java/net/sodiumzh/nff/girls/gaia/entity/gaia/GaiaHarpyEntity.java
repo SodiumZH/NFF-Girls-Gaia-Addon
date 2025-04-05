@@ -1,6 +1,7 @@
 package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Harpy;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.EntityType;
@@ -26,9 +27,11 @@ import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFWaterAvoidingRandomSt
 import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFHurtByTargetGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFOwnerHurtByTargetGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFOwnerHurtTargetGoal;
+import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 
 public class GaiaHarpyEntity extends Harpy implements INFFGirlsTamed {
@@ -75,6 +78,13 @@ public class GaiaHarpyEntity extends Harpy implements INFFGirlsTamed {
     protected SoundEvent getAmbientSound()
     {
         return NFFGirlsSoundPresets.generalAmbient(super.getAmbientSound());
+    }
+
+    @Override
+    @Nonnull
+    public Component getTypeName() {
+        EntityType<?> typeBefore = NFFTamingMapping.getTypeBefore(this);
+        return typeBefore != null ? typeBefore.getDescription() : super.getTypeName();
     }
 
 }
