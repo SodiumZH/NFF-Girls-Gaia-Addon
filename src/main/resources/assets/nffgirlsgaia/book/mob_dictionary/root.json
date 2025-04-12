@@ -28,6 +28,18 @@
       "hover_text": "entity.grimoireofgaia.spriggan"
     },
     {
+      "entity": "grimoireofgaia:succubus",
+      "x": 310,
+      "y": 10,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "succubus.json",
+      "hover_text": "entity.grimoireofgaia.succubus"
+    },
+    {
       "entity": "grimoireofgaia:banshee",
       "x": 230,
       "y": 50,
