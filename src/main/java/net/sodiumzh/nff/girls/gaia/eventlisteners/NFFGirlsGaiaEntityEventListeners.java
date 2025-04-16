@@ -18,7 +18,6 @@ import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaMummyEntity;
 import net.sodiumzh.nff.girls.gaia.events.GaiaMobFinalizeSpawnEvent;
 import net.sodiumzh.nff.services.entity.taming.CNFFTamable;
 import net.sodiumzh.nff.services.event.entity.NFFMobTamedEvent;
-import org.apache.commons.lang3.builder.ToStringSummary;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class NFFGirlsGaiaEntityEventListeners
@@ -50,7 +49,7 @@ public class NFFGirlsGaiaEntityEventListeners
 		if (event.getEffectInstance().getEffect().equals(MobEffects.WITHER)) {
 			LivingEntity var2 = event.getEntity();
 			if (var2 instanceof Mob e) {
-				if ((Boolean) CNFFTamable.getOptional(e).map((tamable) -> {
+				if (CNFFTamable.getOptional(e).map((tamable) -> {
 					return tamable.getTamingProcess() instanceof HmagBansheeTamingProcess;
 				}).orElse(false) && CNFFTamable.get(e).getTamingProcess().isInAnyProcess(e)) {
 					event.setResult(Event.Result.DENY);

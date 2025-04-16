@@ -25,7 +25,6 @@ import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
 import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFMeleeAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.presets.NFFWaterAvoidingRandomStrollGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFHurtByTargetGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.presets.target.NFFOwnerHurtByTargetGoal;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
