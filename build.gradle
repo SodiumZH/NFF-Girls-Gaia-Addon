@@ -182,7 +182,7 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 	implementation fg.deobf("blank:nffservices-${minecraft_version}:${services_version}")
-    implementation fg.deobf("blank:nffgirls-${minecraft_version}:${girls_version}")
+    implementation fg.deobf("blank:nffgirls-${minecraft_version}:${girls_version_filename}")
 
 	jarJar(group: 'net.sodiumzh', name: 'nffservices', version: "[${minecraft_version}-${services_version},)"){
 		jarJar.pin(it, "${minecraft_version}-${services_version}")
