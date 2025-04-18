@@ -1,3 +1,7 @@
+### 0.2.29.1
+
+Fixed crash on dedicated server.
+
 ### 0.x.29
 
 Added Dryad, Spriggan, Dullahan, Banshee, Succubus, Harpy and Mummy.
