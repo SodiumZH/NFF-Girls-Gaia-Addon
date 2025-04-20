@@ -72,10 +72,10 @@ public class NFFGirlsGaiaCitadelMobDictScreen extends GuiBasicBook {
     }
 
     public static void openGUI(ItemStack itemStackIn) {
-        Minecraft.getInstance().setScreen(new CitadelBasedMobDictionaryGUI(itemStackIn));
+        Minecraft.getInstance().setScreen(new NFFGirlsGaiaCitadelMobDictScreen(itemStackIn));
     }
 
     public static void openGUI(ItemStack itemStackIn, String page) {
-        Minecraft.getInstance().setScreen(new CitadelBasedMobDictionaryGUI(itemStackIn, page));
+        Minecraft.getInstance().setScreen(new NFFGirlsGaiaCitadelMobDictScreen(itemStackIn, page));
     }
 }
