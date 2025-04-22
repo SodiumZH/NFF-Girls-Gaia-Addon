@@ -40,7 +40,6 @@ public class NFFGirlsGaiaItems {
         () -> new EvilGrindstoneItem(new Item.Properties().stacksTo(1).tab(NFFGirlsTab.TAB)).descTranslatable("desc.nffgirlsgaia.evil_grindstone").cast());
 
     public static final RegistryObject<Item> MOB_DICT = registerModDependent("mob_dictionary", "citadel",
-        () -> new NFFGirlsGaiaCitadelBookItem(new Item.Properties()));
-
+        () -> new NFFGirlsGaiaCitadelBookItem(new Item.Properties().tab(NFFGirlsTab.TAB)));
 
 }
