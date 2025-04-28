@@ -1,5 +1,6 @@
 package net.sodiumzh.nff.girls.gaia.registries;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -13,6 +14,7 @@ import net.sodiumzh.nautils.statics.NaUtilsCompatStatics;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.item.EvilGrindstoneItem;
 import net.sodiumzh.nff.girls.gaia.item.NFFGirlsGaiaCitadelBookItem;
+import net.sodiumzh.nff.girls.item.CitadelBasedMobDictionaryItem;
 import net.sodiumzh.nff.girls.registry.NFFGirlsTabs;
 
 import java.util.HashSet;
@@ -47,7 +49,9 @@ public class NFFGirlsGaiaItems {
         () -> new EvilGrindstoneItem(new Item.Properties().stacksTo(1)).descTranslatable("desc.nffgirlsgaia.evil_grindstone").cast());
 
     public static final RegistryObject<Item> MOB_DICT = registerModDependent("mob_dictionary", "citadel",
-        () -> new NFFGirlsGaiaCitadelBookItem(new Item.Properties()));
+        () -> new CitadelBasedMobDictionaryItem(new Item.Properties(),
+            new ResourceLocation("nffgirlsgaia","book/mob_dictionary/root.json"),
+            "dict.nffgirlsgaia.title", "nffgirlsgaia:book/mob_dictionary/"));
 
 
     @SubscribeEvent
