@@ -13,9 +13,7 @@ import net.sodiumzh.nautils.statics.NaUtilsCompatStatics;
 import net.sodiumzh.nff.girls.NFFGirlsTab;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.item.EvilGrindstoneItem;
-import net.sodiumzh.nff.girls.gaia.item.NFFGirlsGaiaCitadelBookItem;
 import net.sodiumzh.nff.girls.item.CitadelBasedMobDictionaryItem;
-import net.sodiumzh.nff.girls.registry.NFFGirlsTabs;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -48,12 +46,12 @@ public class NFFGirlsGaiaItems {
             "dict.nffgirlsgaia.title", "nffgirlsgaia:book/mob_dictionary/"));
 
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void putTabs(BuildCreativeModeTabContentsEvent event) {
         if (event.getTab().equals(NFFGirlsTabs.TAB.get()))
             for (var item: ITEMS.getEntries()) {
                 if (!NO_TAB.contains(item)) event.accept(item);
             }
-    }
+    }*/
 
 }
