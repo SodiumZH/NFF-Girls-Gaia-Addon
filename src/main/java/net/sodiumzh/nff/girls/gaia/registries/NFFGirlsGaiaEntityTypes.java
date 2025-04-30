@@ -20,7 +20,7 @@ import net.sodiumzh.nff.girls.registry.NFFGirlsEntityTypes;
 public class NFFGirlsGaiaEntityTypes extends NFFGirlsEntityTypes
 {
 	
-	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, NFFGirlsGaia.MOD_ID);
+	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, NFFGirlsGaia.MOD_ID);
 
 	public static final RegistryObject<EntityType<GaiaDryadEntity>> GAIA_DRYAD = 
 			registerBM("gaia_dryad", GaiaDryadEntity::new, builder -> builder

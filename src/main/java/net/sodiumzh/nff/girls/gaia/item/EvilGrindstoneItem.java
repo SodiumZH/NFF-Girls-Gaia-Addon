@@ -11,12 +11,12 @@ public class EvilGrindstoneItem extends NaUtilsItem {
     }
 
     @Override
-    public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
-        return NFFGirlsGaiaItems.EVIL_GRINDSTONE.get().getDefaultInstance();
+    public ItemStack getContainerItem(ItemStack itemStack) {
+        return this.getDefaultInstance();
     }
 
     @Override
-    public boolean hasCraftingRemainingItem(ItemStack stack) {
+    public boolean hasContainerItem(ItemStack stack) {
         return true;
     }
 }

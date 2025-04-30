@@ -6,8 +6,7 @@ import gaia.registry.GaiaRegistry;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +15,6 @@ import net.sodiumzh.nff.girls.entity.tamingprocesses.hmag.HmagBansheeTamingProce
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaMummyEntity;
 import net.sodiumzh.nff.girls.gaia.events.GaiaMobFinalizeSpawnEvent;
-import net.sodiumzh.nff.services.entity.taming.CNFFTamable;
 import net.sodiumzh.nff.services.event.entity.NFFMobTamedEvent;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -43,7 +41,7 @@ public class NFFGirlsGaiaEntityEventListeners
 	}
 
 	// TODO this event listener is merged from HmagBansheeTamingProcess as the listener in that class only handle HMaG banshee. Merge this to NFFGirls and remove in the next version.
-	@Deprecated
+	/*@Deprecated
 	@SubscribeEvent
 	public static void preventWitherInProcess(MobEffectEvent.Applicable event) {
 		if (event.getEffectInstance().getEffect().equals(MobEffects.WITHER)) {
@@ -56,10 +54,10 @@ public class NFFGirlsGaiaEntityEventListeners
 				}
 			}
 		}
-	}
+	}*/
 
 	@SubscribeEvent
-	public static void onJoinLevel(EntityJoinLevelEvent event) {
+	public static void onJoinLevel(EntityJoinWorldEvent event) {
 		// Prevent Gravemite spawn from friended Mummy
 		if (event.getEntity().getType().equals(GaiaRegistry.GRAVEMITE.getEntityType())) {
 			// Search by stacktrace

@@ -24,8 +24,8 @@ import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingAttackGoal;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.inventory.*;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.*;
-import net.sodiumzh.nff.services.entity.ai.goal.presets.target.*;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.*;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.target.*;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
@@ -85,7 +85,7 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
 
     @Override
     public NFFTamedInventoryMenu makeMenu(int containerId, Inventory playerInventory, Container container) {
-        return new NFFGirlsHmagThreeBaublesInventoryMenu(containerId, playerInventory, container, this);
+        return new NFFGirlsThreeBaublesInventoryMenu(containerId, playerInventory, container, this);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class NFFGirlsGaiaHarpyRenderer extends GaiaBabyMobRenderer<Harpy, NFFGir
 
     public NFFGirlsGaiaHarpyRenderer(EntityRendererProvider.Context context) {
         super(context, new NFFGirlsGaiaHarpyModel(context.bakeLayer(ClientHandler.HARPY)), 0.4F);
-        this.addLayer(new CustomHeadLayer<>(this, context.getModelSet(), context.getItemInHandRenderer()));
+        this.addLayer(new CustomHeadLayer<>(this, context.getModelSet()));
     }
 
     @Nonnull

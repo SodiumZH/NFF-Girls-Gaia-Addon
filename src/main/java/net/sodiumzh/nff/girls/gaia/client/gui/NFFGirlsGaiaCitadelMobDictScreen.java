@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,11 +22,11 @@ public class NFFGirlsGaiaCitadelMobDictScreen extends GuiBasicBook {
     private static final String TEXT_FILE_DIR = "nffgirlsgaia:book/mob_dictionary/";
 
     public NFFGirlsGaiaCitadelMobDictScreen(ItemStack bookStack) {
-        super(bookStack, Component.translatable(TITLE_TRANSLATION_KEY));
+        super(bookStack, new TranslatableComponent(TITLE_TRANSLATION_KEY));
     }
 
     public NFFGirlsGaiaCitadelMobDictScreen(ItemStack bookStack, String page) {
-        super(bookStack, Component.translatable(TITLE_TRANSLATION_KEY));
+        super(bookStack, new TranslatableComponent(TITLE_TRANSLATION_KEY));
         String dir = this.getTextFileDirectory();
         this.currentPageJSON = new ResourceLocation(dir + page + ".json");
     }
