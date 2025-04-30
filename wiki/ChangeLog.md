@@ -1,3 +1,11 @@
+### 0.2.29.3
+
+Fixed wrong instruction book pages.
+
+### 0.2.29.2
+
+Fixed the instruction book directing to NFF Girls (HMaG) book.
+
 ### 0.2.29.1
 
 Fixed crash on dedicated server.
