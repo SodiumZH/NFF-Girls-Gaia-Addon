@@ -178,37 +178,18 @@ dependencies {
     }
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api") // Adds JEI API as a compile dependency
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 	implementation fg.deobf("blank:nffservices-${minecraft_version}:${services_version}")
     implementation fg.deobf("blank:nffgirls-${minecraft_version}:${girls_version_filename}")
 
-	jarJar(group: 'net.sodiumzh', name: 'nffservices', version: "[${minecraft_version}-${services_version},)"){
-		jarJar.pin(it, "${minecraft_version}-${services_version}")
-	}
-    implementation fg.deobf("curse.maven:hmag-537613:5391696")
-    implementation fg.deobf("curse.maven:gog4-228948:5678609")
+    implementation fg.deobf("curse.maven:hmag-537613:5391730")
 
-	implementation fg.deobf("curse.maven:jade-324717:4433884")
-	implementation fg.deobf("curse.maven:tf-227639:4389567")
-
-	//implementation fg.deobf("curse.maven:mobpets-941037:4907694")
-	implementation fg.deobf("curse.maven:patchouli-306770:4031402")
-	
-	// Testing compat mods
-	implementation fg.deobf("curse.maven:moonlight-499980:4312303")
-	implementation fg.deobf("curse.maven:testdummy-225738:4410143")
-	implementation fg.deobf("curse.maven:citadel-331936:4556677")
-	implementation fg.deobf("curse.maven:alexsmobs-426558:4159154")
-	//implementation fg.deobf("curse.maven:iceandfire-264231:5037952")
-	implementation fg.deobf("curse.maven:bop-220318:4473556")
-	implementation fg.deobf("curse.maven:terrablender-563928:4618490")
-	implementation fg.deobf("curse.maven:corgilib-693313:4554111")
-	implementation fg.deobf("curse.maven:geckolib-388172:4407241")
-	implementation fg.deobf("curse.maven:byg-247560:5116293")
-	implementation fg.deobf("curse.maven:assortedtools-409802:4651299")
-	//implementation fg.deobf("curse.maven:gog4-228948:4683680")
+    implementation fg.deobf("curse.maven:jade-324717:4082408")
+    implementation fg.deobf("curse.maven:grimoire-of-gaia-228948:5678608")
+    implementation fg.deobf("curse.maven:twilightforest-227639:4337390")
+    implementation fg.deobf("curse.maven:testdummy-225738:3820503")
+    implementation fg.deobf("curse.maven:citadel-331936:3783096")
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
