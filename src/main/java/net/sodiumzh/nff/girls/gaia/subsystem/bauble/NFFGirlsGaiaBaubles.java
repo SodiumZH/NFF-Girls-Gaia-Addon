@@ -1,14 +1,12 @@
-package net.sodiumzh.nff.girls.gaia.subsystems.baubles;
+package net.sodiumzh.nff.girls.gaia.subsystem.bauble;
 
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.sodiumzh.nff.girls.entity.hmag.HmagDullahanEntity;
-import net.sodiumzh.nff.girls.entity.hmag.HmagHarpyEntity;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.*;
-import net.sodiumzh.nff.girls.subsystem.baublesystem.NFFGirlsBaubleRegistrations;
-import net.sodiumzh.nff.services.subsystem.baublesystem.RegisterBaubleEquippableMobsEvent;
+import net.sodiumzh.nff.girls.subsystem.bauble.NFFGirlsBaubleRegistrations;
+import net.sodiumzh.nff.services.subsystem.bauble.RegisterBaubleEquippableMobsEvent;
 
 @EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NFFGirlsGaiaBaubles

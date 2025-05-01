@@ -1,4 +1,4 @@
-package net.sodiumzh.nff.girls.gaia.eventlisteners;
+package net.sodiumzh.nff.girls.gaia.eventlistener;
 
 import gaia.capability.CapabilityHandler;
 import gaia.entity.AbstractGaiaEntity;
@@ -12,13 +12,12 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
-import net.sodiumzh.nff.girls.entity.tamingprocesses.hmag.HmagBansheeTamingProcess;
+import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.HmagBansheeTamingProcess;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaMummyEntity;
-import net.sodiumzh.nff.girls.gaia.events.GaiaMobFinalizeSpawnEvent;
+import net.sodiumzh.nff.girls.gaia.event.GaiaMobFinalizeSpawnEvent;
 import net.sodiumzh.nff.services.entity.capability.CNFFTamable;
 import net.sodiumzh.nff.services.event.entity.NFFMobTamedEvent;
-import org.apache.commons.lang3.builder.ToStringSummary;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class NFFGirlsGaiaEntityEventListeners

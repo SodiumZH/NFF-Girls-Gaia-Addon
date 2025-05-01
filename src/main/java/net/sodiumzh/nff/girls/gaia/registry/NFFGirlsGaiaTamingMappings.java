@@ -1,4 +1,4 @@
-package net.sodiumzh.nff.girls.gaia.registries;
+package net.sodiumzh.nff.girls.gaia.registry;
 
 import gaia.GrimoireOfGaia;
 import net.minecraft.resources.ResourceLocation;

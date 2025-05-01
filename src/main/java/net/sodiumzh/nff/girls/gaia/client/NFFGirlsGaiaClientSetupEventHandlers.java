@@ -6,7 +6,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
-import net.sodiumzh.nff.girls.gaia.registries.NFFGirlsGaiaEntityTypes;
+import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NFFGirlsGaiaClientSetupEventHandlers
