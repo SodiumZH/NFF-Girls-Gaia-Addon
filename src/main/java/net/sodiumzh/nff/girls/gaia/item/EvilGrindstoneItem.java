@@ -1,10 +1,10 @@
 package net.sodiumzh.nff.girls.gaia.item;
 
+import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaItems;
 import net.minecraft.world.item.ItemStack;
-import net.sodiumzh.nautils.item.NaUtilsItem;
-import net.sodiumzh.nff.girls.gaia.registries.NFFGirlsGaiaItems;
+import net.sodiumzh.nfu.item.NFUItem;
 
-public class EvilGrindstoneItem extends NaUtilsItem {
+public class EvilGrindstoneItem extends NFUItem {
 
     public EvilGrindstoneItem(Properties pProperties) {
         super(pProperties);

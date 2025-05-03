@@ -9,10 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.sodiumzh.nautils.math.HtmlColors;
-import net.sodiumzh.nautils.math.LinearColor;
-import net.sodiumzh.nautils.statics.NaUtilsInfoStatics;
-import net.sodiumzh.nff.girls.client.gui.screen.CitadelBasedMobDictionaryGUI;
+import net.sodiumzh.nfu.math.HtmlColors;
 
 @OnlyIn(Dist.CLIENT)
 public class NFFGirlsGaiaCitadelMobDictScreen extends GuiBasicBook {

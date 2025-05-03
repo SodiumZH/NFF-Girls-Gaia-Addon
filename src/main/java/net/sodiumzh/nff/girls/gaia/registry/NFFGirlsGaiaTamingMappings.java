@@ -1,10 +1,10 @@
-package net.sodiumzh.nff.girls.gaia.registries;
+package net.sodiumzh.nff.girls.gaia.registry;
 
 import gaia.GrimoireOfGaia;
+import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.registry.NFFGirlsTamingProcesses;
 import net.sodiumzh.nff.services.event.setup.NFFTamingMappingRegisterEvent;
 
