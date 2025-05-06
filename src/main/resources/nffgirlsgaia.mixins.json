@@ -1,10 +1,10 @@
 {
 	"required": true,
-	"package": "net.sodiumzh.nff.girls.gaia.mixins",
+	"package": "net.sodiumzh.nff.girls.gaia.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"refmap": "nffgirlsgaia.refmap.json",
 	"mixins": [
-		"NFFGirlsAbstractGaiaEntityMixin"
+      "NFFGirlsAbstractGaiaEntityMixin"
 	],
 	"client": [
 	],

@@ -1,14 +1,12 @@
 package net.sodiumzh.nff.girls.gaia.client.renderer;
 
 import gaia.client.ClientHandler;
-import gaia.client.model.HarpyModel;
 import gaia.client.renderer.GaiaBabyMobRenderer;
 import gaia.entity.Harpy;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.sodiumzh.nff.girls.gaia.client.model.NFFGirlsGaiaHarpyModel;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 

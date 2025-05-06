@@ -14,22 +14,25 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.sodiumzh.nautils.entity.MobApplicableItemTable;
-import net.sodiumzh.nautils.statics.NaUtilsLevelStatics;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamedSunSensitiveMob;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
 import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingAttackGoal;
+import net.sodiumzh.nff.girls.inventory.NFFGirlsThreeBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
-import net.sodiumzh.nff.girls.inventory.*;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
-import net.sodiumzh.nff.services.entity.ai.goal.preset.*;
-import net.sodiumzh.nff.services.entity.ai.goal.preset.target.*;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFFlyingLandGoal;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFFlyingRandomMoveGoal;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtByTargetGoal;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtTargetGoal;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
+import net.sodiumzh.nfu.entity.MobApplicableItemTable;
+import net.sodiumzh.nfu.util.NFULevelStatics;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -143,7 +146,7 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
         public void onTick() {
             if (this.mob.isOwnerPresent()) {
                 if (!this.mob.asMob().getMoveControl().hasWanted()) {
-                    if (!NaUtilsLevelStatics.isAboveVoid(this.mob.asMob().blockPosition(), this.mob.asMob())) {
+                    if (!NFULevelStatics.isAboveVoid(this.mob.asMob().blockPosition(), this.mob.asMob())) {
                         BlockPos pos;
                         for(pos = this.mob.asMob().blockPosition(); this.mob.asMob().level.getBlockState(pos).isAir() && pos.getY() >= this.mob.asMob().level.getMinBuildHeight(); pos = pos.below()) {
                         }
