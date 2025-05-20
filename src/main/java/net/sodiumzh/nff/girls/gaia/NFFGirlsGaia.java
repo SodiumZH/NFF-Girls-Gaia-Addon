@@ -4,6 +4,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityAttributes;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaItems;
 
@@ -19,6 +20,7 @@ public class NFFGirlsGaia
         
         NFFGirlsGaiaEntityTypes.ENTITY_TYPES.register(modEventBus);
         NFFGirlsGaiaItems.ITEMS.register(modEventBus);
+        NFFGirlsGaiaEntityAttributes.ENTITY_ATTRIBUTE_PROVIDERS.merge();
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }

@@ -1,5 +1,6 @@
 package net.sodiumzh.nff.girls.gaia.registry;
 
+import gaia.registry.GaiaRegistry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
@@ -70,17 +71,9 @@ public class NFFGirlsGaiaEntityTypes extends NFFGirlsEntityTypes
 			.setUpdateInterval(3)
 			.setShouldReceiveVelocityUpdates(false));
 
-	@SubscribeEvent
-	public static void onAttributeCreate(EntityAttributeCreationEvent event) {	
-		
-		NFFGirlsGaiaEntityAttributes.REGISTRY.forEach((type, supplier) ->
-		{
-			event.put(type, supplier.get().build());
-		});
-	
-	}
-	
-	private static <T extends LivingEntity> RegistryObject<EntityType<T>> registerBM(String regName, 
+	public static final RegistryObject<EntityType<GaiaBeeEntity>> GAIA_BEE =
+		registerBM("gaia_bee", GaiaBeeEntity::new, GaiaRegistry.ENTITIES.getEntries())
+	private static <T extends LivingEntity> RegistryObject<EntityType<T>> registerBM(String regName,
 			EntityType.EntityFactory<T> creator, Function<EntityType.Builder<T>, EntityType.Builder<T>> builderModifier)
 	{
 		return registerBM(ENTITY_TYPES, NFFGirlsGaia.MOD_ID, regName, creator, MobCategory.CREATURE, builderModifier);
