@@ -143,7 +143,9 @@ repositories {
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
     flatDir {
-        dir 'libs'
+      //  dir 'libs'
+        dir '../NFF-Services/build/libs'
+        dir '../NFF-Girls/build/libs'
     }
     	
 	maven {
@@ -209,6 +211,9 @@ dependencies {
 	implementation fg.deobf("curse.maven:byg-247560:5116293")
 	implementation fg.deobf("curse.maven:assortedtools-409802:4651299")
 	//implementation fg.deobf("curse.maven:gog4-228948:4683680")
+
+    implementation fg.deobf("curse.maven:manascore-619025:6266377")
+    implementation fg.deobf("curse.maven:tensura-reincarnated-643695:6549717")
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
