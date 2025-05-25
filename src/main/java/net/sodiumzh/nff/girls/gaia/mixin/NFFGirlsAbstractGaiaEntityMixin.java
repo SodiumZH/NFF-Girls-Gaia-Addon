@@ -21,7 +21,7 @@ public class NFFGirlsAbstractGaiaEntityMixin implements NFUMixin<AbstractGaiaEnt
 	@Inject(method = "finalizeSpawn(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;",
 			at = @At(value = "INVOKE", target = "Lgaia/entity/AbstractGaiaEntity;finalizeAttributes()V", remap = false), cancellable = true, expect = -1)
 	private void onFinalizeSpawn(ServerLevelAccessor levelAccessor, DifficultyInstance difficultyInstance,
-			MobSpawnType spawnType, SpawnGroupData groupData, CompoundTag tag, CallbackInfoReturnable<SpawnGroupData> callback, @Local(ordinal = 0) SpawnGroupData result)
+			MobSpawnType spawnType, SpawnGroupData groupData, CompoundTag tag, CallbackInfoReturnable<SpawnGroupData> callback, @Local(ordinal = 1) SpawnGroupData result)
 	{
 		if (MinecraftForge.EVENT_BUS.post(new GaiaMobFinalizeSpawnEvent(this.caller())))
 			callback.setReturnValue(result);
