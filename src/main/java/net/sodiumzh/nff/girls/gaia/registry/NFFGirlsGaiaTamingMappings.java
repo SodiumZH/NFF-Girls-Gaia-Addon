@@ -42,5 +42,25 @@ public class NFFGirlsGaiaTamingMappings
 			new ResourceLocation(GrimoireOfGaia.MOD_ID, "mummy"),
 			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_mummy"),
 			NFFGirlsTamingProcesses.VANILLA_UNDEAD_A);
+		/*event.register(
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "bee"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_bee"),
+			NFFGirlsTamingProcesses.HMAG_HORNET);*/
+		event.register(
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "valkyrie"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_valkyrie"),
+			NFFGirlsGaiaTamingProcesses.GAIA_VALKYRIE);
+		event.register(
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "yuki_onna"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_yuki_onna"),
+			NFFGirlsGaiaTamingProcesses.GAIA_YUKI_ONNA);
+		event.register(
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "cecaelia"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_cecaelia"),
+			NFFGirlsGaiaTamingProcesses.GAIA_AQUATIC_A);
+		event.register(
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "mermaid"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_mermaid"),
+			NFFGirlsGaiaTamingProcesses.GAIA_AQUATIC_A);
 	}
 }

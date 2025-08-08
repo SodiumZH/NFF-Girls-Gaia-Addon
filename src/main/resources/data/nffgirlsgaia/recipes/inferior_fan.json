@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    "SPS",
+    " TP",
+    "S S"
+  ],
+
+  "key":{
+
+    "T":{
+      "item": "minecraft:string"
+    },
+
+    "P":{
+      "item": "minecraft:paper"
+    },
+
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+
+  "result":{
+    "item": "nffgirlsgaia:inferior_fan",
+    "count": 1
+  }
+}

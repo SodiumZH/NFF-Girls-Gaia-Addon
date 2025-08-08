@@ -1,0 +1,30 @@
+[
+  {
+    "item": "minecraft:dried_kelp",
+    "amount": [1]
+  },
+  {
+    "item": "minecraft:cooked_cod",
+    "amount": [5]
+  },
+  {
+    "item": "minecraft:cooked_salmon",
+    "amount": [5]
+  },
+  {
+    "item": "hmag:cooked_savagefang_meat",
+    "amount": [10]
+  },
+  {
+    "item": "minecraft:golden_carrot",
+    "amount": [15]
+  },
+  {
+    "item": "minecraft:golden_apple",
+    "amount_getter": "nffgirls:mob_max_health"
+  },
+  {
+    "item": "hmag:golden_tropical_fish",
+    "amount_getter": "nffgirls:mob_max_health"
+  }
+]
