@@ -81,7 +81,7 @@ public class GaiaSprigganEntity extends Spriggan implements INFFGirlsTamed {
 
     @Override
     public NFFTamedMobInventory createAdditionalInventory() {
-        return new NFFTamedMobInventoryWithHandItems(3, this);
+        return new NFFTamedMobInventory(3, this);
     }
 
     @Override

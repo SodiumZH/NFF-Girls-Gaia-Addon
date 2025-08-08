@@ -1,0 +1,15 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+To win the trust of a Valkyrie, you must pass her tough trial through dueling. Strike her with a lightning
+to show you're ready. Each time you reduce the Valkyrie's HP by 20, the HP will be locked until you
+perform a required attack, including Sword attack, Axe attack, Arrow shooting, Trident throwing or lightning
+strike. You'll succeed only after you finally defeat the Valkyrie.
+<NEWLINE>
+During the dueling, the Valkyrie will shoot fire, ice and lightning magic bullets besides sword attack, some of which
+can even break the terrain. If you cannot break the HP-lock within 90 seconds, you'll be punished with a very powerful lightning.
+Remember that you could die for any tiniest error!
+<NEWLINE>
+After being a partner, the Valkyrie can cast powerful magics when equipping a staff, and can be healed with
+the Apple, Cookie, Lemon, Pumpkin Pie and Lemon Pie. A Golden Apple can fully recover the health.

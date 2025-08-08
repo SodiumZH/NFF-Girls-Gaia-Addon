@@ -40,6 +40,18 @@
       "hover_text": "entity.grimoireofgaia.succubus"
     },
     {
+      "entity": "grimoireofgaia:yuki_onna",
+      "x": 350,
+      "y": 10,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "yuki_onna.json",
+      "hover_text": "entity.grimoireofgaia.yuki_onna"
+    },
+    {
       "entity": "grimoireofgaia:banshee",
       "x": 230,
       "y": 50,
@@ -86,6 +98,42 @@
       "offset_y": 3,
       "linked_page": "harpy.json",
       "hover_text": "entity.grimoireofgaia.harpy"
+    },
+    {
+      "entity": "grimoireofgaia:cecaelia",
+      "x": 230,
+      "y": 90,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "cecaelia.json",
+      "hover_text": "entity.grimoireofgaia.cecaelia"
+    },
+    {
+      "entity": "grimoireofgaia:mermaid",
+      "x": 270,
+      "y": 90,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "mermaid.json",
+      "hover_text": "entity.grimoireofgaia.mermaid"
+    },
+    {
+      "entity": "grimoireofgaia:valkyrie",
+      "x": 310,
+      "y": 90,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "valkyrie.json",
+      "hover_text": "entity.grimoireofgaia.valkyrie"
     }
   ],
   "linked_page_buttons": [

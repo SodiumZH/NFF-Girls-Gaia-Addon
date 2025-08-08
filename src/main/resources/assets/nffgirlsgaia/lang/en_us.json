@@ -1,6 +1,8 @@
 {
   "item.nffgirlsgaia.mob_dictionary": "NFF-Girls Mob Dictionary - Grimoire of Gaia Supplement",
   "item.nffgirlsgaia.evil_grindstone": "Evil Grindstone",
+  "item.nffgirlsgaia.wooden_staff": "Wooden Staff",
+  "item.nffgirlsgaia.inferior_fan": "Inferior Fan",
 
   "entity.nffgirlsgaia.gaia_dryad": "Dryad",
   "entity.nffgirlsgaia.gaia_spriggan": "Spriggan",
@@ -8,7 +10,18 @@
   "entity.nffgirlsgaia.gaia_banshee": "Banshee",
   "entity.nffgirlsgaia.gaia_harpy": "Harpy",
   "entity.nffgirlsgaia.gaia_succubus": "Succubus",
+  "entity.nffgirlsgaia.gaia_yuki_onna": "Yuki-Onna",
+  "entity.nffgirlsgaia.gaia_cecaelia": "Cecaelia",
+  "entity.nffgirlsgaia.gaia_mermaid": "Mermaid",
+  "entity.nffgirlsgaia.gaia_valkyrie": "Valkyrie",
+
+  "entity.nffgirlsgaia.mygo.tomori": "Takamatsu Tomori",
+  "entity.nffgirlsgaia.mygo.anon": "Chihaya Anon",
+  "entity.nffgirlsgaia.mygo.taki": "Shiina Taki",
+  "entity.nffgirlsgaia.mygo.soyo": "Nagasaki Soyo",
+  "entity.nffgirlsgaia.mygo.rana": "Kaname Rana",
 
   "desc.nffgirlsgaia.evil_grindstone": "Craft with some loots to transform them into Evil Crystal Fragments. Reusable.",
+  "desc.nffgirlsgaia.monster_feed": "Use to your NFF mob to provide %1$d XP.",
   "dict.nffgirlsgaia.title": "NFF-Girls Mob Dictionary - Grimoire of Gaia Supplement"
 }

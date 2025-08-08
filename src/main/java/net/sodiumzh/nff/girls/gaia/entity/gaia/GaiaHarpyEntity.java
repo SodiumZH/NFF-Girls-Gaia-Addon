@@ -1,13 +1,12 @@
 package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Harpy;
+import gaia.entity.goal.MobAttackGoal;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -16,9 +15,12 @@ import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
+import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsFourBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFLeapAtOwnerGoal;
+import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFLeapAtTargetGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFWaterAvoidingRandomStrollGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
@@ -30,8 +32,9 @@ import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
+import java.util.List;
 
-public class GaiaHarpyEntity extends Harpy implements INFFGirlsTamed {
+public class GaiaHarpyEntity extends Harpy implements INFFGirlsTamed, IBlocksGaiaDynamicGoals {
 
     public GaiaHarpyEntity(EntityType<? extends GaiaHarpyEntity> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -43,7 +46,9 @@ public class GaiaHarpyEntity extends Harpy implements INFFGirlsTamed {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(1, new FloatGoal(this));
+        goalSelector.addGoal(2, new NFFLeapAtTargetGoal(this, 0.39F, 0.45F, 32.0F, 24));
         goalSelector.addGoal(3, new NFFMeleeAttackGoal(this, 1.0d, true));
+        goalSelector.addGoal(4, new NFFLeapAtOwnerGoal(this, 0.39F, 0.45F, 32.0F, 24));
         goalSelector.addGoal(5, new NFFGirlsFollowOwnerGoal(this, 1.0d, 5.0f, 2.0f, false));
         goalSelector.addGoal(6, new NFFWaterAvoidingRandomStrollGoal(this, 1.0d));
         goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -84,4 +89,8 @@ public class GaiaHarpyEntity extends Harpy implements INFFGirlsTamed {
         return typeBefore != null ? typeBefore.getDescription() : super.getTypeName();
     }
 
+    @Override
+    public List<Class<? extends Goal>> getGoalsToRemove() {
+        return List.of(LeapAtTargetGoal.class, MobAttackGoal.class, AvoidEntityGoal.class);
+    }
 }

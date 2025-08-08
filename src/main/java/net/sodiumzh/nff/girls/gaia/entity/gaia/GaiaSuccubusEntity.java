@@ -2,6 +2,9 @@ package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Succubus;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.EntityType;
@@ -16,6 +19,7 @@ import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
+import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
@@ -28,11 +32,22 @@ import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
+import net.sodiumzh.nfu.entity.MobApplicableItemTable;
+import net.sodiumzh.nfu.util.NFUInfoStatics;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 
-public class GaiaSuccubusEntity extends Succubus implements INFFGirlsTamed {
+public class GaiaSuccubusEntity extends Succubus implements INFFGirlsTamed, IHasMyGOVariant {
+
+    private static final EntityDataAccessor<Boolean> MYGO =
+        SynchedEntityData.defineId(GaiaSuccubusEntity.class, EntityDataSerializers.BOOLEAN);
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(MYGO, false);
+    }
 
     public GaiaSuccubusEntity(EntityType<? extends GaiaSuccubusEntity> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -76,5 +91,20 @@ public class GaiaSuccubusEntity extends Succubus implements INFFGirlsTamed {
     public Component getTypeName() {
         EntityType<?> typeBefore = NFFTamingMapping.getTypeBefore(this);
         return typeBefore != null ? typeBefore.getDescription() : super.getTypeName();
+    }
+
+    @Override
+    public boolean itsMyGO() {
+        return this.entityData.get(MYGO);
+    }
+
+    @Override
+    public void setMyGO(boolean value) {
+        this.entityData.set(MYGO, value);
+    }
+
+    @Override
+    public Component getMyGOName() {
+        return NFUInfoStatics.createTranslatable("entity.nffgirlsgaia.mygo.tomori");
     }
 }

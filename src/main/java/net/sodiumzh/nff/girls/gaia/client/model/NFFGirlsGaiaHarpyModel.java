@@ -16,8 +16,8 @@ public class NFFGirlsGaiaHarpyModel extends HarpyModel {
         if (this.riding) {
             ModelPart leftLeg = NFUReflectionStatics.forceGet(this, HarpyModel.class, "leftleg").cast();
             ModelPart rightLeg = NFUReflectionStatics.forceGet(this, HarpyModel.class, "rightleg").cast();
-            leftLeg.xRot -= 0.3f;
-            rightLeg.xRot -= 0.3f;
+            leftLeg.xRot -= 0.6f;
+            rightLeg.xRot -= 0.6f;
         }
     }
 }
