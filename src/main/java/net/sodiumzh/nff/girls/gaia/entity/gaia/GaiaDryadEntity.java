@@ -1,13 +1,12 @@
 package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Dryad;
+import gaia.entity.goal.MobAttackGoal;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -17,6 +16,7 @@ import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwne
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtByTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtTargetGoal;
+import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsThreeBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
@@ -26,13 +26,13 @@ import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtByTarg
 import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
-import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
 import net.sodiumzh.nfu.entity.MobApplicableItemTable;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
+import java.util.List;
 
-public class GaiaDryadEntity extends Dryad implements INFFGirlsTamed
+public class GaiaDryadEntity extends Dryad implements INFFGirlsTamed, IBlocksGaiaDynamicGoals
 {
 	/* Data sync */
 
@@ -72,7 +72,7 @@ public class GaiaDryadEntity extends Dryad implements INFFGirlsTamed
 
 	@Override
 	public NFFTamedMobInventory createAdditionalInventory() {
-		return new NFFTamedMobInventoryWithHandItems(3, this);
+		return new NFFTamedMobInventory(3, this);
 	}
 
 	@Override
@@ -93,5 +93,10 @@ public class GaiaDryadEntity extends Dryad implements INFFGirlsTamed
 	public Component getTypeName() {
 		EntityType<?> typeBefore = NFFTamingMapping.getTypeBefore(this);
 		return typeBefore != null ? typeBefore.getDescription() : super.getTypeName();
+	}
+
+	@Override
+	public List<Class<? extends Goal>> getGoalsToRemove() {
+		return List.of(MobAttackGoal.class, AvoidEntityGoal.class);
 	}
 }

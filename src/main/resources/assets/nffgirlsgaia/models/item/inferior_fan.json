@@ -1,0 +1,6 @@
+{
+  "parent": "grimoireofgaia:item/fan",
+  "textures": {
+    "0": "nffgirlsgaia:item/inferior_fan"
+  }
+}

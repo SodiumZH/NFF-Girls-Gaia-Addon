@@ -1,0 +1,7 @@
+{
+  "desc": "Mobs with this tag can equip baubles for nether mobs.",
+  "replace" : false,
+  "values" : [
+    "nffgirlsgaia:gaia_succubus"
+  ]
+}

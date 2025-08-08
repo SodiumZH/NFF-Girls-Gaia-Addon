@@ -1,0 +1,11 @@
+{
+  "desc": "",
+  "replace" : false,
+  "values" : [
+    "grimoireofgaia:magic_staff",
+    "grimoireofgaia:cave_spider_staff",
+    "grimoireofgaia:skeleton_staff",
+    "grimoireofgaia:zombie_staff",
+    "nffgirlsgaia:wooden_staff"
+  ]
+}

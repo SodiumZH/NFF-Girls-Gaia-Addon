@@ -1,0 +1,10 @@
+{
+  "desc": "",
+  "replace" : false,
+  "values" : [
+    "grimoireofgaia:fan",
+    "grimoireofgaia:fan_fire",
+    "grimoireofgaia:fan_ice",
+    "nffgirlsgaia:inferior_fan"
+  ]
+}

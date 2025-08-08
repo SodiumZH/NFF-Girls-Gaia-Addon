@@ -1,5 +1,6 @@
 package net.sodiumzh.nff.girls.gaia.registry;
 
+import gaia.item.weapon.FanItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -19,7 +20,7 @@ import java.util.HashSet;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class NFFGirlsGaiaItems {
+public class  NFFGirlsGaiaItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NFFGirlsGaia.MOD_ID);
     public static final HashSet<RegistryObject<? extends Item>> NO_TAB = new HashSet<>();
@@ -44,6 +45,10 @@ public class NFFGirlsGaiaItems {
 
     public static final RegistryObject<EvilGrindstoneItem> EVIL_GRINDSTONE = register("evil_grindstone",
         () -> new EvilGrindstoneItem(new Item.Properties().stacksTo(1)).descTranslatable("desc.nffgirlsgaia.evil_grindstone").cast());
+    public static final RegistryObject<Item> INFERIOR_FAN = register("inferior_fan",
+        () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> WOODEN_STAFF = register("wooden_staff",
+        () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> MOB_DICT = registerModDependent("mob_dictionary", "citadel",
         () -> new CitadelBasedMobDictionaryItem(new Item.Properties(),

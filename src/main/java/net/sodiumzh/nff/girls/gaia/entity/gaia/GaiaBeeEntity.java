@@ -1,12 +1,8 @@
 package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
-import com.github.mechalopa.hmag.world.entity.HornetEntity;
 import gaia.entity.Bee;
-import net.minecraft.nbt.CompoundTag;
+import gaia.entity.goal.MobAttackGoal;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
 import net.minecraft.world.Difficulty;
@@ -16,21 +12,19 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsHmagFlyingGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtByTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.movecontrol.NFFGirlsHmagFlyingMoveControl;
-import net.sodiumzh.nff.girls.entity.hmag.HmagHornetEntity;
+import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
+import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingAttackGoal;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
@@ -45,14 +39,15 @@ import net.sodiumzh.nfu.entity.MobApplicableItemTable;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
+import java.util.List;
 
-public class GaiaBeeEntity extends Bee implements INFFGirlsTamed {
+public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDynamicGoals {
 
     private final int HONEY_COLLECTING_COOLDOWN = 5 * 60 * 20;
     private int currentHoneyCollectingCooldown = HONEY_COLLECTING_COOLDOWN;
-    private EntityDataAccessor<Integer> DATA_HONEY_LEVEL =
-        SynchedEntityData.defineId(HmagHornetEntity.class, EntityDataSerializers.INT);
-
+    /*private EntityDataAccessor<Integer> DATA_HONEY_LEVEL =
+        SynchedEntityData.defineId(GaiaBeeEntity.class, EntityDataSerializers.INT);
+*/
     public GaiaBeeEntity(EntityType<? extends GaiaBeeEntity> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.xpReward = 0;
@@ -64,7 +59,7 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        entityData.define(DATA_HONEY_LEVEL, 0);
+        //entityData.define(DATA_HONEY_LEVEL, 0);
     }
 
     /* AI */
@@ -72,7 +67,7 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(4, new NFFGirlsHmagFlyingGoal.ChargeAttackGoal(this, 0.5D, 1.5F, 6));
+        this.goalSelector.addGoal(4, new NFFGirlsGaiaFlyingAttackGoal(this));
         //this.goalSelector.addGoal(4, new NFFMeleeAttackGoal(this, 1d, false));
         this.goalSelector.addGoal(5, new NFFFlyingLandGoal(this));
         this.goalSelector.addGoal(6, new NFFGirlsFlyingFollowOwnerGoal(this));
@@ -168,15 +163,6 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed {
     /* Save and Load */
 
     @Override
-    public void readAdditionalSaveData(CompoundTag nbt) {
-        super.readAdditionalSaveData(nbt);
-        //NFFTamedStatics.readBefriendedCommonSaveData(this, nbt);
-        // Add other data reading here
-
-        setInit();
-    }
-
-    @Override
     protected SoundEvent getAmbientSound()
     {
         return NFFGirlsSoundPresets.generalAmbient(super.getAmbientSound());
@@ -193,5 +179,10 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed {
     @Override
     public boolean shouldSitOnWaiting() {
         return false;
+    }
+
+    @Override
+    public List<Class<? extends Goal>> getGoalsToRemove() {
+        return List.of(RangedAttackGoal.class, MobAttackGoal.class);
     }
 }
