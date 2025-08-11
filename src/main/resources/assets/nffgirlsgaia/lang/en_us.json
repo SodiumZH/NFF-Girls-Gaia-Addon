@@ -15,6 +15,10 @@
   "entity.nffgirlsgaia.gaia_mermaid": "Mermaid",
   "entity.nffgirlsgaia.gaia_valkyrie": "Valkyrie",
 
+  "entity.nffgirlsgaia.effect_zone.nffgirlsgaia:yuki_onna_snow_zone_inner": "Snow Storm Zone",
+  "entity.nffgirlsgaia.effect_zone.nffgirlsgaia:yuki_onna_snow_zone_outer": "Snow Storm Zone",
+  "entity.nffgirlsgaia.effect_zone.nffgirlsgaia:valkyrie_common_projectile": "Magic Bullet",
+
   "entity.nffgirlsgaia.mygo.tomori": "Takamatsu Tomori",
   "entity.nffgirlsgaia.mygo.anon": "Chihaya Anon",
   "entity.nffgirlsgaia.mygo.taki": "Shiina Taki",
