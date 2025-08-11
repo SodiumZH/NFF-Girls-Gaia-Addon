@@ -7,6 +7,7 @@ import gaia.registry.GaiaSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -41,6 +42,7 @@ import net.sodiumzh.nff.services.entity.taming.NFFTamingProcess;
 import net.sodiumzh.nfu.entity.AttachedItemDisplayerEntity;
 import net.sodiumzh.nfu.entity.ConditionalAttributeModifier;
 import net.sodiumzh.nfu.entity.NFUItemProjectileEntity;
+import net.sodiumzh.nfu.entity.ServerEntityMotion;
 import net.sodiumzh.nfu.entity.ai.NFURangedAttackGoal;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
 import net.sodiumzh.nfu.entity.taming.TamingInteractionResult;
@@ -50,14 +52,12 @@ import net.sodiumzh.nfu.math.RandomSelection;
 import net.sodiumzh.nfu.math.WeightedRandomSelector;
 import net.sodiumzh.nfu.mixin.event.entity.ProjectileHitEvent;
 import net.sodiumzh.nfu.registry.NFUEntityTypes;
+import net.sodiumzh.nfu.util.NFUEntityStatics;
 import net.sodiumzh.nfu.util.NFUMathStatics;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
 import org.checkerframework.checker.units.qual.C;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -80,7 +80,8 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 
     private static final BiConsumer<NFUItemProjectileEntity, Mob> SHOOT_PROJECTILE_ACTION = (proj, m) -> {
         if (m.getTarget() != null) {
-            proj.shootTo(m.getTarget().getBoundingBox().getCenter(), 0.8f, 2f);
+            float speed = proj.getIdentifier().equals(new ResourceLocation("nffgirlgaia:valkyrie_common_projectile")) ? 1.2f : 0.8f;
+            proj.shootTo(m.getTarget().getBoundingBox().getCenter(), speed, 2f);
             proj.playSound(GaiaSounds.GAIA_SHOOT.get(), 1.0F, 1.0F / (m.getRandom().nextFloat() * 0.5F + 1.0F));
         } else proj.discard();
     };
@@ -100,7 +101,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
         if (tamable.getEntity() instanceof Valkyrie v)
           v.goalSelector.addGoal(0,
               new ShootingGoal(v, 1.0, 5 * 20, 15f)
-                  .minAttackDistance(6d)
+                  .minAttackDistance(4d)
                   .setShootingAction((m, l, f) -> rangedAttack(m)));
     }
 
@@ -122,7 +123,8 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
             if (mob.getHealth() < this.getMinHP(mob))
                 mob.setHealth(this.getMinHP(mob));
             // Handle action hint
-            if (this.requiresActionNow(mob) && (!displayers.containsKey(mob) || displayers.get(mob).level() != mob.level())) {
+            if (this.requiresActionNow(mob)
+                && (!displayers.containsKey(mob) || displayers.get(mob).level() != mob.level() || !displayers.get(mob).getItem().is(this.getRequiredAction(mob).hint.getItem()))) {
                 if (displayers.containsKey(mob)) {
                      displayers.get(mob).discard();
                     displayers.remove(mob);
@@ -234,6 +236,10 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
             this.refreshRequirement(mob);
             NFUParticleStatics.sendParticlesToEntity(mob, ParticleTypes.EXPLOSION, -1d, 1d, 4, 0d);
             mob.playSound(SoundEvents.GENERIC_EXPLODE, 4f, 1f);
+            Vec3 v = mob.getBoundingBox().getCenter().subtract(this.getOngoingPlayer(mob).orElseThrow().getBoundingBox().getCenter());
+            Vec3 knockbackDir = new Vec3(v.x, 0, v.z).normalize();
+            this.getOngoingPlayer(mob).ifPresent(p -> NFUEntityStatics.knockbackOnServer(p, 2d, knockbackDir.x(), knockbackDir.z()));
+            ServerEntityMotion.accel(knockbackDir.add(0d, 0.2d, 0d).normalize().scale(4d)).apply(mob);
         }
     }
 
@@ -262,20 +268,30 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
         mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5 * 20));
     }
 
-    private static void rangedAttack(Mob mob) {
+    private void rangedAttack(Mob mob) {
         if (mob.getTarget() == null) return;
-        NFUItemProjectileEntity[] e = new NFUItemProjectileEntity[]{null, null, null};
-        for (int i = 0; i < 3; ++i) {
-            e[i] = PROJECTILE_SUPPLIER.select(mob.getRandom()).apply(mob).setLifetime(6 * 20 + 15 * i);
+        int amount = this.getProgress(mob) >= 4 ? 5 : 3;
+        int shootingDeltaTime = amount == 5 ? 8 : 15;
+        List<NFUItemProjectileEntity> e = new ArrayList<>();
+        for (int i = 0; i < amount; ++i) {
+            e.add(PROJECTILE_SUPPLIER.select(mob.getRandom()).apply(mob).setLifetime(6 * 20 + 15 + shootingDeltaTime * i));
         }
-        e[0].setPos(mob.getEyePosition()
-            .add(NFUMathStatics.rotateVectorY(mob.getForward(), 90).normalize().scale(1.5d)).add(0d, 1.5d, 0d));
-        e[1].setPos(mob.getEyePosition()
-            .add(NFUMathStatics.rotateVectorY(mob.getForward(), -90).normalize().scale(1.5d)).add(0d, 1.5d, 0d));
-        e[2].setPos(mob.getEyePosition().add(0d, 3d, 0d));
-        for (int i = 0; i < 3; ++i) {
-            e[i].scheduleServerActions(15 * i + 15, proj -> SHOOT_PROJECTILE_ACTION.accept(proj, mob));
-            mob.level().addFreshEntity(e[i]);
+        Vec3 forward = Optional.ofNullable(mob.getTarget()).map(t -> t.position().subtract(mob.position())).orElse(mob.getForward());
+        forward = new Vec3(forward.x(), 0d, forward.z()).normalize();
+        e.get(0).setPos(mob.getEyePosition().add(0d, 3d, 0d));
+        e.get(1).setPos(mob.getEyePosition()
+            .add(NFUMathStatics.rotateVectorY(forward, -90).normalize().scale(1.5d)).add(0d, 1.5d, 0d));
+        e.get(2).setPos(mob.getEyePosition()
+            .add(NFUMathStatics.rotateVectorY(forward, 90).normalize().scale(1.5d)).add(0d, 1.5d, 0d));
+        if (amount == 5) {
+            e.get(3).setPos(mob.getEyePosition()
+                .add(NFUMathStatics.rotateVectorY(forward, 90).normalize().scale(2.5d)));
+            e.get(4).setPos(mob.getEyePosition()
+                .add(NFUMathStatics.rotateVectorY(forward, -90).normalize().scale(2.5d)));
+        }
+        for (int i = 0; i < amount; ++i) {
+            e.get(i).scheduleServerActions(shootingDeltaTime * i + 15, proj -> SHOOT_PROJECTILE_ACTION.accept(proj, mob));
+            mob.level().addFreshEntity(e.get(i));
         }
         mob.swing(InteractionHand.MAIN_HAND);
         mob.level().playSound(mob, mob.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE,
@@ -403,6 +419,8 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
                     mob.getItemInHand(InteractionHand.OFF_HAND).save(offhandAsNBT);
                     mob.setHealth(mob.getMaxHealth());
                     proc.refreshRequirement(mob);
+                    NFUParticleStatics.sendParticlesToEntity(mob, ParticleTypes.EXPLOSION, -0.5d, 1.5d, 7, 0d);
+                    mob.playSound(SoundEvents.GENERIC_EXPLODE, 4f, 1f);
                 }
                 // Case when it's required to do a lightning strike
                 // Required Action #0 - thunder strike
@@ -422,34 +440,41 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
                 && event.getEntity() instanceof Valkyrie mob
                 && event.getSource().getEntity() instanceof Player player
                 && NFFTamingMapping.contains(mob) && NFFTamingMapping.getProcess(mob) instanceof GaiaValkyrieTamingProcess proc
-                && proc.getOngoingPlayer(mob).filter(p -> p.equals(player)).isPresent()
-                && proc.requiresActionNow(mob))
-            {
-                if (event.getSource().is(DamageTypes.PLAYER_ATTACK)) {
-                    // Required Action #1 - sword attack
-                    if (proc.getRequiredAction(mob).equals(RequiredAction.SWORD_ATTACK)
-                        && player.getMainHandItem().getItem() instanceof SwordItem) {
+                && proc.isInAnyProcess(mob)) {
+                if (mob.getHealth() - event.getAmount() < proc.getMinHP(mob)) {
+                    event.setAmount(Math.max(0f, mob.getHealth() - proc.getMinHP(mob)));
+                }
+                if (proc.getOngoingPlayer(mob).filter(p -> p.equals(player)).isPresent()
+                    && proc.requiresActionNow(mob))
+                {
+                    if (event.getSource().is(DamageTypes.PLAYER_ATTACK)) {
+                        // Required Action #1 - sword attack
+                        if (proc.getRequiredAction(mob).equals(RequiredAction.SWORD_ATTACK)
+                            && player.getMainHandItem().getItem() instanceof SwordItem) {
+                            proc.progressUp(mob);
+                            event.setAmount(0f);
+                            return;
+                        }
+                        // Required Action #2 - axe attack
+                        else if (proc.getRequiredAction(mob).equals(RequiredAction.AXE_ATTACK)
+                            && player.getMainHandItem().getItem() instanceof AxeItem) {
+                            proc.progressUp(mob);
+                            event.setAmount(0f);
+                            return;
+                        }
+                    }
+                    if (proc.getRequiredAction(mob).equals(RequiredAction.BOW_SHOOTING)
+                        && event.getSource().getDirectEntity() instanceof Arrow) {
                         proc.progressUp(mob);
                         event.setAmount(0f);
                         return;
                     }
-                    // Required Action #2 - axe attack
-                    else if (proc.getRequiredAction(mob).equals(RequiredAction.AXE_ATTACK)
-                        && player.getMainHandItem().getItem() instanceof AxeItem) {
+                    if (proc.getRequiredAction(mob).equals(RequiredAction.TRIDENT_THROWING)
+                        && event.getSource().getDirectEntity() instanceof ThrownTrident) {
                         proc.progressUp(mob);
                         event.setAmount(0f);
                         return;
                     }
-                }
-                if (proc.getRequiredAction(mob).equals(RequiredAction.BOW_SHOOTING)
-                    && event.getSource().getDirectEntity() instanceof Arrow) {
-                    proc.progressUp(mob);
-                    return;
-                }
-                if (proc.getRequiredAction(mob).equals(RequiredAction.TRIDENT_THROWING)
-                    && event.getSource().getDirectEntity() instanceof ThrownTrident) {
-                    proc.progressUp(mob);
-                    return;
                 }
             }
         }

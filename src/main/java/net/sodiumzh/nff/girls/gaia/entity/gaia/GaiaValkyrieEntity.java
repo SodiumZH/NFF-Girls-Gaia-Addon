@@ -2,6 +2,7 @@ package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Valkyrie;
 import gaia.registry.GaiaSounds;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.monster.Monster;
@@ -16,6 +18,7 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsRangedAttackGoal;
@@ -41,6 +44,10 @@ import net.sodiumzh.nfu.math.RandomSelection;
 import net.sodiumzh.nfu.util.NFUMathStatics;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -53,13 +60,21 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
             .add(NFFGirlsGaiaProjectileProviders.VALKYRIE_EXPLOSIVE_PROJECTILE_FRIENDED, 0.1667d);
     private static final BiConsumer<NFUItemProjectileEntity, Mob> SHOOT_PROJECTILE_ACTION = (proj, m) -> {
         if (m.getTarget() != null) {
-            proj.shootTo(m.getTarget().getBoundingBox().getCenter(), 0.8f, 2f);
+            float speed = new ResourceLocation("nffgirlgaia:valkyrie_common_projectile").equals(proj.getIdentifier()) ? 1.2f : 0.8f;
+            proj.shootTo(m.getTarget().getBoundingBox().getCenter(), speed, 2f);
             proj.playSound(GaiaSounds.GAIA_SHOOT.get(), 1.0F, 1.0F / (m.getRandom().nextFloat() * 0.5F + 1.0F));
         } else proj.discard();
     };
 
     public GaiaValkyrieEntity(EntityType<? extends GaiaValkyrieEntity> entityType, Level level) {
         super(entityType, level);
+        // Fix targetPlayerGoal getting somehow null and producing a NullPointerException
+        this.targetPlayerGoal = new Goal() {
+            @Override
+            public boolean canUse() {
+                return false;
+            }
+        };
     }
 
     @Override
@@ -119,19 +134,28 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
         if (this.getTarget() == null) return;
-        NFUItemProjectileEntity[] e = new NFUItemProjectileEntity[]{null, null, null};
-        for (int i = 0; i < 3; ++i) {
-            e[i] = PROJECTILE_SUPPLIER.select(this.getRandom()).apply(this).setLifetime(6 * 20 + 15 * i);
-            e[i].setHitIgnoresLiving((proj, l) -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(proj.getOwner()).orElseThrow(), l));
-            e[i].scheduleServerActions(15 * i + 15, proj -> SHOOT_PROJECTILE_ACTION.accept(proj, this));
+        int amount = (this.getXpLevel() >= 40 || this.getHealth() < this.getMaxHealth() / 2d) ? 5 : 3;
+        int shootingDeltaTime = amount == 5 ? 8 : 15;
+        List<NFUItemProjectileEntity> e = new ArrayList<>();
+        for (int i = 0; i < amount; ++i) {
+            e.add(PROJECTILE_SUPPLIER.select(this.getRandom()).apply(this).setLifetime(6 * 20 + 15 + shootingDeltaTime * i));
         }
-        e[0].setPos(this.getEyePosition()
-            .add(NFUMathStatics.rotateVectorY(this.getForward(), 90).normalize().scale(1.5d)).add(0d, 1.5d, 0d));
-        e[1].setPos(this.getEyePosition()
-            .add(NFUMathStatics.rotateVectorY(this.getForward(), -90).normalize().scale(1.5d)).add(0d, 1.5d, 0d));
-        e[2].setPos(this.getEyePosition().add(0d, 3d, 0d));
-        for (int i = 0; i < 3; ++i) {
-            this.level().addFreshEntity(e[i]);
+        Vec3 forward = Optional.ofNullable(this.getTarget()).map(t -> t.position().subtract(this.position())).orElse(this.getForward());
+        forward = new Vec3(forward.x(), 0d, forward.z()).normalize();
+        e.get(0).setPos(this.getEyePosition().add(0d, 3d, 0d));
+        e.get(1).setPos(this.getEyePosition()
+            .add(NFUMathStatics.rotateVectorY(forward, -90).normalize().scale(1.5d)).add(0d, 1.5d, 0d));
+        e.get(2).setPos(this.getEyePosition()
+            .add(NFUMathStatics.rotateVectorY(forward, 90).normalize().scale(1.5d)).add(0d, 1.5d, 0d));
+        if (amount == 5) {
+            e.get(3).setPos(this.getEyePosition()
+                .add(NFUMathStatics.rotateVectorY(forward, 90).normalize().scale(2.5d)));
+            e.get(4).setPos(this.getEyePosition()
+                .add(NFUMathStatics.rotateVectorY(forward, -90).normalize().scale(2.5d)));
+        }
+        for (int i = 0; i < amount; ++i) {
+            e.get(i).scheduleServerActions(shootingDeltaTime * i + 15, proj -> SHOOT_PROJECTILE_ACTION.accept(proj, this));
+            this.level().addFreshEntity(e.get(i));
         }
         this.swing(InteractionHand.MAIN_HAND);
         this.level().playSound(this, this.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE,

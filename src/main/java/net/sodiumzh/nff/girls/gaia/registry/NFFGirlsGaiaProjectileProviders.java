@@ -6,6 +6,7 @@ import gaia.registry.GaiaRegistry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -72,7 +73,7 @@ public class NFFGirlsGaiaProjectileProviders {
                     z.alignCenterTo(owner.getBoundingBox().getCenter(), true);
                 }
             })
-            .setStringIdentifier("nffgirlsgaia:yuki_onna_snow_zone_inner");
+            .setIdentifier(new ResourceLocation("nffgirlsgaia:yuki_onna_snow_zone_inner"));
 
     public static final Function<Mob, NFUEffectZoneEntity> YUKI_ONNA_SNOW_ZONE_OUTER = owner ->
         NFUEffectZoneEntity.create(owner).setScale(16d, 16d)
@@ -98,7 +99,7 @@ public class NFFGirlsGaiaProjectileProviders {
                     z.alignCenterTo(owner.getBoundingBox().getCenter());
                 }
             })
-            .setStringIdentifier("nffgirlsgaia:yuki_onna_snow_zone_outer");
+            .setIdentifier(new ResourceLocation("nffgirlsgaia:yuki_onna_snow_zone_outer"));
 
 
     /**
@@ -223,7 +224,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setOnHitBlockOrLiving((proj, h) -> {
                 LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, proj.level());
                 lightningBolt.setPos(proj.position());
-                lightningBolt.setDamage((float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5f);
+                lightningBolt.setDamage((float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE));
                 proj.level().addFreshEntity(lightningBolt);
                 proj.discard();
             })
@@ -246,7 +247,7 @@ public class NFFGirlsGaiaProjectileProviders {
                     new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.INDIRECT_MAGIC), owner, proj, proj.position()),
                     null,
                     proj.getBoundingBox().getCenter(),
-                    (float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.05f + 1f,
+                    (float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.05f + 1.5f,
                     false,
                     proj.level().getRandom().nextDouble() < 0.25d ? Level.ExplosionInteraction.TNT : Level.ExplosionInteraction.NONE);
                 proj.discard();
@@ -262,7 +263,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setOnServerLivingOverlap((z, e) -> {
                 if (!e.equals(owner)
                     && e.getBoundingBox().getCenter().distanceToSqr(z.getBoundingBox().getCenter()) <= 36d) {
-                    e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5 * 20, 5));
+                    e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5 * 20, 2));
                     e.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 5 * 20, 3));
                     if (e.tickCount % 10 == 0)
                         e.hurt(new DamageSource(e.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FREEZE),
@@ -280,7 +281,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setLifetime(10 * 20)
             .setGravity(0.06f)
             .setItem(Items.SNOWBALL.getDefaultInstance())
-            .particle(ParticleTypes.FLAME, 10)
+            .particle(ParticleTypes.SNOWFLAKE, 10)
             .setLiquidResistanceFactor(0.2f)
             .setAirResistanceFactor(0.01f)
             .setOnHitBlockOrLiving((proj, h) -> {
@@ -299,11 +300,13 @@ public class NFFGirlsGaiaProjectileProviders {
             .particle(ParticleTypes.CRIT, 10)
             .setLiquidResistanceFactor(0.2f)
             .setAirResistanceFactor(0.01f)
+            .setHitIgnoresOwner(true)
+            .setIdentifier(new ResourceLocation("nffgirlgaia:valkyrie_common_projectile"))
             .setOnHitLiving((proj, h) -> {
                 h.getEntity().hurt(new DamageSource(
                     proj.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.INDIRECT_MAGIC),
                     owner, owner, h.getEntity().position()),
-                    (float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5f);
+                    (float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE));
                 proj.discard();
             });
 
@@ -326,7 +329,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 {
                     LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, proj.level());
                     lightningBolt.setPos(proj.position());
-                    lightningBolt.setDamage((float) owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5f);
+                    lightningBolt.setDamage((float) owner.getAttributeValue(Attributes.ATTACK_DAMAGE));
                     proj.level().addFreshEntity(lightningBolt);
                     proj.discard();
                 }
@@ -342,7 +345,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setLifetime(10 * 20)
             .setGravity(0.06f)
             .setItem(Items.SNOWBALL.getDefaultInstance())
-            .particle(ParticleTypes.FLAME, 10)
+            .particle(ParticleTypes.SNOWFLAKE, 10)
             .setLiquidResistanceFactor(0.2f)
             .setAirResistanceFactor(0.01f)
             .setOnHitBlockOrLiving((proj, h) -> {
@@ -368,7 +371,7 @@ public class NFFGirlsGaiaProjectileProviders {
                     new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.INDIRECT_MAGIC), owner, proj, proj.position()),
                     null,
                     proj.getBoundingBox().getCenter(),
-                    (float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.05f + 1f,
+                    (float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.05f + 1.5f,
                     false,
                     Level.ExplosionInteraction.NONE);
                 proj.discard();
