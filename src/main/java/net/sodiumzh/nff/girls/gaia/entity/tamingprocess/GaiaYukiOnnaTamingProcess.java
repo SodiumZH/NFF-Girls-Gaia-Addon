@@ -3,6 +3,7 @@ package net.sodiumzh.nff.girls.gaia.entity.tamingprocess;
 import gaia.entity.YukiOnna;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -57,10 +58,10 @@ public class GaiaYukiOnnaTamingProcess extends TamingProcessItemGivingProgress {
             List<NFUEffectZoneEntity> effectZones = mob.level().getEntitiesOfClass(NFUEffectZoneEntity.class,
                 mob.getBoundingBox().inflate(12d, 12d, 12d), z -> mob.equals(z.getOwner()));
             List<NFUEffectZoneEntity> outerZones = effectZones.stream()
-                .filter(e -> e.getStringIdentifier().equals("nffgirlsgaia:yuki_onna_snow_zone_outer"))
+                .filter(e -> e.getIdentifier().equals(new ResourceLocation("nffgirlsgaia:yuki_onna_snow_zone_outer")))
                 .toList();
             List<NFUEffectZoneEntity> innerZones = effectZones.stream()
-                .filter(e -> e.getStringIdentifier().equals("nffgirlsgaia:yuki_onna_snow_zone_inner"))
+                .filter(e -> e.getIdentifier().equals(new ResourceLocation("nffgirlsgaia:yuki_onna_snow_zone_inner")))
                 .toList();
             if (outerZones.isEmpty()) {
                 // Absent => create one

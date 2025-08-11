@@ -15,6 +15,10 @@
   "entity.nffgirlsgaia.gaia_mermaid": "人鱼战士",
   "entity.nffgirlsgaia.gaia_valkyrie": "瓦尔基里",
 
+  "entity.nffgirlsgaia.effect_zone.nffgirlsgaia:yuki_onna_snow_zone_inner": "暴风雪区域",
+  "entity.nffgirlsgaia.effect_zone.nffgirlsgaia:yuki_onna_snow_zone_outer": "暴风雪区域",
+  "entity.nffgirlsgaia.effect_zone.nffgirlsgaia:valkyrie_common_projectile": "魔法弹",
+
   "entity.nffgirlsgaia.mygo.tomori": "高松灯",
   "entity.nffgirlsgaia.mygo.anon": "千早爱音",
   "entity.nffgirlsgaia.mygo.taki": "椎名立希",
