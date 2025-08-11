@@ -186,9 +186,9 @@ dependencies {
 	implementation fg.deobf("blank:nffservices-${minecraft_version}:${services_version}")
     implementation fg.deobf("blank:nffgirls-${minecraft_version}:${girls_version}")
 
-	jarJar(group: 'net.sodiumzh', name: 'nffservices', version: "[${minecraft_version}-${services_version},)"){
+	/*jarJar(group: 'net.sodiumzh', name: 'nffservices', version: "[${minecraft_version}-${services_version},)"){
 		jarJar.pin(it, "${minecraft_version}-${services_version}")
-	}
+	}*/
     implementation fg.deobf("curse.maven:hmag-537613:6198467")
     implementation fg.deobf("curse.maven:gog4-228948:5678610")
 
@@ -205,8 +205,9 @@ dependencies {
     implementation fg.deobf("curse.maven:curios-309927:6238756")
     implementation fg.deobf("curse.maven:patchouli-306770:6164575")
     implementation fg.deobf("curse.maven:caelus-308989:5281700")
-    //implementation fg.deobf("curse.maven:selene-499980:6310930")
-    //implementation fg.deobf("curse.maven:testdummy-225738:6237015")
+    //implementation fg.deobf("blank:moonlight-1.20-2.14.14")
+    //implementation fg.deobf("blank:dummmmmmy-1.20:2.0.8")
+
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
