@@ -3,19 +3,21 @@ package net.sodiumzh.nff.girls.gaia.eventlistener;
 import gaia.GrimoireOfGaia;
 import gaia.capability.CapabilityHandler;
 import gaia.entity.AbstractGaiaEntity;
+import gaia.entity.Mummy;
 import gaia.item.edible.MonsterFeedItem;
 import gaia.registry.GaiaRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.level.BaseSpawner;
+import net.minecraft.world.level.NaturalSpawner;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.MobSpawnEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -25,7 +27,6 @@ import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
 import net.sodiumzh.nff.girls.gaia.entity.NFFGirlsGaiaEntityUtils;
-import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaMummyEntity;
 import net.sodiumzh.nff.girls.gaia.event.GaiaMobFinalizeSpawnEvent;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaConfigs;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
@@ -36,6 +37,7 @@ import net.sodiumzh.nff.services.event.entity.NFFMobTamedEvent;
 import net.sodiumzh.nfu.mixin.event.entity.ItemEntityHurtEvent;
 import net.sodiumzh.nfu.mixin.event.entity.LivingStartBaseAiStepEvent;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
+import net.sodiumzh.nfu.util.NFUReflectionStatics;
 
 import java.util.List;
 
@@ -82,34 +84,49 @@ public class NFFGirlsGaiaEntityEventListeners
 		}
 	}*/
 
+	// TODO: Move to NFU
+	public static boolean isOnNaturalSpawn() {
+		StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+		return StackWalker.getInstance().walk((frames) -> (frames.anyMatch((frame) ->
+				frame.getClassName().equals(NaturalSpawner.class.getName())
+					|| frame.getClassName().equals(BaseSpawner.class.getName()))));
+	}
+
 	@SubscribeEvent
 	public static void onJoinLevel(EntityJoinWorldEvent event) {
 		// Prevent Gravemite spawn from friended Mummy
-		if (event.getEntity().getType().equals(GaiaRegistry.GRAVEMITE.getEntityType())) {
-			// Search by stacktrace
-			StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
-			for (StackTraceElement e: stacktrace) {
-				if (e.getClassName().equals(GaiaMummyEntity.class.getName()))
-					event.setCanceled(true);
-			}
+		if (event.getEntity().getType().equals(GaiaRegistry.GRAVEMITE.getEntityType())
+			&& NFUReflectionStatics.isRunningInMethod(Mummy.class, "setSpawn")) {
+			event.setCanceled(true);
+		}
+		// Prevent male mobs
+		if (event.getEntity() instanceof AbstractGaiaEntity e
+			&& NFFGirlsGaiaConfigs.ValueCache.Tweak.SPAWNS_MALE_MOBS
+			&& isOnNaturalSpawn()
+			&& NFFGirlsGaiaEntityUtils.isMale(e)) {
+			NFFGirlsGaiaEntityUtils.setMale(e, false);
 		}
 	}
 
 	@SubscribeEvent
-	public static void onFinalizeSpawn(MobSpawnEvent.FinalizeSpawn event) {
-		if (event.getEntity() instanceof AbstractGaiaEntity e && event.getSpawnType().equals(MobSpawnType.NATURAL)) {
+	public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
+		if (event.getEntity() instanceof AbstractGaiaEntity e && event.getSpawnReason().equals(MobSpawnType.NATURAL)) {
 			if (event.getEntity().getType().equals(GaiaRegistry.CECAELIA.getEntityType())
 				&& event.getEntity().getRandom().nextDouble() > NFFGirlsGaiaConfigs.ValueCache.Tweak.CECAELIA_SPAWN_RATE) {
-				event.setSpawnCancelled(true);
+				event.setResult(Event.Result.DENY);
 				return;
 			} else if (event.getEntity().getType().is(NFFGirlsGaiaTags.CAN_DISABLE_DAY_SPAWN)
 				&& !NFFGirlsGaiaConfigs.ValueCache.Tweak.ALLOWS_DAY_HOSTILE_MOB_SPAWN_ON_GROUND) {
-				event.setSpawnCancelled(true);
+				event.setResult(Event.Result.DENY);
 				return;
 			} else if (!NFFGirlsGaiaConfigs.ValueCache.Tweak.SPAWNS_MALE_MOBS) {
 				NFFGirlsGaiaEntityUtils.setMale(e, false);
 			}
 		}
+	}
+
+	public static void onFinalizeSpawn(LivingSpawnEvent.SpecialSpawn event) {
+
 	}
 
 	@SubscribeEvent
@@ -122,14 +139,14 @@ public class NFFGirlsGaiaEntityEventListeners
 				else if (event.getItemStack().is(GaiaRegistry.PREMIUM_MONSTER_FEED.get()))
 					amount = 100;
 				if (amount > 0) {
-					if (!event.getEntity().level().isClientSide) {
+					if (!event.getEntity().level.isClientSide) {
 						t.getLevelHandler().addExp(amount);
 						NFUParticleStatics.sendGlintParticlesToEntityDefault(t.asMob());
 						event.getEntity().getItemInHand(event.getHand()).shrink(1);
 					}
 				}
 				event.setCanceled(true);
-				event.setCancellationResult(amount == 0 ? InteractionResult.PASS : InteractionResult.sidedSuccess(event.getEntity().level().isClientSide));
+				event.setCancellationResult(amount == 0 ? InteractionResult.PASS : InteractionResult.sidedSuccess(event.getEntity().level.isClientSide));
 			}, () -> {
 				event.setCanceled(true);
 				event.setCancellationResult(InteractionResult.PASS);
@@ -140,7 +157,7 @@ public class NFFGirlsGaiaEntityEventListeners
 	@SubscribeEvent
 	public static void onLivingHurt(LivingHurtEvent event) {
 		// Cancel explosion damages
-		if ((event.getSource().is(DamageTypes.EXPLOSION) || event.getSource().is(DamageTypes.PLAYER_EXPLOSION))
+		if ((event.getSource().isExplosion())
 			&& INFFTamed.get(event.getSource().getEntity()).filter(t -> NFFTamedStatics.isLivingAlliedToBM(t, event.getEntity())).isPresent())
 		{
 			if (event.getSource().getEntity().getType().equals(NFFGirlsGaiaEntityTypes.GAIA_VALKYRIE.get()))
@@ -153,7 +170,7 @@ public class NFFGirlsGaiaEntityEventListeners
 	@SubscribeEvent
 	public static void preventExplosiveProjectilesBreakingItems(ItemEntityHurtEvent event) {
 		if (!NFFGirlsGaiaConfigs.ValueCache.Tweak.EXPLOSIVE_PROJECTILE_DESTROYS_ITEMS
-			&& (event.damageSource.is(DamageTypes.EXPLOSION) || event.damageSource.is(DamageTypes.PLAYER_EXPLOSION))
+			&& (event.damageSource.isExplosion())
 			&& event.damageSource.getDirectEntity() instanceof Projectile)
 		{
 			ResourceLocation typeKey = ForgeRegistries.ENTITY_TYPES.getKey(event.damageSource.getDirectEntity().getType());
@@ -167,7 +184,7 @@ public class NFFGirlsGaiaEntityEventListeners
 	public static void removeGaiaDynamicGoals(LivingStartBaseAiStepEvent event) {
 		if (event.getEntity() instanceof Mob mob
 			&& event.getEntity() instanceof IBlocksGaiaDynamicGoals fix
-			&& !event.getEntity().level().isClientSide) {
+			&& !event.getEntity().level.isClientSide) {
 			var toRemove = fix.getGoalsToRemove();
 			List<Goal> toRemoveGoals = mob.goalSelector.getAvailableGoals().stream().map(WrappedGoal::getGoal)
 				.filter(g -> toRemove.contains(g.getClass())).toList();

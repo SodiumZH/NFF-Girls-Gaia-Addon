@@ -155,10 +155,10 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
         }
         for (int i = 0; i < amount; ++i) {
             e.get(i).scheduleServerActions(shootingDeltaTime * i + 15, proj -> SHOOT_PROJECTILE_ACTION.accept(proj, this));
-            this.level().addFreshEntity(e.get(i));
+            this.level.addFreshEntity(e.get(i));
         }
         this.swing(InteractionHand.MAIN_HAND);
-        this.level().playSound(this, this.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE,
+        this.level.playSound(null, this.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE,
             this.getSoundSource(), 1.0F, this.getRandom().nextFloat() * 0.2F + 1.2F);
     }
 }

@@ -27,7 +27,6 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsRangedAttackGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsTridentAttackGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtByTargetGoal;
@@ -65,7 +64,7 @@ public class GaiaCecaeliaEntity extends Cecaelia implements INFFGirlsTamed, IBlo
         goalSelector.addGoal(3, new NFFMeleeAttackGoal(this, 1.0D, false));
         goalSelector.addGoal(4, new NFFAmphibiousGoals.FollowOwnerGoal(this, 1.0d, 5.0f, 2.0f, false, 2).amphibious());
         goalSelector.addGoal(5, new NFFAmphibiousGoals.GoToBeachGoal(this, 1.0D));
-        goalSelector.addGoal(6, new NFFAmphibiousGoals.SwimUpGoal(this, 1.0D, this.level().getSeaLevel()));
+        goalSelector.addGoal(6, new NFFAmphibiousGoals.SwimUpGoal(this, 1.0D, this.level.getSeaLevel()));
         goalSelector.addGoal(7, new NFFRandomStrollGoal(this, 1.0d));
         goalSelector.addGoal(7, new NFFRandomSwimGoal(this, 1.0d, 120));
         goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -82,12 +81,12 @@ public class GaiaCecaeliaEntity extends Cecaelia implements INFFGirlsTamed, IBlo
         if (this.getRandom().nextDouble() < 0.2d) {
             var p = NFFGirlsGaiaProjectileProviders.BUBBLE_SPHERE.apply(this);
             p.alignCenterTo(this.getEyePosition());
-            this.level().addFreshEntity(p);
+            this.level.addFreshEntity(p);
             p.shootTo(target.getBoundingBox().getCenter(), 0.4f, 1f);
         } else {
             var p = NFFGirlsGaiaProjectileProviders.BUBBLE_BOMB_PROJECTILE.apply(this);
             p.setPos(this.getEyePosition());
-            this.level().addFreshEntity(p);
+            this.level.addFreshEntity(p);
             p.shootTo(target.getBoundingBox().getCenter(), 0.6f, 1f);
         }
         this.setThrowing(true);
@@ -138,7 +137,7 @@ public class GaiaCecaeliaEntity extends Cecaelia implements INFFGirlsTamed, IBlo
 
     @Override
     public void updateSwimming() {
-        if (!this.level().isClientSide) {
+        if (!this.level.isClientSide) {
             if (this.isEffectiveAi() && this.isInWater() && NFULevelStatics.getWaterDepth(this) > 2) {
                 this.switchNav(true);
                 this.setSwimming(true);

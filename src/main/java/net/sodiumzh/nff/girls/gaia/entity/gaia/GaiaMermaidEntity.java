@@ -53,7 +53,7 @@ public class GaiaMermaidEntity extends Mermaid implements INFFGirlsTamed, INFFTa
         goalSelector.addGoal(3, new NFFMeleeAttackGoal(this, 1.0D, false));
         goalSelector.addGoal(4, new NFFAmphibiousGoals.FollowOwnerGoal(this, 1.0d, 5.0f, 2.0f, false, 2).amphibious());
         goalSelector.addGoal(5, new NFFAmphibiousGoals.GoToBeachGoal(this, 1.0D));
-        goalSelector.addGoal(6, new NFFAmphibiousGoals.SwimUpGoal(this, 1.0D, this.level().getSeaLevel()));
+        goalSelector.addGoal(6, new NFFAmphibiousGoals.SwimUpGoal(this, 1.0D, this.level.getSeaLevel()));
         goalSelector.addGoal(7, new NFFRandomStrollGoal(this, 1.0d));
         goalSelector.addGoal(7, new NFFRandomSwimGoal(this, 1.0d, 120));
         goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -104,7 +104,7 @@ public class GaiaMermaidEntity extends Mermaid implements INFFGirlsTamed, INFFTa
 
     @Override
     public void updateSwimming() {
-        if (!this.level().isClientSide) {
+        if (!this.level.isClientSide) {
             if (this.isEffectiveAi() && this.isInWater() && NFULevelStatics.getWaterDepth(this) > 2) {
                 this.switchNav(true);
                 this.setSwimming(true);

@@ -99,8 +99,8 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDyn
             MobEffectInstance instance = living.getActiveEffectsMap().get(MobEffects.POISON);
             // The expected duration of poison added in super class
             int superExpectedDuration =
-                level().getDifficulty() == Difficulty.NORMAL ? 100 : (
-                    level().getDifficulty() == Difficulty.HARD ? 200 : 0);
+                level.getDifficulty() == Difficulty.NORMAL ? 100 : (
+                    level.getDifficulty() == Difficulty.HARD ? 200 : 0);
             // If the poison is no stronger than the super class given effect, remove it
             if (instance != null && instance.getAmplifier() <= 1 && instance.getDuration() <= superExpectedDuration)
             {

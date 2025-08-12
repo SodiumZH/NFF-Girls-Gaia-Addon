@@ -95,7 +95,7 @@ public class GaiaYukiOnnaEntity extends YukiOnna implements INFFGirlsTamed, Rang
         NFUEffectZoneEntity proj = NFFGirlsGaiaProjectileProviders.YUKI_ONNA_SNOW_EFFECT_FRIENDED.apply(this);
         proj.setOwner(this);
         proj.alignCenterTo(this.getBoundingBox().getCenter());
-        this.level().addFreshEntity(proj);
+        this.level.addFreshEntity(proj);
         Vec3 dir = target.getBoundingBox().getCenter().subtract(this.getEyePosition()).normalize();
 
         // Calculate direction
