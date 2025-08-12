@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.*;
 import net.sodiumzh.nff.girls.registry.NFFGirlsEntityTypes;
 import net.sodiumzh.nfu.entity.NFUEffectZoneEntity;

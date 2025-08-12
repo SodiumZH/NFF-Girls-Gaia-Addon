@@ -3,33 +3,27 @@ package net.sodiumzh.nff.girls.gaia.registry;
 import com.github.mechalopa.hmag.registry.ModItems;
 import gaia.entity.YukiOnna;
 import gaia.registry.GaiaRegistry;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.GaiaYukiOnnaTamingProcess;
 import net.sodiumzh.nff.girls.registry.NFFGirlsTags;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;
@@ -41,10 +35,7 @@ import net.sodiumzh.nfu.entity.ServerEntityMotion;
 import net.sodiumzh.nfu.math.Field3D;
 import net.sodiumzh.nfu.math.IInequalityPattern3D;
 import net.sodiumzh.nfu.math.Inequality3D;
-import net.sodiumzh.nfu.util.NFUEntityStatics;
-import org.w3c.dom.Entity;
 
-import java.util.Objects;
 import java.util.function.Function;
 
 public class NFFGirlsGaiaProjectileProviders {
@@ -60,8 +51,7 @@ public class NFFGirlsGaiaProjectileProviders {
                     e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 3));
                     e.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 5, 1));
                     if (e.tickCount % 10 == 0)
-                        e.hurt(new DamageSource(e.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FREEZE),
-                            owner, owner, e.position()), 2f);
+                        e.hurt(DamageSource.FREEZE, 2f);
                 }
             })
             .setOnServerTick(z -> {
@@ -86,8 +76,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 if (!(e instanceof YukiOnna) && distSqr >= 64d && distSqr <= 256d) {
                     e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 1));
                     if (owner.tickCount % 30 == 3)
-                        e.hurt(new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FREEZE),
-                            owner, owner, owner.position()), 2f);
+                        e.hurt(DamageSource.FREEZE, 2f);
                 }
             })
             .setOnServerTick(z -> {
@@ -113,8 +102,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setOnServerLivingOverlap((z, l) -> {
                 if (!l.equals(z.getOwner()) && !NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(z.getOwner()).orElseThrow(), l)) {
                     if (l.tickCount % 5 == 0) {
-                        l.hurt(new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FREEZE),
-                            z.getOwner(), z, l.position()), (float) (((LivingEntity) (z.getOwner())).getAttributeValue(Attributes.ATTACK_DAMAGE) / 4d));
+                        l.hurt(DamageSource.FREEZE, (float) (((LivingEntity) (z.getOwner())).getAttributeValue(Attributes.ATTACK_DAMAGE) / 4d));
                     }
                     l.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 15 * 20, 3));
                 }
@@ -168,15 +156,15 @@ public class NFFGirlsGaiaProjectileProviders {
                 if (h.getEntity() instanceof LivingEntity l
                     && INFFTamed.get(owner).filter(t -> NFFTamedStatics.isLivingAlliedToBM(t, l)).isEmpty())
                 {
-                    l.hurt(new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.INDIRECT_MAGIC),
-                        owner, l, e.position()), 3f + (float)(owner.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) * 0.5f);
-                    e.level().explode(e,
-                        new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.INDIRECT_MAGIC), owner, l, e.position()),
+                    l.hurt(DamageSource.indirectMagic(e, owner), 3f + (float)(owner.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) * 0.5f);
+                    Vec3 center = e.getBoundingBox().getCenter();
+                    e.level.explode(e,
+                        DamageSource.indirectMagic(e, owner),
                         null,
-                        e.getBoundingBox().getCenter(),
+                        center.x, center.y, center.z,
                         1f + 0.05f * (float) owner.getAttribute(Attributes.ATTACK_DAMAGE).getValue(),
                         false,
-                        Level.ExplosionInteraction.NONE);
+                        Explosion.BlockInteraction.NONE);
                     e.discard();
                 }
             })
@@ -197,8 +185,8 @@ public class NFFGirlsGaiaProjectileProviders {
                     && z.getBoundingBox().getCenter().distanceToSqr(l.getEyePosition()) <= 4d)
                 {
                     if (z.tickCount % 5 == 1) {
-                        l.hurt(new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.INDIRECT_MAGIC),
-                            owner, l, l.position()), 3f + (float)(owner.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) * 0.25f);
+                        l.hurt(DamageSource.indirectMagic(z, owner),
+                            3f + (float)(owner.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) * 0.25f);
                     }
                     if (l.equals(owner.getTarget()) && l.getBoundingBox().getCenter().distanceToSqr(l.getBoundingBox().getCenter()) <= 1d)
                         ServerEntityMotion.zero()
@@ -222,14 +210,14 @@ public class NFFGirlsGaiaProjectileProviders {
             .setLiquidResistanceFactor(0.2f)
             .setAirResistanceFactor(0.01f)
             .setOnHitBlockOrLiving((proj, h) -> {
-                LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, proj.level());
+                LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, proj.level);
                 lightningBolt.setPos(proj.position());
                 lightningBolt.setDamage((float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE));
-                proj.level().addFreshEntity(lightningBolt);
+                proj.level.addFreshEntity(lightningBolt);
                 proj.discard();
             })
             .setOnTick(proj -> {
-                if (proj.level().getBlockState(proj.blockPosition()).liquid())
+                if (proj.level.getBlockState(proj.blockPosition()).getMaterial().isLiquid())
                     proj.discard();
             });
 
@@ -243,13 +231,14 @@ public class NFFGirlsGaiaProjectileProviders {
             .setAirResistanceFactor(0.01f)
             .setOnHitBlockOrLiving((proj, h) -> {
                 if (h instanceof EntityHitResult eh && !(eh.getEntity() instanceof LivingEntity)) return;
-                proj.level().explode(proj,
-                    new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.INDIRECT_MAGIC), owner, proj, proj.position()),
+                Vec3 center = proj.getBoundingBox().getCenter();
+                proj.level.explode(proj,
+                    DamageSource.indirectMagic(proj, owner),
                     null,
-                    proj.getBoundingBox().getCenter(),
+                    center.x, center.y, center.z,
                     (float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.05f + 1.5f,
                     false,
-                    proj.level().getRandom().nextDouble() < 0.25d ? Level.ExplosionInteraction.TNT : Level.ExplosionInteraction.NONE);
+                    proj.level.getRandom().nextDouble() < 0.25d ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
                 proj.discard();
             });
 
@@ -266,14 +255,13 @@ public class NFFGirlsGaiaProjectileProviders {
                     e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5 * 20, 2));
                     e.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 5 * 20, 3));
                     if (e.tickCount % 10 == 0)
-                        e.hurt(new DamageSource(e.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FREEZE),
-                            owner, owner, e.position()),
+                        e.hurt(DamageSource.indirectMagic(z, e),
                             (float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.2f);
                 }
             })
             .setServerBlockOverlap((z, pos, bs) -> {
-                z.level().setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
-                z.level().playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (z.level().random.nextFloat() - z.level().random.nextFloat()) * 0.8F);
+                z.level.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
+                z.level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (z.level.random.nextFloat() - z.level.random.nextFloat()) * 0.8F);
             });
 
     public static final Function<Mob, NFUItemProjectileEntity> VALKYRIE_ICE_PROJECTILE = owner ->
@@ -288,7 +276,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 if (h instanceof EntityHitResult eh && !(eh.getEntity() instanceof LivingEntity)) return;
                 var iceZone = VALKYRIE_ICE_ZONE.apply(owner);
                 iceZone.alignCenterTo(proj.position());
-                proj.level().addFreshEntity(iceZone);
+                proj.level.addFreshEntity(iceZone);
                 proj.discard();
             });
 
@@ -303,9 +291,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setHitIgnoresOwner(true)
             .setIdentifier(new ResourceLocation("nffgirlgaia:valkyrie_common_projectile"))
             .setOnHitLiving((proj, h) -> {
-                h.getEntity().hurt(new DamageSource(
-                    proj.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.INDIRECT_MAGIC),
-                    owner, owner, h.getEntity().position()),
+                h.getEntity().hurt(DamageSource.indirectMagic(proj, owner),
                     (float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE));
                 proj.discard();
             });
@@ -323,19 +309,19 @@ public class NFFGirlsGaiaProjectileProviders {
             .setHitIgnoresLiving((proj, l) -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(proj.getOwner()).orElseThrow(), l))
             .setOnHitBlockOrLiving((proj, h) -> {
                 // Prevent lightning if an ally is within 3 blocks
-                if (proj.level().getEntitiesOfClass(LivingEntity.class,
+                if (proj.level.getEntitiesOfClass(LivingEntity.class,
                     proj.getBoundingBox().inflate(3d),
                     l -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(proj.getOwner()).orElseThrow(), l)).isEmpty())
                 {
-                    LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, proj.level());
+                    LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, proj.level);
                     lightningBolt.setPos(proj.position());
                     lightningBolt.setDamage((float) owner.getAttributeValue(Attributes.ATTACK_DAMAGE));
-                    proj.level().addFreshEntity(lightningBolt);
+                    proj.level.addFreshEntity(lightningBolt);
                     proj.discard();
                 }
             })
             .setOnTick(proj -> {
-                if (proj.level().getBlockState(proj.blockPosition()).liquid())
+                if (proj.level.getBlockState(proj.blockPosition()).getMaterial().isLiquid())
                     proj.discard();
             });
 
@@ -353,7 +339,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 var iceZone = VALKYRIE_ICE_ZONE.apply(owner);
                 iceZone.alignCenterTo(proj.position());
                 iceZone.setLivingOverlapFilter((z, l) -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(z.getOwner()).orElseThrow(), l));
-                proj.level().addFreshEntity(iceZone);
+                proj.level.addFreshEntity(iceZone);
                 proj.discard();
             });
 
@@ -367,13 +353,14 @@ public class NFFGirlsGaiaProjectileProviders {
             .setAirResistanceFactor(0.01f)
             .setOnHitBlockOrLiving((proj, h) -> {
                 if (h instanceof EntityHitResult eh && !(eh.getEntity() instanceof LivingEntity)) return;
-                proj.level().explode(proj,
-                    new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.INDIRECT_MAGIC), owner, proj, proj.position()),
+                Vec3 center = proj.getBoundingBox().getCenter();
+                proj.level.explode(proj,
+                    DamageSource.indirectMagic(proj, owner),
                     null,
-                    proj.getBoundingBox().getCenter(),
+                    center.x, center.y, center.z,
                     (float)owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.05f + 1.5f,
                     false,
-                    Level.ExplosionInteraction.NONE);
+                    Explosion.BlockInteraction.NONE);
                 proj.discard();
             });
 

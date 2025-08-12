@@ -10,6 +10,7 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.sodiumzh.nff.girls.inventory.NFFGirlsHmagThreeBaublesInventoryMenu;
 import net.sodiumzh.nfu.entity.MobApplicableItemTable;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
@@ -18,7 +19,6 @@ import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelf
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtByTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtTargetGoal;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
-import net.sodiumzh.nff.girls.inventory.NFFGirlsThreeBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;

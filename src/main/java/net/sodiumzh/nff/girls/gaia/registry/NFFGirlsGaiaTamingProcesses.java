@@ -1,5 +1,6 @@
 package net.sodiumzh.nff.girls.gaia.registry;
 
+import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.HmagAlrauneTamingProcess;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.GaiaAnimalTamingProcess;
 import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.GaiaAquaticTamingProcess;
@@ -8,6 +9,8 @@ import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.GaiaYukiOnnaTamingProces
 import net.sodiumzh.nff.girls.registry.NFFGirlsTamingItems;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingProcess;
 import net.sodiumzh.nff.services.registry.NFFRegistries;
+import net.sodiumzh.nfu.registry.NFURegistry;
+import net.sodiumzh.nfu.registry.NFURegistryEntryCollection;
 
 public class NFFGirlsGaiaTamingProcesses {
 
