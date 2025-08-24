@@ -12,6 +12,7 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
@@ -153,5 +154,11 @@ public class GaiaYukiOnnaEntity extends YukiOnna implements INFFGirlsTamed, Rang
     @Override
     public List<Class<? extends Goal>> getGoalsToRemove() {
         return List.of(AvoidEntityGoal.class, MobAttackGoal.class);
+    }
+
+    // This may unexpectedly impact the hand item, causing item loss
+    @Override
+    protected void setHandOrKnockback(ItemStack stack) {
+
     }
 }

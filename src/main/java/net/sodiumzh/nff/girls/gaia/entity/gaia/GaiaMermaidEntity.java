@@ -115,5 +115,9 @@ public class GaiaMermaidEntity extends Mermaid implements INFFGirlsTamed, INFFTa
         }
     }
 
+    @Override
+    public boolean shouldSitOnWaiting() {
+        return false;
+    }
 
 }
