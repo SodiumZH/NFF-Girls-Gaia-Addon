@@ -51,7 +51,7 @@ public class NFFGirlsGaiaProjectileProviders {
                     e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 3));
                     e.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 5, 1));
                     if (e.tickCount % 10 == 0)
-                        e.hurt(DamageSource.FREEZE, 2f);
+                        e.hurt(DamageSource.indirectMagic(z, z.getOwner()), 2f);
                 }
             })
             .setOnServerTick(z -> {
@@ -76,7 +76,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 if (!(e instanceof YukiOnna) && distSqr >= 64d && distSqr <= 256d) {
                     e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 1));
                     if (owner.tickCount % 30 == 3)
-                        e.hurt(DamageSource.FREEZE, 2f);
+                        e.hurt(DamageSource.indirectMagic(z, z.getOwner()), 2f);
                 }
             })
             .setOnServerTick(z -> {
@@ -102,7 +102,8 @@ public class NFFGirlsGaiaProjectileProviders {
             .setOnServerLivingOverlap((z, l) -> {
                 if (!l.equals(z.getOwner()) && !NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(z.getOwner()).orElseThrow(), l)) {
                     if (l.tickCount % 5 == 0) {
-                        l.hurt(DamageSource.FREEZE, (float) (((LivingEntity) (z.getOwner())).getAttributeValue(Attributes.ATTACK_DAMAGE) / 4d));
+                        l.hurt(DamageSource.indirectMagic(z.getOwner(), z),
+                            (float) (((LivingEntity) (z.getOwner())).getAttributeValue(Attributes.ATTACK_DAMAGE) / 4d));
                     }
                     l.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 15 * 20, 3));
                 }
@@ -120,7 +121,7 @@ public class NFFGirlsGaiaProjectileProviders {
      */
     public static final Function<LivingEntity, NFUEffectZoneEntity> VORTEX = owner ->
         NFUEffectZoneEntity.create(owner).setScale(8d, 8d)
-            .particle(ParticleTypes.BUBBLE, 200)
+            .particle(ParticleTypes.BUBBLE, 70)
             .particleAreaShape(IInequalityPattern3D.CONE_SLIM.get().inequality()
                 .scale(new Vec3(1.4d, 1.6d, 1.4d)))
             .particleAreaBoundingBox(new AABB(-1.4, -1.4, -1.4, 1.4, 1.4, 1.4))
@@ -152,20 +153,20 @@ public class NFFGirlsGaiaProjectileProviders {
             .setLiquidResistanceFactor(0.01f)
             .setAirResistanceFactor(0.01f)
             .setGravity(0.01f)
-            .setOnHitLiving((e, h) -> {
+            .setOnHitLiving((proj, h) -> {
                 if (h.getEntity() instanceof LivingEntity l
                     && INFFTamed.get(owner).filter(t -> NFFTamedStatics.isLivingAlliedToBM(t, l)).isEmpty())
                 {
-                    l.hurt(DamageSource.indirectMagic(e, owner), 3f + (float)(owner.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) * 0.5f);
-                    Vec3 center = e.getBoundingBox().getCenter();
-                    e.level.explode(e,
-                        DamageSource.indirectMagic(e, owner),
+                    l.hurt(DamageSource.indirectMagic(proj, owner), 3f + (float)(owner.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) * 0.5f);
+                    Vec3 center = proj.getBoundingBox().getCenter();
+                    proj.level.explode(proj,
+                        DamageSource.indirectMagic(proj, owner),
                         null,
                         center.x, center.y, center.z,
                         1f + 0.05f * (float) owner.getAttribute(Attributes.ATTACK_DAMAGE).getValue(),
                         false,
                         Explosion.BlockInteraction.NONE);
-                    e.discard();
+                    proj.discard();
                 }
             })
             .setOnTick(e -> {

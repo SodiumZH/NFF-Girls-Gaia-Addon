@@ -1,6 +1,7 @@
 package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Succubus;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -96,6 +97,18 @@ public class GaiaSuccubusEntity extends Succubus implements INFFGirlsTamed, IHas
     @Override
     public boolean itsMyGO() {
         return this.entityData.get(MYGO);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.putBoolean("myGO", itsMyGO());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        this.setMyGO(nbt.getBoolean("myGO"));
     }
 
     @Override

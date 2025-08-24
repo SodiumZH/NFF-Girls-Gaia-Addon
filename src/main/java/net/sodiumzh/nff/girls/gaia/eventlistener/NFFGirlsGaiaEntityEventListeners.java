@@ -20,7 +20,6 @@ import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.NaturalSpawner;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -39,6 +38,7 @@ import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaValkyrieEntity;
 import net.sodiumzh.nff.girls.gaia.event.GaiaMobFinalizeSpawnEvent;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaConfigs;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
+import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaItems;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaTags;
 import net.sodiumzh.nff.services.entity.taming.CNFFTamable;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;
@@ -48,7 +48,6 @@ import net.sodiumzh.nfu.mixin.event.entity.ItemEntityHurtEvent;
 import net.sodiumzh.nfu.mixin.event.entity.LivingStartBaseAiStepEvent;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
 import net.sodiumzh.nfu.util.NFUReflectionStatics;
-import software.bernie.shadowed.eliotlash.mclib.math.functions.classic.Abs;
 
 import java.util.List;
 
@@ -65,6 +64,7 @@ public class NFFGirlsGaiaEntityEventListeners
 		{
 			after.setBaby(before.isBaby());
 			after.setVariant(before.getVariant());
+			NFFGirlsGaiaEntityUtils.setMale(after, NFFGirlsGaiaEntityUtils.isMale(before));
 			if (!NFFGirlsGaiaEntityUtils.isMale(before) && after instanceof IHasMyGOVariant mygo) {
 				mygo.setMyGO(after.getRandom().nextDouble() < 0.05d);
 				after.setCustomName(mygo.getMyGOName());
@@ -106,22 +106,27 @@ public class NFFGirlsGaiaEntityEventListeners
 	@SubscribeEvent
 	public static void onJoinLevel(EntityJoinLevelEvent event) {
 		// Prevent Gravemite spawn from friended Mummy
-		if (event.getEntity().getType().equals(GaiaRegistry.GRAVEMITE.getEntityType())
-			&& NFUReflectionStatics.isRunningInMethod(Mummy.class, "setSpawn")) {
-			event.setCanceled(true);
+		if (event.getEntity().getType().equals(GaiaRegistry.GRAVEMITE.getEntityType())) {
+			// Search by stacktrace
+			if (StackWalker.getInstance().walk(frames ->
+				frames.anyMatch(frame -> frame.getClassName().equals(GaiaMummyEntity.class.getName()))))
+				event.setCanceled(true);
 		}
-		// Prevent male mobs
-		if (event.getEntity() instanceof AbstractGaiaEntity e
-			&& NFFGirlsGaiaConfigs.ValueCache.Tweak.SPAWNS_MALE_MOBS
-			&& isOnNaturalSpawn()
-			&& NFFGirlsGaiaEntityUtils.isMale(e)) {
-			NFFGirlsGaiaEntityUtils.setMale(e, false);
+		// Handle disabling male
+		if (event.getEntity() instanceof AbstractGaiaEntity gaiaEntity
+			&& !NFFGirlsGaiaConfigs.ValueCache.Tweak.SPAWNS_MALE_MOBS
+			&& NFFGirlsGaiaEntityUtils.isMale(gaiaEntity)
+			&& StackWalker.getInstance().walk(frames ->
+				frames.anyMatch(frame -> frame.getClassName().equals(NaturalSpawner.class.getName()) || frame.getClassName().equals(BaseSpawner.class.getName())))) {
+			NFFGirlsGaiaEntityUtils.setMale(gaiaEntity, false);
 		}
 	}
 
 	@SubscribeEvent
 	public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
 		if (event.getEntity() instanceof AbstractGaiaEntity e && event.getSpawnReason().equals(MobSpawnType.NATURAL)) {
+		if (event.getEntity() instanceof AbstractGaiaEntity e &&
+			event.getSpawnType().equals(MobSpawnType.NATURAL)) {
 			if (event.getEntity().getType().equals(GaiaRegistry.CECAELIA.getEntityType())
 				&& event.getEntity().getRandom().nextDouble() > NFFGirlsGaiaConfigs.ValueCache.Tweak.CECAELIA_SPAWN_RATE) {
 				event.setResult(Event.Result.DENY);
@@ -130,8 +135,6 @@ public class NFFGirlsGaiaEntityEventListeners
 				&& !NFFGirlsGaiaConfigs.ValueCache.Tweak.ALLOWS_DAY_HOSTILE_MOB_SPAWN_ON_GROUND) {
 				event.setResult(Event.Result.DENY);
 				return;
-			} else if (!NFFGirlsGaiaConfigs.ValueCache.Tweak.SPAWNS_MALE_MOBS) {
-				NFFGirlsGaiaEntityUtils.setMale(e, false);
 			}
 		}
 	}
@@ -162,6 +165,26 @@ public class NFFGirlsGaiaEntityEventListeners
 				event.setCanceled(true);
 				event.setCancellationResult(InteractionResult.PASS);
 			});
+		}
+		// Allow removing mygo variant
+		if (event.getItemStack().is(NFFGirlsGaiaItems.EVIL_GRINDSTONE.get())
+			&& event.getTarget() instanceof Mob mob
+			&& event.getTarget() instanceof IHasMyGOVariant v
+			&& event.getEntity().isShiftKeyDown())
+		{
+			boolean done = false;
+			if (v.itsMyGO()) {
+				v.setMyGO(false);
+				done = true;
+			}
+			if (mob.getCustomName() != null && mob.getCustomName().getString().equals(v.getMyGOName().getString())) {
+				mob.setCustomName(null);
+				done = true;
+			}
+			if (done) {
+				event.setCanceled(true);
+				event.setCancellationResult(InteractionResult.sidedSuccess(event.getEntity().level().isClientSide));
+			}
 		}
 	}
 

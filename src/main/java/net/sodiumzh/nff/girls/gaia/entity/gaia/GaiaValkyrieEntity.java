@@ -40,10 +40,13 @@ import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
 import net.sodiumzh.nfu.entity.MobApplicableItemTable;
 import net.sodiumzh.nfu.entity.NFUItemProjectileEntity;
+import net.sodiumzh.nfu.exception.ReflectionFailedException;
 import net.sodiumzh.nfu.math.RandomSelection;
 import net.sodiumzh.nfu.util.NFUMathStatics;
+import net.sodiumzh.nfu.util.NFUReflectionStatics;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -65,6 +68,10 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
             proj.playSound(GaiaSounds.GAIA_SHOOT.get(), 1.0F, 1.0F / (m.getRandom().nextFloat() * 0.5F + 1.0F));
         } else proj.discard();
     };
+    // Reflects Valkyrie#aggressive
+    private static final Field FIELD_SUPER_AGGRESSIVE = NFUReflectionStatics.findFieldIfDeclared(Valkyrie.class, "aggressive").orElseThrow();
+    // Reflects Valkyrie#aggression
+    private static final Field FIELD_SUPER_AGGRESSION = NFUReflectionStatics.findFieldIfDeclared(Valkyrie.class, "aggression").orElseThrow();
 
     public GaiaValkyrieEntity(EntityType<? extends GaiaValkyrieEntity> entityType, Level level) {
         super(entityType, level);
@@ -161,4 +168,16 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
         this.level.playSound(null, this.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE,
             this.getSoundSource(), 1.0F, this.getRandom().nextFloat() * 0.2F + 1.2F);
     }
+
+    /**
+     * Prevent super add-shield action
+     */
+    @Override
+    public void aiStep() {
+        super.aiStep();
+        // super.aiStep() may replace the offhand item with a shield. Correct it here.
+        this.getAdditionalInventory().syncToMob(this);
+        this.setAnnoyed(this.getTarget() != null);
+    }
+
 }
