@@ -1,3 +1,15 @@
+### 0.2.30.1
+
+Reduced the amount of vortex bubble particles for performance.
+
+Fixed mobs killed by projectiles from Cecaelia, Yuki-Onna and Valkyrie not providing XP and not dropping player-kill loot.
+
+Fixed Cecaelia switching to dagger and overwriting the equipped weapon.
+
+Fixed Male mob disabling config not taking effect.
+
+Fixed Mermaid wrong waiting pose.
+
 ### 0.x.30
 
 Added Yuki-Onna, Cecaelia, Mermaid and Valkyrie.
@@ -34,3 +46,4 @@ Added Dryad, Spriggan, Dullahan, Banshee, Succubus, Harpy and Mummy.
 Added Evil Grindstone, allowing to convert Gaia loots to Evil Crystal Fragments.
 
 Added in-game instruction (requiring Citadel).
+
