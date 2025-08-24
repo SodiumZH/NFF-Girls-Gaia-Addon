@@ -17,6 +17,7 @@ import net.minecraft.world.level.NaturalSpawner;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,6 +27,7 @@ import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
+import net.sodiumzh.nff.girls.gaia.entity.NFFGirlsGaiaEntityUtils;
 import net.sodiumzh.nff.girls.gaia.entity.NFFGirlsGaiaEntityUtils;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaMummyEntity;
 import net.sodiumzh.nff.girls.gaia.event.GaiaMobFinalizeSpawnEvent;
@@ -39,6 +41,7 @@ import net.sodiumzh.nff.services.event.entity.NFFMobTamedEvent;
 import net.sodiumzh.nfu.mixin.event.entity.ItemEntityHurtEvent;
 import net.sodiumzh.nfu.mixin.event.entity.LivingStartBaseAiStepEvent;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
+import net.sodiumzh.nfu.util.NFUReflectionStatics;
 
 import java.util.List;
 
@@ -116,6 +119,8 @@ public class NFFGirlsGaiaEntityEventListeners
 	@SubscribeEvent
 	public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
 		if (event.getEntity() instanceof AbstractGaiaEntity e && event.getSpawnReason().equals(MobSpawnType.NATURAL)) {
+		if (event.getEntity() instanceof AbstractGaiaEntity e &&
+			event.getSpawnType().equals(MobSpawnType.NATURAL)) {
 			if (event.getEntity().getType().equals(GaiaRegistry.CECAELIA.getEntityType())
 				&& ((AbstractGaiaEntity) event.getEntity()).getRandom().nextDouble() > NFFGirlsGaiaConfigs.ValueCache.Tweak.CECAELIA_SPAWN_RATE) {
 				event.setResult(Event.Result.DENY);
