@@ -20,6 +20,7 @@ import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -48,6 +49,7 @@ import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
 import net.sodiumzh.nfu.entity.MobApplicableItemTable;
 import net.sodiumzh.nfu.entity.NFUEffectZoneEntity;
 import net.sodiumzh.nfu.util.NFULevelStatics;
+import net.sodiumzh.nfu.util.NFUReflectionStatics;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -148,15 +150,14 @@ public class GaiaCecaeliaEntity extends Cecaelia implements INFFGirlsTamed, IBlo
         }
     }
 
-   /* @Override
-    public void aiStep() {
-        super.aiStep();
-        if (this.level().isClientSide) {
-            for (int i = 0; i < 5; ++i) {
-                this.level().addParticle(ParticleOptions.);
-            }
-        }
-    }*/
+    /**
+     * Disable original weapon switching mechanism which leads to item loss.
+     * See {@link Cecaelia#aiStep()}
+     */
+    @Override
+    protected boolean playerDetection(int range, TargetingConditions conditions) {
+        return false;
+    }
 
     @Override
     public boolean shouldSitOnWaiting() {
