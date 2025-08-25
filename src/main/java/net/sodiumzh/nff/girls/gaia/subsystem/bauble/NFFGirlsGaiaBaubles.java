@@ -5,8 +5,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.*;
-import net.sodiumzh.nff.girls.subsystem.baublesystem.NFFGirlsBaubleRegistrations;
-import net.sodiumzh.nff.services.subsystem.baublesystem.RegisterBaubleEquippableMobsEvent;
+import net.sodiumzh.nff.girls.registry.NFFGirlsBaubles;
+import net.sodiumzh.nfu.item.bauble.RegisterBaubleEquippableMobsEvent;
 
 @EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NFFGirlsGaiaBaubles
@@ -14,12 +14,12 @@ public class NFFGirlsGaiaBaubles
 	@SubscribeEvent
 	public static void baubleEquippableRegistration(RegisterBaubleEquippableMobsEvent event)
 	{
-		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaDryadEntity.class, 0, 3);
-		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaSprigganEntity.class, 0, 3);
-		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaDullahanEntity.class, 2, 6);
-		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaHarpyEntity.class, 0, 4);
-		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaBansheeEntity.class, 0, 3);
-		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaSuccubusEntity.class, 2, 4);
-		NFFGirlsBaubleRegistrations.registerWithContinuousSlotSequence(event, GaiaMummyEntity.class, 2, 6);
+		NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaDryadEntity.class, 0, 3);
+		NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaSprigganEntity.class, 0, 3);
+		NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaDullahanEntity.class, 2, 6);
+		NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaHarpyEntity.class, 0, 4);
+		NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaBansheeEntity.class, 0, 3);
+		NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaSuccubusEntity.class, 2, 4);
+		NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaMummyEntity.class, 2, 6);
 	}
 }

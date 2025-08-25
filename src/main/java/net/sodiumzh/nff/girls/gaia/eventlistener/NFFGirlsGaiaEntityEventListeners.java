@@ -16,8 +16,9 @@ import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.NaturalSpawner;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -26,6 +27,7 @@ import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
 import net.sodiumzh.nff.girls.gaia.entity.NFFGirlsGaiaEntityUtils;
+import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaMummyEntity;
 import net.sodiumzh.nff.girls.gaia.event.GaiaMobFinalizeSpawnEvent;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaConfigs;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
@@ -115,7 +117,7 @@ public class NFFGirlsGaiaEntityEventListeners
 	public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
 		if (event.getEntity() instanceof AbstractGaiaEntity e && event.getSpawnReason().equals(MobSpawnType.NATURAL)) {
 			if (event.getEntity().getType().equals(GaiaRegistry.CECAELIA.getEntityType())
-				&& event.getEntity().getRandom().nextDouble() > NFFGirlsGaiaConfigs.ValueCache.Tweak.CECAELIA_SPAWN_RATE) {
+				&& ((AbstractGaiaEntity) event.getEntity()).getRandom().nextDouble() > NFFGirlsGaiaConfigs.ValueCache.Tweak.CECAELIA_SPAWN_RATE) {
 				event.setResult(Event.Result.DENY);
 				return;
 			} else if (event.getEntity().getType().is(NFFGirlsGaiaTags.CAN_DISABLE_DAY_SPAWN)
@@ -143,7 +145,7 @@ public class NFFGirlsGaiaEntityEventListeners
 					if (!event.getEntity().level.isClientSide) {
 						t.getLevelHandler().addExp(amount);
 						NFUParticleStatics.sendGlintParticlesToEntityDefault(t.asMob());
-						event.getEntity().getItemInHand(event.getHand()).shrink(1);
+						event.getEntityLiving().getItemInHand(event.getHand()).shrink(1);
 					}
 				}
 				event.setCanceled(true);
@@ -179,7 +181,7 @@ public class NFFGirlsGaiaEntityEventListeners
 	public static void onLivingHurt(LivingHurtEvent event) {
 		// Cancel explosion damages
 		if ((event.getSource().isExplosion())
-			&& INFFTamed.get(event.getSource().getEntity()).filter(t -> NFFTamedStatics.isLivingAlliedToBM(t, event.getEntity())).isPresent())
+			&& INFFTamed.get(event.getSource().getEntity()).filter(t -> NFFTamedStatics.isLivingAlliedToBM(t, event.getEntityLiving())).isPresent())
 		{
 			if (event.getSource().getEntity().getType().equals(NFFGirlsGaiaEntityTypes.GAIA_VALKYRIE.get()))
 				event.setCanceled(true);
@@ -194,7 +196,7 @@ public class NFFGirlsGaiaEntityEventListeners
 			&& (event.damageSource.isExplosion())
 			&& event.damageSource.getDirectEntity() instanceof Projectile)
 		{
-			ResourceLocation typeKey = ForgeRegistries.ENTITY_TYPES.getKey(event.damageSource.getDirectEntity().getType());
+			ResourceLocation typeKey = ForgeRegistries.ENTITIES.getKey(event.damageSource.getDirectEntity().getType());
 			if (typeKey != null && typeKey.getNamespace().equals(GrimoireOfGaia.MOD_ID)) {
 				event.setCanceled(true);
 			}

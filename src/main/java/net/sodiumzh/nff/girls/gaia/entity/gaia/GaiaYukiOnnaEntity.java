@@ -15,7 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -131,12 +131,12 @@ public class GaiaYukiOnnaEntity extends YukiOnna implements INFFGirlsTamed, Rang
 
     //private static final Optional<Method>
     @SubscribeEvent
-    public static void preventDebuffInHotBiomes(MobEffectEvent.Applicable event) {
+    public static void preventDebuffInHotBiomes(PotionEvent.PotionApplicableEvent event) {
         if (event.getEntity() instanceof GaiaYukiOnnaEntity e
             && INFFGirlsBauble.isEnvironmentImmunized(e)
-            && event.getEffectInstance().getDuration() == 100
-            && (event.getEffectInstance().getEffect().equals(MobEffects.MOVEMENT_SLOWDOWN) || event.getEffectInstance().getEffect().equals(MobEffects.WEAKNESS))
-            && event.getEffectInstance().getAmplifier() == 0
+            && event.getPotionEffect().getDuration() == 100
+            && (event.getPotionEffect().getEffect().equals(MobEffects.MOVEMENT_SLOWDOWN) || event.getPotionEffect().getEffect().equals(MobEffects.WEAKNESS))
+            && event.getPotionEffect().getAmplifier() == 0
             && NFUReflectionStatics.isRunningInMethod(YukiOnna.class, "m_8107_"/* aiStep() */))
         {
             event.setResult(Event.Result.DENY);
