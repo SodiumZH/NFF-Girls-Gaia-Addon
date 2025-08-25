@@ -119,8 +119,6 @@ public class NFFGirlsGaiaEntityEventListeners
 	@SubscribeEvent
 	public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
 		if (event.getEntity() instanceof AbstractGaiaEntity e && event.getSpawnReason().equals(MobSpawnType.NATURAL)) {
-		if (event.getEntity() instanceof AbstractGaiaEntity e &&
-			event.getSpawnType().equals(MobSpawnType.NATURAL)) {
 			if (event.getEntity().getType().equals(GaiaRegistry.CECAELIA.getEntityType())
 				&& ((AbstractGaiaEntity) event.getEntity()).getRandom().nextDouble() > NFFGirlsGaiaConfigs.ValueCache.Tweak.CECAELIA_SPAWN_RATE) {
 				event.setResult(Event.Result.DENY);
