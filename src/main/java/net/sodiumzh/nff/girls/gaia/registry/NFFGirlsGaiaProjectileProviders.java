@@ -76,7 +76,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 if (!(e instanceof YukiOnna) && distSqr >= 64d && distSqr <= 256d) {
                     e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 1));
                     if (owner.tickCount % 30 == 3)
-                        e.hurt(DamageSource.indirectMagic(z, z.getOwner()), 2f);
+                        e.hurt(DamageSource.indirectMagic(z, z.getOwner() ), 2f);
                 }
             })
             .setOnServerTick(z -> {
