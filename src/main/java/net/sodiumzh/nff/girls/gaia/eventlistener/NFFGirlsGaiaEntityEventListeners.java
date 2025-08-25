@@ -20,6 +20,7 @@ import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.NaturalSpawner;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -125,8 +126,6 @@ public class NFFGirlsGaiaEntityEventListeners
 	@SubscribeEvent
 	public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
 		if (event.getEntity() instanceof AbstractGaiaEntity e && event.getSpawnReason().equals(MobSpawnType.NATURAL)) {
-		if (event.getEntity() instanceof AbstractGaiaEntity e &&
-			event.getSpawnType().equals(MobSpawnType.NATURAL)) {
 			if (event.getEntity().getType().equals(GaiaRegistry.CECAELIA.getEntityType())
 				&& event.getEntity().getRandom().nextDouble() > NFFGirlsGaiaConfigs.ValueCache.Tweak.CECAELIA_SPAWN_RATE) {
 				event.setResult(Event.Result.DENY);
@@ -183,7 +182,7 @@ public class NFFGirlsGaiaEntityEventListeners
 			}
 			if (done) {
 				event.setCanceled(true);
-				event.setCancellationResult(InteractionResult.sidedSuccess(event.getEntity().level().isClientSide));
+				event.setCancellationResult(InteractionResult.sidedSuccess(event.getEntity().level.isClientSide));
 			}
 		}
 	}
