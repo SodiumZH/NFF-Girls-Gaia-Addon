@@ -9,6 +9,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -22,8 +23,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsRangedAttackGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
+import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaProjectileProviders;
@@ -84,11 +84,14 @@ public class GaiaYukiOnnaEntity extends YukiOnna implements INFFGirlsTamed, Rang
         goalSelector.addGoal(6, new NFFWaterAvoidingRandomStrollGoal(this, 1.0d));
         goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
         goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        targetSelector.addGoal(1, new NFFOwnerHurtByTargetGoal(this));
+        targetSelector.addGoal(1, new NFFGirlsOwnerHurtByTargetGoal(this));
         targetSelector.addGoal(2, new NFFHurtByTargetGoal(this));
-        targetSelector.addGoal(3, new NFFOwnerHurtTargetGoal(this));
+        targetSelector.addGoal(3, new NFFGirlsOwnerHurtTargetGoal(this));
         targetSelector.addGoal(5, new NFFGirlsNearestHostileToSelfTargetGoal(this));
         targetSelector.addGoal(6, new NFFGirlsNearestHostileToOwnerTargetGoal(this));
+        targetSelector.addGoal(7, new NFFGirlsNearestPotentiallyHostileToSelfTargetGoal(this));
+        targetSelector.addGoal(8, new NFFGirlsNearestPotentiallyHostileToOwnerTargetGoal(this));
+        targetSelector.addGoal(9, new NFFGirlsAttackingStrategyTargetGoal(this));
     }
 
     @Override
@@ -153,12 +156,17 @@ public class GaiaYukiOnnaEntity extends YukiOnna implements INFFGirlsTamed, Rang
 
     @Override
     public List<Class<? extends Goal>> getGoalsToRemove() {
-        return List.of(AvoidEntityGoal.class, MobAttackGoal.class);
+        return List.of(AvoidEntityGoal.class, MobAttackGoal.class, NearestAttackableTargetGoal.class);
     }
 
     // This may unexpectedly impact the hand item, causing item loss
     @Override
     protected void setHandOrKnockback(ItemStack stack) {
 
+    }
+
+    // This may cause mob losing target
+    @Override
+    public void stopBeingAngry() {
     }
 }
