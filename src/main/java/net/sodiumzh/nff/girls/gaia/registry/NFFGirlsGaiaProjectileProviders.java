@@ -36,6 +36,7 @@ import net.sodiumzh.nfu.math.Field3D;
 import net.sodiumzh.nfu.math.IInequalityPattern3D;
 import net.sodiumzh.nfu.math.Inequality3D;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 public class NFFGirlsGaiaProjectileProviders {
@@ -100,7 +101,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setLifetime(10 * 20)
             .setGravity(0f)
             .setOnServerLivingOverlap((z, l) -> {
-                if (!l.equals(z.getOwner()) && !NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(z.getOwner()).orElseThrow(), l)) {
+                if (!l.equals(z.getOwner()) && !NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(z.getOwner()).orElse(null), l)) {
                     if (l.tickCount % 5 == 0) {
                         l.hurt(DamageSource.indirectMagic(z.getOwner(), z),
                             (float) (((LivingEntity) (z.getOwner())).getAttributeValue(Attributes.ATTACK_DAMAGE) / 4d));
@@ -307,12 +308,12 @@ public class NFFGirlsGaiaProjectileProviders {
             .particle(ParticleTypes.SMOKE, 10)
             .setLiquidResistanceFactor(0.2f)
             .setAirResistanceFactor(0.01f)
-            .setHitIgnoresLiving((proj, l) -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(proj.getOwner()).orElseThrow(), l))
+            .setHitIgnoresLiving((proj, l) -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(proj.getOwner()).orElse(null), l))
             .setOnHitBlockOrLiving((proj, h) -> {
                 // Prevent lightning if an ally is within 3 blocks
                 if (proj.level.getEntitiesOfClass(LivingEntity.class,
                     proj.getBoundingBox().inflate(3d),
-                    l -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(proj.getOwner()).orElseThrow(), l)).isEmpty())
+                    l -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(proj.getOwner()).orElse(null), l)).isEmpty())
                 {
                     LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, proj.level);
                     lightningBolt.setPos(proj.position());
@@ -339,7 +340,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 if (h instanceof EntityHitResult eh && !(eh.getEntity() instanceof LivingEntity)) return;
                 var iceZone = VALKYRIE_ICE_ZONE.apply(owner);
                 iceZone.alignCenterTo(proj.position());
-                iceZone.setLivingOverlapFilter((z, l) -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(z.getOwner()).orElseThrow(), l));
+                iceZone.setLivingOverlapFilter((z, l) -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(z.getOwner()).orElse(null), l));
                 proj.level.addFreshEntity(iceZone);
                 proj.discard();
             });
