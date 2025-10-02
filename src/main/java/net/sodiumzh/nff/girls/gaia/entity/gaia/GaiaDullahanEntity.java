@@ -15,10 +15,7 @@ import net.minecraft.world.level.Level;
 import net.sodiumzh.nfu.entity.MobApplicableItemTable;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtByTargetGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsOwnerHurtTargetGoal;
+import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsFourBaublesDefaultInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
@@ -56,11 +53,14 @@ public class GaiaDullahanEntity extends Dullahan implements INFFGirlsTamed {
         this.goalSelector.addGoal(6, new NFFWaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new NFFGirlsOwnerHurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NFFHurtByTargetGoal(this, new Class[0]));
-        this.targetSelector.addGoal(3, new NFFGirlsOwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(5, new NFFGirlsNearestHostileToSelfTargetGoal(this));
-        this.targetSelector.addGoal(6, new NFFGirlsNearestHostileToOwnerTargetGoal(this));
+        targetSelector.addGoal(1, new NFFGirlsOwnerHurtByTargetGoal(this));
+        targetSelector.addGoal(2, new NFFHurtByTargetGoal(this));
+        targetSelector.addGoal(3, new NFFGirlsOwnerHurtTargetGoal(this));
+        targetSelector.addGoal(5, new NFFGirlsNearestHostileToSelfTargetGoal(this));
+        targetSelector.addGoal(6, new NFFGirlsNearestHostileToOwnerTargetGoal(this));
+        targetSelector.addGoal(7, new NFFGirlsNearestPotentiallyHostileToSelfTargetGoal(this));
+        targetSelector.addGoal(8, new NFFGirlsNearestPotentiallyHostileToOwnerTargetGoal(this));
+        targetSelector.addGoal(9, new NFFGirlsAttackingStrategyTargetGoal(this));
     }
 
     public MobApplicableItemTable getHealingItems() {

@@ -13,8 +13,7 @@ import net.minecraft.world.level.Level;
 import net.sodiumzh.nfu.entity.MobApplicableItemTable;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
+import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsFourBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
@@ -53,11 +52,14 @@ public class GaiaHarpyEntity extends Harpy implements INFFGirlsTamed, IBlocksGai
         goalSelector.addGoal(6, new NFFWaterAvoidingRandomStrollGoal(this, 1.0d));
         goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
         goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        targetSelector.addGoal(1, new NFFOwnerHurtByTargetGoal(this));
+        targetSelector.addGoal(1, new NFFGirlsOwnerHurtByTargetGoal(this));
         targetSelector.addGoal(2, new NFFHurtByTargetGoal(this));
-        targetSelector.addGoal(3, new NFFOwnerHurtTargetGoal(this));
+        targetSelector.addGoal(3, new NFFGirlsOwnerHurtTargetGoal(this));
         targetSelector.addGoal(5, new NFFGirlsNearestHostileToSelfTargetGoal(this));
         targetSelector.addGoal(6, new NFFGirlsNearestHostileToOwnerTargetGoal(this));
+        targetSelector.addGoal(7, new NFFGirlsNearestPotentiallyHostileToSelfTargetGoal(this));
+        targetSelector.addGoal(8, new NFFGirlsNearestPotentiallyHostileToOwnerTargetGoal(this));
+        targetSelector.addGoal(9, new NFFGirlsAttackingStrategyTargetGoal(this));
     }
 
     @Override

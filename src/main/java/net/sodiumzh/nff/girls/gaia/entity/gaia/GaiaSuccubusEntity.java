@@ -18,8 +18,7 @@ import net.minecraft.world.level.Level;
 import net.sodiumzh.nfu.entity.MobApplicableItemTable;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
-import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
+import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
@@ -64,11 +63,14 @@ public class GaiaSuccubusEntity extends Succubus implements INFFGirlsTamed, IHas
         this.goalSelector.addGoal(5, new NFFWaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new NFFOwnerHurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NFFHurtByTargetGoal(this));
-        this.targetSelector.addGoal(3, new NFFOwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(5, new NFFGirlsNearestHostileToSelfTargetGoal(this));
-        this.targetSelector.addGoal(6, new NFFGirlsNearestHostileToOwnerTargetGoal(this));
+        targetSelector.addGoal(1, new NFFGirlsOwnerHurtByTargetGoal(this));
+        targetSelector.addGoal(2, new NFFHurtByTargetGoal(this));
+        targetSelector.addGoal(3, new NFFGirlsOwnerHurtTargetGoal(this));
+        targetSelector.addGoal(5, new NFFGirlsNearestHostileToSelfTargetGoal(this));
+        targetSelector.addGoal(6, new NFFGirlsNearestHostileToOwnerTargetGoal(this));
+        targetSelector.addGoal(7, new NFFGirlsNearestPotentiallyHostileToSelfTargetGoal(this));
+        targetSelector.addGoal(8, new NFFGirlsNearestPotentiallyHostileToOwnerTargetGoal(this));
+        targetSelector.addGoal(9, new NFFGirlsAttackingStrategyTargetGoal(this));
     }
 
     public MobApplicableItemTable getHealingItems() {
