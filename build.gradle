@@ -184,12 +184,10 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    implementation fg.deobf("blank:nfulib-${minecraft_version}:${nfu_version}")
 	implementation fg.deobf("blank:nffservices-${minecraft_version}:${services_version}")
     implementation fg.deobf("blank:nffgirls-${minecraft_version}:${girls_version}")
 
-	/*jarJar(group: 'net.sodiumzh', name: 'nffservices', version: "[${minecraft_version}-${services_version},)"){
-		jarJar.pin(it, "${minecraft_version}-${services_version}")
-	}*/
     implementation fg.deobf("curse.maven:hmag-537613:6198467")
     implementation fg.deobf("curse.maven:gog4-228948:5678610")
 
@@ -226,7 +224,7 @@ tasks.named('processResources', ProcessResources).configure {
             mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
             mod_authors: mod_authors, mod_description: mod_description,
             girls_version_range: girls_version_range, services_version_range: services_version_range,
-            gaia_version_range: gaia_version_range
+            gaia_version_range: gaia_version_range, nfu_version_range: nfu_version_range
     ]
     inputs.properties replaceProperties
 

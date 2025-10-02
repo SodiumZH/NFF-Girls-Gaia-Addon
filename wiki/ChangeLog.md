@@ -1,3 +1,15 @@
+### 0.2.30.3
+
+Fixed friended Mermaid crash.
+
+### 0.2.30.2
+
+Fixed crash on Yuki-Onna being removed from the world in the presence of the snow effect.
+
+Fixed Valkyrie not attacking flying mobs.
+
+Fixed Valkyrie producing repeated noise.
+
 ### 0.2.30.1
 
 Reduced the amount of vortex bubble particles for performance.
