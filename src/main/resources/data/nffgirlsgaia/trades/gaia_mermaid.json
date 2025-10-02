@@ -1,0 +1,190 @@
+[
+
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "minecraft:prismarine_crystals",
+    "amount": [12, 16],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "minecraft:prismarine_shard",
+    "amount": [12, 16],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "sell",
+    "item": "hmag:evil_prismarine",
+    "amount": 1,
+    "price": [6, 8],
+    "maxUses": 4
+  },
+  {
+    "level": 3,
+    "type": "enchantmentBook",
+    "enchantment": {
+		"key": "minecraft:luck_of_the_sea",
+		"level": 3
+		},
+    "price": [28, 36],
+    "maxUses": 2
+  },
+
+  {
+    "level": 4,
+    "type": "buy",
+    "item": "grimoireofgaia:seashell_hairpin",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 1
+  },
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "hmag:golden_tropical_fish",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+
+  {
+    "level": 5,
+    "type": "enchantmentBook",
+    "enchantment": {
+		"key": "minecraft:depth_strider",
+		"level": 3
+		},
+    "price": [12, 16],
+    "maxUses": 1
+  },
+  {
+    "level": 5,
+    "type": "buy",
+    "item": "grimoireofgaia:doll_mermaid",
+    "amount": 1,
+    "price": [4, 6],
+    "maxUses": 1
+  },
+  {
+    "level": 5,
+    "type": "enchantmentBook",
+    "enchantment": {
+      "key": "minecraft:respiration",
+      "level": 3
+    },
+    "price": [12, 16],
+    "maxUses": 2
+  },
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "minecraft:heart_of_the_sea",
+    "amount": 1,
+    "price": [12, 16],
+    "maxUses": 1
+  },
+  {
+    "level": 5,
+    "type": "enchantmentBook",
+    "enchantment": {
+		"key": "hmag:water_aspect",
+		"level": 5
+		},
+    "price": [16, 20],
+    "maxUses": 2
+  },
+
+  {
+    "comment": "============================== Compat below =============================="
+  },
+
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "alexsmobs:raw_catfish",
+    "amount": [32, 40],
+    "price": 1,
+    "maxUses": 4
+  },
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "alexsmobs:lobster_tail",
+    "amount": [32, 40],
+    "price": 1,
+    "maxUses": 4
+  },
+
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "alexsmobs:blobfish",
+    "amount": [16, 24],
+    "price": 1,
+    "maxUses": 4
+  },
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "alexsmobs:flying_fish",
+    "amount": [16, 24],
+    "price": 1,
+    "maxUses": 4
+  },
+
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "iceandfire:shiny_scales",
+    "amount": [4, 8],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "sell",
+    "item": "alexsmobs:rainbow_jelly",
+    "amount": 1,
+    "price": [3, 6],
+    "maxUses": 4
+  },
+
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "alexsmobs:ambergris",
+    "amount": 1,
+    "price": [32, 40],
+    "maxUses": 1
+  },
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "alexsmobs:lost_tentacle",
+    "amount": 1,
+    "price": [32, 40],
+    "maxUses": 1
+  },
+
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "iceandfire:hippocampus_fin",
+    "amount": 1,
+    "price": [28, 36],
+    "maxUses": 1
+  },
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "iceandfire:siren_tear",
+    "amount": 1,
+    "price": [28, 36],
+    "maxUses": 1
+  }
+]

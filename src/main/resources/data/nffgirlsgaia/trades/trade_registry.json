@@ -1,0 +1,50 @@
+[
+  {
+    "key": "nffgirlsgaia:gaia_banshee",
+    "collections": [
+      {"key": "nffgirls:common_undead", "weight": 0.1}
+    ]
+  },
+  {
+    "key": "nffgirlsgaia:gaia_dryad",
+    "collections": "nffgirls:common_plant"
+  },
+  {
+    "key": "nffgirlsgaia:gaia_spriggan",
+    "collections": "nffgirls:common_plant"
+  },
+  {
+    "key": "nffgirlsgaia:gaia_harpy",
+    "collections": "nffgirls:common_animal"
+  },
+  {
+    "key": "nffgirlsgaia:gaia_succubus",
+    "collections": [
+      {"key": "nffgirls:common_nether", "weight": 0.5}
+    ]
+  },
+  {
+    "key": "nffgirlsgaia:gaia_mummy",
+    "collections": [
+      {"key": "nffgirls:common_undead", "weight": 0.3},
+      {"key": "nffgirls:common_zombie", "weight": 0.2}
+    ]
+  },
+  {
+    "key": "nffgirlsgaia:gaia_cecaelia",
+    "collections": "nffgirls:common_aquatic"
+  },
+  {
+    "key": "nffgirlsgaia:gaia_mermaid",
+    "collections": "nffgirls:common_aquatic"
+  },
+  {
+    "key": "nffgirlsgaia:gaia_yuki_onna",
+    "collections": [
+      {"key": "nffgirls:common_undead", "weight": 0.2},
+      {"key": "nffgirls:common_ice", "weight": 0.5}
+    ]
+  },
+  "nffgirlsgaia:gaia_dullahan",
+  "nffgirlsgaia:gaia_valkyrie"
+]
