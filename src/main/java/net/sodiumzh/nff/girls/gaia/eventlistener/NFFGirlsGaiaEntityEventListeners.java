@@ -2,6 +2,7 @@ package net.sodiumzh.nff.girls.gaia.eventlistener;
 
 import gaia.GrimoireOfGaia;
 import gaia.capability.CapabilityHandler;
+import gaia.entity.AbstractAssistGaiaEntity;
 import gaia.entity.AbstractGaiaEntity;
 import gaia.item.edible.MonsterFeedItem;
 import gaia.registry.GaiaRegistry;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
+import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.NaturalSpawner;
@@ -32,6 +34,7 @@ import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
 import net.sodiumzh.nff.girls.gaia.entity.NFFGirlsGaiaEntityUtils;
+import net.sodiumzh.nff.girls.gaia.entity.ai.EmptyTargetGoal;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaMummyEntity;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaValkyrieEntity;
 import net.sodiumzh.nff.girls.gaia.event.GaiaMobFinalizeSpawnEvent;
@@ -43,12 +46,15 @@ import net.sodiumzh.nff.services.entity.capability.CNFFTamable;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;
 import net.sodiumzh.nff.services.entity.taming.NFFTamedStatics;
 import net.sodiumzh.nff.services.event.entity.NFFMobTamedEvent;
+import net.sodiumzh.nfu.exception.ReflectionFailedException;
 import net.sodiumzh.nfu.mixin.event.entity.ItemEntityHurtEvent;
 import net.sodiumzh.nfu.mixin.event.entity.LivingStartBaseAiStepEvent;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
 import net.sodiumzh.nfu.util.NFUReflectionStatics;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class NFFGirlsGaiaEntityEventListeners
@@ -94,6 +100,11 @@ public class NFFGirlsGaiaEntityEventListeners
 		}
 	}
 
+	private static final Field GAIA_TARGET_PLAYER_GOAL = NFUReflectionStatics.findFieldIfDeclared(AbstractGaiaEntity.class,
+		"targetPlayerGoal").orElseThrow();
+	private static final Field GAIA_TARGET_MOB_GOAL = NFUReflectionStatics.findFieldIfDeclared(AbstractGaiaEntity.class,
+		"targetMobGoal").orElseThrow();
+
 	@SubscribeEvent
 	public static void onJoinLevel(EntityJoinLevelEvent event) {
 		// Prevent Gravemite spawn from friended Mummy
@@ -110,6 +121,27 @@ public class NFFGirlsGaiaEntityEventListeners
 			&& StackWalker.getInstance().walk(frames ->
 				frames.anyMatch(frame -> frame.getClassName().equals(NaturalSpawner.class.getName()) || frame.getClassName().equals(BaseSpawner.class.getName())))) {
 			NFFGirlsGaiaEntityUtils.setMale(gaiaEntity, false);
+		}
+		// Remove targeting player/mob goals
+		if (event.getEntity() instanceof AbstractGaiaEntity e && INFFGirlsTamed.get(event.getEntity()).isPresent()) {
+			try {
+				e.targetSelector.removeGoal((Goal) (GAIA_TARGET_PLAYER_GOAL.get(e)));
+				e.targetSelector.removeGoal((Goal) (GAIA_TARGET_MOB_GOAL.get(e)));
+				GAIA_TARGET_PLAYER_GOAL.set(e, new TargetGoal(e, false) {
+					@Override
+					public boolean canUse() {
+						return false;
+					}
+				});
+				GAIA_TARGET_MOB_GOAL.set(e, new TargetGoal(e, false) {
+					@Override
+					public boolean canUse() {
+						return false;
+					}
+				});
+			} catch (IllegalAccessException ex) {
+				throw new ReflectionFailedException(ex);
+			}
 		}
 	}
 
@@ -202,13 +234,23 @@ public class NFFGirlsGaiaEntityEventListeners
 
 	@SubscribeEvent
 	public static void removeGaiaDynamicGoals(LivingStartBaseAiStepEvent event) {
+		if (event.getEntity() instanceof AbstractAssistGaiaEntity e
+			&& INFFGirlsTamed.get(event.getEntity()).isPresent()) {
+
+		}
+
 		if (event.getEntity() instanceof Mob mob
 			&& event.getEntity() instanceof IBlocksGaiaDynamicGoals fix
 			&& !event.getEntity().level().isClientSide) {
 			var toRemove = fix.getGoalsToRemove();
 			List<Goal> toRemoveGoals = mob.goalSelector.getAvailableGoals().stream().map(WrappedGoal::getGoal)
-				.filter(g -> toRemove.contains(g.getClass())).toList();
-			toRemoveGoals.forEach(mob.goalSelector::removeGoal);
+				.filter(g -> toRemove.contains(g.getClass())).collect(Collectors.toList());
+			toRemoveGoals.addAll(mob.targetSelector.getAvailableGoals().stream().map(WrappedGoal::getGoal)
+				.filter(g -> toRemove.contains(g.getClass())).toList());
+			toRemoveGoals.forEach(goal -> {
+				mob.goalSelector.removeGoal(goal);
+				mob.targetSelector.removeGoal(goal);
+			});
 		}
 	}
 
