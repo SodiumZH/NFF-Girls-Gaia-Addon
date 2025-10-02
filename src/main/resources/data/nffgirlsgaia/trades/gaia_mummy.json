@@ -1,0 +1,214 @@
+[
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:paper",
+    "amount": [36, 48],
+    "price": 1,
+    "maxUses": 4
+  },
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:flint",
+    "amount": [36, 48],
+    "price": 1,
+    "maxUses": 4
+  },
+  
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "minecraft:rabbit_hide",
+    "amount": [32, 48],
+    "price": 1,
+    "maxUses": 4
+  },
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "minecraft:gold_ingot",
+    "amount": [24, 32],
+    "price": 1,
+    "maxUses": 4
+  },
+  {
+    "level": 2,
+    "type": "sell",
+    "item": "minecraft:emerald",
+    "amount": [8, 12],
+    "price": 1,
+    "maxUses": 4
+  },
+
+  {
+    "level": 3,
+    "type": "sell",
+    "item": "minecraft:rabbit_foot",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "sell",
+    "item": "hmag:lich_cloth",
+    "amount": 2,
+    "price": 1,
+    "maxUses": 2
+  },
+
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "hmag:soul_cloth",
+    "amount": 1,
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "hmag:repulsion_gadget",
+    "amount": 2,
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "hmag:purification_cloth",
+    "amount": 2,
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 4,
+    "type": "convert",
+    "item": "minecraft:sand",
+    "result": "hmag:thorn_sand",
+    "amount": 8,
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 4,
+    "type": "convert",
+    "item": "minecraft:sand",
+    "result": "hmag:poison_sand",
+    "amount": 8,
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 4,
+    "type": "convert",
+    "item": "minecraft:sand",
+    "result": "hmag:wither_sand",
+    "amount": 8,
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.2
+  },
+  {
+    "level": 4,
+    "type": "convert",
+    "item": "minecraft:sand",
+    "result": "hmag:healing_sand",
+    "amount": 8,
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.2
+  },
+  
+  {
+    "level": 5,
+    "type": "buy",
+    "item": "grimoireofgaia:weapon_book_hunger",
+    "amount": 1,
+    "price": [4, 6],
+    "maxUses": 1
+  },
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "minecraft:totem_of_undying",
+    "amount": 1,
+    "price": [16, 24],
+    "maxUses": 1
+  },
+
+  {
+    "comment": "============================== Compat below =============================="
+  },
+
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "byg:aloe_vera",
+    "amount": [24, 32],
+    "price": 1,
+    "maxUses": 4
+  },
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "byg:baobab_fruit",
+    "amount": [48, 54],
+    "price": 1,
+    "maxUses": 4
+  },
+  
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "alexsmobs:rattlesnake_rattle",
+    "amount": [6, 8],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "alexsmobs:tarantura_hawk_wing_fragment",
+    "amount": [6, 8],
+    "price": 1,
+    "maxUses": 2
+  },
+
+  {
+    "level": 4,
+    "type": "buy",
+    "item": "iceandfire:myrmex_desert_chitin",
+    "amount": [4, 6],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "alexsmobs:guster_eye",
+    "amount": 1,
+    "price": [5, 8],
+    "maxUses": 1
+  },
+  
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "twilightforest:crumble_horn",
+    "amount": 1,
+    "price": [36, 48],
+    "maxUses": 1
+  },
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "iceandfire:deathworn_tounge",
+    "amount": 1,
+    "price": [32, 36],
+    "maxUses": 1
+  }
+]
