@@ -145,6 +145,7 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
     flatDir {
         //dir 'libs'
+        dir '../NFU-Library/build/libs'
         dir '../NFF-Services/build/libs'
         dir '../NFF-Girls/build/libs'
     }
