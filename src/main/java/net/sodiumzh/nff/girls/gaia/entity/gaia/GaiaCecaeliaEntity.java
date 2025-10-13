@@ -113,11 +113,6 @@ public class GaiaCecaeliaEntity extends Cecaelia implements INFFGirlsTamed, IBlo
     }
 
     @Override
-    public MobApplicableItemTable getHealingItems() {
-        return NFFGirlsGaiaHealingItems.AQUATIC.get();
-    }
-
-    @Override
     public List<Class<? extends Goal>> getGoalsToRemove() {
         return List.of(RangedAttackGoal.class, MobAttackGoal.class);
     }

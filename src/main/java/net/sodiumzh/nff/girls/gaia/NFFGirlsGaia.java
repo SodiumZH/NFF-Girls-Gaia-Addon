@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.sodiumzh.nff.girls.gaia.registry.*;
-import net.sodiumzh.nff.girls.registry.NFFGirlsConfigs;
 
 @Mod(NFFGirlsGaia.MOD_ID)
 public class NFFGirlsGaia
@@ -28,6 +27,9 @@ public class NFFGirlsGaia
         NFFGirlsGaiaItems.ITEMS.register(modEventBus);
         NFFGirlsGaiaEntityAttributes.ENTITY_ATTRIBUTE_PROVIDERS.merge();
         NFFGirlsGaiaGeometries.FIELD_PATTERNS.merge();
+
+        NFFGirlsGaiaHealingItems.COLLECTION.merge();
+        NFFGirlsGaiaFriendingItems.COLLECTION.merge();
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }

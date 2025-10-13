@@ -73,14 +73,6 @@ public class GaiaMummyEntity extends Mummy implements INFFGirlsTamedSunSensitive
 
     /* Interaction */
 
-    // Map items that can heal the mob and healing values here.
-    // Leave it empty if you don't need healing features.
-    @Override
-    public MobApplicableItemTable getHealingItems()
-    {
-        return NFFGirlsHealingItems.UNDEAD.get();
-    }
-
     /* Inventory */
 
     @Override

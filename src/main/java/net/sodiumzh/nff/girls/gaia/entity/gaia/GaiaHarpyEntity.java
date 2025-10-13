@@ -63,12 +63,6 @@ public class GaiaHarpyEntity extends Harpy implements INFFGirlsTamed, IBlocksGai
     }
 
     @Override
-    public MobApplicableItemTable getHealingItems()
-    {
-        return NFFGirlsHealingItems.ANIMAL.get();
-    }
-
-    @Override
     public NFFTamedMobInventory createAdditionalInventory() {
         return new NFFTamedMobInventory(4, this);
     }

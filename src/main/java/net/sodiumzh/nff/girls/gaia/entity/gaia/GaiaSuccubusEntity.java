@@ -73,10 +73,6 @@ public class GaiaSuccubusEntity extends Succubus implements INFFGirlsTamed, IHas
         targetSelector.addGoal(9, new NFFGirlsAttackingStrategyTargetGoal(this));
     }
 
-    public MobApplicableItemTable getHealingItems() {
-        return  NFFGirlsHealingItems.GENERAL_HUMANOID_0.get();
-    }
-
     public NFFTamedMobInventory createAdditionalInventory() {
         return new NFFTamedMobInventoryWithHandItems(4, this);
     }

@@ -77,11 +77,6 @@ public class GaiaMermaidEntity extends Mermaid implements INFFGirlsTamed, INFFTa
     }
 
     @Override
-    public MobApplicableItemTable getHealingItems() {
-        return NFFGirlsGaiaHealingItems.AQUATIC.get();
-    }
-
-    @Override
     public WaterBoundPathNavigation getWaterNav() {
         return this.waterNavigation;
     }
