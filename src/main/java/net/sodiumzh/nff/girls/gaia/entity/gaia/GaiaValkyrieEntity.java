@@ -138,11 +138,6 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
     }
 
     @Override
-    public MobApplicableItemTable getHealingItems() {
-        return NFFGirlsHealingItems.GENERAL_HUMANOID_0.get();
-    }
-
-    @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
         if (this.getTarget() == null) return;
         int amount = (this.getXpLevel() >= 40 || this.getHealth() < this.getMaxHealth() / 2d) ? 5 : 3;

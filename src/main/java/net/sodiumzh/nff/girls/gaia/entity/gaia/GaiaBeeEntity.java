@@ -140,14 +140,6 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDyn
         this.entityData.set(DATA_HONEY_LEVEL, val);
     }*/
 
-    /* Interaction */
-
-    @Override
-    public MobApplicableItemTable getHealingItems()
-    {
-        return NFFGirlsHealingItems.BEE.get();
-    }
-
     /* Inventory */
 
     @Override

@@ -123,11 +123,6 @@ public class GaiaYukiOnnaEntity extends YukiOnna implements INFFGirlsTamed, Rang
     }
 
     @Override
-    public MobApplicableItemTable getHealingItems() {
-        return NFFGirlsHealingItems.SNOWMAN.get();
-    }
-
-    @Override
     public boolean shouldSitOnWaiting() {
         return false;
     }

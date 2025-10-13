@@ -66,12 +66,6 @@ public class GaiaDryadEntity extends Dryad implements INFFGirlsTamed, IBlocksGai
 	/* Interaction */
 
 	@Override
-	public MobApplicableItemTable getHealingItems()
-	{
-		return NFFGirlsHealingItems.PLANT.get();
-	}
-
-	@Override
 	public NFFTamedMobInventory createAdditionalInventory() {
 		return new NFFTamedMobInventory(3, this);
 	}

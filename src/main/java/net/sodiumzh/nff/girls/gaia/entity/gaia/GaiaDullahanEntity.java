@@ -63,10 +63,6 @@ public class GaiaDullahanEntity extends Dullahan implements INFFGirlsTamed {
         targetSelector.addGoal(9, new NFFGirlsAttackingStrategyTargetGoal(this));
     }
 
-    public MobApplicableItemTable getHealingItems() {
-        return NFFGirlsHealingItems.UNDEAD.get();
-    }
-
     public NFFTamedMobInventory createAdditionalInventory() {
         return new NFFTamedMobInventoryWithHandItems(6, this);
     }
