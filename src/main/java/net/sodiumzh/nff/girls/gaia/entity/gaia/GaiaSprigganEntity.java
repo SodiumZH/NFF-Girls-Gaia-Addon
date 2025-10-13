@@ -73,16 +73,6 @@ public class GaiaSprigganEntity extends Spriggan implements INFFGirlsTamed {
             this.removeEffect(MobEffects.INVISIBILITY);
 	}
 
-    /* Interaction */
-
-    // Map items that can heal the mob and healing values here.
-    // Leave it empty if you don't need healing features.
-    @Override
-    public MobApplicableItemTable getHealingItems()
-    {
-        return NFFGirlsHealingItems.PLANT.get();
-    }
-
     /* Inventory */
 
     @Override

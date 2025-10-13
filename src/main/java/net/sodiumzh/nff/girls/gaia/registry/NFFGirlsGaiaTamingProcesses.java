@@ -6,7 +6,7 @@ import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.GaiaAnimalTamingProcess;
 import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.GaiaAquaticTamingProcess;
 import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.GaiaValkyrieTamingProcess;
 import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.GaiaYukiOnnaTamingProcess;
-import net.sodiumzh.nff.girls.registry.NFFGirlsTamingItems;
+import net.sodiumzh.nff.girls.registry.NFFGirlsFriendingItems;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingProcess;
 import net.sodiumzh.nff.services.registry.NFFRegistries;
 import net.sodiumzh.nfu.registry.NFURegistry;
@@ -18,18 +18,18 @@ public class NFFGirlsGaiaTamingProcesses {
             NFURegistryEntryCollection.create(NFFRegistries.TAMING_PROCESSES, NFFGirlsGaia.MOD_ID);
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_DRYAD = TAMING_PROCESSES.register(
-            "gaia_dryad",  () -> new HmagAlrauneTamingProcess().setItemGivingTableOverride(NFFGirlsTamingItems.PLANT_B));
+            "gaia_dryad",  () -> new HmagAlrauneTamingProcess().setItemGivingTableOverride(NFFGirlsFriendingItems.PLANT_B));
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_ANIMAL_A = TAMING_PROCESSES.register(
-        "gaia_animal_a",  () -> new GaiaAnimalTamingProcess().setItemGivingTableOverride(NFFGirlsTamingItems.ANIMAL_A));
+        "gaia_animal_a",  () -> new GaiaAnimalTamingProcess().setItemGivingTableOverride(NFFGirlsFriendingItems.ANIMAL_A));
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_VALKYRIE = TAMING_PROCESSES.register(
         "gaia_valkyrie", GaiaValkyrieTamingProcess::new);
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_YUKI_ONNA = TAMING_PROCESSES.register(
-        "gaia_yuki_onna", () -> new GaiaYukiOnnaTamingProcess().setItemGivingTableOverride(NFFGirlsTamingItems.SNOWMAN));
+        "gaia_yuki_onna", () -> new GaiaYukiOnnaTamingProcess().setItemGivingTableOverride(NFFGirlsFriendingItems.SNOWMAN));
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_AQUATIC_A = TAMING_PROCESSES.register(
-        "gaia_aquatic_a", () -> new GaiaAquaticTamingProcess().setItemGivingTableOverride(NFFGirlsGaiaTamingItems.AQUATIC_A));
+        "gaia_aquatic_a", () -> new GaiaAquaticTamingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.AQUATIC_A));
 
 }
