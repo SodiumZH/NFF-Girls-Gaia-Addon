@@ -1,20 +1,29 @@
 package net.sodiumzh.nff.girls.gaia.entity.ai;
 
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.phys.Vec3;
 import net.sodiumzh.nff.services.entity.ai.goal.NFFGoal;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;
+import net.sodiumzh.nfu.util.NFUMathStatics;
 
 import java.util.EnumSet;
 
+@Deprecated
 public class NFFGirlsGaiaFlyingAttackGoal extends NFFGoal {
 
     protected double minStartAttackDistance = 2.0d;
+    protected double speed;
 
-    public NFFGirlsGaiaFlyingAttackGoal(INFFTamed mob) {
+    public NFFGirlsGaiaFlyingAttackGoal(INFFTamed mob, double speed) {
         super(mob);
         this.setFlags(EnumSet.of(Flag.MOVE));
+        this.speed = speed;
         this.allowAllStatesExceptWait();
+    }
+
+    public NFFGirlsGaiaFlyingAttackGoal(INFFTamed mob) {
+        this(mob, 1.0d);
     }
 
     public boolean checkCanUse() {
@@ -30,15 +39,14 @@ public class NFFGirlsGaiaFlyingAttackGoal extends NFFGoal {
     }
 
     public boolean checkCanContinueToUse() {
-        return this.getMob().asMob().getMoveControl().hasWanted()/* && this.banshee.isCharging()*/
-            && this.getMob().asMob().getTarget() != null
+        return this.getMob().asMob().getTarget() != null
             && this.getMob().asMob().getTarget().isAlive();
     }
 
     public void onStart() {
         LivingEntity livingentity = this.getMob().asMob().getTarget();
         if (livingentity != null) {
-            Vec3 vec3 = livingentity.getEyePosition();
+            Vec3 vec3 = livingentity.getBoundingBox().getCenter();
             this.getMob().asMob().getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, 1.0);
         }
     }
@@ -50,14 +58,16 @@ public class NFFGirlsGaiaFlyingAttackGoal extends NFFGoal {
     public void onTick() {
         LivingEntity livingentity = this.getMob().asMob().getTarget();
         if (livingentity != null) {
-            if (this.getMob().asMob().getBoundingBox().intersects(livingentity.getBoundingBox())) {
+            if (NFUMathStatics.getBoxSurfaceDistSqr(this.mob.asMob().getBoundingBox(), livingentity.getBoundingBox()) <= 0.04d) {
                 this.getMob().asMob().doHurtTarget(livingentity);
                 this.onHurtTarget();
             } else {
                 double d0 = this.getMob().asMob().distanceToSqr(livingentity);
                 if (d0 < 9.0) {
                     Vec3 vec3 = livingentity.getEyePosition();
-                    this.getMob().asMob().getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, 1.0);
+                    if (this.getMob().asMob() instanceof PathfinderMob pm)
+                        pm.getNavigation().moveTo(vec3.x, vec3.y, vec3.z, this.speed);
+                    else this.getMob().asMob().getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, speed);
                 }
             }
         }
@@ -65,5 +75,9 @@ public class NFFGirlsGaiaFlyingAttackGoal extends NFFGoal {
     }
 
     protected void onHurtTarget() {}
+
+    public void onStop() {
+        super.onStop();
+    }
 
 }

@@ -1,47 +1,40 @@
 package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
-import gaia.entity.Harpy;
+import gaia.entity.Werecat;
 import gaia.entity.goal.MobAttackGoal;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializer;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
-import net.sodiumzh.nff.girls.entity.ai.INFFGirlsFlyingMob;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsFourBaublesInventoryMenu;
-import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFLeapAtOwnerGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFLeapAtTargetGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFWaterAvoidingRandomStrollGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtTargetGoal;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
-import net.sodiumzh.nfu.entity.MobApplicableItemTable;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 
-public class GaiaHarpyEntity extends Harpy implements INFFGirlsTamed, IBlocksGaiaDynamicGoals {
+public class GaiaWerecatEntity extends Werecat implements INFFGirlsTamed, IBlocksGaiaDynamicGoals {
 
-    public GaiaHarpyEntity(EntityType<? extends GaiaHarpyEntity> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
+    public GaiaWerecatEntity(EntityType<? extends Monster> entityType, Level level) {
+        super(entityType, level);
         this.xpReward = 0;
         Arrays.fill(this.armorDropChances, 0);
         Arrays.fill(this.handDropChances, 0);
@@ -72,6 +65,7 @@ public class GaiaHarpyEntity extends Harpy implements INFFGirlsTamed, IBlocksGai
         return new NFFTamedMobInventory(4, this);
     }
 
+    @Nullable
     @Override
     public NFFTamedInventoryMenu makeMenu(int containerId, Inventory playerInventory, Container container) {
         return new NFFGirlsFourBaublesInventoryMenu(containerId, playerInventory, container, this);

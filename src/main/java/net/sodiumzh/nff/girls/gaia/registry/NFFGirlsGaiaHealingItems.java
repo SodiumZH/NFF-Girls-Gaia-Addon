@@ -13,7 +13,7 @@ import net.sodiumzh.nfu.registry.NFURegistryEntryCollection;
 public class NFFGirlsGaiaHealingItems {
 
     public static NFURegistryEntryCollection<MobApplicableItemTable> COLLECTION =
-        NFURegistryEntryCollection.create(NFFGirlsHealingItems.HEALING_ITEMS, NFFGirlsGaia.MOD_ID);
+        NFURegistryEntryCollection.create(NFFGirlsHealingItems.REGISTRY, NFFGirlsGaia.MOD_ID);
 
     public static NFURegistry.Accessor<MobApplicableItemTable> AQUATIC =
         COLLECTION.register("aquatic", () -> MobApplicableItemTable.builder()

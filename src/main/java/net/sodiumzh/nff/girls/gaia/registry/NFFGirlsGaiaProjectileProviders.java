@@ -12,10 +12,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +22,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
+import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaBeeEntity;
 import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.GaiaYukiOnnaTamingProcess;
+import net.sodiumzh.nff.girls.registry.NFFGirlsEntityAttributes;
+import net.sodiumzh.nff.girls.registry.NFFGirlsEntityTypes;
 import net.sodiumzh.nff.girls.registry.NFFGirlsTags;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;
 import net.sodiumzh.nff.services.entity.taming.NFFTamedStatics;
@@ -33,6 +34,7 @@ import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nfu.entity.NFUEffectZoneEntity;
 import net.sodiumzh.nfu.entity.NFUItemProjectileEntity;
 import net.sodiumzh.nfu.entity.ServerEntityMotion;
+import net.sodiumzh.nfu.item.NFUItem;
 import net.sodiumzh.nfu.math.Field3D;
 import net.sodiumzh.nfu.math.IInequalityPattern3D;
 import net.sodiumzh.nfu.math.Inequality3D;
@@ -370,6 +372,24 @@ public class NFFGirlsGaiaProjectileProviders {
                     false,
                     Level.ExplosionInteraction.NONE);
                 proj.discard();
+            });
+
+    public static final Function<Mob, NFUItemProjectileEntity> POISON_PROJECTILE_FRIENDED = owner ->
+        NFUItemProjectileEntity.create(owner)
+            .setLifetime(10 * 20)
+            .setItem(GaiaRegistry.PROJECTILE_POISON.get().getDefaultInstance())
+            .setOnHitBlock((proj, hs) -> proj.discard())
+            .setOnHitLiving((proj, ehs) -> {
+                INFFGirlsTamed tamed = INFFGirlsTamed.get(owner).orElse(null);
+                if (tamed == null) { proj.discard(); return; }
+                if (ehs.getEntity() instanceof LivingEntity living && !NFFTamedStatics.isLivingAlliedToBM(tamed, living)) {
+                    living.hurt(proj.damageSources().indirectMagic(proj, owner),
+                        (float) owner.getAttributeValue(Attributes.ATTACK_DAMAGE) / 2f);
+                    int amplifier = (int) Math.round(owner.getAttributeValue(NFFGirlsEntityAttributes.POISON_ASPECT.get()));
+                    int time = (int) Math.round(owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 100);
+                    living.addEffect(new MobEffectInstance(MobEffects.POISON, time, amplifier));
+                    proj.discard();
+                }
             });
 
 }

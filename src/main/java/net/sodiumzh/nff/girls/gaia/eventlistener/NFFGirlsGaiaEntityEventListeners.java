@@ -4,22 +4,27 @@ import gaia.GrimoireOfGaia;
 import gaia.capability.CapabilityHandler;
 import gaia.entity.AbstractAssistGaiaEntity;
 import gaia.entity.AbstractGaiaEntity;
+import gaia.entity.Witch;
 import gaia.item.edible.MonsterFeedItem;
 import gaia.registry.GaiaRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.NaturalSpawner;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
@@ -34,9 +39,9 @@ import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
 import net.sodiumzh.nff.girls.gaia.entity.NFFGirlsGaiaEntityUtils;
-import net.sodiumzh.nff.girls.gaia.entity.ai.EmptyTargetGoal;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaMummyEntity;
-import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaValkyrieEntity;
+import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaShamanEntity;
+import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaWitchEntity;
 import net.sodiumzh.nff.girls.gaia.event.GaiaMobFinalizeSpawnEvent;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaConfigs;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
@@ -47,8 +52,11 @@ import net.sodiumzh.nff.services.entity.taming.INFFTamed;
 import net.sodiumzh.nff.services.entity.taming.NFFTamedStatics;
 import net.sodiumzh.nff.services.event.entity.NFFMobTamedEvent;
 import net.sodiumzh.nfu.exception.ReflectionFailedException;
+import net.sodiumzh.nfu.mixin.NFUMixin;
 import net.sodiumzh.nfu.mixin.event.entity.ItemEntityHurtEvent;
 import net.sodiumzh.nfu.mixin.event.entity.LivingStartBaseAiStepEvent;
+import net.sodiumzh.nfu.mixin.event.entity.MobRegisterGoalsEvent;
+import net.sodiumzh.nfu.registry.NFUCapabilities;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
 import net.sodiumzh.nfu.util.NFUReflectionStatics;
 
@@ -107,12 +115,24 @@ public class NFFGirlsGaiaEntityEventListeners
 
 	@SubscribeEvent
 	public static void onJoinLevel(EntityJoinLevelEvent event) {
-		// Prevent Gravemite spawn from friended Mummy
+		// Prevent minion spawn from friended mobs, searching by stack walking
 		if (event.getEntity().getType().equals(GaiaRegistry.GRAVEMITE.getEntityType())) {
-			// Search by stacktrace
 			if (StackWalker.getInstance().walk(frames ->
-				frames.anyMatch(frame -> frame.getClassName().equals(GaiaMummyEntity.class.getName()))))
-				event.setCanceled(true);
+				frames.anyMatch(frame -> frame.getClassName().equals(GaiaMummyEntity.class.getName())))) {
+				event.setCanceled(true); return;
+			}
+		}
+		else if (event.getEntity() instanceof Mob mob
+			&& (mob.getType().equals(EntityType.ZOMBIE) || mob.getType().equals(EntityType.SKELETON)))
+		{
+			if (mob.getItemBySlot(EquipmentSlot.HEAD).is(GaiaRegistry.HEADGEAR_MOB.get())
+				&& NFUReflectionStatics.isRunningInClass(GaiaWitchEntity.class)) {
+				event.setCanceled(true); return;
+			}
+			if (mob.getItemBySlot(EquipmentSlot.HEAD).is(GaiaRegistry.HEADGEAR_BOLT.get())
+				&& NFUReflectionStatics.isRunningInClass(GaiaShamanEntity.class)) {
+				event.setCanceled(true); return;
+			}
 		}
 		// Handle disabling male
 		if (event.getEntity() instanceof AbstractGaiaEntity gaiaEntity
@@ -216,7 +236,52 @@ public class NFFGirlsGaiaEntityEventListeners
 				event.setCanceled(true);
 		}
 	}
+/*
+	public static final Field FIELD_MOB_MOVE_CONTROL = NFUReflectionStatics.findFieldIfDeclared(Mob.class, "f_21342_")
+		.orElseThrow(() -> new ReflectionFailedException("field not found"));
+	public static final Field FIELD_WITCH_FLYING_CONTROL = NFUReflectionStatics.findFieldIfDeclared(gaia.entity.Witch.class, "flyingControl")
+		.orElseThrow(() -> new ReflectionFailedException("field not found"));
+	public static final Field FIELD_WITCH_NORMAL_CONTROL = NFUReflectionStatics.findFieldIfDeclared(gaia.entity.Witch.class, "groundControl")
+		.orElseThrow(() -> new ReflectionFailedException("field not found"));
+	public static final Field FIELD_MOB_NAVIGATION = NFUReflectionStatics.findFieldIfDeclared(Mob.class, "f_21344_")
+		.orElseThrow(() -> new ReflectionFailedException("field not found"));
 
+	@SubscribeEvent
+	public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+		// Fix Witch move control issues, also handle friended witch move control update
+		if (event.getEntity() instanceof gaia.entity.Witch witch) {
+			boolean isRidingBroom = witch.getItemBySlot(EquipmentSlot.OFFHAND).is(GaiaRegistry.BROOM.get())
+				|| witch.getItemBySlot(EquipmentSlot.OFFHAND).is(NFFGirlsGaiaTags.WEAPON_BROOMS);
+			if (!witch.isRidingBroom() && witch.isNoGravity())
+				witch.setNoGravity(false);
+			witch.setRidingBroom(isRidingBroom);
+			try {
+				FIELD_MOB_MOVE_CONTROL.set(witch, isRidingBroom ? FIELD_WITCH_FLYING_CONTROL.get(witch) : FIELD_WITCH_NORMAL_CONTROL.get(witch));
+			} catch (IllegalAccessException e) {
+				throw new ReflectionFailedException(e);
+			}
+			// Fix Witch navigation
+			witch.getCapability(NFUCapabilities.CAP_ENTITY_DATA).ifPresent(e -> {
+				if (e.getTransientParameter("groundNavigation", PathNavigation.class).isEmpty()) {
+					e.putTransientParameter("groundNavigation", witch.getNavigation() instanceof GroundPathNavigation ?
+						witch.getNavigation() : new GroundPathNavigation(witch, witch.level()));
+				}
+				if (e.getTransientParameter("flyingNavigation", PathNavigation.class).isEmpty()) {
+					e.putTransientParameter("flyingNavigation", witch.getNavigation() instanceof FlyingPathNavigation ?
+						witch.getNavigation() : new FlyingPathNavigation(witch, witch.level()));
+				}
+			});
+			PathNavigation nav = witch.getCapability(NFUCapabilities.CAP_ENTITY_DATA).resolve()
+				.flatMap(e -> e.getTransientParameter(isRidingBroom ? "flyingNavigation" : "groundNavigation", PathNavigation.class))
+				.orElseThrow();
+			try {
+				FIELD_MOB_NAVIGATION.set(witch, nav);
+			} catch (IllegalAccessException e) {
+				throw new ReflectionFailedException(e);
+			}
+		}
+	}
+*/
 	// NFU Mixin events
 
 	@SubscribeEvent
@@ -253,7 +318,14 @@ public class NFFGirlsGaiaEntityEventListeners
 			});
 		}
 	}
-
+/*
+	@SubscribeEvent
+	public static void onAddGoals(MobRegisterGoalsEvent event) {
+		if (event.getEntity().getType().equals(GaiaRegistry.WITCH.getEntityType()) && event.getEntity() instanceof gaia.entity.Witch witch) {
+			event.getGoalSelector().addGoal(2, new WaterAvoidingRandomFlyingGoal(witch, 1.0d));
+		}
+	}
+*/
 	// GAIA Mixin events
 	@SubscribeEvent
 	public static void onGaiaFinalizeSpawn(GaiaMobFinalizeSpawnEvent event)
