@@ -1,0 +1,50 @@
+[
+  {
+    "item": "minecraft:redstone",
+    "amount": [0.02, 0.04]
+  },
+  {
+    "item": "minecraft:spider_eye",
+    "amount": [0.02, 0.04]
+  },
+  {
+    "item": "minecraft:glowstone_dust",
+    "amount": [0.02, 0.04]
+  },
+  {
+    "item": "minecraft:amethyst_shard",
+    "amount": [0.02, 0.04]
+  },
+  {
+    "item": "minecraft:fermented_spider_eye",
+    "amount": [0.03, 0.05]
+  },
+  {
+    "tag": "forge:ingots/gold",
+    "amount": [0.04, 0.06]
+  },
+  {
+    "tag": "forge:gems/diamond",
+    "amount": [0.06, 0.10]
+  },
+  {
+    "item": "minecraft:experience_bottle",
+    "amount": [0.06, 0.10]
+  },
+  {
+    "tag": "nffgirls:hmag_berries",
+    "amount": [0.06, 0.10]
+  },
+  {
+    "item": "minecraft:hear_of_the_sea",
+    "amount": [0.30, 0.50]
+  },
+  {
+    "item": "minecraft:echo_shard",
+    "amount": [0.30, 0.50]
+  },
+  {
+    "item": "minecraft:nether_star",
+    "amount": [0.50, [0.75, 0.30], [1.00, 0.10]]
+  }
+]

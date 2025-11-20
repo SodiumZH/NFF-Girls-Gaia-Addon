@@ -11,12 +11,15 @@ import net.sodiumzh.nfu.registry.NFURegistryEntryCollection;
 public class NFFGirlsGaiaFriendingItems {
 
     public static NFURegistryEntryCollection<MobApplicableItemTable> COLLECTION =
-        NFURegistryEntryCollection.create(NFFGirlsFriendingItems.FRIENDING_ITEMS, NFFGirlsGaia.MOD_ID);
+        NFURegistryEntryCollection.create(NFFGirlsFriendingItems.REGISTRY, NFFGirlsGaia.MOD_ID);
 
     public static NFURegistry.Accessor<MobApplicableItemTable> AQUATIC_A =
         COLLECTION.register("aquatic_a", () -> MobApplicableItemTable.builder()
             .readData(new ResourceLocation(NFFGirlsGaia.MOD_ID, "friending/aquatic_a.json"), NFFGirlsDataReaders::readMobApplicableItemTable)
             .build());
 
-
+    public static NFURegistry.Accessor<MobApplicableItemTable> WITCH =
+        COLLECTION.register("witch", () -> MobApplicableItemTable.builder()
+            .readData(new ResourceLocation(NFFGirlsGaia.MOD_ID, "friending/witch.json"), NFFGirlsDataReaders::readMobApplicableItemTable)
+            .build());
 }

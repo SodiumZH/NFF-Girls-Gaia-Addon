@@ -25,78 +25,80 @@ import java.util.function.Supplier;
 public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
 {
 
-	public static final NFURegistryEntryCollection<EntityAttributeProvider> ENTITY_ATTRIBUTE_PROVIDERS = 
+	public static final NFURegistryEntryCollection<EntityAttributeProvider> ENTITY_ATTRIBUTE_PROVIDERS =
 		NFURegistryEntryCollection.create(NFURegistries.ENTITY_ATTRIBUTE_PROVIDERS, NFFGirlsGaia.MOD_ID);
 
 	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_DRYAD = ENTITY_ATTRIBUTE_PROVIDERS.register(
 		"gaia_dryad", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
-				.add(Attributes.MAX_HEALTH, 40.0)
-				.add(Attributes.FOLLOW_RANGE, 40.0)
-				.add(Attributes.MOVEMENT_SPEED, 0.25)
-				.add(Attributes.ATTACK_DAMAGE, 4.0)
-				.add(Attributes.ARMOR, 4.0)
-				.add(Attributes.ATTACK_KNOCKBACK, 0.3)
-				.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+			.add(Attributes.MAX_HEALTH, 40.0)
+			.add(Attributes.FOLLOW_RANGE, 40.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.25)
+			.add(Attributes.ATTACK_DAMAGE, 4.0)
+			.add(Attributes.ARMOR, 4.0)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.3)
+			.add(Attributes.FLYING_SPEED, 0.6)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
 	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_SPRIGGAN = ENTITY_ATTRIBUTE_PROVIDERS.register(
-			"gaia_spriggan", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
-				.add(Attributes.MAX_HEALTH, 70.0)
-				.add(Attributes.FOLLOW_RANGE, 40.0)
-				.add(Attributes.MOVEMENT_SPEED, 0.275)
-				.add(Attributes.ATTACK_DAMAGE, 6.0)
-				.add(Attributes.ARMOR, 8.0)
-				.add(Attributes.ATTACK_KNOCKBACK, 0.25)
-				.add((Attribute)ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+		"gaia_spriggan", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 70.0)
+			.add(Attributes.FOLLOW_RANGE, 40.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.275)
+			.add(Attributes.ATTACK_DAMAGE, 6.0)
+			.add(Attributes.ARMOR, 8.0)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.25)
+			.add((Attribute)ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
 	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_DULLAHAN = ENTITY_ATTRIBUTE_PROVIDERS.register(
-			"gaia_dullahan", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
-				.add(Attributes.MAX_HEALTH, 40.0)
-				.add(Attributes.FOLLOW_RANGE, 40.0)
-				.add(Attributes.MOVEMENT_SPEED, 0.25)
-				.add(Attributes.ATTACK_DAMAGE, 4.0)
-				.add(Attributes.ARMOR, 4.0)
-				.add(Attributes.ATTACK_KNOCKBACK, 0.3)
-				.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+		"gaia_dullahan", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 40.0)
+			.add(Attributes.FOLLOW_RANGE, 40.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.25)
+			.add(Attributes.ATTACK_DAMAGE, 4.0)
+			.add(Attributes.ARMOR, 4.0)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.3)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
 	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_HARPY = ENTITY_ATTRIBUTE_PROVIDERS.register(
-			"gaia_harpy", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
-				.add(Attributes.MAX_HEALTH, 40.0)
-				.add(Attributes.FOLLOW_RANGE, 40.0)
-				.add(Attributes.MOVEMENT_SPEED, 0.25)
-				.add(Attributes.ATTACK_DAMAGE, 4.0)
-				.add(Attributes.ARMOR, 4.0)
-				.add(Attributes.ATTACK_KNOCKBACK, 0.3)
-				.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+		"gaia_harpy", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 40.0)
+			.add(Attributes.FOLLOW_RANGE, 40.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.25)
+			.add(Attributes.ATTACK_DAMAGE, 4.0)
+			.add(Attributes.ARMOR, 4.0)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.3)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
 	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_BANSHEE = ENTITY_ATTRIBUTE_PROVIDERS.register(
-			"gaia_banshee", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
-				.add(Attributes.MAX_HEALTH, 70.0)
-				.add(Attributes.FOLLOW_RANGE, 40.0)
-				.add(Attributes.MOVEMENT_SPEED, 0.275)
-				.add(Attributes.ATTACK_DAMAGE, 6.0)
-				.add(Attributes.ARMOR, 8.0)
-				.add(Attributes.ATTACK_KNOCKBACK, 0.25)
-				.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+		"gaia_banshee", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 70.0)
+			.add(Attributes.FOLLOW_RANGE, 40.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.275)
+			.add(Attributes.ATTACK_DAMAGE, 6.0)
+			.add(Attributes.ARMOR, 8.0)
+			.add(Attributes.FLYING_SPEED, 0.6)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.25)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
 	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_SUCCUBUS = ENTITY_ATTRIBUTE_PROVIDERS.register(
-			"gaia_succubus", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
-				.add(Attributes.MAX_HEALTH, 40.0)
-				.add(Attributes.FOLLOW_RANGE, 30.0)
-				.add(Attributes.MOVEMENT_SPEED, 0.25)
-				.add(Attributes.ATTACK_DAMAGE, 4.0)
-				.add(Attributes.ARMOR, 4.0)
-				.add(Attributes.ATTACK_KNOCKBACK, 0.3)
-				.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+		"gaia_succubus", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 40.0)
+			.add(Attributes.FOLLOW_RANGE, 30.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.25)
+			.add(Attributes.ATTACK_DAMAGE, 4.0)
+			.add(Attributes.ARMOR, 4.0)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.3)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
 	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_MUMMY = ENTITY_ATTRIBUTE_PROVIDERS.register(
-			"gaia_mummy", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
-				.add(Attributes.MAX_HEALTH, 40.0)
-				.add(Attributes.FOLLOW_RANGE, 20.0)
-				.add(Attributes.MOVEMENT_SPEED, 0.25)
-				.add(Attributes.ATTACK_DAMAGE, 4.0)
-				.add(Attributes.ARMOR, 4.0)
-				.add(Attributes.KNOCKBACK_RESISTANCE, 0.5)
-				.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+		"gaia_mummy", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 40.0)
+			.add(Attributes.FOLLOW_RANGE, 20.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.25)
+			.add(Attributes.ATTACK_DAMAGE, 4.0)
+			.add(Attributes.ARMOR, 4.0)
+			.add(Attributes.KNOCKBACK_RESISTANCE, 0.5)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
 	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_BEE = ENTITY_ATTRIBUTE_PROVIDERS.register(
 		"gaia_bee", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
@@ -151,6 +153,36 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
 			.add(Attributes.KNOCKBACK_RESISTANCE, 0.25)
 			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
+	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_WERECAT = ENTITY_ATTRIBUTE_PROVIDERS.register(
+		"gaia_werecat", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 40.0)
+			.add(Attributes.FOLLOW_RANGE, 40.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.25)
+			.add(Attributes.ATTACK_DAMAGE, 4.0)
+			.add(Attributes.ARMOR, 4.0)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.3)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+
+	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_WITCH = ENTITY_ATTRIBUTE_PROVIDERS.register(
+		"gaia_witch", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 70.0)
+			.add(Attributes.FOLLOW_RANGE, 20.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.275)
+			.add(Attributes.ATTACK_DAMAGE, 6.0)
+			.add(Attributes.ARMOR, 8.0)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.25)
+			.add(Attributes.FLYING_SPEED, 0.6)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+
+	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_SHAMAN = ENTITY_ATTRIBUTE_PROVIDERS.register(
+		"gaia_shaman", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 80.0)
+			.add(Attributes.FOLLOW_RANGE, 26.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.275)
+			.add(Attributes.ATTACK_DAMAGE, 8.0)
+			.add(Attributes.ARMOR, 8.0)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.25)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
 
 	@SubscribeEvent
@@ -162,12 +194,14 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_SPRIGGAN.get(), NFFGirlsGaiaEntityAttributes.GAIA_SPRIGGAN.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_MUMMY.get(), NFFGirlsGaiaEntityAttributes.GAIA_MUMMY.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_SUCCUBUS.get(), NFFGirlsGaiaEntityAttributes.GAIA_SUCCUBUS.get().get().build());
-		//event.put(NFFGirlsGaiaEntityTypes.GAIA_BEE.get(), NFFGirlsGaiaEntityAttributes.GAIA_BEE.get().get().build());
+		event.put(NFFGirlsGaiaEntityTypes.GAIA_BEE.get(), NFFGirlsGaiaEntityAttributes.GAIA_BEE.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_VALKYRIE.get(), NFFGirlsGaiaEntityAttributes.GAIA_VALKYRIE.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_YUKI_ONNA.get(), NFFGirlsGaiaEntityAttributes.GAIA_YUKI_ONNA.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_CECAELIA.get(), NFFGirlsGaiaEntityAttributes.GAIA_CECAELIA.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_MERMAID.get(), NFFGirlsGaiaEntityAttributes.GAIA_MERMAID.get().get().build());
-
+		event.put(NFFGirlsGaiaEntityTypes.GAIA_WERECAT.get(), NFFGirlsGaiaEntityAttributes.GAIA_WERECAT.get().get().build());
+		event.put(NFFGirlsGaiaEntityTypes.GAIA_WITCH.get(), NFFGirlsGaiaEntityAttributes.GAIA_WITCH.get().get().build());
+		event.put(NFFGirlsGaiaEntityTypes.GAIA_SHAMAN.get(), NFFGirlsGaiaEntityAttributes.GAIA_SHAMAN.get().get().build());
 	}
 
 }

@@ -24,10 +24,13 @@ public class NFFGirlsGaiaClientSetupEventHandlers
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_BANSHEE.get(), BansheeRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_SUCCUBUS.get(), NFFGirlsGaiaSuccubusRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_MUMMY.get(), MummyRenderer::new);
-		//event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_BEE.get(), BeeRenderer::new);
+		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_BEE.get(), BeeRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_VALKYRIE.get(), ValkyrieRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_YUKI_ONNA.get(), YukiOnnaRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_CECAELIA.get(), CecaeliaRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_MERMAID.get(), MermaidRenderer::new);
+		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_WERECAT.get(), WerecatRenderer::new);
+		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_WITCH.get(), WitchRenderer::new);
+		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_SHAMAN.get(), ShamanRenderer::new);
 	}
 }

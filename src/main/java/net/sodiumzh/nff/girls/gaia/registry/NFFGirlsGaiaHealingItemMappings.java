@@ -24,6 +24,10 @@ public class NFFGirlsGaiaHealingItemMappings {
             NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_SUCCUBUS.get(), NFFGirlsHealingItems.GENERAL_HUMANOID_0);
             NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_SPRIGGAN.get(), NFFGirlsHealingItems.PLANT);
             NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_YUKI_ONNA.get(), NFFGirlsHealingItems.SNOWMAN);
+            NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_WERECAT.get(), NFFGirlsHealingItems.ANIMAL);
+            NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_BEE.get(), NFFGirlsHealingItems.BEE);
+            NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_WITCH.get(), NFFGirlsHealingItems.GENERAL_HUMANOID_0);
+            NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_SHAMAN.get(), NFFGirlsHealingItems.GENERAL_HUMANOID_0);
         });
     }
 
