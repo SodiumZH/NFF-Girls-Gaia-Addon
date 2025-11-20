@@ -2,7 +2,12 @@ package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Bee;
 import gaia.entity.goal.MobAttackGoal;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
 import net.minecraft.world.Difficulty;
@@ -16,12 +21,17 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
+import net.sodiumzh.nff.girls.entity.ai.INFFGirlsFlyingMob;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
+import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsHmagFlyingGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.entity.ai.movecontrol.NFFGirlsHmagFlyingMoveControl;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
+import net.sodiumzh.nff.girls.gaia.entity.INFFGirlsGaiaChargeAttackingMob;
 import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingAttackGoal;
+import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingChargeAttackGoal;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
@@ -38,10 +48,13 @@ import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 
-public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDynamicGoals {
+public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDynamicGoals, INFFGirlsGaiaChargeAttackingMob {
+
+    protected static final EntityDataAccessor<Boolean> DATA_IS_CHARGING = SynchedEntityData.defineId(GaiaBeeEntity.class,
+        EntityDataSerializers.BOOLEAN);
 
     private final int HONEY_COLLECTING_COOLDOWN = 5 * 60 * 20;
-    private int currentHoneyCollectingCooldown = HONEY_COLLECTING_COOLDOWN;
+    //private int currentHoneyCollectingCooldown = HONEY_COLLECTING_COOLDOWN;
     /*private EntityDataAccessor<Integer> DATA_HONEY_LEVEL =
         SynchedEntityData.defineId(GaiaBeeEntity.class, EntityDataSerializers.INT);
 */
@@ -50,25 +63,34 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDyn
         this.xpReward = 0;
         Arrays.fill(this.armorDropChances, 0);
         Arrays.fill(this.handDropChances, 0);
-        this.moveControl = new NFFGirlsHmagFlyingMoveControl(this);
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
+        entityData.define(DATA_IS_CHARGING, false);
         //entityData.define(DATA_HONEY_LEVEL, 0);
     }
 
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        //compound.putInt("AttackPhase", this.getAttackPhase());
+    }
+
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        //this.setAttackPhase(compound.getInt("AttackPhase"));
+    }
     /* AI */
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(4, new NFFGirlsGaiaFlyingAttackGoal(this));
+        this.goalSelector.addGoal(4, new NFFGirlsGaiaFlyingChargeAttackGoal(this, 1.0d));
         //this.goalSelector.addGoal(4, new NFFMeleeAttackGoal(this, 1d, false));
-        this.goalSelector.addGoal(5, new NFFFlyingLandGoal(this));
-        this.goalSelector.addGoal(6, new NFFGirlsFlyingFollowOwnerGoal(this));
-        this.goalSelector.addGoal(8, new NFFFlyingRandomMoveGoal(this).heightLimit(7));
+        this.goalSelector.addGoal(5, new NFFFlyingLandGoal(this, 1.275d).setHeightOffset(1d));
+        this.goalSelector.addGoal(6, new NFFGirlsFlyingFollowOwnerGoal(this, 1.5d));
+        this.goalSelector.addGoal(8, new NFFFlyingRandomMoveGoal(this, 1.0d).heightLimit(7));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
         this.goalSelector.addGoal(11, new RandomLookAroundGoal(this));
@@ -118,6 +140,14 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDyn
             }
         }
         return true;
+    }
+
+    public void aiStep() {
+        super.aiStep();
+    }
+
+    public void setDeltaMovement(Vec3 pDeltaMovement) {
+        super.setDeltaMovement(pDeltaMovement);
     }
 
 /*
@@ -181,5 +211,19 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDyn
     // This may cause mob losing target
     @Override
     public void stopBeingAngry() {
+    }
+
+    @Override
+    public boolean isCharging() {
+        return this.getEntityData().get(DATA_IS_CHARGING);
+    }
+
+    @Override
+    public void setIsCharging(boolean charging) {
+        this.getEntityData().set(DATA_IS_CHARGING,  charging);
+    }
+
+    @Override
+    public void playChargeAttackSound() {
     }
 }

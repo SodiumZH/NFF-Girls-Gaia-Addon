@@ -42,10 +42,10 @@ public class NFFGirlsGaiaTamingMappings
 			new ResourceLocation(GrimoireOfGaia.MOD_ID, "mummy"),
 			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_mummy"),
 			NFFGirlsTamingProcesses.VANILLA_UNDEAD_A);
-		/*event.register(
+		event.register(
 			new ResourceLocation(GrimoireOfGaia.MOD_ID, "bee"),
 			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_bee"),
-			NFFGirlsTamingProcesses.HMAG_HORNET);*/
+			NFFGirlsTamingProcesses.HMAG_HORNET);
 		event.register(
 			new ResourceLocation(GrimoireOfGaia.MOD_ID, "valkyrie"),
 			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_valkyrie"),
@@ -62,5 +62,17 @@ public class NFFGirlsGaiaTamingMappings
 			new ResourceLocation(GrimoireOfGaia.MOD_ID, "mermaid"),
 			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_mermaid"),
 			NFFGirlsGaiaTamingProcesses.GAIA_AQUATIC_A);
+		event.register(
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "werecat"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_werecat"),
+			NFFGirlsGaiaTamingProcesses.GAIA_ANIMAL_A);
+		event.register(
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "witch"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_witch"),
+			NFFGirlsGaiaTamingProcesses.GAIA_WITCH);
+		event.register(
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "shaman"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_shaman"),
+			NFFGirlsGaiaTamingProcesses.GAIA_WITCH);
 	}
 }

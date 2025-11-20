@@ -23,7 +23,10 @@ import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToOwnerTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.NFFGirlsNearestHostileToSelfTargetGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
+import net.sodiumzh.nff.girls.gaia.entity.INFFGirlsGaiaChargeAttackingMob;
 import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingAttackGoal;
+import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingChargeAttackGoal;
+import net.sodiumzh.nff.girls.gaia.entity.ai.VexLikeMoveControl;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsThreeBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
@@ -40,7 +43,7 @@ import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 
-public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensitiveMob {
+public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensitiveMob, INFFGirlsGaiaChargeAttackingMob {
     /* Initialization */
 
     public GaiaBansheeEntity(EntityType<? extends GaiaBansheeEntity> pEntityType, Level pLevel)
@@ -49,6 +52,7 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
         this.xpReward = 0;
         Arrays.fill(this.armorDropChances, 0);
         Arrays.fill(this.handDropChances, 0);
+        this.moveControl = new VexLikeMoveControl(this).setVerticalDeceleration(0.9d);
     }
 
     /* AI */
@@ -56,10 +60,10 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(4, new GaiaBansheeEntity.ChargeAttackGoal(this));
-        this.goalSelector.addGoal(5, new GaiaBansheeEntity.LandGoal(this));
-        this.goalSelector.addGoal(6, new NFFGirlsFlyingFollowOwnerGoal(this));
-        this.goalSelector.addGoal(8, new NFFFlyingRandomMoveGoal(this).heightLimit(7));
+        this.goalSelector.addGoal(4, new NFFGirlsGaiaFlyingChargeAttackGoal(this, 1.0D).setInterruptChance(0.2d));
+        this.goalSelector.addGoal(5, new NFFFlyingLandGoal(this).setHeightOffset(2.0d).setUsesNavigation(false));
+        this.goalSelector.addGoal(6, new NFFGirlsFlyingFollowOwnerGoal(this, 1.0d).setUsesNavigation(false));
+        this.goalSelector.addGoal(8, new NFFFlyingRandomMoveGoal(this).heightLimit(7).setUsesNavigation(false));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
         this.goalSelector.addGoal(11, new RandomLookAroundGoal(this));
@@ -91,11 +95,19 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
     }
 
     @Override
+    public void aiStep() {
+        super.aiStep();
+    }
+
+    @Override
     protected SoundEvent getAmbientSound() {
         return NFFGirlsSoundPresets.generalAmbient(super.getAmbientSound());
     }
 
-    protected SoundEvent getChargeAttackSound() {return SoundEvents.VEX_CHARGE;}
+    @Override
+    public void playChargeAttackSound() {
+        this.playSound(SoundEvents.VEX_CHARGE, 1.0F, 1.0F);
+    }
 
     @Override
     @Nonnull
@@ -104,7 +116,7 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
         return typeBefore != null ? typeBefore.getDescription() : super.getTypeName();
     }
 
-    public static class ChargeAttackGoal extends NFFGirlsGaiaFlyingAttackGoal {
+    /*public static class ChargeAttackGoal extends NFFGirlsGaiaFlyingChargeAttackGoal {
 
         protected final GaiaBansheeEntity mobBanshee;
 
@@ -119,7 +131,6 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
 
         public void onStart() {
             super.onStart();
-            this.mobBanshee.setIsCharging(true);
             this.mobBanshee.playSound(this.mobBanshee.getChargeAttackSound(), 1.0F, 1.0F);
         }
 
@@ -132,10 +143,10 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
             super.onStop();
             this.mobBanshee.setIsCharging(false);
         }
-    }
+    }*/
 
     // TODO Correct NFFFlyingLandGoal and use it instead
-    @Deprecated
+    /*@Deprecated
     public static class LandGoal extends NFFFlyingLandGoal {
 
         public LandGoal(INFFTamed mob) {
@@ -151,12 +162,12 @@ public class GaiaBansheeEntity extends Banshee implements INFFGirlsTamedSunSensi
                         }
 
                         pos = pos.above((int) Math.ceil(this.mob.asMob().getEyeHeight()));
-                        this.mob.asMob().getMoveControl().setWantedPosition((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), this.speed);
+                        this.mob.asMob().getMoveControl().setWantedPosition((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), this.getSpeedModifier());
                     }
                 }
             }
         }
 
-    }
+    }*/
 
 }

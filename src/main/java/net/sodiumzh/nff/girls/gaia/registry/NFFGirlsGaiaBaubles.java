@@ -22,9 +22,13 @@ public class NFFGirlsGaiaBaubles
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaBansheeEntity.class, 0, 3);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaSuccubusEntity.class, 2, 4);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaMummyEntity.class, 2, 6);
+        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaBeeEntity.class, 2, 4);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaValkyrieEntity.class, 2, 6);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaYukiOnnaEntity.class, 2, 4);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaCecaeliaEntity.class, 2, 6);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaMermaidEntity.class, 2, 4);
+        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaWerecatEntity.class, 0, 4);
+        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaWitchEntity.class, 2, 6);
+        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaShamanEntity.class, 2, 6);
     }
 }
