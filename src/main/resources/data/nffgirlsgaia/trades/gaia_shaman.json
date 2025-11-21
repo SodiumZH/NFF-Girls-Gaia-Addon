@@ -1,0 +1,214 @@
+[
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:fermented_spider_eye",
+    "amount": [18, 28],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.4
+  },
+  {
+    "level": 1,
+    "type": "convert",
+    "item": "minecraft:bone",
+    "result": "hmag:sharp_fang",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+  {
+    "level": 1,
+    "type": "convert",
+    "item": "minecraft:leather",
+    "result": "hmag:kobold_leather",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+  
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "minecraft:pufferfish",
+    "amount": [12, 16],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.5
+  },
+  {
+    "level": 2,
+    "type": "convert",
+    "item": "minecraft:bone",
+    "result": "hmag:orge_horn",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+  {
+    "level": 2,
+    "type": "convert",
+    "item": "minecraft:spore_blossom",
+    "result": "hmag:mysterious_petal",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+  
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "minecraft:phantom_membrane",
+    "amount": [6, 8],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 3,
+    "type": "convert",
+    "item": "minecraft:brown_wool",
+    "result": "hmag:lich_cloth",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "convert",
+    "item": "minecraft:magenta_wool",
+    "result": "hmag:necrofiber",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+
+  {
+    "level": 4,
+    "type": "buy",
+    "item": "minecraft:rabbit_foot",
+    "amount": [4, 6],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.5
+  },
+  {
+    "level": 4,
+    "type": "convert",
+    "item": "minecraft:crimson_fungus",
+    "result": "hmag:crimson_cuticula",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+  {
+    "level": 4,
+    "type": "convert",
+    "item": "hmag:phantom_membrane",
+    "result": "hmag:dyssomnia_skin",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+
+  {
+    "level": 5,
+    "type": "buy",
+    "item": "minecraft:turtle_helmet",
+    "amount": 1,
+    "price": [3, 4],
+    "maxUses": 2,
+    "weight": 0.5
+  },
+  {
+    "level": 5,
+    "type": "convert",
+    "item": "minecraft:ghast_tear",
+    "result": "hmag:ender_plasm",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  },
+
+  {
+    "comment": "============================== Compat below =============================="
+  },
+
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "alexsmobs:centipede_leg",
+    "amount": [4, 6],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.4
+  },
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "alexsmobs:cockroach_wing",
+    "amount": [4, 6],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.4
+  },
+
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "alexsmobs:bear_fur",
+    "amount": [4, 6],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.5
+  },
+
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "alexsmobs:dropbear_claw",
+    "amount": [4, 8],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "alexsmobs:gazelle_horn",
+    "amount": [4, 8],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "alexsmobs:bone_serpent_tooth",
+    "amount": [4, 8],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+
+  {
+    "level": 4,
+    "type": "buy",
+    "item": "alexsmobs:komodo_spit",
+    "amount": [4, 6],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.5
+  },
+
+  {
+    "level": 4,
+    "type": "buy",
+    "item": "alexsmobs:soul_heart",
+    "amount": 1,
+    "price": [3, 4],
+    "maxUses": 2,
+    "weight": 0.5
+  }
+
+]

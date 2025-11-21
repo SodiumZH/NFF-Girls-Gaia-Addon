@@ -7,44 +7,63 @@
   },
   {
     "key": "nffgirlsgaia:gaia_dryad",
-    "collections": "nffgirls:common_plant"
+	"collections": [
+	  {"key": "nffgirls:common_plant", "weight": 0.2}
+	]
   },
   {
     "key": "nffgirlsgaia:gaia_spriggan",
-    "collections": "nffgirls:common_plant"
+	"collections": [
+	  {"key": "nffgirls:common_plant", "weight": 0.2}
+	]
   },
   {
     "key": "nffgirlsgaia:gaia_harpy",
-    "collections": "nffgirls:common_animal"
+	"collections": [
+	  {"key": "nffgirls:common_animal", "weight": 0.2}
+	]
   },
   {
     "key": "nffgirlsgaia:gaia_succubus",
     "collections": [
-      {"key": "nffgirls:common_nether", "weight": 0.5}
+      {"key": "nffgirls:common_nether", "weight": 0.2}
     ]
   },
   {
     "key": "nffgirlsgaia:gaia_mummy",
     "collections": [
-      {"key": "nffgirls:common_undead", "weight": 0.3},
+      {"key": "nffgirls:common_undead", "weight": 0.1},
       {"key": "nffgirls:common_zombie", "weight": 0.2}
     ]
   },
   {
     "key": "nffgirlsgaia:gaia_cecaelia",
-    "collections": "nffgirls:common_aquatic"
+    "collections": [
+      {"key": "nffgirls:common_aquatic", "weight": 0.2}
+    ]
   },
   {
     "key": "nffgirlsgaia:gaia_mermaid",
-    "collections": "nffgirls:common_aquatic"
+    "collections": [
+      {"key": "nffgirls:common_aquatic", "weight": 0.2}
+    ]
   },
   {
     "key": "nffgirlsgaia:gaia_yuki_onna",
     "collections": [
       {"key": "nffgirls:common_undead", "weight": 0.2},
-      {"key": "nffgirls:common_ice", "weight": 0.5}
+      {"key": "nffgirls:common_ice", "weight": 0.2}
     ]
   },
+  {
+    "key": "nffgirlsgaia:gaia_werecat",
+	"collections": [
+	  {"key": "nffgirls:common_animal", "weight": 0.2}
+	]
+  },
   "nffgirlsgaia:gaia_dullahan",
-  "nffgirlsgaia:gaia_valkyrie"
+  "nffgirlsgaia:gaia_valkyrie",
+  "nffgirlsgaia:gaia_bee",
+  "nffgirlsgaia:gaia_witch",
+  "nffgirlsgaia:gaia_shaman"
 ]
