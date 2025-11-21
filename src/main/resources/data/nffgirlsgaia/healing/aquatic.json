@@ -26,5 +26,49 @@
   {
     "item": "hmag:golden_tropical_fish",
     "amount_getter": "nffgirls:mob_max_health"
+  },
+  {
+    "item": "alexsmobs:cooked_lobster_tail",
+    "amount": [5]
+  },
+  {
+    "item": "alexsmobs:cooked_catfish",
+    "amount": [5]
+  },
+  {
+    "item": "alexscaves:cooked_trilocaris_tail",
+    "amount": [10]
+  },
+  {
+    "item": "alexscaves:cooked_radgill",
+    "amount": [10]
+  },
+  {
+    "item": "alexscaves:pearl",
+    "amount": [15]
+  },
+  {
+    "item": "alexscaves:cooked_lanternfish",
+    "amount": [10]
+  },
+  {
+    "item": "alexscaves:cooked_tripodfish",
+    "amount": [10]
+  },
+  {
+    "item": "alexscaves:cooked_mussel",
+    "amount": [10]
+  },
+  {
+    "item": "farmersdelight:cooked_cod_slice",
+    "amount": [5]
+  },
+  {
+    "item": "farmersdelight:cooked_salmon_slice",
+    "amount": [5]
+  },
+  {
+    "item": "grimoireofgaia:shiny_pearl",
+    "amount": [15]
   }
 ]

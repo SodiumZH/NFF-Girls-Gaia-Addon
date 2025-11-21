@@ -53,15 +53,15 @@
     "type": "sell",
     "item": "hmag:netherite_nugget",
     "amount": 1,
-    "price": [8, 10],
-    "maxUses": 1
+    "price": [2, 3],
+    "maxUses": 2
   },
   {
     "level": 3,
     "type": "sell",
     "item": "hmag:orge_horn",
     "amount": 1,
-    "price": [8, 10],
+    "price": 1,
     "maxUses": 2
   },
   {
@@ -76,17 +76,17 @@
     "level": 4,
     "type": "sell",
     "item": "hmag:reinforcing_chain",
-    "amount": 1,
-    "price": [8, 10],
-    "maxUses": 4
+    "amount": 2,
+    "price": 1,
+    "maxUses": 2
   },
   {
     "level": 4,
     "type": "sell",
     "item": "hmag:ancient_stone",
-    "amount": 1,
-    "price": [8, 10],
-    "maxUses": 4
+    "amount": 2,
+    "price": 1,
+    "maxUses": 2
   },
   {
     "level": 4,
