@@ -134,6 +134,54 @@
       "offset_y": 11,
       "linked_page": "valkyrie.json",
       "hover_text": "entity.grimoireofgaia.valkyrie"
+    },
+    {
+      "entity": "grimoireofgaia:werecat",
+      "x": 350,
+      "y": 90,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "werecat.json",
+      "hover_text": "entity.grimoireofgaia.werecat"
+    },
+    {
+      "entity": "grimoireofgaia:witch",
+      "x": 230,
+      "y": 130,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "witch.json",
+      "hover_text": "entity.grimoireofgaia.witch"
+    },
+    {
+      "entity": "grimoireofgaia:shaman",
+      "x": 270,
+      "y": 130,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "shaman.json",
+      "hover_text": "entity.grimoireofgaia.shaman"
+    },
+    {
+      "entity": "grimoireofgaia:bee",
+      "x": 310,
+      "y": 130,
+      "page": 0,
+      "scale": 1.6,
+      "entity_scale": 0.85,
+      "offset_x": 0,
+      "offset_y": 11,
+      "linked_page": "bee.json",
+      "hover_text": "entity.grimoireofgaia.bee"
     }
   ],
   "linked_page_buttons": [

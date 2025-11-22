@@ -1,0 +1,23 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+    友好化杀人蜂的方法与HMaG蜜蜂娘
+<NEWLINE>
+相同。在友好化全过程中，周围9x9x9的
+<NEWLINE>
+空间中必须保持有至少8个蜂蜜块。一旦
+<NEWLINE>
+蜂蜜块数量不足，进度将会快速下降，
+<NEWLINE>
+同时产生大量烟雾粒子。如果玩家被
+<NEWLINE>
+杀人蜂击中并造成伤害，则会有60秒冷却，
+<NEWLINE>
+期间无法赠予礼物，但不会打断友好化
+<NEWLINE>
+过程。
+<NEWLINE>
+    杀人蜂友好化成功后，可以定制主
+<NEWLINE>
+副手物品，并有两个饰品栏。

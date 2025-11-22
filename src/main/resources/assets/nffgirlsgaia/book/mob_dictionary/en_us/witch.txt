@@ -1,0 +1,16 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+To get friendly with a Witch, you must first give them 5 different positive effects without
+hurting them, before giving items.
+<NEWLINE>
+After getting friendly, the Witch can either walk or fly (with a Broom on the offhand). In combat,
+they can attack the enemies and support allies with different splash potions. The strengths of
+the potion effects depend on their attributes. Attack Damage attribute boosts
+the healing/damage amount and effect duration, while Poison Aspect attribute (provided by baubles)
+boosts the effect level (both positive and negative).
+<NEWLINE>
+In addition, when you're drowning, burning or in the darkness, they will also throw
+the corresponding potion to help you out.
+<NEWLINE>

@@ -86,10 +86,10 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDyn
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(4, new NFFGirlsGaiaFlyingChargeAttackGoal(this, 1.0d));
+        this.goalSelector.addGoal(4, new NFFGirlsGaiaFlyingChargeAttackGoal(this, 1.2d));
         //this.goalSelector.addGoal(4, new NFFMeleeAttackGoal(this, 1d, false));
-        this.goalSelector.addGoal(5, new NFFFlyingLandGoal(this, 1.275d).setHeightOffset(1d));
-        this.goalSelector.addGoal(6, new NFFGirlsFlyingFollowOwnerGoal(this, 1.5d));
+        this.goalSelector.addGoal(5, new NFFFlyingLandGoal(this, 1.5d).setHeightOffset(1d));
+        this.goalSelector.addGoal(6, new NFFGirlsFlyingFollowOwnerGoal(this, 2.3d));
         this.goalSelector.addGoal(8, new NFFFlyingRandomMoveGoal(this, 1.0d).heightLimit(7));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
