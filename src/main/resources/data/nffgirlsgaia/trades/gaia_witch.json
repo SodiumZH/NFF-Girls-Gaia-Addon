@@ -1,0 +1,231 @@
+[
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:sugar",
+    "amount": [36, 48],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.2
+  },
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:redstone",
+    "amount": [36, 48],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.2
+  },
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:gunpowder",
+    "amount": [28, 36],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.2
+  },
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "hmag:soul_apple",
+    "amount": [2, 3],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.2
+  },
+  {
+    "level": 1,
+    "type": "convert",
+    "item": "minecraft:slime_ball",
+    "result": "hmag:cubic_nucleus",
+    "amount": 1,
+    "price": [2, 4],
+    "maxUses": 2
+  },
+  {
+    "level": 1,
+    "type": "convert",
+    "item": "minecraft:amethyst_shard",
+    "result": "hmag:ancient_stone",
+    "amount": 1,
+    "price": [2, 4],
+    "maxUses": 2
+  },
+  
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "minecraft:glowstone_dust",
+    "amount": [36, 48],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "minecraft:glistering_melon_slice",
+    "amount": [16, 24],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "minecraft:golden_carrot",
+    "amount": [16, 24],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 2,
+    "type": "convert",
+    "item": "minecraft:iron_ingot",
+    "result": "hmag:reinforcing_chain",
+    "amount": 1,
+    "price": [3, 6],
+    "maxUses": 1
+  },
+  {
+    "level": 2,
+    "type": "convert",
+    "item": "minecraft:magma_cream",
+    "result": "hmag:burning_core",
+    "amount": 1,
+    "price": [2, 4],
+    "maxUses": 2
+  },
+  
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "minecraft:magma_cream",
+    "amount": [20, 28],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "minecraft:nether_wart",
+    "amount": [36, 48],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "minecraft:blaze_powder",
+    "amount": [24, 36],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.3
+  },
+  {
+    "level": 3,
+    "type": "convert",
+    "item": "minecraft:iron_block",
+    "result": "hmag:multiplex_reinforcing_chain",
+    "amount": 1,
+    "price": [8, 10],
+    "maxUses": 1
+  },
+  {
+    "level": 3,
+    "type": "convert",
+    "item": "minecraft:diamond",
+    "result": "nffgirls:death_crystal",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 1
+  },
+
+  {
+    "level": 4,
+    "type": "buy",
+    "item": "minecraft:ghast_tear",
+    "amount": [6, 8],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.5
+  },
+  {
+    "level": 4,
+    "type": "convert",
+    "item": "minecraft:fire_charge",
+    "result": "hmag:lightning_particle",
+    "amount": 1,
+    "price": [3, 6],
+    "maxUses": 1
+  },
+  {
+    "level": 4,
+    "type": "convert",
+    "item": "hmag:exp_berry",
+    "result": "nffgirls:enderberry",
+    "amount": 1,
+    "price": [16, 24],
+    "maxUses": 1,
+    "weight": 0.3
+  },
+  {
+    "level": 4,
+    "type": "convert",
+    "item": "hmag:cureberry",
+    "result": "nffgirls:enderberry",
+    "amount": 1,
+    "price": [16, 24],
+    "maxUses": 1,
+    "weight": 0.3
+  },
+  {
+    "level": 4,
+    "type": "convert",
+    "item": "hmag:randomberry",
+    "result": "nffgirls:enderberry",
+    "amount": 1,
+    "price": [16, 24],
+    "maxUses": 1,
+    "weight": 0.3
+  },
+
+  {
+    "level": 5,
+    "type": "buy",
+    "item": "minecraft:dragon_breath",
+    "amount": [4, 8],
+    "price": 1,
+    "maxUses": 4,
+    "weight": 0.5
+  },
+  {
+    "level": 5,
+    "type": "convert",
+    "item": "hmag:soul_apple",
+    "result": "hmag:insomnia_fruit",
+    "amount": 1,
+    "price": [32, 36],
+    "maxUses": 1
+  },
+
+  {
+    "comment": "============================== Compat below =============================="
+  },
+
+  {
+    "level": 4,
+    "type": "buy",
+    "item": "iceandfire:shiny_scales",
+    "amount": [3, 6],
+    "price": 1,
+    "maxUses": 2,
+    "weight": 0.5
+  }
+
+]
