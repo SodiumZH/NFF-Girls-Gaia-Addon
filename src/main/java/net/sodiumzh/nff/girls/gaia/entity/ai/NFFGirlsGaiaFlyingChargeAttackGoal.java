@@ -6,7 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
-import net.sodiumzh.nff.girls.entity.ai.NFFGirlsAIRules;
+import net.sodiumzh.nff.girls.entity.ai.NFFGirlsAIUtils;
 import net.sodiumzh.nff.girls.gaia.entity.INFFGirlsGaiaChargeAttackingMob;
 import net.sodiumzh.nff.services.entity.ai.NFFTamedMobAIState;
 import net.sodiumzh.nff.services.entity.ai.goal.NFFGoal;
@@ -34,7 +34,7 @@ public class NFFGirlsGaiaFlyingChargeAttackGoal extends NFFGoal {
         this.speedModifier = speedModifier;
         this.setFlags(EnumSet.of(Flag.MOVE));
         this.allowAllStatesExceptWait();
-        this.setInterruptCondition(NFFGirlsAIRules.FOLLOWING_OWNER_FAR_AWAY);
+        this.setInterruptCondition(NFFGirlsAIUtils.predicateFollowingFurtherThan(24d));
     }
 
     public NFFGirlsGaiaFlyingChargeAttackGoal(INFFTamed tamed) {

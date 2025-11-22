@@ -165,7 +165,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
         if (test.isOnFire() && !test.fireImmune() && !test.hasEffect(MobEffects.FIRE_RESISTANCE))
             return Emergency.BURNING;
         if (test instanceof Player
-            && (test.level().getLightEmission(test.getOnPos()) < 5 || test.level().isNight())
+            && (test.level().getMaxLocalRawBrightness(test.getOnPos()) < 5 || test.level().isNight())
             && !test.hasEffect(MobEffects.NIGHT_VISION))
             return Emergency.BLIND_AT_NIGHT;
         return Emergency.NONE;

@@ -54,10 +54,10 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
 
     protected void registerGoals() {
         goalSelector.addGoal(1, new FloatGoal(this));
-        goalSelector.addGoal(3, new PotionThrowerGoals.PotionEmergencySupportGoal(this, 1.5D, 60, 8.0F));
-        goalSelector.addGoal(4, new PotionThrowerGoals.PotionAttackGoal(this, 1.0D, 60, 8.0F).setInterruptChance(0.2d));
-        goalSelector.addGoal(4, new PotionThrowerGoals.PotionSupportGoal(this, 1.0D, 60, 8.0F).setInterruptChance(0.2d));
-        goalSelector.addGoal(5, new PotionThrowerGoals.PotionIdleSupportGoal(this, 1.0D, 60, 8.0F));
+        goalSelector.addGoal(3, new PotionThrowerGoals.PotionEmergencySupportGoal(this, 1.8D, 60, 8.0F));
+        goalSelector.addGoal(4, new PotionThrowerGoals.PotionAttackGoal(this, 1.2D, 60, 8.0F).setInterruptChance(0.2d));
+        goalSelector.addGoal(4, new PotionThrowerGoals.PotionSupportGoal(this, 1.2D, 60, 8.0F).setInterruptChance(0.2d));
+        goalSelector.addGoal(5, new PotionThrowerGoals.PotionIdleSupportGoal(this, 1.2D, 60, 8.0F));
         this.goalSelector.addGoal(6, new NFFFlyingLandGoal(this) {
             public boolean checkCanUse() {return super.checkCanUse() && isRidingBroom();}
         });
@@ -67,10 +67,10 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
         this.goalSelector.addGoal(8, new NFFFlyingRandomMoveGoal(this){
             public boolean checkCanUse() {return super.checkCanUse() && isRidingBroom();}
         }.heightLimit(7));
-        goalSelector.addGoal(7, new NFFGirlsFollowOwnerGoal(this, 1.0d, 5.0f, 2.0f, false){
+        goalSelector.addGoal(7, new NFFGirlsFollowOwnerGoal(this, 2.3d, 5.0f, 2.0f, false){
             public boolean checkCanUse() {return super.checkCanUse() && !isRidingBroom();}
         });
-        goalSelector.addGoal(8, new NFFWaterAvoidingRandomStrollGoal(this, 1.0d){
+        goalSelector.addGoal(8, new NFFWaterAvoidingRandomStrollGoal(this, 1.2d){
             public boolean checkCanUse() {return super.checkCanUse() && !isRidingBroom();}
         });
         goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 8.0F));
