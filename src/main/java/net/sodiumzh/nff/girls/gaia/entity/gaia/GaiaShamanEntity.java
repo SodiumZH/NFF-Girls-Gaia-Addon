@@ -10,6 +10,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.sodiumzh.nff.girls.entity.ai.NFFGirlsAIUtils;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
@@ -31,7 +32,7 @@ import java.util.List;
 
 public class GaiaShamanEntity extends Shaman implements IPotionThrower, IBlocksGaiaDynamicGoals {
 
-    public double meleeAttackThreshold = 4.0d;
+    public static final double MELEE_ATTACK_THRESHOLD = 4.0d;
 
     public GaiaShamanEntity(EntityType<? extends GaiaShamanEntity> entityType, Level level) {
         super(entityType, level);
@@ -40,14 +41,10 @@ public class GaiaShamanEntity extends Shaman implements IPotionThrower, IBlocksG
     protected void registerGoals() {
         goalSelector.addGoal(1, new FloatGoal(this));
         goalSelector.addGoal(2, new PotionThrowerGoals.PotionEmergencySupportGoal(this, 1.75D, 60, 15.0F));
-        goalSelector.addGoal(3, new NFFMeleeAttackGoal(this, 1.275d, true) {
-            @Override public boolean checkCanUse() { return super.checkCanUse()
-                && GaiaShamanEntity.this.getTarget() != null && distanceToSqr(GaiaShamanEntity.this.getTarget()) < meleeAttackThreshold * meleeAttackThreshold;}
-        });
-        goalSelector.addGoal(4, new PotionThrowerGoals.PotionAttackGoal(this, 1.275D, 60, 8.0F) {
-            @Override public boolean checkCanUse() { return super.checkCanUse()
-                && GaiaShamanEntity.this.getTarget() != null && distanceToSqr(GaiaShamanEntity.this.getTarget()) >= meleeAttackThreshold * meleeAttackThreshold;}
-        });
+        goalSelector.addGoal(3, new NFFMeleeAttackGoal(this, 1.275d, true)
+            .setStartCondition(NFFGirlsAIUtils.predicateTargetCloserThan(MELEE_ATTACK_THRESHOLD)));
+        goalSelector.addGoal(4, new PotionThrowerGoals.PotionAttackGoal(this, 1.275D, 60, 8.0F)
+            .setStartCondition(NFFGirlsAIUtils.predicateTargetFurtherThan(MELEE_ATTACK_THRESHOLD)));
         goalSelector.addGoal(4, new PotionThrowerGoals.PotionSupportGoal(this, 1.275D, 60, 8.0F));
         goalSelector.addGoal(5, new PotionThrowerGoals.PotionIdleSupportGoal(this, 1.275D, 60, 8.0F));
         goalSelector.addGoal(7, new NFFGirlsFollowOwnerGoal(this, 1.0d, 5.0f, 2.0f, false));

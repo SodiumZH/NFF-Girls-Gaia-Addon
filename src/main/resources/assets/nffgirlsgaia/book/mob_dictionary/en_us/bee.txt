@@ -1,0 +1,10 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+The method of getting friendly with the Bee is the same as HMaG Hornet.
+You must set up a field of honey before giving items. There must be 8 honey blocks around,
+otherwise the friendly progress will drop quickly. If you're attacked by the mob, you'll enter a cool time of 60 seconds
+during which you cannot give items.
+<NEWLINE>
+After getting friendly, you can equip them with hand items, and 2 Baubles.

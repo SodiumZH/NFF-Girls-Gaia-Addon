@@ -1,0 +1,13 @@
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+要使猫妖变得友好，你需要右键给与其物
+<NEWLINE>
+品，所需的物品见JEI选项卡。随着进度
+<NEWLINE>
+上升，猫妖会获得力量效果，每20%进度
+<NEWLINE>
+上升一级。所以当你快要成功的时候反而
+<NEWLINE>
+要格外小心。
