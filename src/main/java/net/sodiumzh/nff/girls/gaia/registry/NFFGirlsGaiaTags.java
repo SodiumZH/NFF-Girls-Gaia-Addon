@@ -32,6 +32,9 @@ public class NFFGirlsGaiaTags {
     public static final TagKey<Item> WEAPON_BROOMS = NFUTagStatics.createItemTag(
         NFFGirlsGaia.MOD_ID, "weapon_brooms");
 
+    @Deprecated
     public static final TagKey<EntityType<?>> CAN_DISABLE_DAY_SPAWN = NFUTagStatics.createEntityTypeTag(
         NFFGirlsGaia.MOD_ID, "can_disable_day_spawn");
-}
+    public static final TagKey<EntityType<?>> NEUTRAL_IN_BRIGHT_PLACES = NFUTagStatics.createEntityTypeTag(
+        NFFGirlsGaia.MOD_ID, "neutral_in_bright_places");
+ }
