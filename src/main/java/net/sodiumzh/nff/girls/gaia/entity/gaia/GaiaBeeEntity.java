@@ -2,6 +2,8 @@ package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Bee;
 import gaia.entity.goal.MobAttackGoal;
+import gaia.registry.GaiaSounds;
+import gaia.util.RangedUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -20,18 +22,22 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.INFFGirlsFlyingMob;
+import net.sodiumzh.nff.girls.entity.ai.NFFGirlsAIUtils;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsHmagFlyingGoal;
+import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsRangedAttackGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.entity.ai.movecontrol.NFFGirlsHmagFlyingMoveControl;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.gaia.entity.INFFGirlsGaiaChargeAttackingMob;
 import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingAttackGoal;
 import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingChargeAttackGoal;
+import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaProjectileProviders;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
@@ -43,8 +49,12 @@ import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
 import net.sodiumzh.nfu.entity.MobApplicableItemTable;
+import net.sodiumzh.nfu.entity.NFUItemProjectileEntity;
+import net.sodiumzh.nfu.util.NFUMathStatics;
+import net.sodiumzh.nfu.util.NFUReflectionStatics;
 
 import javax.annotation.Nonnull;
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 
@@ -86,10 +96,13 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDyn
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(4, new NFFGirlsGaiaFlyingChargeAttackGoal(this, 1.2d));
+        this.goalSelector.addGoal(3, new NFFGirlsRangedAttackGoal(this, 1.2d, 3 * 20, 15f)
+            .setStartCondition(NFFGirlsAIUtils.predicateTargetFurtherThan(6d)));
+        this.goalSelector.addGoal(4, new NFFGirlsGaiaFlyingChargeAttackGoal(this, 1.2d)
+            .setStartCondition(NFFGirlsAIUtils.predicateTargetCloserThan(6d)));
         //this.goalSelector.addGoal(4, new NFFMeleeAttackGoal(this, 1d, false));
         this.goalSelector.addGoal(5, new NFFFlyingLandGoal(this, 1.5d).setHeightOffset(1d));
-        this.goalSelector.addGoal(6, new NFFGirlsFlyingFollowOwnerGoal(this, 2.3d));
+        this.goalSelector.addGoal(6, new NFFGirlsFlyingFollowOwnerGoal(this, 1.5d));
         this.goalSelector.addGoal(8, new NFFFlyingRandomMoveGoal(this, 1.0d).heightLimit(7));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
@@ -142,14 +155,19 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDyn
         return true;
     }
 
-    public void aiStep() {
-        super.aiStep();
-    }
+    public void performRangedAttack(LivingEntity target, float distanceFactor) {
+        if (target.isAlive()) {
+            playSound(GaiaSounds.GAIA_SHOOT.get(), 1.0F, 1.0F / (getRandom().nextFloat() * 0.4F + 0.8F));
+            NFUItemProjectileEntity prj = NFFGirlsGaiaProjectileProviders.POISON_PROJECTILE_FRIENDED.apply(this);
+            prj.setPos(this.getEyePosition());
+            prj.shootTo(NFUMathStatics.relToAbs(new Vec3(0d, 1d, 0d), target.getBoundingBox()), 1f, 2.0f);
+            this.level().addFreshEntity(prj);
+            this.setAnimationState(1);
+            this.setAnimationPlay(true);
+            this.setAnimationTimer(0);
+        }
 
-    public void setDeltaMovement(Vec3 pDeltaMovement) {
-        super.setDeltaMovement(pDeltaMovement);
     }
-
 /*
     @Override
     public int getCurrentHoneyCollectingCooldown() {
@@ -225,5 +243,18 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDyn
 
     @Override
     public void playChargeAttackSound() {
+    }
+
+    private static final Field ANIMATION_PLAY = NFUReflectionStatics.findFieldIfDeclared(Bee.class, "animationPlay")
+        .orElseThrow();
+    private static final Field ANIMATION_TIMER = NFUReflectionStatics.findFieldIfDeclared(Bee.class, "animationTimer")
+        .orElseThrow();
+
+    protected void setAnimationPlay(boolean val) {
+        NFUReflectionStatics.setValue(ANIMATION_PLAY, this, val);
+    }
+
+    protected void setAnimationTimer(int val) {
+        NFUReflectionStatics.setValue(ANIMATION_TIMER, this, val);
     }
 }

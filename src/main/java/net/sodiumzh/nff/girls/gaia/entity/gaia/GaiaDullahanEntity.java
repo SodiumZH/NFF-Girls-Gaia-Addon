@@ -73,7 +73,7 @@ public class GaiaDullahanEntity extends Dullahan implements INFFGirlsTamed {
 
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
-        NFFTamedStatics.readBefriendedCommonSaveData(this, nbt);
+        //NFFTamedStatics.readBefriendedCommonSaveData(this, nbt);
         this.setInit();
     }
 
