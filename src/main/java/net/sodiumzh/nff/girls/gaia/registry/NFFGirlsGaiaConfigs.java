@@ -18,7 +18,9 @@ public class NFFGirlsGaiaConfigs {
     public static ForgeConfigSpec.BooleanValue EXPLOSIVE_PROJECTILE_DESTROYS_ITEMS;
     public static ForgeConfigSpec.BooleanValue SPAWNS_MALE_MOBS;
     public static ForgeConfigSpec.DoubleValue CECAELIA_SPAWN_RATE;
+    @Deprecated
     public static ForgeConfigSpec.BooleanValue ALLOWS_DAY_HOSTILE_MOB_SPAWN_ON_GROUND;
+    public static ForgeConfigSpec.BooleanValue DAY_MOBS_NEUTRAL_IN_BRIGHT_PLACES;
 
     static {
         BUILDER.push("tweak");
@@ -29,8 +31,12 @@ public class NFFGirlsGaiaConfigs {
             .define("spawnsMaleMobs", true);
         CECAELIA_SPAWN_RATE = BUILDER.comment("Modify this to reduce the spawn of Cecaelia. Its spawn rate (0-1) is multiplied by this value.")
                 .defineInRange("cecaeliaSpawnRate", 1d, 0d, 1d);
-        ALLOWS_DAY_HOSTILE_MOB_SPAWN_ON_GROUND = BUILDER.comment("If false, Gaia hostile mobs will not spawn on ground in the daytime. The mob list can be configured by entity type tag \"can_config_no_day_spawn\"")
+
+        ALLOWS_DAY_HOSTILE_MOB_SPAWN_ON_GROUND = BUILDER.comment("(Deprecated, to be removed in 0.x.32) If false, Gaia hostile mobs will not spawn on ground in the daytime. The mob list can be configured by entity type tag \"can_config_no_day_spawn\"")
                 .define("allowsDayHostileMobSpawnOnGround", true);
+        DAY_MOBS_NEUTRAL_IN_BRIGHT_PLACES = BUILDER.comment("If true, hostile Gaia day mobs will be neutral when the brightness is high, just like vanilla Spiders.")
+                .define("dayMobsNeutralInBrightPlaces", false);
+
         BUILDER.pop();
         CONFIG = BUILDER.build();
     }
@@ -42,6 +48,7 @@ public class NFFGirlsGaiaConfigs {
             public static boolean SPAWNS_MALE_MOBS;
             public static double CECAELIA_SPAWN_RATE;
             public static boolean ALLOWS_DAY_HOSTILE_MOB_SPAWN_ON_GROUND;
+            public static boolean DAY_MOBS_NEUTRAL_IN_BRIGHT_PLACES;
         }
 
         public static void refreshCommon() {
@@ -49,6 +56,7 @@ public class NFFGirlsGaiaConfigs {
             Tweak.SPAWNS_MALE_MOBS = SPAWNS_MALE_MOBS.get();
             Tweak.CECAELIA_SPAWN_RATE = CECAELIA_SPAWN_RATE.get();
             Tweak.ALLOWS_DAY_HOSTILE_MOB_SPAWN_ON_GROUND = ALLOWS_DAY_HOSTILE_MOB_SPAWN_ON_GROUND.get();
+            Tweak.DAY_MOBS_NEUTRAL_IN_BRIGHT_PLACES = DAY_MOBS_NEUTRAL_IN_BRIGHT_PLACES.get();
         }
 
     }
