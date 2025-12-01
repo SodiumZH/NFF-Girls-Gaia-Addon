@@ -370,6 +370,7 @@ public class NFFGirlsGaiaProjectileProviders {
 
     public static final Function<Mob, NFUItemProjectileEntity> POISON_PROJECTILE_FRIENDED = owner ->
         NFUItemProjectileEntity.create(owner)
+            .setScale(0.2d, 0.2d)
             .setLifetime(10 * 20)
             .setItem(GaiaRegistry.PROJECTILE_POISON.get().getDefaultInstance())
             .setOnHitBlock((proj, hs) -> proj.discard())

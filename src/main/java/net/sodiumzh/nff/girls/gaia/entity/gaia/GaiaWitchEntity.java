@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
@@ -61,13 +62,13 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
         this.goalSelector.addGoal(6, new NFFFlyingLandGoal(this) {
             public boolean checkCanUse() {return super.checkCanUse() && isRidingBroom();}
         });
-        this.goalSelector.addGoal(7, new NFFGirlsFlyingFollowOwnerGoal(this){
+        this.goalSelector.addGoal(7, new NFFGirlsFlyingFollowOwnerGoal(this, 1.5d){
             public boolean checkCanUse() {return super.checkCanUse() && isRidingBroom();}
         }.setHoveringHeightOffset(-0.5d));
         this.goalSelector.addGoal(8, new NFFFlyingRandomMoveGoal(this){
             public boolean checkCanUse() {return super.checkCanUse() && isRidingBroom();}
         }.heightLimit(7));
-        goalSelector.addGoal(7, new NFFGirlsFollowOwnerGoal(this, 2.3d, 5.0f, 2.0f, false){
+        goalSelector.addGoal(7, new NFFGirlsFollowOwnerGoal(this, 1.0d, 5.0f, 2.0f, false){
             public boolean checkCanUse() {return super.checkCanUse() && !isRidingBroom();}
         });
         goalSelector.addGoal(8, new NFFWaterAvoidingRandomStrollGoal(this, 1.2d){
@@ -123,6 +124,10 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
     @Override
     public void aiStep() {
         super.aiStep(); // Make GaiaWitchEntity.aiStep present in stacktrace, so zombie spawning can be blocked by stack walking
+    }
+
+    public void setDeltaMovement(Vec3 v) {
+        super.setDeltaMovement(v);
     }
 
     @Override
