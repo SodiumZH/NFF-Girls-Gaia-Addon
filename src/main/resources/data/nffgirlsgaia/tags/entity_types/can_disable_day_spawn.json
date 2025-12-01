@@ -1,7 +1,6 @@
 {
+  "deprecated": true,
   "replace" : false,
   "values" : [
-    "grimoireofgaia:siren",
-    "grimoireofgaia:naga"
   ]
 }

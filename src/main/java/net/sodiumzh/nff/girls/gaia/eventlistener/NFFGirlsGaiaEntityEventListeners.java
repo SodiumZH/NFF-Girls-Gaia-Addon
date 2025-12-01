@@ -6,6 +6,7 @@ import gaia.entity.AbstractAssistGaiaEntity;
 import gaia.entity.AbstractGaiaEntity;
 import gaia.entity.Mummy;
 import gaia.entity.Witch;
+import gaia.entity.type.IDayMob;
 import gaia.item.edible.MonsterFeedItem;
 import gaia.registry.GaiaRegistry;
 import net.minecraft.resources.ResourceLocation;
@@ -17,11 +18,13 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.NaturalSpawner;
@@ -56,11 +59,13 @@ import net.sodiumzh.nfu.mixin.event.entity.ItemEntityHurtEvent;
 import net.sodiumzh.nfu.mixin.event.entity.LivingStartBaseAiStepEvent;
 import net.sodiumzh.nfu.mixin.event.entity.MobRegisterGoalsEvent;
 import net.sodiumzh.nfu.registry.NFUCapabilities;
+import net.sodiumzh.nfu.util.NFUAIStatics;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
 import net.sodiumzh.nfu.util.NFUReflectionStatics;
 
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -79,7 +84,7 @@ public class NFFGirlsGaiaEntityEventListeners
 			NFFGirlsGaiaEntityUtils.setMale(after, NFFGirlsGaiaEntityUtils.isMale(before));
 			if (!NFFGirlsGaiaEntityUtils.isMale(before) && after instanceof IHasMyGOVariant mygo) {
 				mygo.setMyGO(after.getRandom().nextDouble() < 0.05d);
-				after.setCustomName(mygo.getMyGOName());
+				//after.setCustomName(mygo.getMyGOName());
 			}
 			INFFGirlsTamed.get(after).ifPresent(tamed -> {
 				after.getCapability(CapabilityHandler.CAPABILITY_FRIENDED).ifPresent((cap) -> {
@@ -239,6 +244,7 @@ public class NFFGirlsGaiaEntityEventListeners
 				event.setCanceled(true);
 		}
 	}
+
 /*
 	public static final Field FIELD_MOB_MOVE_CONTROL = NFUReflectionStatics.findFieldIfDeclared(Mob.class, "f_21342_")
 		.orElseThrow(() -> new ReflectionFailedException("field not found"));
@@ -286,6 +292,18 @@ public class NFFGirlsGaiaEntityEventListeners
 	}
 */
 	// NFU Mixin events
+
+	@SubscribeEvent
+	public static void onGoalsRegister(MobRegisterGoalsEvent event) {
+		if (NFFGirlsGaiaConfigs.ValueCache.Tweak.DAY_MOBS_NEUTRAL_IN_BRIGHT_PLACES
+			&& Optional.ofNullable(ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType())).filter(t -> t.getNamespace().equals(GrimoireOfGaia.MOD_ID)).isPresent()
+			&& (event.getEntity() instanceof IDayMob || event.getEntity().getType().is(NFFGirlsGaiaTags.NEUTRAL_IN_BRIGHT_PLACES))
+		)
+		{
+			NFUAIStatics.getTargetPlayerGoal(event.getEntity()).ifPresent(tg ->
+				NFUAIStatics.addAndTargetingCondition(tg, target -> event.getEntity().getLightLevelDependentMagicValue() < 0.5f));
+		}
+	}
 
 	@SubscribeEvent
 	public static void preventExplosiveProjectilesBreakingItems(ItemEntityHurtEvent event) {
