@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.client.renderer.NFFGirlsGaiaSuccubusRenderer;
+import net.sodiumzh.nff.girls.gaia.client.renderer.NFFGirlsGaiaWerecatRenderer;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
 import net.sodiumzh.nfu.client.renderer.EmptyEntityRenderer;
 
@@ -29,7 +30,7 @@ public class NFFGirlsGaiaClientSetupEventHandlers
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_YUKI_ONNA.get(), YukiOnnaRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_CECAELIA.get(), CecaeliaRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_MERMAID.get(), MermaidRenderer::new);
-		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_WERECAT.get(), WerecatRenderer::new);
+		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_WERECAT.get(), NFFGirlsGaiaWerecatRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_WITCH.get(), WitchRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_SHAMAN.get(), ShamanRenderer::new);
 	}

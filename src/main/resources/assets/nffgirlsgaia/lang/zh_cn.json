@@ -24,11 +24,11 @@
   "entity.nffgirlsgaia.effect_zone.nffgirlsgaia:yuki_onna_snow_zone_outer": "暴风雪区域",
   "entity.nffgirlsgaia.effect_zone.nffgirlsgaia:valkyrie_common_projectile": "魔法弹",
 
-  "entity.nffgirlsgaia.mygo.tomori": "高松灯",
-  "entity.nffgirlsgaia.mygo.anon": "千早爱音",
-  "entity.nffgirlsgaia.mygo.taki": "椎名立希",
-  "entity.nffgirlsgaia.mygo.soyo": "长崎素世",
-  "entity.nffgirlsgaia.mygo.rana": "要乐奈",
+  "entity.nffgirlsgaia.mygo.tomori": "灯",
+  "entity.nffgirlsgaia.mygo.anon": "爱音",
+  "entity.nffgirlsgaia.mygo.taki": "立希",
+  "entity.nffgirlsgaia.mygo.soyo": "素世",
+  "entity.nffgirlsgaia.mygo.rana": "乐奈",
 
   "desc.nffgirlsgaia.evil_grindstone": "与一些战利品合成将其转化为邪恶水晶碎片。可重复使用。",
   "desc.nffgirlsgaia.reduces_atk": "攻击伤害 -%1$d",

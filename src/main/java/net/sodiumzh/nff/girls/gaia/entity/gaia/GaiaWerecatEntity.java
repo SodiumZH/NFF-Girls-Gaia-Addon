@@ -2,7 +2,11 @@ package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Werecat;
 import gaia.entity.goal.MobAttackGoal;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.EntityType;
@@ -15,6 +19,7 @@ import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
+import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsFourBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFLeapAtOwnerGoal;
@@ -25,19 +30,29 @@ import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoa
 import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
+import net.sodiumzh.nfu.util.NFUInfoStatics;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 
-public class GaiaWerecatEntity extends Werecat implements INFFGirlsTamed, IBlocksGaiaDynamicGoals {
+public class GaiaWerecatEntity extends Werecat implements INFFGirlsTamed, IBlocksGaiaDynamicGoals, IHasMyGOVariant {
+
+    private static final EntityDataAccessor<Boolean> MYGO =
+        SynchedEntityData.defineId(GaiaWerecatEntity.class, EntityDataSerializers.BOOLEAN);
 
     public GaiaWerecatEntity(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
         this.xpReward = 0;
         Arrays.fill(this.armorDropChances, 0);
         Arrays.fill(this.handDropChances, 0);
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(MYGO, false);
     }
 
     @Override
@@ -89,4 +104,30 @@ public class GaiaWerecatEntity extends Werecat implements INFFGirlsTamed, IBlock
         return List.of(LeapAtTargetGoal.class, MobAttackGoal.class, AvoidEntityGoal.class);
     }
 
+    @Override
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.putBoolean("myGO", itsMyGO());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        this.setMyGO(nbt.getBoolean("myGO"));
+    }
+
+    @Override
+    public boolean itsMyGO() {
+        return this.entityData.get(MYGO);
+    }
+
+    @Override
+    public void setMyGO(boolean value) {
+        this.entityData.set(MYGO, value);
+    }
+
+    @Override
+    public Component getMyGOName() {
+        return NFUInfoStatics.createTranslatable("entity.nffgirlsgaia.mygo.rana");
+    }
 }

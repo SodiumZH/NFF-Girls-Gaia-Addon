@@ -84,7 +84,7 @@ public class NFFGirlsGaiaEntityEventListeners
 			NFFGirlsGaiaEntityUtils.setMale(after, NFFGirlsGaiaEntityUtils.isMale(before));
 			if (!NFFGirlsGaiaEntityUtils.isMale(before) && after instanceof IHasMyGOVariant mygo) {
 				mygo.setMyGO(after.getRandom().nextDouble() < 0.05d);
-				//after.setCustomName(mygo.getMyGOName());
+				after.setCustomName(mygo.getMyGOName());
 			}
 			INFFGirlsTamed.get(after).ifPresent(tamed -> {
 				after.getCapability(CapabilityHandler.CAPABILITY_FRIENDED).ifPresent((cap) -> {
