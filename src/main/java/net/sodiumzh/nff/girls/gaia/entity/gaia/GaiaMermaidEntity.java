@@ -1,14 +1,10 @@
 package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
-import gaia.entity.Cecaelia;
 import gaia.entity.Mermaid;
-import gaia.entity.goal.MobAttackGoal;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
@@ -16,28 +12,20 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
-import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsRangedAttackGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
-import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaAmphibiousMoveControl;
-import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaHealingItems;
-import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsFourBaublesDefaultInventoryMenu;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFAmphibiousGoals;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFRandomStrollGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFRandomSwimGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.taming.INFFTamed;
 import net.sodiumzh.nff.services.entity.taming.INFFTamedAmphibious;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
-import net.sodiumzh.nfu.entity.MobApplicableItemTable;
 import net.sodiumzh.nfu.util.NFULevelStatics;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class GaiaMermaidEntity extends Mermaid implements INFFGirlsTamed, INFFTamedAmphibious{
     public GaiaMermaidEntity(EntityType<? extends GaiaMermaidEntity> entityType, Level level) {

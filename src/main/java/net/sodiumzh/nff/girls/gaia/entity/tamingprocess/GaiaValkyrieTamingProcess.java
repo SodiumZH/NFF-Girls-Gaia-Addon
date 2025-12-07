@@ -9,7 +9,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -47,7 +46,6 @@ import net.sodiumzh.nfu.entity.ai.NFURangedAttackGoal;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
 import net.sodiumzh.nfu.entity.taming.TamingInteractionResult;
 import net.sodiumzh.nfu.exception.DuplicateRegistryEntryException;
-import net.sodiumzh.nfu.item.NFUItem;
 import net.sodiumzh.nfu.math.RandomSelection;
 import net.sodiumzh.nfu.math.WeightedRandomSelector;
 import net.sodiumzh.nfu.mixin.event.entity.ProjectileHitEvent;
@@ -55,12 +53,10 @@ import net.sodiumzh.nfu.registry.NFUEntityTypes;
 import net.sodiumzh.nfu.util.NFUEntityStatics;
 import net.sodiumzh.nfu.util.NFUMathStatics;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 

@@ -1,16 +1,7 @@
 package net.sodiumzh.nff.girls.gaia.entity;
 
 import gaia.entity.AbstractGaiaEntity;
-import net.sodiumzh.nfu.object.CastableObject;
-import net.sodiumzh.nfu.object.ICastable;
-import net.sodiumzh.nfu.reflection.CachedFieldAccessor;
 import net.sodiumzh.nfu.reflection.CachedMethodAccessor;
-import net.sodiumzh.nfu.util.NFUReflectionStatics;
-
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 
 public class NFFGirlsGaiaEntityUtils {
 

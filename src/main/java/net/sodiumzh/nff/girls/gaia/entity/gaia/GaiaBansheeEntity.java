@@ -1,7 +1,6 @@
 package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Banshee;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -18,23 +17,16 @@ import net.sodiumzh.nff.girls.entity.INFFGirlsTamedSunSensitiveMob;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.gaia.entity.INFFGirlsGaiaChargeAttackingMob;
-import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingAttackGoal;
 import net.sodiumzh.nff.girls.gaia.entity.ai.NFFGirlsGaiaFlyingChargeAttackGoal;
 import net.sodiumzh.nff.girls.gaia.entity.ai.VexLikeMoveControl;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsThreeBaublesInventoryMenu;
-import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFFlyingLandGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFFlyingRandomMoveGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtTargetGoal;
-import net.sodiumzh.nff.services.entity.taming.INFFTamed;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
-import net.sodiumzh.nfu.entity.MobApplicableItemTable;
-import net.sodiumzh.nfu.util.NFULevelStatics;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;

@@ -1,6 +1,5 @@
 package net.sodiumzh.nff.girls.gaia.registry;
 
-import gaia.item.weapon.FanItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
