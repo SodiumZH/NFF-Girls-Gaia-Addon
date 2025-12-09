@@ -6,12 +6,13 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Inventory;
@@ -23,30 +24,40 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFlyingFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.entity.hmag.HmagAlrauneEntity;
 import net.sodiumzh.nff.girls.entity.projectile.NFFSafeThrownPotionEntity;
+import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
 import net.sodiumzh.nff.girls.gaia.entity.IPotionThrower;
 import net.sodiumzh.nff.girls.gaia.entity.ai.PotionThrowerGoals;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaTags;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsFourBaublesDefaultInventoryMenu;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsFourBaublesInventoryMenu;
-import net.sodiumzh.nff.girls.inventory.NFFGirlsThreeBaublesInventoryMenu;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.*;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
 import net.sodiumzh.nff.services.entity.taming.NFFTamedStatics;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
+import net.sodiumzh.nfu.capability.CEntityDataCapability;
+import net.sodiumzh.nfu.mixin.event.entity.LivingStartBaseAiStepEvent;
+import net.sodiumzh.nfu.mixin.event.entity.MobRegisterGoalsEvent;
+import net.sodiumzh.nfu.util.NFUReflectionStatics;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.function.Consumer;
 
+@Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThrower, IBlocksGaiaDynamicGoals {
 
     public GaiaWitchEntity(EntityType<? extends GaiaWitchEntity> entityType, Level level) {
@@ -116,8 +127,10 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
             if (!isRidingBroom && this.isNoGravity()) {
                 this.setNoGravity(false);
             }
-            this.moveControl = isRidingBroom ? this.flyingControl : this.groundControl;
-            this.navigation = isRidingBroom ? this.flyingNavigation : this.groundNavigation;
+            this.moveControl = isRidingBroom ? this.flyingControl : this.normalControl;
+            CEntityDataCapability.get(this).getTransientParameter(
+                this.isRidingBroom() ? "flyingNavigation" : "groundNavigation", PathNavigation.class
+            ).ifPresent(nav -> this.navigation = nav);
         }
     }
 
@@ -133,9 +146,58 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
     @Override
     protected void beaconMonster(int range, Consumer<LivingEntity> action) {
         super.beaconMonster(range, living -> {
-            if (NFFTamedStatics.isLivingAlliedToBM(this, living))
+            if (this.isAllyTo(living))
                 action.accept(living);
         });
     }
+
+    /* Witch AI Fix */
+    /* Remove after Gaia fixes this issue */
+
+    private static final Field MOB_NAVIGATION = NFUReflectionStatics.findFieldIfDeclared(
+        Mob.class, "f_21344_").orElseThrow();
+
+    @SubscribeEvent
+    public static void fixOriginalGaiaWitchAi_InitNav(EntityJoinLevelEvent event) {
+        if (event.getEntity() instanceof Witch witch && !witch.level.isClientSide) {
+            CEntityDataCapability.get(witch).putTransientParameter("flyingNavigation",
+                new FlyingPathNavigation(witch, witch.level));
+            CEntityDataCapability.get(witch).putTransientParameter("groundNavigation",
+                new GroundPathNavigation(witch, witch.level));
+        }
+    }
+
+    @SubscribeEvent
+    public static void fixOriginalGaiaWitchAi_InitGoals(MobRegisterGoalsEvent event) {
+        if (event.getEntity().getType().equals(GaiaRegistry.WITCH.getEntityType())
+            && event.getEntity() instanceof Witch witch && !witch.level.isClientSide)
+        {
+            event.getGoalSelector().getAvailableGoals().stream().filter(wg -> wg.getPriority() == 2)
+                .toList().forEach(wg -> event.getGoalSelector().removeGoal(wg.getGoal()));
+            event.getGoalSelector().addGoal(2, new RandomStrollGoal(witch, 1.0D) {
+                @Override
+                public boolean canUse() {
+                    return super.canUse() && !witch.isRidingBroom();
+                }
+            });
+            event.getGoalSelector().addGoal(2, new WaterAvoidingRandomFlyingGoal(witch, 1.0d) {
+                @Override
+                public boolean canUse() {
+                    return super.canUse() && witch.isRidingBroom();
+                }
+            });
+        }
+    }
+
+    @SubscribeEvent
+    public static void fixOriginalGaiaWitchAi_UpdateFlying(LivingEvent.LivingTickEvent event) {
+        if (event.getEntity() instanceof Witch witch && !witch.level.isClientSide) {
+            CEntityDataCapability.get(witch).getTransientParameter(
+                witch.isRidingBroom() ? "flyingNavigation" : "groundNavigation", PathNavigation.class
+            ).ifPresent(nav -> NFUReflectionStatics.setValue(MOB_NAVIGATION, witch, nav));
+        }
+    }
+
+
 
 }
