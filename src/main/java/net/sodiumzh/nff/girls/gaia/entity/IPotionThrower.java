@@ -51,7 +51,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
         Tuple2<MobEffectInstance, Potion> effectAndPotion =
             isAttackingEnemy ? this.getAttackingPotion(target) : this.getSupportingPotion(target, !isInCombat());
 
-        NFFSafeThrownPotionEntity thrownpotion = new NFFSafeThrownPotionEntity(this.asMob().level(), this.asMob())
+        NFFSafeThrownPotionEntity thrownpotion = new NFFSafeThrownPotionEntity(this.asMob().level, this.asMob())
             .setIntendedTarget(target)
             .setTargetType(isAttackingEnemy ? INFFSafeTarget.TargetType.NONE_ALLY : INFFSafeTarget.TargetType.ALLY)
             .setEffectOverride(List.of(effectAndPotion.getA()))
@@ -61,7 +61,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
         if (target.equals(this.asMob())) {
             thrownpotion.setPos(this.asMob().getEyePosition());
             thrownpotion.setDeltaMovement(0d, 0d, 0d);
-            this.asMob().level().addFreshEntity(thrownpotion);
+            this.asMob().level.addFreshEntity(thrownpotion);
             // Directly call onHit
             NFUReflectionStatics.invokeDeclaredMethod(thrownpotion, Projectile.class, "m_6532_",
                 HitResult.class, new EntityHitResult(this.asMob()));
@@ -73,10 +73,10 @@ public interface IPotionThrower extends INFFGirlsTamed {
             thrownpotion.shoot(d0, d1 + d3 * 0.1D, d2, 0.75F, 2.0F);
             this.asMob().getLookControl().setLookAt(d0, d1, d2);
             if (!this.asMob().isSilent()) {
-                this.asMob().level().playSound((Player) null, this.asMob().getX(), this.asMob().getY(), this.asMob().getZ(),
+                this.asMob().level.playSound((Player) null, this.asMob().getX(), this.asMob().getY(), this.asMob().getZ(),
                     SoundEvents.WITCH_THROW, this.asMob().getSoundSource(), 1.0F, 0.8F + this.asMob().getRandom().nextFloat() * 0.4F);
             }
-            this.asMob().level().addFreshEntity(thrownpotion);
+            this.asMob().level.addFreshEntity(thrownpotion);
         }
     }
 
@@ -165,14 +165,14 @@ public interface IPotionThrower extends INFFGirlsTamed {
         if (test.isOnFire() && !test.fireImmune() && !test.hasEffect(MobEffects.FIRE_RESISTANCE))
             return Emergency.BURNING;
         if (test instanceof Player
-            && (test.level().getMaxLocalRawBrightness(test.getOnPos()) < 5 || test.level().isNight())
+            && (test.level.getMaxLocalRawBrightness(test.getOnPos()) < 5 || test.level.isNight())
             && !test.hasEffect(MobEffects.NIGHT_VISION))
             return Emergency.BLIND_AT_NIGHT;
         return Emergency.NONE;
     }
 
     public default Optional<LivingEntity> getTargetingAlly() {
-        List<LivingEntity> allies = this.asMob().level()
+        List<LivingEntity> allies = this.asMob().level
             .getEntitiesOfClass(LivingEntity.class, this.asMob().getBoundingBox().inflate(8, 8, 8), e -> {
                 if (!NFFTamedStatics.isLivingAlliedToBM(this, e)) return false;
                 if (this.asMob().distanceToSqr(e) > 64d) return false;
@@ -184,7 +184,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
     }
 
     public default Optional<LivingEntity> getAllyInEmergency() {
-        List<LivingEntity> allies = this.asMob().level()
+        List<LivingEntity> allies = this.asMob().level
             .getEntitiesOfClass(LivingEntity.class, this.asMob().getBoundingBox().inflate(8, 8, 8), e -> {
                 if (!NFFTamedStatics.isLivingAlliedToBM(this, e)) return false;
                 if (this.asMob().distanceToSqr(e) > 64d) return false;
@@ -200,7 +200,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
 
     /** Get ally to throw healing potions when out of combat. */
     public default Optional<LivingEntity> getIdleHealingAlly() {
-        List<LivingEntity> allies = this.asMob().level()
+        List<LivingEntity> allies = this.asMob().level
             .getEntitiesOfClass(LivingEntity.class, this.asMob().getBoundingBox().inflate(8, 8, 8), e -> {
                 if (!NFFTamedStatics.isLivingAlliedToBM(this, e)) return false;
                 if (this.asMob().distanceToSqr(e) > 64d) return false;
@@ -215,7 +215,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
     }
 
     public default boolean isInCombat() {
-        return this.asMob().level().getEntitiesOfClass(LivingEntity.class, this.asMob().getBoundingBox().inflate(8d, 8d, 8d),
+        return this.asMob().level.getEntitiesOfClass(LivingEntity.class, this.asMob().getBoundingBox().inflate(8d, 8d, 8d),
                 e -> NFFTamedStatics.isLivingAlliedToBM(this, e))
             .stream()
             .filter(e -> this.asMob().distanceToSqr(e) <= 64d)

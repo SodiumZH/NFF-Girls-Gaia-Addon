@@ -5,12 +5,12 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.sodiumzh.nfu.entity.anger.MobAngerRules;
-import net.sodiumzh.nfu.util.NFUEntityStatics;
 import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
 import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
 import net.sodiumzh.nff.services.entity.taming.CNFFTamable;
 import net.sodiumzh.nff.services.entity.taming.TamingProcessItemGivingProgress;
+import net.sodiumzh.nfu.entity.anger.MobAngerRules;
+import net.sodiumzh.nfu.util.NFUEntityStatics;
 
 public class GaiaAnimalTamingProcess extends TamingProcessItemGivingProgress {
 

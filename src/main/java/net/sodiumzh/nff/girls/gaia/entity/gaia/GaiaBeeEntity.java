@@ -161,7 +161,7 @@ public class GaiaBeeEntity extends Bee implements INFFGirlsTamed, IBlocksGaiaDyn
             NFUItemProjectileEntity prj = NFFGirlsGaiaProjectileProviders.POISON_PROJECTILE_FRIENDED.apply(this);
             prj.setPos(this.getEyePosition());
             prj.shootTo(NFUMathStatics.relToAbs(new Vec3(0d, 1d, 0d), target.getBoundingBox()), 1f, 2.0f);
-            this.level().addFreshEntity(prj);
+            this.level.addFreshEntity(prj);
             this.setAnimationState(1);
             this.setAnimationPlay(true);
             this.setAnimationTimer(0);
