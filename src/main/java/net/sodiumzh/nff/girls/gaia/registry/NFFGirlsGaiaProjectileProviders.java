@@ -378,7 +378,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 INFFGirlsTamed tamed = INFFGirlsTamed.get(owner).orElse(null);
                 if (tamed == null) { proj.discard(); return; }
                 if (ehs.getEntity() instanceof LivingEntity living && !NFFTamedStatics.isLivingAlliedToBM(tamed, living)) {
-                    living.hurt(proj.damageSources().indirectMagic(proj, owner),
+                    living.hurt(DamageSource.indirectMagic(proj, owner),
                         (float) owner.getAttributeValue(Attributes.ATTACK_DAMAGE) / 2f);
                     int amplifier = (int) Math.round(owner.getAttributeValue(NFFGirlsEntityAttributes.POISON_ASPECT.get()));
                     int time = (int) Math.round(owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 100);
