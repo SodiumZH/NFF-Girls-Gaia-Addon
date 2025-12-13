@@ -1,7 +1,7 @@
 package net.sodiumzh.nff.girls.gaia.item;
 
-import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaItems;
 import net.minecraft.world.item.ItemStack;
+import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaItems;
 import net.sodiumzh.nfu.item.NFUItem;
 
 public class EvilGrindstoneItem extends NFUItem {

@@ -19,7 +19,6 @@ import net.sodiumzh.nfu.util.NFUMathStatics;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class GaiaAquaticTamingProcess extends TamingProcessItemGivingProgress {
     @Override

@@ -1,9 +1,9 @@
 package net.sodiumzh.nff.girls.gaia.registry;
 
-import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nfu.util.NFUTagStatics;
 
 public class NFFGirlsGaiaTags {

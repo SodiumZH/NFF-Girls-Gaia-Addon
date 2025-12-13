@@ -1,6 +1,5 @@
 package net.sodiumzh.nff.girls.gaia.registry;
 
-import gaia.item.weapon.FanItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -10,10 +9,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.item.EvilGrindstoneItem;
+import net.sodiumzh.nff.girls.item.CitadelBasedMobDictionaryItem;
 import net.sodiumzh.nff.girls.registry.NFFGirlsTabs;
 import net.sodiumzh.nfu.compat.ModDependencyFallbackItem;
 import net.sodiumzh.nfu.util.NFUCompatStatics;
-import net.sodiumzh.nff.girls.item.CitadelBasedMobDictionaryItem;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;

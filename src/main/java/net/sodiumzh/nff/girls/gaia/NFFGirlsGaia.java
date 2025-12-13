@@ -1,7 +1,5 @@
 package net.sodiumzh.nff.girls.gaia;
 
-import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
-import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;

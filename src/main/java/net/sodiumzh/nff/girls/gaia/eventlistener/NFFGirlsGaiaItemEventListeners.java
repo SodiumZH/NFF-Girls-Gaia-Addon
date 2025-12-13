@@ -1,15 +1,12 @@
 package net.sodiumzh.nff.girls.gaia.eventlistener;
 
-import gaia.item.edible.MonsterFeedItem;
 import gaia.registry.GaiaRegistry;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
-import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaItems;
 import net.sodiumzh.nfu.util.NFUInfoStatics;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
