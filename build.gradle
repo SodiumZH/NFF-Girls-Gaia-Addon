@@ -144,6 +144,7 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
     flatDir {
         dir 'libs'
+        dir '../NFU-Library/build/libs'
         dir '../NFF-Girls/build/libs'
         dir '../NFF-Services/build/libs'
     }
@@ -182,7 +183,8 @@ dependencies {
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
-	implementation fg.deobf("blank:nffservices-${minecraft_version}:${services_version}")
+    implementation fg.deobf("blank:nfulib-${minecraft_version}:${nfu_version}")
+    implementation fg.deobf("blank:nffservices-${minecraft_version}:${services_version}")
     implementation fg.deobf("blank:nffgirls-${minecraft_version}:${girls_version_filename}")
 
     implementation fg.deobf("curse.maven:hmag-537613:5391730")
