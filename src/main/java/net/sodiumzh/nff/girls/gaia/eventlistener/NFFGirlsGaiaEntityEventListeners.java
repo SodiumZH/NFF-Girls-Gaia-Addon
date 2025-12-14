@@ -296,12 +296,12 @@ public class NFFGirlsGaiaEntityEventListeners
 	@SubscribeEvent
 	public static void onGoalsRegister(MobRegisterGoalsEvent event) {
 		if (NFFGirlsGaiaConfigs.ValueCache.Tweak.DAY_MOBS_NEUTRAL_IN_BRIGHT_PLACES
-			&& Optional.ofNullable(ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType())).filter(t -> t.getNamespace().equals(GrimoireOfGaia.MOD_ID)).isPresent()
+			&& Optional.ofNullable(ForgeRegistries.ENTITIES.getKey(event.getEntity().getType())).filter(t -> t.getNamespace().equals(GrimoireOfGaia.MOD_ID)).isPresent()
 			&& (event.getEntity() instanceof IDayMob || event.getEntity().getType().is(NFFGirlsGaiaTags.NEUTRAL_IN_BRIGHT_PLACES))
 		)
 		{
 			NFUAIStatics.getTargetPlayerGoal(event.getEntity()).ifPresent(tg ->
-				NFUAIStatics.addAndTargetingCondition(tg, target -> event.getEntity().getLightLevelDependentMagicValue() < 0.5f));
+				NFUAIStatics.addAndTargetingCondition(tg, target -> event.getEntity().getBrightness() < 0.5f));
 		}
 	}
 

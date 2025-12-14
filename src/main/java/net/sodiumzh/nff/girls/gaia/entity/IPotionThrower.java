@@ -159,7 +159,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
 
     public static Emergency getEmergency(LivingEntity test) {
         if (test.isUnderWater() && !test.hasEffect(MobEffects.WATER_BREATHING)
-            && test.canDrownInFluidType(ForgeMod.WATER_TYPE.get())
+            && !test.canBreatheUnderwater()
             && (double) test.getAirSupply() / (double) test.getMaxAirSupply() <= 0.1d)
             return Emergency.DROWNING;
         if (test.isOnFire() && !test.fireImmune() && !test.hasEffect(MobEffects.FIRE_RESISTANCE))

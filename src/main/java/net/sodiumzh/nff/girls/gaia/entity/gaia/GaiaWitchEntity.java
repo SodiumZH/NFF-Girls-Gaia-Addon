@@ -24,7 +24,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -158,7 +158,7 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
         Mob.class, "f_21344_").orElseThrow();
 
     @SubscribeEvent
-    public static void fixOriginalGaiaWitchAi_InitNav(EntityJoinLevelEvent event) {
+    public static void fixOriginalGaiaWitchAi_InitNav(EntityJoinWorldEvent event) {
         if (event.getEntity() instanceof Witch witch && !witch.level.isClientSide) {
             CEntityDataCapability.get(witch).putTransientParameter("flyingNavigation",
                 new FlyingPathNavigation(witch, witch.level));
@@ -190,7 +190,7 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
     }
 
     @SubscribeEvent
-    public static void fixOriginalGaiaWitchAi_UpdateFlying(LivingEvent.LivingTickEvent event) {
+    public static void fixOriginalGaiaWitchAi_UpdateFlying(LivingEvent.LivingUpdateEvent event) {
         if (event.getEntity() instanceof Witch witch && !witch.level.isClientSide) {
             CEntityDataCapability.get(witch).getTransientParameter(
                 witch.isRidingBroom() ? "flyingNavigation" : "groundNavigation", PathNavigation.class
