@@ -20,18 +20,14 @@ import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;
-import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFWaterAvoidingRandomStrollGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtByTargetGoal;
-import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFOwnerHurtTargetGoal;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
-import net.sodiumzh.nfu.entity.MobApplicableItemTable;
 import net.sodiumzh.nfu.util.NFUInfoStatics;
 
 import javax.annotation.Nonnull;

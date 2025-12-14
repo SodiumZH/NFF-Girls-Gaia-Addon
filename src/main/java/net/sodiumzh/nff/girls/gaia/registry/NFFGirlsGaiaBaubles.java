@@ -5,7 +5,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.*;
-import net.sodiumzh.nff.girls.item.bauble.NFFGirlsBaubleRegistrations;
 import net.sodiumzh.nff.girls.registry.NFFGirlsBaubles;
 import net.sodiumzh.nfu.item.bauble.RegisterBaubleEquippableMobsEvent;
 

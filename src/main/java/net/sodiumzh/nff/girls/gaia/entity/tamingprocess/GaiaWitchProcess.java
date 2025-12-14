@@ -5,7 +5,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
 import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
-import net.sodiumzh.nff.services.entity.taming.CNFFTamable;
+import net.sodiumzh.nff.services.entity.capability.CNFFTamable;
 import net.sodiumzh.nff.services.entity.taming.TamingProcessItemGivingProgress;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
 

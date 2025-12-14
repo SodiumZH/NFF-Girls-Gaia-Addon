@@ -2,7 +2,6 @@ package net.sodiumzh.nff.girls.gaia.entity.ai;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.sodiumzh.nff.girls.gaia.entity.IPotionThrower;
-import net.sodiumzh.nff.services.entity.ai.goal.NFFGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFRangedAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFShootProjectileGoal;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;

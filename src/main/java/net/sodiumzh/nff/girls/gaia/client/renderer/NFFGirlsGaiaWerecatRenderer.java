@@ -5,7 +5,6 @@ import gaia.entity.Werecat;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
-import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaSuccubusEntity;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaWerecatEntity;
 
 public class NFFGirlsGaiaWerecatRenderer extends WerecatRenderer {

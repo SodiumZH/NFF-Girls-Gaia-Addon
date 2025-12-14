@@ -1,31 +1,16 @@
 package net.sodiumzh.nff.girls.gaia.entity.tamingprocess;
 
-import gaia.entity.YukiOnna;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaProjectileProviders;
-import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
 import net.sodiumzh.nff.services.entity.capability.CNFFTamable;
-import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.entity.taming.TamingProcessItemGivingProgress;
-import net.sodiumzh.nfu.entity.ConditionalAttributeModifier;
 import net.sodiumzh.nfu.entity.NFUEffectZoneEntity;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
-import net.sodiumzh.nfu.util.NFUParticleStatics;
 
 import java.util.List;
-import java.util.Objects;
 
 public class GaiaYukiOnnaTamingProcess extends TamingProcessItemGivingProgress {
 

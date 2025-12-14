@@ -21,7 +21,6 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeMod;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.INFFSafeTarget;
 import net.sodiumzh.nff.girls.entity.projectile.NFFSafeThrownPotionEntity;

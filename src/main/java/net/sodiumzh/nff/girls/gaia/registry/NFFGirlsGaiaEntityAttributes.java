@@ -1,11 +1,7 @@
 package net.sodiumzh.nff.girls.gaia.registry;
 
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,9 +13,6 @@ import net.sodiumzh.nfu.entity.EntityAttributeProvider;
 import net.sodiumzh.nfu.registry.NFURegistries;
 import net.sodiumzh.nfu.registry.NFURegistry;
 import net.sodiumzh.nfu.registry.NFURegistryEntryCollection;
-
-import java.util.HashMap;
-import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
