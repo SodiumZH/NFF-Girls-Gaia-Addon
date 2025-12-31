@@ -20,9 +20,7 @@ public class NFFGirlsGaiaEntityTypes extends NFFGirlsEntityTypes
 
 	// To register a tamed mob, you need:
 	// (1) register entity type; (2) register attributes; (3) register renderer;
-	// (4) register bauble slots; (5) register taming mapping.
-
-
+	// (4) register bauble slots; (5) register taming mapping; (6) register healing items.
 
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, NFFGirlsGaia.MOD_ID);
 
@@ -74,6 +72,9 @@ public class NFFGirlsGaiaEntityTypes extends NFFGirlsEntityTypes
 
 	public static final RegistryObject<EntityType<GaiaShamanEntity>> GAIA_SHAMAN =
 		registerBM("gaia_shaman", GaiaShamanEntity::new, b -> b.sized(0.6F, 1.99F));
+
+	public static final RegistryObject<EntityType<GaiaEnderDragonGirlEntity>> GAIA_ENDER_DRAGON_GIRL =
+		registerBM("gaia_ender_dragon_girl", GaiaEnderDragonGirlEntity::new, b -> b.sized(0.6F, 2.2F));
 	// Technical entities
 
 	// Register utilities
@@ -88,6 +89,14 @@ public class NFFGirlsGaiaEntityTypes extends NFFGirlsEntityTypes
 			if (builderModifier != null) builderModifier.apply(builder);
 			return builder;
 		});
+	}
+
+	private static <T extends LivingEntity> RegistryObject<EntityType<T>> registerBM(
+		String regName,
+		EntityType.EntityFactory<T> creator,
+		float width, float height)
+	{
+		return registerBM(regName, creator, builder -> builder.sized(width, height));
 	}
 
 	private static <T extends LivingEntity> RegistryObject<EntityType<T>> registerBM(

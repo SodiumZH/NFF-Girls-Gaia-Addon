@@ -2,6 +2,7 @@ package net.sodiumzh.nff.girls.gaia.registry;
 
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -169,13 +170,25 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
 
 	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_SHAMAN = ENTITY_ATTRIBUTE_PROVIDERS.register(
 		"gaia_shaman", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
-			.add(Attributes.MAX_HEALTH, 80.0)
+			.add(Attributes.MAX_HEALTH, 70.0)
 			.add(Attributes.FOLLOW_RANGE, 26.0)
 			.add(Attributes.MOVEMENT_SPEED, 0.275)
-			.add(Attributes.ATTACK_DAMAGE, 8.0)
+			.add(Attributes.ATTACK_DAMAGE, 6.0)
 			.add(Attributes.ARMOR, 8.0)
 			.add(Attributes.ATTACK_KNOCKBACK, 0.25)
 			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+
+	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_ENDER_DRAGON_GIRL = ENTITY_ATTRIBUTE_PROVIDERS.register(
+		"gaia_ender_dragon_girl", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 70.0)
+			.add(Attributes.FOLLOW_RANGE, 40.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.275)
+			.add(Attributes.ATTACK_DAMAGE, 6.0)
+			.add(Attributes.ARMOR, 8.0)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.25)
+			.add(Attributes.KNOCKBACK_RESISTANCE, 1.0)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+
 
 
 	@SubscribeEvent
@@ -195,6 +208,7 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_WERECAT.get(), NFFGirlsGaiaEntityAttributes.GAIA_WERECAT.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_WITCH.get(), NFFGirlsGaiaEntityAttributes.GAIA_WITCH.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_SHAMAN.get(), NFFGirlsGaiaEntityAttributes.GAIA_SHAMAN.get().get().build());
+		event.put(NFFGirlsGaiaEntityTypes.GAIA_ENDER_DRAGON_GIRL.get(), NFFGirlsGaiaEntityAttributes.GAIA_ENDER_DRAGON_GIRL.get().get().build());
 	}
 
 }

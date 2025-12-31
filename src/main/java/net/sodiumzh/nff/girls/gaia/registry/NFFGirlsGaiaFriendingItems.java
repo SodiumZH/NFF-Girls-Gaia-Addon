@@ -22,4 +22,9 @@ public class NFFGirlsGaiaFriendingItems {
         COLLECTION.register("witch", () -> MobApplicableItemTable.builder()
             .readData(new ResourceLocation(NFFGirlsGaia.MOD_ID, "friending/witch.json"), NFFGirlsDataReaders::readMobApplicableItemTable)
             .build());
+
+    public static NFURegistry.Accessor<MobApplicableItemTable> ENDERMAN_B =
+        COLLECTION.register("enderman_b", () -> MobApplicableItemTable.builder()
+            .readData(new ResourceLocation(NFFGirlsGaia.MOD_ID, "friending/enderman_b.json"), NFFGirlsDataReaders::readMobApplicableItemTable)
+            .build());
 }

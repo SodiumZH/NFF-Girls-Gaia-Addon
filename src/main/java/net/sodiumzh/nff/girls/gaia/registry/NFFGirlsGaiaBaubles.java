@@ -29,5 +29,6 @@ public class NFFGirlsGaiaBaubles
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaWerecatEntity.class, 0, 4);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaWitchEntity.class, 2, 6);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaShamanEntity.class, 2, 6);
+        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaEnderDragonGirlEntity.class, 0, 4);
     }
 }

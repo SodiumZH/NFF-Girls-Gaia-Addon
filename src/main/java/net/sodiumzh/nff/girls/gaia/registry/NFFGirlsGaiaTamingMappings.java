@@ -74,5 +74,9 @@ public class NFFGirlsGaiaTamingMappings
 			new ResourceLocation(GrimoireOfGaia.MOD_ID, "shaman"),
 			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_shaman"),
 			NFFGirlsGaiaTamingProcesses.GAIA_WITCH);
+		event.register(
+			new ResourceLocation(GrimoireOfGaia.MOD_ID, "ender_dragon_girl"),
+			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_ender_dragon_girl"),
+			NFFGirlsGaiaTamingProcesses.GAIA_ENDERMAN_B);
 	}
 }
