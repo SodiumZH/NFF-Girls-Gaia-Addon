@@ -1,3 +1,7 @@
+### 0.x.31.1
+
+Fixed unexpected mob renaming on tamed.
+
 ### 0.x.31
 
 Added Werecat, Witch, Shaman and Bee.
@@ -6,7 +10,7 @@ Tweaked the flying AI.
 
 Added some friending items, healing items and trade entries.
 
-Added a config to make hostile day mobs neutral in bright places just like vanilla Spider. Deprecated the config to prevent hostile day mobs spawning (to be removal in 0.x.32).
+Added a config to make hostile day mobs neutral in bright places just like vanilla Spider. Deprecated the config to prevent hostile day mobs spawning (for removal in 0.x.32).
 
 ### 0.2.30.3
 
