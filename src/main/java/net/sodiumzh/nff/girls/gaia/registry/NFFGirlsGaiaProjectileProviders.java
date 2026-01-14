@@ -104,7 +104,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setLifetime(10 * 20)
             .setGravity(0f)
             .setOnServerLivingOverlap((z, l) -> {
-                if (!l.equals(z.getOwner()) && !NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(z.getOwner()).orElse(null), l)) {
+                if (!l.equals(z.getOwner()) && INFFTamed.get(z.getOwner()).filter(t -> t.isAllyTo(l)).isEmpty()) {
                     if (l.tickCount % 5 == 0) {
                         l.hurt(DamageSource.indirectMagic(z.getOwner(), z),
                             (float) (((LivingEntity) (z.getOwner())).getAttributeValue(Attributes.ATTACK_DAMAGE) / 4d));
