@@ -12,8 +12,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEffects;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaTags;
-import net.sodiumzh.nfu.entity.component.EntityComponentAPI;
-import net.sodiumzh.nfu.registry.NFUEntityComponents;
+/*import net.sodiumzh.nfu.entity.component.EntityComponentAPI;
+import net.sodiumzh.nfu.registry.NFUEntityComponents;*/
 
 import java.util.Comparator;
 import java.util.Optional;
@@ -28,7 +28,7 @@ public class AntPheromoneEffect extends MobEffect {
     public static class EventListeners {
 
         // Ant-like mobs (defined by tag) are neutral to players with this effect
-        @SubscribeEvent
+        /*@SubscribeEvent
         public static void onChangeTarget(LivingChangeTargetEvent event) {
             if (event.getEntity().hasEffect(NFFGirlsGaiaEffects.ANT_PHEROMONE.get())
                 && event.getNewTarget() != null
@@ -40,10 +40,10 @@ public class AntPheromoneEffect extends MobEffect {
                     event.setCanceled(true);
                 }
             }
-        }
+        }*/
 
         // Ant-like mobs attack the player's target when idle
-        @SubscribeEvent
+       /* @SubscribeEvent
         public static void onTick(LivingEvent.LivingTickEvent event) {
             if (event.getEntity() instanceof Mob mob    // For mobs
                 && mob.getType().is(NFFGirlsGaiaTags.ANT_PHEROMONE_AFFECTED)    // with tag
@@ -61,7 +61,7 @@ public class AntPheromoneEffect extends MobEffect {
                     .min(PLAYER_FIRST); // Find a living with the pheromone effect, prioritize player
                 e.ifPresent(l -> mob.setTarget(l.getLastHurtMob()));
             }
-        }
+        }*/
 
         private static final Comparator<LivingEntity> PLAYER_FIRST = (l1, l2) -> {
             boolean b1 = l1 instanceof Player;

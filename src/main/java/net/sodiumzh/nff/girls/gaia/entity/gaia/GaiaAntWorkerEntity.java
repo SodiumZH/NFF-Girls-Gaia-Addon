@@ -46,7 +46,7 @@ public class GaiaAntWorkerEntity extends AntWorker implements INFFGirlsTamed {
         return new NFFGirlsHandItemsTwoBaublesInventoryMenu(i, inventory, container, this);
     }
 
-    public void aiStep() {
+    /*public void aiStep() {
         super.aiStep();
         Player owner = this.getOwnerInDimension();
         if (owner != null && this.hasLineOfSight(owner) && owner.distanceToSqr(this) <= 64d
@@ -61,7 +61,7 @@ public class GaiaAntWorkerEntity extends AntWorker implements INFFGirlsTamed {
             this.playSound(GaiaSounds.GAIA_SHOOT.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
             EntityComponentAPI.getDefaultTimer(this).addTimer("shoot_pheromone_bullet", 2 * 60 * 20, true);
         }
-    }
+    }*/
 
     @Override
     @Nonnull
