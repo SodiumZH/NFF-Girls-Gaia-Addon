@@ -14,6 +14,6 @@ public class NFFGirlsGaiaEffects {
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(
         ForgeRegistries.MOB_EFFECTS, NFFGirlsGaia.MOD_ID);
 
-    public static final RegistryObject<MobEffect> ANT_PHEROMONE = EFFECTS.register("ant_pheromone", () ->
-        new AntPheromoneEffect(MobEffectCategory.BENEFICIAL, LinearColor.fromRGB(129, 128, 73).toCode()));
+    /*public static final RegistryObject<MobEffect> ANT_PHEROMONE = EFFECTS.register("ant_pheromone", () ->
+        new AntPheromoneEffect(MobEffectCategory.BENEFICIAL, LinearColor.fromRGB(129, 128, 73).toCode()));*/
 }

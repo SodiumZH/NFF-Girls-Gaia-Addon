@@ -47,12 +47,12 @@ public class GaiaAntWorkerEntity extends AntWorker implements INFFGirlsTamed {
         return new NFFGirlsHandItemsTwoBaublesInventoryMenu(i, inventory, container, this);
     }
 
-    public void aiStep() {
+    /*public void aiStep() {
         super.aiStep();
         Player owner = this.getOwnerInDimension();
         if (owner != null && this.hasLineOfSight(owner) && owner.distanceToSqr(this) <= 256d) {
             owner.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 60 * 20), this);
         }
-    }
+    }*/
 
 }

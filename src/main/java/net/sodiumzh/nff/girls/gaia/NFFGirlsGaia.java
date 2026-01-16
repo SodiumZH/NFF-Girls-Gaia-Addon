@@ -23,6 +23,8 @@ public class NFFGirlsGaia
 
         NFFGirlsGaiaEntityTypes.ENTITY_TYPES.register(modEventBus);
         NFFGirlsGaiaItems.ITEMS.register(modEventBus);
+        NFFGirlsGaiaEffects.EFFECTS.register(modEventBus);
+
         NFFGirlsGaiaEntityAttributes.ENTITY_ATTRIBUTE_PROVIDERS.merge();
         NFFGirlsGaiaGeometries.FIELD_PATTERNS.merge();
 
