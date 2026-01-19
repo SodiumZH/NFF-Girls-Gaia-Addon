@@ -1,3 +1,7 @@
+### 0.2.31.2
+
+Fixed server crash caused by Yuki-Onna magic effect.
+
 ### 0.x.31.1
 
 Fixed unexpected mob renaming on tamed.
