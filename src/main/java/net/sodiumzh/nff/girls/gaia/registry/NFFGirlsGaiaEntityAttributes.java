@@ -208,7 +208,7 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_WERECAT.get(), NFFGirlsGaiaEntityAttributes.GAIA_WERECAT.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_WITCH.get(), NFFGirlsGaiaEntityAttributes.GAIA_WITCH.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_SHAMAN.get(), NFFGirlsGaiaEntityAttributes.GAIA_SHAMAN.get().get().build());
-		//event.put(NFFGirlsGaiaEntityTypes.GAIA_ENDER_DRAGON_GIRL.get(), NFFGirlsGaiaEntityAttributes.GAIA_ENDER_DRAGON_GIRL.get().get().build());
+		event.put(NFFGirlsGaiaEntityTypes.GAIA_ENDER_DRAGON_GIRL.get(), NFFGirlsGaiaEntityAttributes.GAIA_ENDER_DRAGON_GIRL.get().get().build());
 	}
 
 }

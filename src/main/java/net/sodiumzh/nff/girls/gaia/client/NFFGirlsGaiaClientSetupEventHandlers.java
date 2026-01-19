@@ -31,6 +31,6 @@ public class NFFGirlsGaiaClientSetupEventHandlers
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_WERECAT.get(), NFFGirlsGaiaWerecatRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_WITCH.get(), WitchRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_SHAMAN.get(), ShamanRenderer::new);
-		//event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_ENDER_DRAGON_GIRL.get(), EnderDragonGirlRenderer::new);
+		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_ENDER_DRAGON_GIRL.get(), EnderDragonGirlRenderer::new);
 	}
 }
