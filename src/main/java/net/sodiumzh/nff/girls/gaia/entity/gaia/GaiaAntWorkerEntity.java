@@ -54,5 +54,4 @@ public class GaiaAntWorkerEntity extends AntWorker implements INFFGirlsTamed {
             owner.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 60 * 20), this);
         }
     }
-
 }
