@@ -179,7 +179,7 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
         return List.of(MeleeAttackGoal.class);
     }
 
-    // This causes endless noise due to original gaia giving shield nonstop
+    // This causes repeated noise due to original gaia giving shield nonstop
     @Override
     public void setItemSlot(EquipmentSlot pSlot, ItemStack pStack) {
         if (pSlot.equals(EquipmentSlot.OFFHAND) && pStack.is(GaiaRegistry.IRON_SHIELD.get())

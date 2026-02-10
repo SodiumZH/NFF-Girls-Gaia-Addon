@@ -124,7 +124,7 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
     @Override
     protected void beaconMonster(int range, Consumer<LivingEntity> action) {
         super.beaconMonster(range, living -> {
-            if (NFFTamedStatics.isLivingAlliedToBM(this, living))
+            if (this.isAllyTo(living))
                 action.accept(living);
         });
     }
