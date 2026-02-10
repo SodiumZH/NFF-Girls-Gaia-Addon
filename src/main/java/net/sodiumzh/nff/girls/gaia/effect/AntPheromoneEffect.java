@@ -57,7 +57,7 @@ public class AntPheromoneEffect extends MobEffect {
                         && l.getLastHurtMob() != null
                         && !l.getLastHurtMob().hasEffect(NFFGirlsGaiaEffects.ANT_PHEROMONE.get())
                         && !l.getLastHurtMob().getType().is(NFFGirlsGaiaTags.ANT_PHEROMONE_AFFECTED)
-                        ))
+                        )
                     .min(PLAYER_FIRST); // Find a living with the pheromone effect, prioritize player
                 e.ifPresent(l -> mob.setTarget(l.getLastHurtMob()));
             }

@@ -4,6 +4,7 @@ import gaia.GrimoireOfGaia;
 import gaia.capability.CapabilityHandler;
 import gaia.entity.AbstractAssistGaiaEntity;
 import gaia.entity.AbstractGaiaEntity;
+import gaia.entity.Arachne;
 import gaia.entity.type.IDayMob;
 import gaia.item.edible.MonsterFeedItem;
 import gaia.registry.GaiaRegistry;
@@ -30,8 +31,9 @@ import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.HmagBansheeTamingProcess;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
-import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
+import net.sodiumzh.nff.girls.gaia.entity.IHasRareVariant;
 import net.sodiumzh.nff.girls.gaia.entity.NFFGirlsGaiaEntityUtils;
+import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaArachneEntity;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaMummyEntity;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaShamanEntity;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaWitchEntity;
@@ -51,6 +53,7 @@ import net.sodiumzh.nfu.mixin.event.entity.MobRegisterGoalsEvent;
 import net.sodiumzh.nfu.util.NFUAIStatics;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
 import net.sodiumzh.nfu.util.NFUReflectionStatics;
+import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -71,10 +74,12 @@ public class NFFGirlsGaiaEntityEventListeners
 			after.setBaby(before.isBaby());
 			after.setVariant(before.getVariant());
 			NFFGirlsGaiaEntityUtils.setMale(after, NFFGirlsGaiaEntityUtils.isMale(before));
-			if (!NFFGirlsGaiaEntityUtils.isMale(before) && after instanceof IHasMyGOVariant mygo) {
-				if (after.getRandom().nextInt(20) == 0) {
-					mygo.setMyGO(true);
-					after.setCustomName(mygo.getMyGOName());
+			if (after instanceof IHasRareVariant hasRV) {
+				int vid = hasRV.pickRareVariant();
+				IHasRareVariant.RareVariant v = hasRV.rareVariantByID(vid);
+				if (v != null) {
+					hasRV.setRareVariantID(vid);
+					after.setCustomName(v.displayName());
 				}
 			}
 			INFFGirlsTamed.get(after).ifPresent(tamed -> {
@@ -126,6 +131,14 @@ public class NFFGirlsGaiaEntityEventListeners
 			}
 			if (mob.getItemBySlot(EquipmentSlot.HEAD).is(GaiaRegistry.HEADGEAR_BOLT.get())
 				&& NFUReflectionStatics.isRunningInClass(GaiaShamanEntity.class)) {
+				event.setCanceled(true); return;
+			}
+		}
+		else if (event.getEntity() instanceof Mob mob
+			&& mob.getType().equals(EntityType.CAVE_SPIDER))
+		{
+			if (!mob.level().getEntitiesOfClass(GaiaArachneEntity.class, mob.getBoundingBox().inflate(3d, 3d, 3d)).isEmpty()
+				&& NFUReflectionStatics.isRunningInClass(GaiaArachneEntity.class)) {
 				event.setCanceled(true); return;
 			}
 		}
@@ -206,15 +219,19 @@ public class NFFGirlsGaiaEntityEventListeners
 		// Allow removing mygo variant
 		if (event.getItemStack().is(NFFGirlsGaiaItems.EVIL_GRINDSTONE.get())
 			&& event.getTarget() instanceof Mob mob
-			&& event.getTarget() instanceof IHasMyGOVariant v
+			&& event.getTarget() instanceof IHasRareVariant v
 			&& event.getEntity().isShiftKeyDown())
 		{
 			boolean done = false;
-			if (v.itsMyGO()) {
-				v.setMyGO(false);
+			int varId = v.getRareVariantID();
+			@Nullable IHasRareVariant.RareVariant rv = v.getRareVariant();
+			if (rv != null) {
+				v.setRareVariantID(-1);
 				done = true;
 			}
-			if (mob.getCustomName() != null && mob.getCustomName().getString().equals(v.getMyGOName().getString())) {
+			if (mob.getCustomName() != null
+				&& rv != null
+				&& mob.getCustomName().getString().equals(rv.displayName().getString())) {
 				mob.setCustomName(null);
 				done = true;
 			}
@@ -235,6 +252,7 @@ public class NFFGirlsGaiaEntityEventListeners
 				event.setCanceled(true);
 		}
 	}
+
 
 /*
 	public static final Field FIELD_MOB_MOVE_CONTROL = NFUReflectionStatics.findFieldIfDeclared(Mob.class, "f_21342_")

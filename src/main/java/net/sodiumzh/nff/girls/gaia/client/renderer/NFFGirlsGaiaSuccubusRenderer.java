@@ -15,9 +15,11 @@ public class NFFGirlsGaiaSuccubusRenderer extends SuccubusRenderer {
     }
 
     public ResourceLocation getTextureLocation(Succubus mob) {
-        if (mob instanceof GaiaSuccubusEntity tamed && tamed.itsMyGO()) {
-            return MYGO_TEXTURE_LOCATION;
+        if (mob instanceof GaiaSuccubusEntity tamed && tamed.isRareVariant()) {
+            switch (tamed.getRareVariant().name()) {
+                case "tomori" -> { return MYGO_TEXTURE_LOCATION ;}
+            }
         }
-        else return super.getTextureLocation(mob);
+       return super.getTextureLocation(mob);
     }
 }

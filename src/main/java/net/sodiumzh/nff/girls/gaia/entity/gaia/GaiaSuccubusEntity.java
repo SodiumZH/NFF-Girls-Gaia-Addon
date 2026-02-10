@@ -2,6 +2,7 @@ package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.Succubus;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -18,7 +19,7 @@ import net.minecraft.world.level.Level;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
-import net.sodiumzh.nff.girls.gaia.entity.IHasMyGOVariant;
+import net.sodiumzh.nff.girls.gaia.entity.IHasRareVariant;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;
@@ -29,19 +30,21 @@ import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
 import net.sodiumzh.nfu.util.NFUInfoStatics;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
+import java.util.List;
 
-public class GaiaSuccubusEntity extends Succubus implements INFFGirlsTamed, IHasMyGOVariant {
+public class GaiaSuccubusEntity extends Succubus implements INFFGirlsTamed, IHasRareVariant {
 
-    private static final EntityDataAccessor<Boolean> MYGO =
-        SynchedEntityData.defineId(GaiaSuccubusEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> RARE_VARIANT =
+        SynchedEntityData.defineId(GaiaSuccubusEntity.class, EntityDataSerializers.INT);
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(MYGO, false);
+        this.entityData.define(RARE_VARIANT, -1);
     }
 
     public GaiaSuccubusEntity(EntityType<? extends GaiaSuccubusEntity> pEntityType, Level pLevel) {
@@ -87,30 +90,40 @@ public class GaiaSuccubusEntity extends Succubus implements INFFGirlsTamed, IHas
         return typeBefore != null ? typeBefore.getDescription() : super.getTypeName();
     }
 
-    @Override
-    public boolean itsMyGO() {
-        return this.entityData.get(MYGO);
-    }
 
     @Override
     public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
-        nbt.putBoolean("myGO", itsMyGO());
+        nbt.putInt("rareVariant", this.getRareVariantID());
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
-        this.setMyGO(nbt.getBoolean("myGO"));
+        if (nbt.contains("rareVariant", Tag.TAG_ANY_NUMERIC))
+            this.setRareVariantID(nbt.getInt("rareVariant"));
+            // Port legacy MyGO data
+        else if (nbt.contains("myGO", Tag.TAG_ANY_NUMERIC) && nbt.getBoolean("myGO"))
+            this.setRareVariantID(0);
+    }
+
+    private static final IHasRareVariant.RareVariant VARIANT_TOMORI =
+        new IHasRareVariant.RareVariant("tomori", 0.05d, "entity.nffgirlsgaia.mygo.tomori");
+    private static final List<IHasRareVariant.RareVariant> RARE_VARIANTS = List.of(VARIANT_TOMORI);
+
+    @Override
+    public int getRareVariantID() {
+        return this.entityData.get(RARE_VARIANT);
     }
 
     @Override
-    public void setMyGO(boolean value) {
-        this.entityData.set(MYGO, value);
+    public void setRareVariantID(int id) {
+        this.entityData.set(RARE_VARIANT, id);
     }
 
     @Override
-    public Component getMyGOName() {
-        return NFUInfoStatics.createTranslatable("entity.nffgirlsgaia.mygo.tomori");
+    public @Nullable IHasRareVariant.RareVariant rareVariantByID(int id) {
+        return id >= 0 && id < RARE_VARIANTS.size() ? RARE_VARIANTS.get(id) : null;
     }
+
 }
