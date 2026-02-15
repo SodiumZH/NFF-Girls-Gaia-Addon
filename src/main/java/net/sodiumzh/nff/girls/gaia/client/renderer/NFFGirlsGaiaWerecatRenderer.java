@@ -6,6 +6,7 @@ import gaia.entity.Werecat;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
+import net.sodiumzh.nff.girls.gaia.entity.IHasRareVariant;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaSuccubusEntity;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaWerecatEntity;
 
@@ -20,7 +21,7 @@ public class NFFGirlsGaiaWerecatRenderer extends WerecatRenderer {
 
     public ResourceLocation getTextureLocation(Werecat mob) {
         if (mob instanceof GaiaWerecatEntity tamed && tamed.isRareVariant()) {
-            switch (tamed.getRareVariant().name()) {
+            switch (tamed.getRareVariant().map(IHasRareVariant.RareVariant::name).orElse("")) {
                 case "rana" -> { return MYGO_TEXTURE_LOCATION ;}
             }
         }

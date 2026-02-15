@@ -177,8 +177,48 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
 			.add(Attributes.ATTACK_KNOCKBACK, 0.25)
 			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
+	public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_ENDER_DRAGON_GIRL = ENTITY_ATTRIBUTE_PROVIDERS.register(
+		"gaia_ender_dragon_girl", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+			.add(Attributes.MAX_HEALTH, 70.0)
+			.add(Attributes.FOLLOW_RANGE, 40.0)
+			.add(Attributes.MOVEMENT_SPEED, 0.275)
+			.add(Attributes.ATTACK_DAMAGE, 6.0)
+			.add(Attributes.ARMOR, 8.0)
+			.add(Attributes.ATTACK_KNOCKBACK, 0.25)
+			.add(Attributes.KNOCKBACK_RESISTANCE, 1.0)
+			.add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
 
-	@SubscribeEvent
+    public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_ANT_WORKER = ENTITY_ATTRIBUTE_PROVIDERS.register(
+        "gaia_ant_worker", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+            .add(Attributes.MAX_HEALTH, 40.0)
+            .add(Attributes.FOLLOW_RANGE, 40.0)
+            .add(Attributes.MOVEMENT_SPEED, 0.25)
+            .add(Attributes.ATTACK_DAMAGE, 4.0)
+            .add(Attributes.ARMOR, 4.0)
+            .add(Attributes.ATTACK_KNOCKBACK, 0.3)
+            .add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+
+    public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_ARACHNE = ENTITY_ATTRIBUTE_PROVIDERS.register(
+        "gaia_arachne", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+            .add(Attributes.MAX_HEALTH, 40.0)
+            .add(Attributes.FOLLOW_RANGE, 20.0)
+            .add(Attributes.MOVEMENT_SPEED, 0.25)
+            .add(Attributes.ATTACK_DAMAGE, 4.0)
+            .add(Attributes.ARMOR, 4.0)
+            .add(Attributes.ATTACK_KNOCKBACK, 0.3)
+            .add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0));
+
+    public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_SIREN = ENTITY_ATTRIBUTE_PROVIDERS.register(
+        "gaia_siren", () -> NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get()
+            .add(Attributes.MAX_HEALTH, 40.0d)
+            .add(Attributes.FOLLOW_RANGE, 26.0d)
+            .add(Attributes.MOVEMENT_SPEED, 0.25d)
+            .add(Attributes.ATTACK_DAMAGE, 4.0d)
+            .add(Attributes.ARMOR, 4.0d)
+            .add(Attributes.ATTACK_KNOCKBACK, 0.3d)
+            .add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0d));
+
+    @SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_DRYAD.get(), NFFGirlsGaiaEntityAttributes.GAIA_DRYAD.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_DULLAHAN.get(), NFFGirlsGaiaEntityAttributes.GAIA_DULLAHAN.get().get().build());
@@ -196,6 +236,9 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_WITCH.get(), NFFGirlsGaiaEntityAttributes.GAIA_WITCH.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_SHAMAN.get(), NFFGirlsGaiaEntityAttributes.GAIA_SHAMAN.get().get().build());
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_ENDER_DRAGON_GIRL.get(), NFFGirlsGaiaEntityAttributes.GAIA_ENDER_DRAGON_GIRL.get().get().build());
-	}
+        event.put(NFFGirlsGaiaEntityTypes.GAIA_ANT_WORKER.get(), NFFGirlsGaiaEntityAttributes.GAIA_ANT_WORKER.get().get().build());
+        event.put(NFFGirlsGaiaEntityTypes.GAIA_ARACHNE.get(), NFFGirlsGaiaEntityAttributes.GAIA_ARACHNE.get().get().build());
+        event.put(NFFGirlsGaiaEntityTypes.GAIA_SIREN.get(), NFFGirlsGaiaEntityAttributes.GAIA_SIREN.get().get().build());
+    }
 
 }

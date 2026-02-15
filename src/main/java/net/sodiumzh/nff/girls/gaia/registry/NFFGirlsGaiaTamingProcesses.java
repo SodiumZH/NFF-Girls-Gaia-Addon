@@ -33,4 +33,12 @@ public class NFFGirlsGaiaTamingProcesses {
         "gaia_witch", () -> new GaiaWitchProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.WITCH));
 
 
+    public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_ANT_WORKER = TAMING_PROCESSES.register(
+        "gaia_enderman_b", () -> new GaiaAntWorkerFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.ARTHROPOD));
+
+    public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_ARACHNE = TAMING_PROCESSES.register(
+        "gaia_enderman_b", () -> new GaiaArachneFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.ARTHROPOD));
+
+    public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_SIREN = TAMING_PROCESSES.register(
+        "gaia_enderman_b", () -> new GaiaSirenFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.HUMANOID_A));
 }

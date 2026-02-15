@@ -6,6 +6,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
+import net.sodiumzh.nff.girls.gaia.client.renderer.NFFGirlsGaiaSirenRenderer;
 import net.sodiumzh.nff.girls.gaia.client.renderer.NFFGirlsGaiaSuccubusRenderer;
 import net.sodiumzh.nff.girls.gaia.client.renderer.NFFGirlsGaiaWerecatRenderer;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
@@ -32,5 +33,8 @@ public class NFFGirlsGaiaClientSetupEventHandlers
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_WITCH.get(), WitchRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_SHAMAN.get(), ShamanRenderer::new);
 		event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_ENDER_DRAGON_GIRL.get(), EnderDragonGirlRenderer::new);
+        event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_SIREN.get(), NFFGirlsGaiaSirenRenderer::new);
+        event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_ANT_WORKER.get(), AntWorkerRenderer::new);
+        event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_ARACHNE.get(), ArachneRenderer::new);
 	}
 }

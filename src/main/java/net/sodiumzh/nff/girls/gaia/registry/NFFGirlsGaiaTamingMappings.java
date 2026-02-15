@@ -78,5 +78,20 @@ public class NFFGirlsGaiaTamingMappings
 			new ResourceLocation(GrimoireOfGaia.MOD_ID, "ender_dragon_girl"),
 			new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_ender_dragon_girl"),
 			NFFGirlsGaiaTamingProcesses.GAIA_ENDERMAN_B);
+        event.register(
+            new ResourceLocation(GrimoireOfGaia.MOD_ID, "siren"),
+            new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_siren"),
+            NFFGirlsGaiaTamingProcesses.GAIA_SIREN
+        );
+        event.register(
+            new ResourceLocation(GrimoireOfGaia.MOD_ID, "ant"),
+            new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_ant_worker"),
+            NFFGirlsGaiaTamingProcesses.GAIA_ANT_WORKER
+        );
+        event.register(
+            new ResourceLocation(GrimoireOfGaia.MOD_ID, "arachne"),
+            new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_arachne"),
+            NFFGirlsGaiaTamingProcesses.GAIA_ARACHNE
+        );
 	}
 }

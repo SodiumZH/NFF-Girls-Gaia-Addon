@@ -26,9 +26,13 @@
 
   "entity.nffgirlsgaia.mygo.tomori": "Tomori",
   "entity.nffgirlsgaia.mygo.anon": "Anon",
+  "entity.nffgirlsgaia.mygo.st_anon": "St. Anon",
   "entity.nffgirlsgaia.mygo.taki": "Taki",
   "entity.nffgirlsgaia.mygo.soyo": "Soyo",
   "entity.nffgirlsgaia.mygo.rana": "Rana",
+
+  "entity.nffgirlsgaia.variant.ladina": "Ladina",
+  "entity.nffgirlsgaia.variant.calamity": "Calamity",
 
   "desc.nffgirlsgaia.evil_grindstone": "Craft with some loots to transform them into Evil Crystal Fragments. Reusable.",
   "desc.nffgirlsgaia.monster_feed": "Use to your NFF mob to provide %1$d XP.",
