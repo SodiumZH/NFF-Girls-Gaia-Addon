@@ -5,6 +5,7 @@ import gaia.entity.Succubus;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
+import net.sodiumzh.nff.girls.gaia.entity.IHasRareVariant;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.GaiaSuccubusEntity;
 
 public class NFFGirlsGaiaSuccubusRenderer extends SuccubusRenderer {
@@ -16,7 +17,7 @@ public class NFFGirlsGaiaSuccubusRenderer extends SuccubusRenderer {
 
     public ResourceLocation getTextureLocation(Succubus mob) {
         if (mob instanceof GaiaSuccubusEntity tamed && tamed.isRareVariant()) {
-            switch (tamed.getRareVariant().name()) {
+            switch (tamed.getRareVariant().map(IHasRareVariant.RareVariant::name).orElse("")) {
                 case "tomori" -> { return MYGO_TEXTURE_LOCATION ;}
             }
         }

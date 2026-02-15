@@ -14,7 +14,8 @@ import net.sodiumzh.nfu.math.HtmlColors;
 
 @OnlyIn(Dist.CLIENT)
 public class NFFGirlsGaiaCitadelMobDictScreen extends GuiBasicBook {
-    private static final ResourceLocation ROOT = new ResourceLocation("nffgirlsgaia:book/mob_dictionary/root.json");
+    private static final ResourceLocation ROOT =
+        new ResourceLocation("nffgirlsgaia:book/mob_dictionary/root.json");
     private static final String TITLE_TRANSLATION_KEY = "dict.nffgirlsgaia.title";
     private static final String TEXT_FILE_DIR = "nffgirlsgaia:book/mob_dictionary/";
 

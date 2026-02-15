@@ -8,6 +8,7 @@ import net.sodiumzh.nfu.util.NFUInfoStatics;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
+import java.util.Optional;
 
 public interface IHasRareVariant {
 
@@ -18,12 +19,12 @@ public interface IHasRareVariant {
      */
     public int getRareVariantID();
 
-    public default @Nullable RareVariant getRareVariant() {
-        return this.rareVariantByID(this.getRareVariantID());
+    public default Optional<RareVariant> getRareVariant() {
+        return Optional.ofNullable(this.rareVariantByID(this.getRareVariantID()));
     }
 
     public default boolean isRareVariant() {
-        return this.getRareVariant() != null;
+        return this.getRareVariant().isPresent();
     }
 
     /**

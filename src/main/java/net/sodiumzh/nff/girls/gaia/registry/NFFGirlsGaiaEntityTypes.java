@@ -65,17 +65,27 @@ public class NFFGirlsGaiaEntityTypes extends NFFGirlsEntityTypes
 		registerBM("gaia_mermaid", GaiaMermaidEntity::new, b -> b.sized(0.6f, 1.8f));
 
 	public static final RegistryObject<EntityType<GaiaWerecatEntity>> GAIA_WERECAT =
-		registerBM("gaia_werecat", GaiaWerecatEntity::new, b -> b.sized(0.6F, 1.99F));
+		registerBM("gaia_werecat", GaiaWerecatEntity::new);
 
 	public static final RegistryObject<EntityType<GaiaWitchEntity>> GAIA_WITCH =
-		registerBM("gaia_witch", GaiaWitchEntity::new, b -> b.sized(0.6F, 1.99F));
+		registerBM("gaia_witch", GaiaWitchEntity::new);
 
 	public static final RegistryObject<EntityType<GaiaShamanEntity>> GAIA_SHAMAN =
-		registerBM("gaia_shaman", GaiaShamanEntity::new, b -> b.sized(0.6F, 1.99F));
+		registerBM("gaia_shaman", GaiaShamanEntity::new);
 
 	public static final RegistryObject<EntityType<GaiaEnderDragonGirlEntity>> GAIA_ENDER_DRAGON_GIRL =
 		registerBM("gaia_ender_dragon_girl", GaiaEnderDragonGirlEntity::new, b -> b.sized(0.6F, 2.2F));
-	// Technical entities
+
+    public static final RegistryObject<EntityType<GaiaAntWorkerEntity>> GAIA_ANT_WORKER =
+            registerBM("gaia_ant_worker", GaiaAntWorkerEntity::new);
+
+    public static final RegistryObject<EntityType<GaiaArachneEntity>> GAIA_ARACHNE =
+            registerBM("gaia_arachne", GaiaArachneEntity::new, b -> b.sized(1.4F, 1.6F));
+
+    public static final RegistryObject<EntityType<GaiaSirenEntity>> GAIA_SIREN =
+            registerBM("gaia_siren", GaiaSirenEntity::new);
+
+    // Technical entities
 
 	// Register utilities
 

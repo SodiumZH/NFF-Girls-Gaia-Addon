@@ -1,7 +1,9 @@
 package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.AntWorker;
+import gaia.registry.GaiaSounds;
 import net.minecraft.world.Container;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -16,6 +18,7 @@ import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaAiGoalGroups;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEffects;
+import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaProjectileProviders;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFWaterAvoidingRandomStrollGoal;
@@ -23,6 +26,7 @@ import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoa
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
+import net.sodiumzh.nfu.entity.component.EntityComponentAPI;
 import org.jetbrains.annotations.Nullable;
 
 public class GaiaAntWorkerEntity extends AntWorker implements INFFGirlsTamed {
@@ -50,8 +54,18 @@ public class GaiaAntWorkerEntity extends AntWorker implements INFFGirlsTamed {
     public void aiStep() {
         super.aiStep();
         Player owner = this.getOwnerInDimension();
-        if (owner != null && this.hasLineOfSight(owner) && owner.distanceToSqr(this) <= 256d) {
-            owner.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 60 * 20), this);
+
+        if (owner != null && this.hasLineOfSight(owner) && owner.distanceToSqr(this) <= 64d
+            && !EntityComponentAPI.getDefaultTimer(this).hasNamedTimer("shoot_pheromone_bullet"))
+        {
+            var projectile = NFFGirlsGaiaProjectileProviders.ANT_PHEROMONE_PROJECTILE.apply(this);
+            EntityComponentAPI.getDynamicDataComponent(projectile).putVariable("target", owner);
+            projectile.setPos(this.getEyePosition());
+            projectile.shootTo(owner.getBoundingBox().getCenter(), 0.2f, 0f);
+            this.level().addFreshEntity(projectile);
+            this.swing(InteractionHand.MAIN_HAND);
+            this.playSound(GaiaSounds.GAIA_SHOOT.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+            EntityComponentAPI.getDefaultTimer(this).addTimer("shoot_pheromone_bullet", 2 * 60 * 20, true);
         }
     }
 }
