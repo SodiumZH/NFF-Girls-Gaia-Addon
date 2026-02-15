@@ -221,7 +221,7 @@ public class NFFGirlsGaiaEntityEventListeners
 		{
 			boolean done = false;
 			int varId = v.getRareVariantID();
-			@Nullable IHasRareVariant.RareVariant rv = v.getRareVariant();
+			@Nullable IHasRareVariant.RareVariant rv = v.getRareVariant().orElse(null);
 			if (rv != null) {
 				v.setRareVariantID(-1);
 				done = true;

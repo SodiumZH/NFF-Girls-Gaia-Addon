@@ -27,4 +27,14 @@ public class NFFGirlsGaiaFriendingItems {
         COLLECTION.register("enderman_b", () -> MobApplicableItemTable.builder()
             .readData(new ResourceLocation(NFFGirlsGaia.MOD_ID, "friending/enderman_b.json"), NFFGirlsDataReaders::readMobApplicableItemTable)
             .build());
+
+    public static NFURegistry.Accessor<MobApplicableItemTable> ARTHROPOD =
+            COLLECTION.register("arthropod", () -> MobApplicableItemTable.builder()
+                    .readData(new ResourceLocation(NFFGirlsGaia.MOD_ID, "friending/arthropod.json"), NFFGirlsDataReaders::readMobApplicableItemTable)
+                    .build());
+
+    public static NFURegistry.Accessor<MobApplicableItemTable> HUMANOID_A =
+            COLLECTION.register("siren", () -> MobApplicableItemTable.builder()
+                    .readData(new ResourceLocation(NFFGirlsGaia.MOD_ID, "friending/humanoid_a.json"), NFFGirlsDataReaders::readMobApplicableItemTable)
+                    .build());
 }

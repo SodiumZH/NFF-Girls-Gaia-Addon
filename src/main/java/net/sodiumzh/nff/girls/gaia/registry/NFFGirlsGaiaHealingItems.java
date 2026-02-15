@@ -18,7 +18,10 @@ public class NFFGirlsGaiaHealingItems {
             .readData(new ResourceLocation(NFFGirlsGaia.MOD_ID, "healing/aquatic.json"), NFFGirlsDataReaders::readMobApplicableItemTable)
             .build());
 
-
+    public static NFURegistry.Accessor<MobApplicableItemTable> ARTHROPOD =
+        COLLECTION.register("arthropod", () -> MobApplicableItemTable.builder()
+            .readData(new ResourceLocation(NFFGirlsGaia.MOD_ID, "healing/arthropod.json"), NFFGirlsDataReaders::readMobApplicableItemTable)
+            .build());
 
 
 }

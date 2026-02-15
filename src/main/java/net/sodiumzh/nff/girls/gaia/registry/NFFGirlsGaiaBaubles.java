@@ -3,6 +3,7 @@ package net.sodiumzh.nff.girls.gaia.registry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.sodiumzh.nff.girls.entity.hmag.HmagSkeletonGirlEntity;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.gaia.*;
 import net.sodiumzh.nff.girls.registry.NFFGirlsBaubles;
@@ -26,9 +27,12 @@ public class NFFGirlsGaiaBaubles
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaYukiOnnaEntity.class, 2, 4);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaCecaeliaEntity.class, 2, 6);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaMermaidEntity.class, 2, 4);
-        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaWerecatEntity.class, 0, 4);
+        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaWerecatEntity.class, 2, 4);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaWitchEntity.class, 2, 6);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaShamanEntity.class, 2, 6);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaEnderDragonGirlEntity.class, 0, 4);
+        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaSirenEntity.class, 6, 7);
+        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaAntWorkerEntity.class, 2, 4);
+        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaArachneEntity.class, 2, 4);
     }
 }

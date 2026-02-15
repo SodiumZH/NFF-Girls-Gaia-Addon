@@ -3,6 +3,11 @@ package net.sodiumzh.nff.girls.gaia.entity.gaia;
 import gaia.entity.Valkyrie;
 import gaia.registry.GaiaRegistry;
 import gaia.registry.GaiaSounds;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Container;
@@ -23,6 +28,7 @@ import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsRangedAttackGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.gaia.entity.IBlocksGaiaDynamicGoals;
+import net.sodiumzh.nff.girls.gaia.entity.IHasRareVariant;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaProjectileProviders;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaTags;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsFourBaublesDefaultInventoryMenu;
@@ -45,7 +51,7 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, RangedAttackMob, IBlocksGaiaDynamicGoals {
+public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, RangedAttackMob, IBlocksGaiaDynamicGoals/*, IHasRareVariant*/ {
 
     private static final RandomSelection<Function<Mob, NFUItemProjectileEntity>> PROJECTILE_SUPPLIER =
         new RandomSelection<>(NFFGirlsGaiaProjectileProviders.VALKYRIE_COMMON_PROJECTILE)
@@ -192,4 +198,40 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
     public boolean isAnnoyed() {
         return this.getData().getAttackTarget() != null;
     }
+/*
+    private static final EntityDataAccessor<Integer> RARE_VARIANT =
+        SynchedEntityData.defineId(GaiaSirenEntity.class, EntityDataSerializers.INT);
+    private static final IHasRareVariant.RareVariant VARIANT_ANON =
+        new IHasRareVariant.RareVariant("anon", 0.045d, "entity.nffgirlsgaia.mygo.anon");
+    private static final IHasRareVariant.RareVariant VARIANT_ST_ANON =
+        new IHasRareVariant.RareVariant("st_anon", 0.005d, "entity.nffgirlsgaia.mygo.st_anon");
+    private static final List<IHasRareVariant.RareVariant> RARE_VARIANTS = List.of(VARIANT_ANON, VARIANT_ST_ANON);
+
+    @Override
+    public int getRareVariantID() {
+        return this.entityData.get(RARE_VARIANT);
+    }
+
+    @Override
+    public void setRareVariantID(int id) {
+        this.entityData.set(RARE_VARIANT, id);
+    }
+
+    @Override
+    public @Nullable IHasRareVariant.RareVariant rareVariantByID(int id) {
+        return id >= 0 && id < RARE_VARIANTS.size() ? RARE_VARIANTS.get(id) : null;
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.putInt("rareVariant", this.getRareVariantID());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        if (nbt.contains("rareVariant", Tag.TAG_ANY_NUMERIC))
+            this.setRareVariantID(nbt.getInt("rareVariant"));
+    }*/
 }

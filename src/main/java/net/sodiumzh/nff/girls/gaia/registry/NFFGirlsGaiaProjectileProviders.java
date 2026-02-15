@@ -3,22 +3,22 @@ package net.sodiumzh.nff.girls.gaia.registry;
 import com.github.mechalopa.hmag.registry.ModItems;
 import gaia.entity.YukiOnna;
 import gaia.registry.GaiaRegistry;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -35,9 +35,12 @@ import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nfu.entity.NFUEffectZoneEntity;
 import net.sodiumzh.nfu.entity.NFUItemProjectileEntity;
 import net.sodiumzh.nfu.entity.ServerEntityMotion;
+import net.sodiumzh.nfu.entity.component.EntityComponentAPI;
 import net.sodiumzh.nfu.math.Field3D;
 import net.sodiumzh.nfu.math.IInequalityPattern3D;
 import net.sodiumzh.nfu.math.Inequality3D;
+import net.sodiumzh.nfu.util.NFUMathStatics;
+import net.sodiumzh.nfu.util.NFUParticleStatics;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -389,6 +392,56 @@ public class NFFGirlsGaiaProjectileProviders {
                     int amplifier = (int) Math.round(owner.getAttributeValue(NFFGirlsEntityAttributes.POISON_ASPECT.get()));
                     int time = (int) Math.round(owner.getAttributeValue(Attributes.ATTACK_DAMAGE) * 100);
                     living.addEffect(new MobEffectInstance(MobEffects.POISON, time, amplifier));
+                    proj.discard();
+                }
+            });
+
+    public static final Function<Mob, NFUItemProjectileEntity> ANT_PHEROMONE_PROJECTILE = owner ->
+        NFUItemProjectileEntity.create(owner)
+            .setScale(0.2d, 0.2d)
+            .setLifetime(30 * 20)
+            .setGravity(0f)
+            .setItem(GaiaRegistry.PROJECTILE_MAGIC.get().getDefaultInstance())
+            .setHitIgnoresOwner(true)
+            .setOnHitBlock((proj, hs) -> proj.discard())
+            .setOnHitLiving((proj, ehs) -> {
+                INFFGirlsTamed tamed = INFFGirlsTamed.get(owner).orElse(null);
+                if (tamed == null) { proj.discard(); return; }
+                if (ehs.getEntity() instanceof LivingEntity living && tamed.isAllyTo(living)) {
+                    living.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 20));
+                    NFUParticleStatics.sendGlintParticlesToEntityDefault(living);
+                }
+                proj.discard();
+            })
+            .setOnTick(proj -> {
+                EntityComponentAPI.getDynamicDataComponent(proj).getVariable("target", Entity.class).ifPresent(e -> {
+                    if (e.isAlive())
+                        proj.setVelocitySynched(e.getEyePosition().subtract(proj.getEyePosition()).normalize().scale(0.2d));
+                });
+            });
+
+    public static final Function<Mob, NFUItemProjectileEntity> WEB_BULLET_FRIENDED = owner ->
+        NFUItemProjectileEntity.create(owner)
+            .setScale(0.2d, 0.2d)
+            .setGravity(0.01f)
+            .setLifetime(10 * 20)
+            .setItem(GaiaRegistry.PROJECTILE_WEB.get().getDefaultInstance())
+            .setHitIgnoresOwner(true)
+            .setOnHitBlock((proj, hs) -> {
+                BlockPos pos = NFUMathStatics.getBlockPos(proj.getBoundingBox().getCenter());
+                if (proj.level().getBlockState(pos).is(Blocks.AIR))
+                    proj.level().setBlock(pos, Blocks.COBWEB.defaultBlockState(), 1 + 2);
+                proj.discard();
+            })
+            .setOnHitLiving((proj, ehs) -> {
+                INFFGirlsTamed tamed = INFFGirlsTamed.get(owner).orElse(null);
+                if (tamed == null) { proj.discard(); return; }
+                if (ehs.getEntity() instanceof LivingEntity living && !tamed.isAllyTo(living)) {
+                    living.hurt(living.level().damageSources().indirectMagic(owner, proj),
+                        (float) owner.getAttributeValue(Attributes.ATTACK_DAMAGE) / 2f);
+                    BlockPos pos = NFUMathStatics.getBlockPos(living.getBoundingBox().getCenter());
+                    if (proj.level().getBlockState(pos).is(Blocks.AIR))
+                        proj.level().setBlock(pos, Blocks.COBWEB.defaultBlockState(), 1 + 2);
                     proj.discard();
                 }
             });
