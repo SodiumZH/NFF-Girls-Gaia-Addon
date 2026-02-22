@@ -1,0 +1,106 @@
+[
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:music_disc_13",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 1
+  },
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:music_disc_cat",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 1
+  },
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "minecraft:emerald",
+    "amount": [42, 56],
+    "price": 1,
+    "maxUses": 4
+  },
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "minecraft:diamond",
+    "amount": [18, 28],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "sell",
+    "item": "minecraft:experience_bottle",
+    "amount": [2, 3],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "minecraft:jukebox",
+    "amount": 1,
+    "price": 1,
+    "maxUses": 1
+  },
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "minecraft:bow",
+    "amount": 1,
+    "price": [4, 6],
+    "maxUses": 2
+  },
+  {
+    "level": 4,
+    "type": "enchantmentBook",
+    "enchantment": {
+      "key": "minecraft:power",
+      "level": 4
+    },
+    "price": [8, 12],
+    "maxUses": 2
+  },
+  {
+    "level": 5,
+    "type": "buy",
+    "item": "minecraft:music_disc_otherside",
+    "amount": 1,
+    "price": [12, 18],
+    "maxUses": 1
+  },
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "nffgirlsgaia:siren_spawn_egg",
+    "amount": 1,
+    "price": [64, 64],
+    "maxUses": 1,
+    "weight": 0.1
+  },
+
+  {
+    "comment": "============================== Compat below =============================="
+  },
+
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "grimoireofgaia:misc_pearl",
+    "amount": [8, 12],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 4,
+    "type": "buy",
+    "item": "grimoireofgaia:bag_book",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 2
+  }
+]
