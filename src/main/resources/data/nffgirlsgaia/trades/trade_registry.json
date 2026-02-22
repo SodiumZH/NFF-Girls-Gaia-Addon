@@ -1,0 +1,26 @@
+[
+  {
+    "key": "nffgirlsgaia:gaia_ant_worker",
+    "collections": [
+      {"key": "nffgirlsgaia:common_arthropod", "weight": 0.2}
+    ]
+  },
+  {
+    "key": "nffgirlsgaia:gaia_arachne",
+    "collections": [
+      {"key": "nffgirlsgaia:common_arthropod", "weight": 0.2}
+    ]
+  },
+  {
+    "key": "nffgirlsgaia:gaia_ender_dragon_girl",
+    "collections": [
+      {"key": "nffgirls:common_ender", "weight": 0.15}
+    ]
+  },
+  {
+    "key": "nffgirlsgaia:gaia_siren",
+    "collections": [
+      {"key": "nffgirls:common_archer", "weight": 0.1}
+    ]
+  }
+]

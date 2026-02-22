@@ -1,0 +1,105 @@
+[
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:obsidian",
+    "amount": [32, 48],
+    "price": 1,
+    "maxUses": 4
+  },
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:end_stone",
+    "amount": [48, 56],
+    "price": 1,
+    "maxUses": 4
+  },
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "minecraft:dragon_breath",
+    "amount": [6, 10],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "buy",
+    "item": "nffgirls:ender_pie",
+    "amount": 1,
+    "price": [2, 3],
+    "maxUses": 1
+  },
+  {
+    "level": 3,
+    "type": "sell",
+    "item": "minecraft:dragon_head",
+    "amount": 1,
+    "price": [4, 6],
+    "maxUses": 1
+  },
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "minecraft:end_crystal",
+    "amount": 1,
+    "price": [8, 12],
+    "maxUses": 2
+  },
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "hmag:dyssomnia_skin",
+    "amount": 1,
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "minecraft:dragon_egg",
+    "amount": 1,
+    "price": [64, 64],
+    "maxUses": 1,
+    "weight": 0.1
+  },
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "minecraft:elytra",
+    "amount": 1,
+    "price": [16, 24],
+    "maxUses": 1
+  },
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "nffgirlsgaia:ender_dragon_girl_spawn_egg",
+    "amount": 1,
+    "price": [64, 64],
+    "maxUses": 1,
+    "weight": 0.05
+  },
+
+  {
+    "comment": "============================== Compat below =============================="
+  },
+
+  {
+    "level": 4,
+    "type": "buy",
+    "item": "grimoireofgaia:doll_ender_girl",
+    "amount": 1,
+    "price": [6, 10],
+    "maxUses": 1
+  },
+  {
+    "level": 5,
+    "type": "buy",
+    "item": "grimoireofgaia:misc_elytra",
+    "amount": 1,
+    "price": [12, 18],
+    "maxUses": 1
+  }
+]
