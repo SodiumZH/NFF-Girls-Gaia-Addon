@@ -1,0 +1,26 @@
+[
+  {
+    "item": "minecraft:sugar",
+    "amount": [5]
+  },
+  {
+    "item": "minecraft:spider_eye",
+    "amount": [5]
+  },
+  {
+    "item": "minecraft:slime_ball",
+    "amount": [10]
+  },
+  {
+    "item": "hmag:crimson_cuticula",
+    "amount": [15]
+  },
+  {
+    "item": "hmag:mysterious_petal",
+    "amount_getter": "nffgirls:mob_max_health"
+  },
+  {
+    "item": "grimoireofgaia:honeydew",
+    "amount": [20]
+  }
+]
