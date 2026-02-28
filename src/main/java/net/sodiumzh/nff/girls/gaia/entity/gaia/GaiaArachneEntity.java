@@ -5,6 +5,7 @@ import gaia.entity.goal.MobAttackGoal;
 import gaia.registry.GaiaSounds;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -39,6 +40,7 @@ import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFWaterAvoidingRandomStrollGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
+import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
@@ -46,6 +48,7 @@ import net.sodiumzh.nfu.reflection.CachedFieldAccessor;
 import net.sodiumzh.nfu.util.NFUReflectionStatics;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.function.Consumer;
@@ -177,6 +180,13 @@ public class GaiaArachneEntity extends Arachne implements INFFGirlsTamed, IBlock
             if (this.isAllyTo(living))
                 action.accept(living);
         });
+    }
+
+    @Override
+    @Nonnull
+    public Component getTypeName() {
+        EntityType<?> typeBefore = NFFTamingMapping.getTypeBefore(this);
+        return typeBefore != null ? typeBefore.getDescription() : super.getTypeName();
     }
 
     @Override

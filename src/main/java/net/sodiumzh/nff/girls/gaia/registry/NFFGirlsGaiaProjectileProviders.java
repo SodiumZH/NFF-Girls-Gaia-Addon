@@ -408,7 +408,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 INFFGirlsTamed tamed = INFFGirlsTamed.get(owner).orElse(null);
                 if (tamed == null) { proj.discard(); return; }
                 if (ehs.getEntity() instanceof LivingEntity living && tamed.isAllyTo(living)) {
-                    living.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 20));
+                    living.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 60 * 20));
                     NFUParticleStatics.sendGlintParticlesToEntityDefault(living);
                 }
                 proj.discard();
