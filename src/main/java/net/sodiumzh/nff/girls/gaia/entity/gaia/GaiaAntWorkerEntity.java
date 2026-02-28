@@ -2,6 +2,7 @@ package net.sodiumzh.nff.girls.gaia.entity.gaia;
 
 import gaia.entity.AntWorker;
 import gaia.registry.GaiaSounds;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -23,11 +24,14 @@ import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFWaterAvoidingRandomStrollGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
+import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
 import net.sodiumzh.nfu.entity.component.EntityComponentAPI;
 import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nonnull;
 
 public class GaiaAntWorkerEntity extends AntWorker implements INFFGirlsTamed {
 
@@ -67,5 +71,12 @@ public class GaiaAntWorkerEntity extends AntWorker implements INFFGirlsTamed {
             this.playSound(GaiaSounds.GAIA_SHOOT.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
             EntityComponentAPI.getDefaultTimer(this).addTimer("shoot_pheromone_bullet", 2 * 60 * 20, true);
         }
+    }
+
+    @Override
+    @Nonnull
+    public Component getTypeName() {
+        EntityType<?> typeBefore = NFFTamingMapping.getTypeBefore(this);
+        return typeBefore != null ? typeBefore.getDescription() : super.getTypeName();
     }
 }
