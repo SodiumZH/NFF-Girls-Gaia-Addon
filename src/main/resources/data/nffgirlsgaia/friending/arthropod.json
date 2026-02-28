@@ -8,11 +8,7 @@
     "amount": [0.02, 0.04]
   },
   {
-    "item": "minecraft:sugar",
-    "amount": [0.03, 0.05]
-  },
-  {
-    "item": "minecraft:slime_ball",
+    "item": "minecraft:honey_bottle",
     "amount": [0.03, 0.06]
   },
   {
@@ -21,10 +17,10 @@
   },
   {
     "item": "hmag:crimson_cuticula",
-    "amount": [0.08, 0.14]
+    "amount": [0.12, 0.20]
   },
   {
     "item": "hmag:mysterious_petal",
-    "amount": [0.50, [0.75, 0.30], [1.00, 0.10]]
+    "amount": [0.10, 0.18]
   }
 ]
