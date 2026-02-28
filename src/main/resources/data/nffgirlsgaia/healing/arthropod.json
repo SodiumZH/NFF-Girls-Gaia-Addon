@@ -4,16 +4,16 @@
     "amount": [5]
   },
   {
-    "item": "minecraft:spider_eye",
-    "amount": [5]
-  },
-  {
-    "item": "minecraft:slime_ball",
+    "item": "minecraft:honey_bottle",
     "amount": [10]
   },
   {
-    "item": "hmag:crimson_cuticula",
-    "amount": [15]
+    "item": "minecraft:honeycomb",
+    "amount": [10]
+  },
+  {
+    "item": "minecraft:honey_block",
+    "amount": [20]
   },
   {
     "item": "hmag:mysterious_petal",
