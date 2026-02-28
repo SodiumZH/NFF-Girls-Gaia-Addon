@@ -37,11 +37,11 @@ public class NFFGirlsGaiaTamingProcesses {
         "gaia_enderman_b", () -> new HmagEnderExecutorTamingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.ENDERMAN_B));
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_ANT_WORKER = TAMING_PROCESSES.register(
-        "gaia_enderman_b", () -> new GaiaAntWorkerFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.ARTHROPOD));
+        "gaia_ant_worker", () -> new GaiaAntWorkerFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.ARTHROPOD));
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_ARACHNE = TAMING_PROCESSES.register(
-        "gaia_enderman_b", () -> new GaiaArachneFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.ARTHROPOD));
+        "gaia_arachne", () -> new GaiaArachneFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.ARTHROPOD));
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_SIREN = TAMING_PROCESSES.register(
-        "gaia_enderman_b", () -> new GaiaSirenFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.HUMANOID_A));
+        "gaia_siren", () -> new GaiaSirenFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.HUMANOID_A));
 }
