@@ -39,27 +39,8 @@
     "price": 1,
     "maxUses": 2
   },
-  {
-    "level": 5,
-    "type": "sell",
-    "item": "nffgirlsgaia:ant_worker_spawn_egg",
-    "amount": 1,
-    "price": [64, 64],
-    "maxUses": 1,
-    "weight": 0.1
-  },
 
   {
     "comment": "============================== Compat below =============================="
-  },
-
-  {
-    "level": 3,
-    "type": "buy",
-    "item": "grimoireofgaia:spawn_trader",
-    "amount": 1,
-    "price": [4, 6],
-    "maxUses": 1,
-    "weight": 0.5
   }
 ]
