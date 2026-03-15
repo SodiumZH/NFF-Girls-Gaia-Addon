@@ -1,0 +1,16 @@
+{
+  "category": "nffgirls:friending_gaia",
+  "name": "entity.grimoireofgaia.dullahan",
+  "icon": "nffgirlsgaia:textures/book/icon_dullahan.png",
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "nffgirlsgaia:gaia_dullahan",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.dullahan"
+    }
+  ]
+}
