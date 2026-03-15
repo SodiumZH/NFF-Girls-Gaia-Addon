@@ -13,6 +13,7 @@ import net.sodiumzh.nff.girls.item.CitadelBasedMobDictionaryItem;
 import net.sodiumzh.nff.girls.registry.NFFGirlsTabs;
 import net.sodiumzh.nfu.compat.ModDependencyFallbackItem;
 import net.sodiumzh.nfu.util.NFUCompatStatics;
+import net.sodiumzh.nfu.util.NFUInfoStatics;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -48,7 +49,9 @@ public class  NFFGirlsGaiaItems {
     public static final RegistryObject<Item> MOB_DICT = registerModDependent("mob_dictionary", "citadel",
         () -> new CitadelBasedMobDictionaryItem(new Item.Properties().tab(NFFGirlsTabs.MAIN_TAB),
             new ResourceLocation("nffgirlsgaia","book/mob_dictionary/root.json"),
-            "dict.nffgirlsgaia.title", "nffgirlsgaia:book/mob_dictionary/"), NFFGirlsTabs.MAIN_TAB);
+            "dict.nffgirlsgaia.title", "nffgirlsgaia:book/mob_dictionary/"), NFFGirlsTabs.MAIN_TAB)
+            .description(NFUInfoStatics.createText("Citadel book is outdated. Craft to convert to new Patchouli-based NFF: Girls book, and all contents " +
+                "are integrated in that book.")));
 
 
     /*@SubscribeEvent
