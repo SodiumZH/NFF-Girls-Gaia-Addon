@@ -40,5 +40,45 @@
 
   "desc.nffgirlsgaia.evil_grindstone": "Craft with some loots to transform them into Evil Crystal Fragments. Reusable.",
   "desc.nffgirlsgaia.monster_feed": "Use to your NFF mob to provide %1$d XP.",
-  "dict.nffgirlsgaia.title": "NFF-Girls Mob Dictionary - Grimoire of Gaia Supplement"
+  "dict.nffgirlsgaia.title": "NFF-Girls Mob Dictionary - Grimoire of Gaia Supplement",
+
+  "dict.nffgirlsgaia.desc.friending.banshee": "The Banshee is a non-material spirit which can easily get through solid blocks. They fly in the sky of the Plateau biomes at night but vanish immediately under the sun.$(br2)The method of getting friendly with the Banshee is the same as their HMaG variants. As they can be attracted by death, you must put 8 Wither Roses around, and carry a Wither effect. Then you can give them items to get friendly.",
+  "dict.nffgirlsgaia.desc.friending.banshee_1": "After getting friendly, they will still vanish under the sun, but this can be prevented by equip them with a Resistance Amulet or a Soul Amulet.",
+
+  "dict.nffgirlsgaia.desc.friending.bee": "The method of getting friendly with the Bee is the same as HMaG Hornet. You must set up a field of honey before giving items. There must be 8 honey blocks around, otherwise the friendly progress will drop quickly. If you're attacked by the mob, you'll enter a cool time of 60 seconds during which you cannot give items.$(br2)After getting friendly, you can equip them with hand items, and 2 Baubles.",
+
+  "dict.nffgirlsgaia.desc.friending.cecaelia": "To get friendly with a Cecaelia, you need to give them items while staying with them in the water. During the process, they will keep summoning vortexes, which will greatly disturb your actions.",
+
+  "dict.nffgirlsgaia.desc.friending.dryad": "The dryad is the spirit of the trees, found frequently in the Forest biomes. They are neutral mobs.$(br2)To get friendly with a Dryad, you must give them Regenerate III effect of over 10 seconds with the splash potion, and then give them items.",
+
+  "dict.nffgirlsgaia.desc.friending.dullahan": "The Dullahan is a scary creature which holds their own head, found in the Plateau biomes. They hold a Cursed Metal Sword as weapon, but the sword doesn't have any special effects.$(br2)The method of getting friendly with the Dullahan is the same as their HMaG variants. You can give them items while carrying an Undead Affinity effect.",
+
+  "dict.nffgirlsgaia.desc.friending.harpy": "The Harpy is a common creature found in the Plain, Forest and Badlands.$(br2)The method of getting friendly with the Harpy is similar to their HMaG variants. To get friendly with a Harpy, instead dropping the item on the ground, you need to directly give them items by right-clicking.",
+  "dict.nffgirlsgaia.desc.friending.harpy_1": "As the progress increases, they will get Strength effect. Each 20% progress will provide 1 level of the effect. Take extra care when you're almost done!",
+
+  "dict.nffgirlsgaia.desc.friending.mermaid": "To get friendly with a Mermaid, you need to give them items while staying with them in the water. During the process, they will keep summoning vortexes, which will greatly disturb your actions.$(br2)The Mermaid can be healed with cooked fishes and Golden Carrot, and Dried Kelp can heal a little bit. A Golden Apple or Golden Tropical Fish can fully recover the health.",
+
+  "dict.nffgirlsgaia.desc.friending.mummy": "The Mummy is an ancient undead creature found in the desert.$(br2)The method of getting friendly with the Mummy is similar to the Husk Girl (HMaG). You need to get the Undead Affinity effect before giving them items.",
+
+  "dict.nffgirlsgaia.desc.friending.shaman": "To get friendly with a Shaman, you must first give them 5 different positive effects without hurting them, before giving items.",
+  "dict.nffgirlsgaia.desc.friending.shaman_1": "After getting friendly, the Shaman can both perform melee attack and throw splash potions, depending on the distance to the target, and can also support allies by potions. The strengths of the potion effects depend on their attributes. Attack Damage attribute boosts the healing/damage amount and effect duration, while Poison Aspect attribute (provided by baubles) boosts the effect level (both positive and negative).",
+  "dict.nffgirlsgaia.desc.friending.shaman_2": "In addition, when you're drowning, burning or in the darkness, they will also throw the corresponding potion to help you out.",
+
+  "dict.nffgirlsgaia.desc.friending.spriggan": "The Spriggan is the spirit of plants, found at night in the Forest biomes. Unlike Dryads, they are much more hostile and fierce, and are able to get invisible when attacking their target.$(br2)To get friendly with a Spriggan, you must give them Regenerate III effect of over 10 seconds with the splash potion, and then give them items.",
+  "dict.nffgirlsgaia.desc.friending.spriggan_1": "After getting friendly, they will no longer hide themselves.",
+
+  "dict.nffgirlsgaia.desc.friending.succubus": "The Succubus is a common low-level demon in the Nether. They are able to heal themselves when attacking their target.$(br2)The method of getting friendly with the Succubus is similar to Imps (HMaG). You must drop the item on the ground. They will pick the item up, watch it for a few seconds like the Piglin, and consume the item.$(br2)Unlike Imps, they are not able to locate the Ancient Debris.",
+
+  "dict.nffgirlsgaia.desc.friending.valkyrie": "To win the trust of a Valkyrie, you must pass her tough trial through dueling. Strike her with a lightning to show you're ready. Each time you reduce the Valkyrie's HP by 20, the HP will be locked until you perform a required attack, including Sword attack, Axe attack, Arrow shooting, Trident throwing or lightning strike. You'll succeed only after you finally defeat the Valkyrie.",
+  "dict.nffgirlsgaia.desc.friending.valkyrie_1": "During the dueling, the Valkyrie will shoot fire, ice and lightning magic bullets besides sword attack, some of which can even break the terrain. If you cannot break the HP-lock within 90 seconds, you'll be punished with a very powerful lightning. Remember that you could die for any tiniest error!",
+  "dict.nffgirlsgaia.desc.friending.valkyrie_2": "After being a partner, the Valkyrie can cast powerful magics when equipping a staff, and can be healed with the Apple, Cookie, Lemon, Pumpkin Pie and Lemon Pie. A Golden Apple can fully recover the health.",
+
+  "dict.nffgirlsgaia.desc.friending.werecat": "To get friendly with a Werecat, you need to give them items by right-clicking.$(br2)As the progress increases, they will get Strength effect. Each 20% progress will provide 1 level of the effect. Take extra care when you're almost done!",
+
+  "dict.nffgirlsgaia.desc.friending.witch": "To get friendly with a Witch, you must first give them 5 different positive effects without hurting them, before giving items.",
+  "dict.nffgirlsgaia.desc.friending.witch_1": "After getting friendly, the Witch can either walk or fly (with a Broom on the offhand). In combat, they can attack the enemies and support allies with different splash potions. The strengths of the potion effects depend on their attributes. Attack Damage attribute boosts the healing/damage amount and effect duration, while Poison Aspect attribute (provided by baubles) boosts the effect level (both positive and negative).",
+  "dict.nffgirlsgaia.desc.friending.witch_2": "In addition, when you're drowning, burning or in the darkness, they will also throw the corresponding potion to help you out.",
+
+  "dict.nffgirlsgaia.desc.friending.yuki_onna": "To get friendly with a Yuki-Onna, you need to give them items while resisting the horrible snowstorm. Their surrounding snowstorm will cause a high level of Slowness as well as consistent damage to any creatures inside, and can also block your view. So, get well-prepared before entering the storm.",
+  "dict.nffgirlsgaia.desc.friending.yuki_onna_1": "After friending, if you equip them a fan, the Yuki-Onna will be able to fight with powerful snowstorm magic.$(br2)The Yuki-Onna can be healed with Snowball, Snow Block and Pumpkin Pie. A Golden Apple can fully recover the health."
 }

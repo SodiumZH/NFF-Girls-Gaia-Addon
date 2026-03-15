@@ -1,0 +1,20 @@
+{
+  "category": "nffgirls:friending_gaia",
+  "name": "entity.grimoireofgaia.yuki_onna",
+  "icon": "nffgirlsgaia:textures/book/icon_yuki_onna.png",
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "nffgirlsgaia:gaia_yuki_onna",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.yuki_onna"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.yuki_onna_1"
+    }
+  ]
+}
