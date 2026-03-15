@@ -6,5 +6,6 @@ The Harpy is a common creature found in the Plain, Forest and Badlands.
 <NEWLINE>
 The method of getting friendly with the Harpy is similar to their HMaG variants. To get friendly with a Harpy,
 instead dropping the item on the ground, you need to directly give them items by right-clicking.
+<NEWLINE>
 As the progress increases, they will get Strength effect. Each 20% progress will
 provide 1 level of the effect. Take extra care when you're almost done!

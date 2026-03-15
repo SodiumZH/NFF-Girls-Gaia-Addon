@@ -1,0 +1,11 @@
+{
+  "category": "nffgirls:effects",
+  "name": "effect.nffgirlsgaia.cobweb_affinity",
+  "icon": "nffgirlsgaia:textures/mob_effect/cobweb_affinity.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.effect.cobweb_affinity"
+    }
+  ]
+}

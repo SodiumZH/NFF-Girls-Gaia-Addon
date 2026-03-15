@@ -16,7 +16,9 @@
 <NEWLINE>
 期间无法赠予礼物，但不会打断友好化
 <NEWLINE>
-过程。
+过程。给予的的物品种类可以在
+<NEWLINE>
+JEI选项卡中查询。
 <NEWLINE>
     杀人蜂友好化成功后，可以定制主
 <NEWLINE>

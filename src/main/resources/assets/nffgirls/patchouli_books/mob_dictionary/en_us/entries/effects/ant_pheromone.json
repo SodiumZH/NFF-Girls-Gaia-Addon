@@ -1,0 +1,11 @@
+{
+  "category": "nffgirls:effects",
+  "name": "effect.nffgirlsgaia.ant_pheromone",
+  "icon": "nffgirlsgaia:textures/mob_effect/ant_pheromone.png",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.effect.ant_pheromone"
+    }
+  ]
+}

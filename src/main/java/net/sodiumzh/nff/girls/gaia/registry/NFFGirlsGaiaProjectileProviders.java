@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -409,13 +410,23 @@ public class NFFGirlsGaiaProjectileProviders {
                 if (tamed == null) { proj.discard(); return; }
                 if (ehs.getEntity() instanceof LivingEntity living && tamed.isAllyTo(living)) {
                     living.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 60 * 20));
+                    living.playSound(SoundEvents.ENCHANTMENT_TABLE_USE);
                     NFUParticleStatics.sendGlintParticlesToEntityDefault(living);
                 }
                 proj.discard();
             })
             .setOnTick(proj -> {
                 EntityComponentAPI.getDynamicDataComponent(proj).getVariable("target", Entity.class).ifPresent(e -> {
-                    if (e.isAlive())
+                    // Add a hit check tolerance, as there's an issue that the projectile flashes on the screen
+                    // maybe due to hit check
+                    if (e instanceof LivingEntity le &&
+                        NFUMathStatics.getBoxSurfaceDistSqr(e.getBoundingBox(), proj.getBoundingBox()) < 0.25d) {
+                        le.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 60 * 20));
+                        le.playSound(SoundEvents.ENCHANTMENT_TABLE_USE);
+                        NFUParticleStatics.sendGlintParticlesToEntityDefault(le);
+                        proj.discard();
+                    }
+                    else if (e.isAlive())
                         proj.setVelocitySynched(e.getEyePosition().subtract(proj.getEyePosition()).normalize().scale(0.2d));
                 });
             });
