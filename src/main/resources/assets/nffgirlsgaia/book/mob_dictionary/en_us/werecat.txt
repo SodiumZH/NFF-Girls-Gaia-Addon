@@ -2,8 +2,7 @@
 <NEWLINE>
 <NEWLINE>
 <NEWLINE>
-To get friendly with a Werecat, you need to give them items by right-clicking. Accepted items are
-shown in the JEI tab.
+To get friendly with a Werecat, you need to give them items by right-clicking.
 <NEWLINE>
 As the progress increases, they will get Strength effect. Each 20% progress will
 provide 1 level of the effect. Take extra care when you're almost done!

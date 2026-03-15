@@ -6,7 +6,7 @@ To get friendly with a Yuki-Onna, you need to give them items while resisting th
 Their surrounding snowstorm will cause a high level of Slowness as well as consistent damage to any creatures inside,
 and can also block your view. So, get well-prepared before entering the storm.
 <NEWLINE>
-They love the Golden Apple, Golden Tropical Fish and HMaG berries. It also receives the Diamond, Emerald, Lapis Lazuli and Blue Ice.
+
 <NEWLINE>
 After friending, if you equip them a fan, the Yuki-Onna will be able to fight with powerful snowstorm magic.
 <NEWLINE>
