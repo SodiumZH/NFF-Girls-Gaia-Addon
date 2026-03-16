@@ -1,14 +1,15 @@
 <NEWLINE>
-注：对于通过给予物品友好化的生物，其接
+Citadel手册已过期，请使用Patchouli。
 <NEWLINE>
-受的物品种类可以在JEI“NFF: Girls -
+将该物品进行合成可转换成新版NFF: Girls书。
 <NEWLINE>
-友好化用物品”选项卡中查询。
 <NEWLINE>
-用特定治疗物品右键您的生物可以恢复生命
 <NEWLINE>
-值。可用的物品种类可以在JEI“NFF:
 <NEWLINE>
-Girls - 治疗用物品”选项卡中查询。
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
 
 
