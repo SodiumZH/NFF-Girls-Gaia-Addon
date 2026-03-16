@@ -1,0 +1,16 @@
+{
+  "category": "nffgirls:friending_gaia",
+  "name": "entity.grimoireofgaia.mermaid",
+  "icon": "nffgirlsgaia:textures/book/icon_mermaid.png",
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "nffgirlsgaia:gaia_mermaid",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.mermaid"
+    }
+  ]
+}
