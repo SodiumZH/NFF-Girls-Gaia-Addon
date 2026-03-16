@@ -192,6 +192,8 @@ dependencies {
 
     implementation fg.deobf("curse.maven:hmag-537613:6198467")
     implementation fg.deobf("curse.maven:gog4-228948:7187135")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE")
 
 	implementation fg.deobf("curse.maven:jade-324717:6106101")
     implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:5057220")
