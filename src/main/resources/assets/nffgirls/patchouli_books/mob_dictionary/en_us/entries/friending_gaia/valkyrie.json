@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:entity",
-      "entity": "nffgirlsgaia:gaia_valkyrie",
+      "entity": "grimoireofgaia:valkyrie",
       "scale": 0.75
     },
     {

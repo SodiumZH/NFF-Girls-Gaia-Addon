@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:entity",
-      "entity": "nffgirlsgaia:gaia_werecat",
+      "entity": "grimoireofgaia:werecat",
       "scale": 0.75
     },
     {

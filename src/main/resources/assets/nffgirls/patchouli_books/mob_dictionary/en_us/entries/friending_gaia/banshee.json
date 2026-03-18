@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:entity",
-      "entity": "nffgirlsgaia:gaia_banshee",
+      "entity": "grimoireofgaia:banshee",
       "scale": 0.75
     },
     {

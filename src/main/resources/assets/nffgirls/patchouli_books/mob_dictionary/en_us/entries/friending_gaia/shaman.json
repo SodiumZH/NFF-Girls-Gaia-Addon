@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:entity",
-      "entity": "nffgirlsgaia:gaia_shaman",
+      "entity": "grimoireofgaia:shaman",
       "scale": 0.75
     },
     {
