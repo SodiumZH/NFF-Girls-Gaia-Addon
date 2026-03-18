@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:entity",
-      "entity": "nffgirlsgaia:gaia_yuki_onna",
+      "entity": "grimoireofgaia:yuki_onna",
       "scale": 0.75
     },
     {

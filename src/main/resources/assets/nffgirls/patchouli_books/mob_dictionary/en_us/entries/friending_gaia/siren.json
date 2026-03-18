@@ -1,0 +1,16 @@
+{
+  "category": "nffgirls:friending_gaia",
+  "name": "entity.grimoireofgaia.siren",
+  "icon": "nffgirlsgaia:textures/book/icon_siren.png",
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "grimoireofgaia:siren",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.siren"
+    }
+  ]
+}

@@ -32,6 +32,13 @@
   "desc.nffgirlsgaia.reduces_atk": "攻击伤害 -%1$d",
   "desc.nffgirlsgaia.monster_feed": "用在自己的NFF生物上，提供%1$d经验.",
 
+  "dict.nffgirls.title_friending_gaia": "化敌为友 - 盖亚魔典",
+  "dict.nffgirls.title_friending_gaia.desc": "与盖亚魔典怪物娘化敌为友的方法。$(br2)查询JEI选项卡以查找可用于友好化的物品列表。打开JEI GUI -> 单击顶部横条显示全部选项卡 -> 选择“NFF: Girls - 友好化用物品” -> 查找目标生物。",
+
+  "dict.nffgirlsgaia.desc.friending.ant": "工兵蚁是蚁穴中的普通成员，生活在沙漠中。在沙漠中你能偶尔看到地面上的蚁丘，敲击蚁丘就能将工兵蚁引出来。要与工兵蚁变得友好，你需要将物品丢到地上，工兵蚁会像猪灵一样将物品捡起来，端详一会后收下并增加进度。友好化后，工兵蚁会定期向你附加蚂蚁信息素效果，拥有这个效果时蚂蚁类生物会对你中立。",
+
+  "dict.nffgirlsgaia.desc.friending.arachne": "要与阿拉克涅变得友好，你需要将自己粘在蜘蛛网上的同时给予其物品。友好化后，阿拉克涅能够让你在蜘蛛网中来去自如。",
+
   "dict.nffgirlsgaia.desc.friending.banshee": "女鬼是一种无实体的妖灵，能够轻易穿过固体方块。她们会在晚上飞行在高原的天空中，但在太阳下面会很快消失。$(br2)友好化女鬼的方法与HMaG的报丧女妖相同。首先需要在周围放上至少8个凋零玫瑰，而且自己也需要带有凋零效果，随后可以给予物品。给予的物品种类可以在JEI选项卡中查询。",
   "dict.nffgirlsgaia.desc.friending.banshee_1": "在友好化后，女鬼仍然会在阳光下消失，但这可以通过装备一个抵抗护符或灵魂护符来避免。",
 
@@ -43,6 +50,8 @@
 
   "dict.nffgirlsgaia.desc.friending.dullahan": "无头骑士是一种提着自己头颅的吓人生物，能够在高原群系中找到。无头骑士拿着一把诅咒之剑作为武器，但这把剑并没有什么特殊效果。$(br2)友好化无头骑士的方法与其HMaG变种相同，可以在携带亡灵亲和效果时给予物品。给予的物品种类可以在JEI选项卡中查询。",
 
+  "dict.nffgirlsgaia.desc.friending.ender_dragon_girl": "末影龙女是一种出现在末地的末影人变种。友好化末影龙女的方法与HMaG末影处刑者相似，需要先对眼将其激怒，随后在承受其攻击的同时给予物品。",
+
   "dict.nffgirlsgaia.desc.friending.harpy": "鹰身女妖是一种常见的生物，在平原、森林和恶地群系中很容易找到。友好化鹰身女妖的方法与其HMaG变种相同。不同的是，你需要右键直接给与物品而不是丢在地上。随着进度上升，鹰身女妖会获得力量效果，每20%进度上升一级。所以当你快要成功的时候反而要格外小心。给予的物品种类可以在JEI选项卡中查询。",
   "dict.nffgirlsgaia.desc.friending.harpy_1": "",
 
@@ -53,7 +62,7 @@
   "dict.nffgirlsgaia.desc.friending.shaman": "要使萨满变得友好，你需要首先同时付与其5个不同的正面效果且不能造成伤害，随后给予物品。",
   "dict.nffgirlsgaia.desc.friending.shaman_1": "在友好化后，萨满既可以近战，也可以投掷药水攻击，取决于与敌人的距离；同时能够投掷药水支援友方。药水效果的强度取决于其属性值，攻击力影响治疗/伤害量及效果持续时间，而毒附加属性（一些饰品提供）影响效果等级。另外，当你处于溺水、着火状态或者在黑暗中时，萨满也会投掷药水帮你脱困。",
   "dict.nffgirlsgaia.desc.friending.shaman_2": "",
-
+  "dict.nffgirlsgaia.desc.friending.siren": "要与塞壬变得友好，你需要在她周围8x6x8范围内放置一个正在播放的唱片机，同时给予物品。如果塞壬没有听到音乐，那么进度将会快速下降。因为塞壬会移动，需要的唱片机很可能不止一个。",
   "dict.nffgirlsgaia.desc.friending.spriggan": "树精是植物的精灵，能够在晚上的森林群系找到。不同于树妖，树精更加不友善且凶猛，而且在攻击目标时能够隐身。$(br2)要使树精变得友好，你需要首先投掷药水付与其再生III效果超过10秒，随后给予物品。",
   "dict.nffgirlsgaia.desc.friending.spriggan_1": "在友好化后，树精不会再隐身。",
 
@@ -70,7 +79,7 @@
   "dict.nffgirlsgaia.desc.friending.witch_2": "",
 
   "dict.nffgirlsgaia.desc.friending.yuki_onna": "要与雪女变得友好，你需要在承受恐怖暴风雪的同时给予物品。雪女身边环绕的暴风雪能使其中的任何生物受到高等级的缓慢效果，并持续受到伤害，而且可以严重阻挡你的视野。所以，在踏入暴风雪之前，要做好万全的准备。",
-  "dict.nffgirlsgaia.desc.friending.yuki_onna_1": "在友好化后，如果装备扇子，雪女将能够施放强力的暴风雪魔法攻击。雪女可以使用雪球、雪块和南瓜派治疗。一个金苹果可以将生命值完全回满。",
+  "dict.nffgirlsgaia.desc.friending.yuki_onna_1": "在友好化后，如果装备扇子，雪女将能够施放强力的暴风雪魔法攻击。",
 
   "dict.nffgirlsgaia.desc.effect.ant_pheromone": "由友好化的工兵蚁付与。蚂蚁类生物会拥有此效果的玩家/生物中立。(实体标签： \"nffgirlsgaia:ant_pheromone_affected\")",
   "dict.nffgirlsgaia.desc.effect.cobweb_affinity": "由友好化的阿拉克涅付与。拥有此效果时不会被蛛网粘住。"
