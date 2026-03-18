@@ -52,6 +52,7 @@ public class  NFFGirlsGaiaItems {
             "dict.nffgirlsgaia.title", "nffgirlsgaia:book/mob_dictionary/"), NFFGirlsTabs.MAIN_TAB)
             .description(NFUInfoStatics.createText("Citadel book is outdated. Craft to convert to new Patchouli-based NFF: Girls book, and all contents " +
                 "are integrated in that book.")));
+    static {NO_TAB.add(MOB_DICT);}
 
 
     /*@SubscribeEvent

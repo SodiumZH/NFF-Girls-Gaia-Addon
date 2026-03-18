@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:entity",
-      "entity": "nffgirlsgaia:gaia_mermaid",
+      "entity": "grimoireofgaia:mermaid",
       "scale": 0.75
     },
     {

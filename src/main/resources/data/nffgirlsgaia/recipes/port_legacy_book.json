@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:crafting_shapeless",
+
+	"ingredients":[
+		{
+		"item": "nffgirlsgaia:mob_dictionary"
+		}
+	],
+
+	"result":{
+		"item": "nffgirls:mob_dictionary",
+		"count": 1
+	}
+}

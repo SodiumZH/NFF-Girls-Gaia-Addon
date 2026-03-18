@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:entity",
-      "entity": "nffgirlsgaia:gaia_dullahan",
+      "entity": "grimoireofgaia:dullahan",
       "scale": 0.75
     },
     {

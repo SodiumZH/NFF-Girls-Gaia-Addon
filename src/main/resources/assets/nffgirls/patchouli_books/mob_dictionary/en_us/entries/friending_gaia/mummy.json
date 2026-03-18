@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:entity",
-      "entity": "nffgirlsgaia:gaia_mummy",
+      "entity": "grimoireofgaia:mummy",
       "scale": 0.75
     },
     {
