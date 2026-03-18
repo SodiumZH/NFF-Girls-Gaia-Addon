@@ -1,0 +1,16 @@
+{
+  "category": "nffgirls:friending_gaia",
+  "name": "entity.grimoireofgaia.mummy",
+  "icon": "nffgirlsgaia:textures/book/icon_mummy.png",
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "grimoireofgaia:mummy",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.mummy"
+    }
+  ]
+}

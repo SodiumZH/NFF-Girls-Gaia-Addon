@@ -1,0 +1,16 @@
+{
+  "category": "nffgirls:friending_gaia",
+  "name": "entity.grimoireofgaia.arachne",
+  "icon": "nffgirlsgaia:textures/book/icon_arachne.png",
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "grimoireofgaia:arachne",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.arachne"
+    }
+  ]
+}

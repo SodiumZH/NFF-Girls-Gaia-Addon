@@ -1,0 +1,16 @@
+{
+  "category": "nffgirls:friending_gaia",
+  "name": "entity.grimoireofgaia.cecaelia",
+  "icon": "nffgirlsgaia:textures/book/icon_cecaelia.png",
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "grimoireofgaia:cecaelia",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.cecaelia"
+    }
+  ]
+}
