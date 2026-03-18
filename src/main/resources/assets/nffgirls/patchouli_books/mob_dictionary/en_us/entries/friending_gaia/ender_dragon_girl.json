@@ -1,0 +1,16 @@
+{
+  "category": "nffgirls:friending_gaia",
+  "name": "entity.grimoireofgaia.ender_dragon_girl",
+  "icon": "nffgirlsgaia:textures/book/icon_ender_dragon_girl.png",
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "grimoireofgaia:ender_dragon_girl",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.ender_dragon_girl"
+    }
+  ]
+}

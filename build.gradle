@@ -188,10 +188,12 @@ dependencies {
     implementation fg.deobf("blank:nfulib-${minecraft_version}:${nfu_version}")
 	implementation fg.deobf("blank:nffservices-${minecraft_version}:${services_version}")
     implementation fg.deobf("blank:nffgirls-${minecraft_version}:${girls_version}")
-    implementation fg.deobf("blank:hmag_fox:0.01")
+    //implementation fg.deobf("blank:hmag_fox:0.01")
 
     implementation fg.deobf("curse.maven:hmag-537613:6198467")
     implementation fg.deobf("curse.maven:gog4-228948:7187135")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE")
 
 	implementation fg.deobf("curse.maven:jade-324717:6106101")
     implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:5057220")
@@ -203,11 +205,12 @@ dependencies {
 	implementation fg.deobf("curse.maven:citadel-331936:6002521")
 	implementation fg.deobf("curse.maven:alexsmobs-426558:5698791")
 	implementation fg.deobf("curse.maven:iceandfire-264231:5633453")
-    //implementation fg.deobf("curse.maven:enigmatic-legacy-336184:5600004")
+    implementation fg.deobf("curse.maven:enigmatic-legacy-336184:5600004")
     implementation fg.deobf("curse.maven:curios-309927:6238756")
     implementation fg.deobf("curse.maven:patchouli-306770:6164575")
     implementation fg.deobf("curse.maven:caelus-308989:5281700")
     implementation fg.deobf("curse.maven:goety-586095:7235149")
+    implementation fg.deobf("curse.maven:spark-361579:4738952")
     //implementation fg.deobf("blank:moonlight-1.20-2.14.14")
     //implementation fg.deobf("blank:dummmmmmy-1.20:2.0.8")
 
