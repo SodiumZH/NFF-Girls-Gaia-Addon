@@ -37,4 +37,6 @@ public class NFFGirlsGaiaTags {
         NFFGirlsGaia.MOD_ID, "can_disable_day_spawn");
     public static final TagKey<EntityType<?>> NEUTRAL_IN_BRIGHT_PLACES = NFUTagStatics.createEntityTypeTag(
         NFFGirlsGaia.MOD_ID, "neutral_in_bright_places");
+    public static final TagKey<EntityType<?>> ANT_PHEROMONE_AFFECTED = NFUTagStatics.createEntityTypeTag(
+        NFFGirlsGaia.MOD_ID, "ant_pheromone_affected");
  }

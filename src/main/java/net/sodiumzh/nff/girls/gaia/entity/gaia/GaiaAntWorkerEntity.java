@@ -17,7 +17,6 @@ import net.minecraft.world.level.Level;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
-import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaAiGoalGroups;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEffects;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaProjectileProviders;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;

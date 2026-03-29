@@ -5,6 +5,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -28,7 +29,6 @@ import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsFourBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsTwoBaublesInventoryMenu;
-import net.sodiumzh.nff.girls.inventory.NFFGirlsThreeBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFWaterAvoidingRandomStrollGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
@@ -106,7 +106,7 @@ public class GaiaEnderDragonGirlEntity extends EnderDragonGirl implements INFFGi
         float input = this.getBaseDamage(source, damage);
         if (this.isInvulnerableTo(source)) {
             return false;
-        } else if (source.isIndirect()) {
+        } else if (source instanceof IndirectEntityDamageSource) {
             Entity entity = source.getDirectEntity();
             boolean flag1;
             if (entity instanceof ThrownPotion) {
