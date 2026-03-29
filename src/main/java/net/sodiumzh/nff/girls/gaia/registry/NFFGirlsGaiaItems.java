@@ -23,7 +23,6 @@ import java.util.function.Supplier;
 public class  NFFGirlsGaiaItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NFFGirlsGaia.MOD_ID);
-    public static final HashSet<RegistryObject<? extends Item>> NO_TAB = new HashSet<>();
 
     public static RegistryObject<Item> registerModDependent(String path, String dependingModId, Supplier<? extends Item> itemSupplier, @Nullable CreativeModeTab tab) {
         Item.Properties fallbackProperties = tab != null ? new Item.Properties().tab(tab) : new Item.Properties();
@@ -52,7 +51,6 @@ public class  NFFGirlsGaiaItems {
             "dict.nffgirlsgaia.title", "nffgirlsgaia:book/mob_dictionary/")
             .description(NFUInfoStatics.createText("Citadel book is outdated. Craft to convert to new Patchouli-based NFF: Girls book, and all contents " +
                 "are integrated in that book.")), NFFGirlsTabs.MAIN_TAB);
-    static {NO_TAB.add(MOB_DICT);}
 
 
     /*@SubscribeEvent

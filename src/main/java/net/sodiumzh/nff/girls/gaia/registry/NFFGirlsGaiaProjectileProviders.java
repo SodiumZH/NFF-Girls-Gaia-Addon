@@ -431,19 +431,19 @@ public class NFFGirlsGaiaProjectileProviders {
             .setHitIgnoresOwner(true)
             .setOnHitBlock((proj, hs) -> {
                 BlockPos pos = NFUMathStatics.getBlockPos(proj.getBoundingBox().getCenter());
-                if (proj.level().getBlockState(pos).is(Blocks.AIR))
-                    proj.level().setBlock(pos, Blocks.COBWEB.defaultBlockState(), 1 + 2);
+                if (proj.level.getBlockState(pos).is(Blocks.AIR))
+                    proj.level.setBlock(pos, Blocks.COBWEB.defaultBlockState(), 1 + 2);
                 proj.discard();
             })
             .setOnHitLiving((proj, ehs) -> {
                 INFFGirlsTamed tamed = INFFGirlsTamed.get(owner).orElse(null);
                 if (tamed == null) { proj.discard(); return; }
                 if (ehs.getEntity() instanceof LivingEntity living && !tamed.isAllyTo(living)) {
-                    living.hurt(living.level().damageSources().indirectMagic(proj, owner),
+                    living.hurt(DamageSource.indirectMagic(proj, owner),
                         (float) owner.getAttributeValue(Attributes.ATTACK_DAMAGE) / 2f);
                     BlockPos pos = NFUMathStatics.getBlockPos(living.getBoundingBox().getCenter());
-                    if (proj.level().getBlockState(pos).is(Blocks.AIR))
-                        proj.level().setBlock(pos, Blocks.COBWEB.defaultBlockState(), 1 + 2);
+                    if (proj.level.getBlockState(pos).is(Blocks.AIR))
+                        proj.level.setBlock(pos, Blocks.COBWEB.defaultBlockState(), 1 + 2);
                     proj.discard();
                 }
             });
