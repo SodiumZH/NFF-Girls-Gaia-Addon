@@ -49,9 +49,9 @@ public class  NFFGirlsGaiaItems {
     public static final RegistryObject<Item> MOB_DICT = registerModDependent("mob_dictionary", "citadel",
         () -> new CitadelBasedMobDictionaryItem(new Item.Properties().tab(NFFGirlsTabs.MAIN_TAB),
             new ResourceLocation("nffgirlsgaia","book/mob_dictionary/root.json"),
-            "dict.nffgirlsgaia.title", "nffgirlsgaia:book/mob_dictionary/"), NFFGirlsTabs.MAIN_TAB)
+            "dict.nffgirlsgaia.title", "nffgirlsgaia:book/mob_dictionary/")
             .description(NFUInfoStatics.createText("Citadel book is outdated. Craft to convert to new Patchouli-based NFF: Girls book, and all contents " +
-                "are integrated in that book.")));
+                "are integrated in that book.")), NFFGirlsTabs.MAIN_TAB);
     static {NO_TAB.add(MOB_DICT);}
 
 

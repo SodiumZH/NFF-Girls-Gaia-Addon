@@ -49,7 +49,7 @@ public class AntPheromoneEffect extends MobEffect {
                 && mob.getType().is(NFFGirlsGaiaTags.ANT_PHEROMONE_AFFECTED)    // with tag
                 && mob.getTarget() == null)  // when idle
             {
-                Optional<LivingEntity> e = mob.level().getEntitiesOfClass(LivingEntity.class, event.getEntity().getBoundingBox().inflate(8d, 8d, 8d))
+                Optional<LivingEntity> e = mob.level.getEntitiesOfClass(LivingEntity.class, event.getEntity().getBoundingBox().inflate(8d, 8d, 8d))
                     .stream()
                     .filter(l -> l.hasEffect(NFFGirlsGaiaEffects.ANT_PHEROMONE.get())
                         && EntityComponentAPI.getComponentManager(mob).getSubComponent("default_anger_handler", NFUEntityComponents.DEFAULT_ANGER_HANDLER.get())
