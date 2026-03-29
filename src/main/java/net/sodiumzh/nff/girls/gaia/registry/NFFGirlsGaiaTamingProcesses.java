@@ -1,6 +1,7 @@
 package net.sodiumzh.nff.girls.gaia.registry;
 
 import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.HmagAlrauneTamingProcess;
+import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.HmagEnderExecutorTamingProcess;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.*;
 import net.sodiumzh.nff.girls.registry.NFFGirlsFriendingItems;
@@ -32,6 +33,8 @@ public class NFFGirlsGaiaTamingProcesses {
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_WITCH = TAMING_PROCESSES.register(
         "gaia_witch", () -> new GaiaWitchProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.WITCH));
 
+    public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_ENDERMAN_B = TAMING_PROCESSES.register(
+        "gaia_enderman_b", () -> new HmagEnderExecutorTamingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.ENDERMAN_B));
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_ANT_WORKER = TAMING_PROCESSES.register(
         "gaia_ant_worker", () -> new GaiaAntWorkerFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.ARTHROPOD));
