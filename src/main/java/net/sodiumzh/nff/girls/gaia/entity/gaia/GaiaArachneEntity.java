@@ -61,7 +61,7 @@ public class GaiaArachneEntity extends Arachne implements INFFGirlsTamed, IBlock
 
     public GaiaArachneEntity(EntityType<? extends GaiaArachneEntity> entityType, Level level) {
         super(entityType, level);
-        this.navigation = new GaiaArachneEntity.Navigation(this, this.level());
+        this.navigation = new GaiaArachneEntity.Navigation(this, this.level);
         //this.entityData.define(RARE_VARIANT, -1);
     }
 
@@ -148,7 +148,7 @@ public class GaiaArachneEntity extends Arachne implements INFFGirlsTamed, IBlock
         proj.shootTo(target.getBoundingBox().getCenter(), 0.8f, 1f);
         this.swing(InteractionHand.OFF_HAND);
         this.playSound(GaiaSounds.GAIA_SHOOT.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-        this.level().addFreshEntity(proj);
+        this.level.addFreshEntity(proj);
     }
 
 

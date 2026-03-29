@@ -136,7 +136,7 @@ public class NFFGirlsGaiaEntityEventListeners
 		else if (event.getEntity() instanceof Mob mob
 			&& mob.getType().equals(EntityType.CAVE_SPIDER))
 		{
-			if (!mob.level().getEntitiesOfClass(GaiaArachneEntity.class, mob.getBoundingBox().inflate(3d, 3d, 3d)).isEmpty()
+			if (!mob.level.getEntitiesOfClass(GaiaArachneEntity.class, mob.getBoundingBox().inflate(3d, 3d, 3d)).isEmpty()
 				&& NFUReflectionStatics.isRunningInClass(GaiaArachneEntity.class)) {
 				event.setCanceled(true); return;
 			}
