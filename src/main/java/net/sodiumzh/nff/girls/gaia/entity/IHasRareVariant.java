@@ -57,7 +57,7 @@ public interface IHasRareVariant {
             ++i;
         }
         if (this instanceof Entity e)
-            return sel.select(e.level().getRandom());
+            return sel.select(e.level.getRandom());
         else return sel.select();
     }
 

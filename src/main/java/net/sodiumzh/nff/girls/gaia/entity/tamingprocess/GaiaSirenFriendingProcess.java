@@ -7,6 +7,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.JukeboxBlock;
 import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
 import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
 import net.sodiumzh.nff.services.entity.taming.CNFFTamable;
@@ -54,7 +55,7 @@ public class GaiaSirenFriendingProcess extends TamingProcessItemGivingProgress {
     }
 
     private static final Method METHOD_IS_JUKEBOX_PLAYING =
-        NFUReflectionStatics.findMethodIfDeclared(JukeboxBlockEntity.class, "m_240053_").orElseThrow();
+        NFUReflectionStatics.findMethodIfDeclared(JukeboxBlockEntity.class, "m_240053_", BlockState.class, JukeboxBlockEntity.class).orElseThrow();
 
 
     protected static boolean isJukeboxPlaying(JukeboxBlockEntity jukebox) {

@@ -100,7 +100,7 @@ public class GaiaSirenEntity extends Siren implements INFFGirlsTamed, IBlocksGai
     public void aiStep() {
         super.aiStep();
         /* Handle combat AI */
-        if (!this.level().isClientSide)
+        if (!this.level.isClientSide)
         {
             if (justShot)
             {
