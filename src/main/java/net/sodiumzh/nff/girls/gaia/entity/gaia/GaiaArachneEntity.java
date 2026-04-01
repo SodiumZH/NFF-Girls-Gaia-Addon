@@ -10,7 +10,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -51,6 +50,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Consumer;
 
 public class GaiaArachneEntity extends Arachne implements INFFGirlsTamed, IBlocksGaiaDynamicGoals {
@@ -190,7 +190,7 @@ public class GaiaArachneEntity extends Arachne implements INFFGirlsTamed, IBlock
     }
 
     @Override
-    protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance instance) {
+    protected void populateDefaultEquipmentSlots(DifficultyInstance instance) {
     }
 
     @Override

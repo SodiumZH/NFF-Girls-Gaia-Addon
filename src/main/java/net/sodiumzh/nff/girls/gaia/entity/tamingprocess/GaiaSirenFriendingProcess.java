@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
 import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
-import net.sodiumzh.nff.services.entity.taming.CNFFTamable;
+import net.sodiumzh.nff.services.entity.capability.CNFFTamable;
 import net.sodiumzh.nff.services.entity.taming.TamingProcessItemGivingProgress;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
 import net.sodiumzh.nfu.util.NFUReflectionStatics;
@@ -54,13 +54,8 @@ public class GaiaSirenFriendingProcess extends TamingProcessItemGivingProgress {
         CNFFTamable.get(mob).setAlwaysHostileTo(ongoing);
     }
 
-    private static final Method METHOD_IS_JUKEBOX_PLAYING =
-        NFUReflectionStatics.findMethodIfDeclared(JukeboxBlockEntity.class, "m_240053_", BlockState.class, JukeboxBlockEntity.class).orElseThrow();
-
-
     protected static boolean isJukeboxPlaying(JukeboxBlockEntity jukebox) {
-        return NFUReflectionStatics.invokeMethod(METHOD_IS_JUKEBOX_PLAYING, null, jukebox.getBlockState(), jukebox)
-            .castTo(Boolean.class);
+        return jukebox.getRecord() != null && !jukebox.getRecord().isEmpty();
     }
 
     protected boolean hasRunningJukebox(Mob mob) {

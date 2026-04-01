@@ -401,7 +401,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 if (tamed == null) { proj.discard(); return; }
                 if (ehs.getEntity() instanceof LivingEntity living && tamed.isAllyTo(living)) {
                     living.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 60 * 20));
-                    living.playSound(SoundEvents.ENCHANTMENT_TABLE_USE);
+                    living.playSound(SoundEvents.ENCHANTMENT_TABLE_USE, 1.0f, 1.0f);
                     NFUParticleStatics.sendGlintParticlesToEntityDefault(living);
                 }
                 proj.discard();
@@ -413,7 +413,7 @@ public class NFFGirlsGaiaProjectileProviders {
                     if (e instanceof LivingEntity le &&
                         NFUMathStatics.getBoxSurfaceDistSqr(e.getBoundingBox(), proj.getBoundingBox()) < 0.25d) {
                         le.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 60 * 20));
-                        le.playSound(SoundEvents.ENCHANTMENT_TABLE_USE);
+                        le.playSound(SoundEvents.ENCHANTMENT_TABLE_USE, 1.0f, 1.0f);
                         NFUParticleStatics.sendGlintParticlesToEntityDefault(le);
                         proj.discard();
                     }
