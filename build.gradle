@@ -186,7 +186,8 @@ dependencies {
     implementation fg.deobf("blank:nfulib-${minecraft_version}:${nfu_version}")
     implementation fg.deobf("blank:nffservices-${minecraft_version}:${services_version}")
     implementation fg.deobf("blank:nffgirls-${minecraft_version}:${girls_version_filename}")
-
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}")
     implementation fg.deobf("curse.maven:hmag-537613:5391730")
 
     implementation fg.deobf("curse.maven:jade-324717:4082408")
@@ -212,7 +213,7 @@ tasks.named('processResources', ProcessResources).configure {
             mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
             mod_authors: mod_authors, mod_description: mod_description,
             girls_version_range: girls_version_range, services_version_range: services_version_range,
-            gaia_version_range: gaia_version_range
+            gaia_version_range: gaia_version_range, jei_version_range: jei_version_range, patchouli_version_range: patchouli_version_range
     ]
     inputs.properties replaceProperties
 
