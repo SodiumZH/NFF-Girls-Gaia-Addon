@@ -6,10 +6,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaItems;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.gaia.entity.IHasRareVariant;
 import net.sodiumzh.nfu.item.NFUItem;
+import net.sodiumzh.nff.girls.gaia.registry.*;
 
 public class EvilGrindstoneItem extends NFUItem {
 
@@ -34,7 +34,7 @@ public class EvilGrindstoneItem extends NFUItem {
             && hrv.isRareVariant())
         {
             hrv.setRareVariantID(-1);
-            return InteractionResult.sidedSuccess(player.level.isClientSide());
+            return InteractionResult.sidedSuccess(player.level().isClientSide());
         }
         return InteractionResult.PASS;
     }
