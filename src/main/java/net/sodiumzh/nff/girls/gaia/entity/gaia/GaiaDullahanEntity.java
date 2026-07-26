@@ -68,12 +68,6 @@ public class GaiaDullahanEntity extends Dullahan implements INFFGirlsTamed {
         return new NFFGirlsHandItemsFourBaublesDefaultInventoryMenu(containerId, playerInventory, container, this);
     }
 
-    public void readAdditionalSaveData(CompoundTag nbt) {
-        super.readAdditionalSaveData(nbt);
-        //NFFTamedStatics.readBefriendedCommonSaveData(this, nbt);
-        this.setInit();
-    }
-
     protected SoundEvent getAmbientSound() {
         return NFFGirlsSoundPresets.generalAmbient(super.getAmbientSound());
     }

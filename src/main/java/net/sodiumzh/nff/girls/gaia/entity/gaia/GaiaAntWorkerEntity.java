@@ -56,10 +56,10 @@ public class GaiaAntWorkerEntity extends AntWorker implements INFFGirlsTamed {
         Player owner = this.getOwnerInDimension();
 
         if (owner != null && this.hasLineOfSight(owner) && owner.distanceToSqr(this) <= 64d
-            && !EntityComponentAPI.getDefaultTimer(this).hasNamedTimer("shoot_pheromone_bullet"))
+            && !EntityComponentAPI.getDefaultTimer(this).hasGeneralTimer("shoot_pheromone_bullet"))
         {
             var projectile = NFFGirlsGaiaProjectileProviders.ANT_PHEROMONE_PROJECTILE.apply(this);
-            EntityComponentAPI.getDynamicDataComponent(projectile).putVariable("target", owner);
+            EntityComponentAPI.getDataComponent(projectile).putTransientVariable("target", owner);
             projectile.setPos(this.getEyePosition());
             projectile.shootTo(owner.getBoundingBox().getCenter(), 0.2f, 0f);
             this.level().addFreshEntity(projectile);

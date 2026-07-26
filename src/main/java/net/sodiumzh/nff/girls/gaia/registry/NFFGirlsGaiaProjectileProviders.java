@@ -414,7 +414,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 proj.discard();
             })
             .setOnTick(proj -> {
-                EntityComponentAPI.getDynamicDataComponent(proj).getVariable("target", Entity.class).ifPresent(e -> {
+                EntityComponentAPI.getDataComponent(proj).getVariable("target", Entity.class).ifPresent(e -> {
                     if (e.isAlive())
                         proj.setVelocitySynched(e.getEyePosition().subtract(proj.getEyePosition()).normalize().scale(0.2d));
                 });
