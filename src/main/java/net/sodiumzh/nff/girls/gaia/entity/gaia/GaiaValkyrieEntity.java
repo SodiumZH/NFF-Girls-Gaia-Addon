@@ -39,7 +39,9 @@ import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
 import net.sodiumzh.nfu.entity.NFUItemProjectileEntity;
+import net.sodiumzh.nfu.entity.component.EntityComponentAPI;
 import net.sodiumzh.nfu.math.RandomSelection;
+import net.sodiumzh.nfu.util.NFUEntityStatics;
 import net.sodiumzh.nfu.util.NFUMathStatics;
 import net.sodiumzh.nfu.util.NFUReflectionStatics;
 import org.jetbrains.annotations.Nullable;
@@ -164,12 +166,19 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
             this.getSoundSource(), 1.0F, this.getRandom().nextFloat() * 0.2F + 1.2F);
     }
 
-    /**
-     * Prevent super add-shield action
-     */
+
+
+     // For preventing super add-shield action
+    private boolean isInSuperAiStep = false;
+
     @Override
     public void aiStep() {
-        super.aiStep();
+        try {
+            isInSuperAiStep = true;
+            super.aiStep();
+        } finally {
+            isInSuperAiStep = false;
+        }
         // super.aiStep() may replace the offhand item with a shield. Correct it here.
         this.getAdditionalInventory().syncToMob(this);
         this.setAnnoyed(this.getTarget() != null);
@@ -189,14 +198,14 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
     @Override
     public void setItemSlot(EquipmentSlot pSlot, ItemStack pStack) {
         if (pSlot.equals(EquipmentSlot.OFFHAND) && pStack.is(GaiaRegistry.IRON_SHIELD.get())
-            && NFUReflectionStatics.isRunningInMethod(Valkyrie.class, "giveShield")) {
+            && isInSuperAiStep) {
             return;
         }
         super.setItemSlot(pSlot, pStack);
     }
 
     public boolean isAnnoyed() {
-        return this.getData().getAttackTarget() != null;
+        return NFUEntityStatics.getMobAttackTarget(this).isPresent();
     }
 /*
     private static final EntityDataAccessor<Integer> RARE_VARIANT =

@@ -5,7 +5,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
 import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
-import net.sodiumzh.nff.services.entity.taming.CNFFTamable;
+import net.sodiumzh.nff.services.entity.taming.NFFTamableComponent;
 import net.sodiumzh.nff.services.entity.taming.TamingProcessItemGivingProgress;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
 
@@ -22,7 +22,7 @@ public class GaiaWitchProcess extends TamingProcessItemGivingProgress {
     }
 
     @Override
-    public void tamableInit(CNFFTamable cnffTamable) {
+    public void tamableInit(NFFTamableComponent cnffTamable) {
 
     }
 

@@ -7,15 +7,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.JukeboxBlock;
 import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
 import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
 import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
-import net.sodiumzh.nff.services.entity.taming.CNFFTamable;
+import net.sodiumzh.nff.services.entity.taming.NFFTamableComponent;
 import net.sodiumzh.nff.services.entity.taming.TamingProcessItemGivingProgress;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
-import net.sodiumzh.nfu.util.NFUReflectionStatics;
 
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,7 +28,7 @@ public class GaiaSirenFriendingProcess extends TamingProcessItemGivingProgress {
     }
 
     @Override
-    public void tamableInit(CNFFTamable cnffTamable) {
+    public void tamableInit(NFFTamableComponent cnffTamable) {
 
     }
 
@@ -51,23 +48,15 @@ public class GaiaSirenFriendingProcess extends TamingProcessItemGivingProgress {
         if (!hasRunningJukebox(mob) && this.isInAnyProcess(mob)) {
             NFFGirlsTamingRules.tickContinuousProgressLoss(this, mob);
         }
-        CNFFTamable.get(mob).setAlwaysHostileTo(ongoing);
-    }
-
-    private static final Method METHOD_IS_JUKEBOX_PLAYING =
-        NFUReflectionStatics.findMethodIfDeclared(JukeboxBlockEntity.class, "m_240053_", BlockState.class, JukeboxBlockEntity.class).orElseThrow();
-
-
-    protected static boolean isJukeboxPlaying(JukeboxBlockEntity jukebox) {
-        return NFUReflectionStatics.invokeMethod(METHOD_IS_JUKEBOX_PLAYING, null, jukebox.getBlockState(), jukebox)
-            .castTo(Boolean.class);
+        NFFTamableComponent.getOrDefault(mob).setAlwaysHostileTo(ongoing);
     }
 
     protected boolean hasRunningJukebox(Mob mob) {
-        Level level = mob.level;
+        Level level = mob.level();
         return BlockPos.betweenClosedStream(mob.getBoundingBox().inflate(8d, 6d, 8d))
                 .filter(pos -> level.getBlockState(pos).is(Blocks.JUKEBOX))
                 .map(level::getBlockEntity)
-                .anyMatch(be -> be instanceof JukeboxBlockEntity j && isJukeboxPlaying(j));
+                .filter(be -> be instanceof JukeboxBlockEntity j && j.isRecordPlaying())
+                .count() == 1;
     }
 }
