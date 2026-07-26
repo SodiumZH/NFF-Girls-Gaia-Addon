@@ -1,0 +1,56 @@
+[
+  {
+    "level": 2,
+    "type": "sell",
+    "item": "minecraft:cobweb",
+    "amount": [4, 6],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "sell",
+    "item": "hmag:necrofiber",
+    "amount": 1,
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "sell",
+    "item": "hmag:crimson_cuticula",
+    "amount": 1,
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "grimoireofgaia:cave_spider_staff",
+    "amount": 1,
+    "price": [6, 10],
+    "maxUses": 1
+  },
+  {
+    "level": 5,
+    "type": "sell",
+    "item": "minecraft:cave_spider_spawn_egg",
+    "amount": 1,
+    "price": [64, 64],
+    "maxUses": 1,
+    "weight": 0.1
+  },
+
+  {
+    "comment": "============================== Compat below =============================="
+  },
+
+  {
+    "level": 4,
+    "type": "buy",
+    "item": "grimoireofgaia:weapon_book_nature",
+    "amount": 1,
+    "price": [4, 6],
+    "maxUses": 1
+  }
+]

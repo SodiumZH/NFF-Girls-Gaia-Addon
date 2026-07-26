@@ -1,0 +1,46 @@
+[
+  {
+    "level": 1,
+    "type": "buy",
+    "item": "minecraft:sugar",
+    "amount": [56, 64],
+    "price": 1,
+    "maxUses": 4
+  },
+  {
+    "level": 2,
+    "type": "buy",
+    "item": "minecraft:bone_meal",
+    "amount": [56, 64],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 2,
+    "type": "sell",
+    "item": "minecraft:slime_ball",
+    "amount": [4, 6],
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 3,
+    "type": "sell",
+    "item": "hmag:crimson_cuticula",
+    "amount": 1,
+    "price": 1,
+    "maxUses": 2
+  },
+  {
+    "level": 4,
+    "type": "sell",
+    "item": "hmag:mysterious_petal",
+    "amount": 1,
+    "price": 1,
+    "maxUses": 2
+  },
+
+  {
+    "comment": "============================== Compat below =============================="
+  }
+]

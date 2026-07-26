@@ -4,7 +4,3 @@
 <NEWLINE>
 To get friendly with a Cecaelia, you need to give them items while staying with them in the water.
 During the process, they will keep summoning vortexes, which will greatly disturb your actions.
-They love the Nautilus Shell and Heart of the Sea, and also receives cooked fishes.
-<NEWLINE>
-The Cecaelia can be healed with cooked fishes and Golden Carrot, and Dried Kelp can heal a little bit.
-A Golden Apple or Golden Tropical Fish can fully recover the health.

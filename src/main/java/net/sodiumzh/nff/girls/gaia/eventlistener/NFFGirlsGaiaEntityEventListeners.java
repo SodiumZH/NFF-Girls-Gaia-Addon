@@ -4,7 +4,6 @@ import gaia.GrimoireOfGaia;
 import gaia.capability.CapabilityHandler;
 import gaia.entity.AbstractAssistGaiaEntity;
 import gaia.entity.AbstractGaiaEntity;
-import gaia.entity.Arachne;
 import gaia.entity.type.IDayMob;
 import gaia.item.edible.MonsterFeedItem;
 import gaia.registry.GaiaRegistry;
@@ -180,6 +179,10 @@ public class NFFGirlsGaiaEntityEventListeners
 			event.getSpawnType().equals(MobSpawnType.NATURAL)) {
 			if (event.getEntity().getType().equals(GaiaRegistry.CECAELIA.getEntityType())
 				&& event.getEntity().getRandom().nextDouble() > NFFGirlsGaiaConfigs.ValueCache.Tweak.CECAELIA_SPAWN_RATE) {
+				event.setSpawnCancelled(true);
+				return;
+			} else if (event.getEntity().getType().equals(GaiaRegistry.BEHENDER.getEntityType())
+				&& event.getEntity().getRandom().nextDouble() > NFFGirlsGaiaConfigs.ValueCache.Tweak.BEHENDER_SPAWN_RATE) {
 				event.setSpawnCancelled(true);
 				return;
 			} else if (event.getEntity().getType().is(NFFGirlsGaiaTags.CAN_DISABLE_DAY_SPAWN)

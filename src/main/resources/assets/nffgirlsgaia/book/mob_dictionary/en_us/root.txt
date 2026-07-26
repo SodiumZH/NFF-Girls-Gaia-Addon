@@ -1,25 +1,9 @@
+Citadel book is outdated. Use Patchouli instead.
+<NEWLINE>
+This outdated book item can be converted to new book by crafting.
 <NEWLINE>
 <NEWLINE>
 <NEWLINE>
 <NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
-<NEWLINE>
+
+

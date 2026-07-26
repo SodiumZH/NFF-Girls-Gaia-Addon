@@ -56,7 +56,6 @@ public class GaiaSirenFriendingProcess extends TamingProcessItemGivingProgress {
         return BlockPos.betweenClosedStream(mob.getBoundingBox().inflate(8d, 6d, 8d))
                 .filter(pos -> level.getBlockState(pos).is(Blocks.JUKEBOX))
                 .map(level::getBlockEntity)
-                .filter(be -> be instanceof JukeboxBlockEntity j && j.isRecordPlaying())
-                .count() == 1;
+                .anyMatch(be -> be instanceof JukeboxBlockEntity j && j.isRecordPlaying());
     }
 }

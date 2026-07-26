@@ -4,6 +4,7 @@ import gaia.entity.Siren;
 import gaia.entity.goal.MobAttackGoal;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -36,11 +37,13 @@ import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFRestrictSunGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFWaterAvoidingRandomStrollGoal;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoal;
+import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithEquipment;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class GaiaSirenEntity extends Siren implements INFFGirlsTamed, IBlocksGaiaDynamicGoals, IHasRareVariant, INFFGirlsBowShootingMob {
@@ -160,4 +163,10 @@ public class GaiaSirenEntity extends Siren implements INFFGirlsTamed, IBlocksGai
         return id >= 0 && id < RARE_VARIANTS.size() ? RARE_VARIANTS.get(id) : null;
     }
 
+    @Override
+    @Nonnull
+    public Component getTypeName() {
+        EntityType<?> typeBefore = NFFTamingMapping.getTypeBefore(this);
+        return typeBefore != null ? typeBefore.getDescription() : super.getTypeName();
+    }
 }

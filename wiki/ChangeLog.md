@@ -1,3 +1,11 @@
+### 0.x.32
+
+Added Ender Dragon Girl, Ant Worker, Arachne and Siren.
+
+Ported Citadel book to Patchouli.
+
+Added a config to reduce Behender spawn.
+
 ### 0.2.31.2
 
 Fixed server crash caused by Yuki-Onna magic effect.

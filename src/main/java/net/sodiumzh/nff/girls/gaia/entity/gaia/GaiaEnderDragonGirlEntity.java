@@ -133,4 +133,5 @@ public class GaiaEnderDragonGirlEntity extends EnderDragonGirl implements INFFGi
             return NFUReflectionStatics.invokeMethod(SUPER_HURT_WITH_CLEAN_WATER, this, damageSource, thrownPotion, damage).castTo(Boolean.class);
         else return false;
     }
+
 }
