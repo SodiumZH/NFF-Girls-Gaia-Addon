@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -34,7 +35,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaProjectileProviders;
-import net.sodiumzh.nff.services.entity.capability.CNFFTamable;
+import net.sodiumzh.nff.services.entity.taming.NFFTamableComponent;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingMapping;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingProcess;
 import net.sodiumzh.nfu.entity.AttachedItemDisplayerEntity;
@@ -91,7 +92,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 
 
     @Override
-    public void tamableInit(CNFFTamable tamable) {
+    public void tamableInit(NFFTamableComponent tamable) {
         STEP_HEIGHT_ADDITION.apply(tamable.getEntity());
         if (tamable.getEntity() instanceof Valkyrie v)
           v.goalSelector.addGoal(0,
@@ -107,7 +108,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 
     @Override
     public void serverTick(Mob mob) {
-        CNFFTamable tamable = CNFFTamable.get(mob);
+        NFFTamableComponent tamable = NFFTamableComponent.getOrDefault(mob);
 
         cacheMainHandItem(mob);
         if (this.isInAnyProcess(mob)) {
@@ -119,18 +120,18 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
                 mob.setHealth(this.getMinHP(mob));
             // Handle action hint
             if (this.requiresActionNow(mob)
-                && (!displayers.containsKey(mob) || displayers.get(mob).level != mob.level || !displayers.get(mob).getItem().is(this.getRequiredAction(mob).hint.getItem()))) {
+                && (!displayers.containsKey(mob) || displayers.get(mob).level() != mob.level() || !displayers.get(mob).getItem().is(this.getRequiredAction(mob).hint.getItem()))) {
                 if (displayers.containsKey(mob)) {
                      displayers.get(mob).discard();
                     displayers.remove(mob);
                 }
                 AttachedItemDisplayerEntity displayer = new AttachedItemDisplayerEntity(
-                    NFUEntityTypes.ATTACHED_ITEM_DISPLAYER.get(), mob.level)
+                    NFUEntityTypes.ATTACHED_ITEM_DISPLAYER.get(), mob.level())
                     .setItem(this.getRequiredAction(mob).hint)
                     .sineHovering(new Vec3(0, 1d, 0), 0.5d, 3 * 20)
                     .setAttachedEntity(mob);
                 this.displayers.put(mob, displayer);
-                mob.level.addFreshEntity(displayer);
+                mob.level().addFreshEntity(displayer);
             } else if (!this.requiresActionNow(mob)) {
                 if (displayers.containsKey(mob)) {
                     displayers.get(mob).discard();
@@ -146,11 +147,11 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 
     @Override
     public void interrupt(Player player, Mob mob, boolean b) {
-        CNFFTamable tamable = CNFFTamable.get(mob);
+        NFFTamableComponent tamable = NFFTamableComponent.getOrDefault(mob);
         tamable.getGeneralNBT().remove("ongoingPlayer");
         tamable.getGeneralNBT().remove("progress");
         tamable.getGeneralNBT().remove("requiredAction");
-        tamable.removeTimer("timeLimit", false);
+        tamable.getTimerComponent().removeGeneralTimer("timeLimit", false);
         removeCachedMainHandItem(mob);
     }
 
@@ -163,14 +164,14 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 
     @Override
     public boolean isInProcess(Player player, Mob mob) {
-        return CNFFTamable.get(mob).getGeneralNBT().hasUUID("ongoingPlayer")
-            && CNFFTamable.get(mob).getGeneralNBT().getUUID("ongoingPlayer").equals(player.getUUID());
+        return NFFTamableComponent.getOrDefault(mob).getGeneralNBT().hasUUID("ongoingPlayer")
+            && NFFTamableComponent.getOrDefault(mob).getGeneralNBT().getUUID("ongoingPlayer").equals(player.getUUID());
     }
 
     @Override
     public boolean isInAnyProcess(Mob mob) {
-        return CNFFTamable.get(mob).getGeneralNBT().hasUUID("ongoingPlayer") &&
-            !CNFFTamable.get(mob).getGeneralNBT().getUUID("ongoingPlayer").equals(new UUID(0L, 0L));
+        return NFFTamableComponent.getOrDefault(mob).getGeneralNBT().hasUUID("ongoingPlayer") &&
+            ! NFFTamableComponent.getOrDefault(mob).getGeneralNBT().getUUID("ongoingPlayer").equals(new UUID(0L, 0L));
     }
 
     @Override
@@ -182,16 +183,16 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 
     private int getProgress(Mob mob) {
         if (!this.isInAnyProcess(mob)) return -1;
-        else return CNFFTamable.get(mob).getGeneralNBT().getInt("progress");
+        else return NFFTamableComponent.getOrDefault(mob).getGeneralNBT().getInt("progress");
     }
 
     private RequiredAction getRequiredAction(Mob mob) {
-        return RequiredAction.byId(CNFFTamable.get(mob).getGeneralNBT().getInt("requiredAction"));
+        return RequiredAction.byId( NFFTamableComponent.getOrDefault(mob).getGeneralNBT().getInt("requiredAction"));
     }
 
     private Optional<Player> getOngoingPlayer(Mob mob) {
         return isInAnyProcess(mob) ?
-            Optional.ofNullable(mob.level.getPlayerByUUID(CNFFTamable.get(mob).getGeneralNBT().getUUID("ongoingPlayer")))
+            Optional.ofNullable(mob.level().getPlayerByUUID( NFFTamableComponent.getOrDefault(mob).getGeneralNBT().getUUID("ongoingPlayer")))
             : Optional.empty();
     }
 
@@ -208,15 +209,15 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 
     // Generate a new required action, and reset the timer
     private void refreshRequirement(Mob mob) {
-        CNFFTamable tamable = CNFFTamable.get(mob);
+        NFFTamableComponent tamable = NFFTamableComponent.getOrDefault(mob);
         tamable.getGeneralNBT().putInt("requiredAction", RequiredAction.pick().id);
-        tamable.setTimer("timeLimit", 90 * 20);
+        tamable.getTimerComponent().addTimer("timeLimit", 90 * 20, true);
         if (mob.getHealth() < this.getMinHP(mob)) mob.setHealth(this.getMinHP(mob));
     }
 
     // Invoked when the progress is boosted by 1
     private void progressUp(Mob mob) {
-        CNFFTamable tamable = CNFFTamable.get(mob);
+        NFFTamableComponent tamable = NFFTamableComponent.getOrDefault(mob);
         int oldProgress = tamable.getGeneralNBT().getInt("progress");
         // Case completed
         if (this.getProgress(mob) >= 7) {
@@ -239,7 +240,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
     }
 
     private void progressDown(Mob mob) {
-        CNFFTamable tamable = CNFFTamable.get(mob);
+        NFFTamableComponent tamable = NFFTamableComponent.getOrDefault(mob);
         int oldProgress = tamable.getGeneralNBT().getInt("progress");
         if (oldProgress <= 0) {
             this.interruptAll(mob, true);
@@ -253,13 +254,13 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
     }
 
     private void thunderPunishment(Player player, Mob mob) {
-        if (player == null || mob == null || !player.level.equals(mob.level)) return;
+        if (player == null || mob == null || !player.level().equals(mob.level())) return;
         if (player.distanceToSqr(mob) > 32d * 32d) return;
         mob.swing(InteractionHand.MAIN_HAND);
-        LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, mob.level);
+        LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, mob.level());
         lightning.setDamage(30f);
         lightning.setPos(Vec3.atBottomCenterOf(player.blockPosition()));
-        player.level.addFreshEntity(lightning);
+        player.level().addFreshEntity(lightning);
         mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5 * 20));
     }
 
@@ -286,26 +287,26 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
         }
         for (int i = 0; i < amount; ++i) {
             e.get(i).scheduleServerActions(shootingDeltaTime * i + 15, proj -> SHOOT_PROJECTILE_ACTION.accept(proj, mob));
-            mob.level.addFreshEntity(e.get(i));
+            mob.level().addFreshEntity(e.get(i));
         }
         mob.swing(InteractionHand.MAIN_HAND);
-        mob.level.playSound(null, mob.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE,
+        mob.level().playSound(mob, mob.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE,
             mob.getSoundSource(), 1.0F, mob.getRandom().nextFloat() * 0.2F + 1.2F);
     }
 
     @Override
     public void onGeneralTimerExpire(Mob mob, String key) {
         super.onGeneralTimerExpire(mob, key);
-        CNFFTamable tamable = CNFFTamable.get(mob);
+        NFFTamableComponent tamable = NFFTamableComponent.getOrDefault(mob);
         if (key.equals("timeLimit")) {
             this.progressDown(mob);
             if (this.isInAnyProcess(mob))
-                tamable.setTimer("timeLimit", 90 * 20);
+                tamable.getTimerComponent().addTimer("timeLimit", 90 * 20, true);
         }
     }
 
     private static void cacheMainHandItem(Mob mob) {
-        CNFFTamable.getOptional(mob).ifPresent(t -> {
+        NFFTamableComponent.getOptional(mob).ifPresent(t -> {
             if (!t.getGeneralNBT().contains("mainHandItem", Tag.TAG_COMPOUND))
             {
                 CompoundTag nbt = new CompoundTag();
@@ -316,7 +317,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
     }
 
     private static void resumeCachedMainHandItem(Mob mob) {
-        CNFFTamable.getOptional(mob).ifPresent(t -> {
+        NFFTamableComponent.getOptional(mob).ifPresent(t -> {
             if (t.getGeneralNBT().contains("mainHandItem", Tag.TAG_COMPOUND))
             {
                 mob.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.of(
@@ -328,7 +329,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
     }
 
     private static void removeCachedMainHandItem(Mob mob) {
-        CNFFTamable.getOptional(mob).ifPresent(t -> {
+        NFFTamableComponent.getOptional(mob).ifPresent(t -> {
             t.getGeneralNBT().remove("mainHandItem");
         });
     }
@@ -378,14 +379,14 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
         @Override
         public void start() {
             super.start();
-            CNFFTamable.getOptional(this.getMob()).ifPresent(tamable -> {
+            NFFTamableComponent.getOptional(this.getMob()).ifPresent(tamable -> {
                 cacheMainHandItem(this.getMob());
                 this.getMob().setItemInHand(InteractionHand.MAIN_HAND, GaiaRegistry.MAGIC_STAFF.get().getDefaultInstance());
             });
         }
         public void stop() {
             super.start();
-            CNFFTamable.getOptional(this.getMob()).ifPresent(t -> {
+            NFFTamableComponent.getOptional(this.getMob()).ifPresent(t -> {
                 if (t.getEntity().getMainHandItem().is(GaiaRegistry.MAGIC_STAFF.get())) {
                     resumeCachedMainHandItem(this.getMob());
                 }
@@ -404,7 +405,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
                 && event.getLightning().getCause() != null
                 && NFFTamingMapping.contains(mob) && NFFTamingMapping.getProcess(mob) instanceof GaiaValkyrieTamingProcess proc
             ) {
-                CNFFTamable tamable = CNFFTamable.get(mob);
+                NFFTamableComponent tamable = NFFTamableComponent.getOrDefault(mob);
                 ServerPlayer player = event.getLightning().getCause();
                 // Lightning strike first to initiate the process. Handle first lightning
                 if (!proc.isInAnyProcess(mob)) {
@@ -442,7 +443,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
                 if (proc.getOngoingPlayer(mob).filter(p -> p.equals(player)).isPresent()
                     && proc.requiresActionNow(mob))
                 {
-                    if (event.getSource().getMsgId().equals("player")) {
+                    if (event.getSource().is(DamageTypes.PLAYER_ATTACK)) {
                         // Required Action #1 - sword attack
                         if (proc.getRequiredAction(mob).equals(RequiredAction.SWORD_ATTACK)
                             && player.getMainHandItem().getItem() instanceof SwordItem) {

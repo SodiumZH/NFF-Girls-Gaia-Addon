@@ -11,7 +11,7 @@ import net.minecraft.world.phys.Vec3;
 import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaProjectileProviders;
 import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
-import net.sodiumzh.nff.services.entity.capability.CNFFTamable;
+import net.sodiumzh.nff.services.entity.taming.NFFTamableComponent;
 import net.sodiumzh.nff.services.entity.taming.TamingProcessItemGivingProgress;
 import net.sodiumzh.nfu.entity.NFUEffectZoneEntity;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
@@ -39,7 +39,7 @@ public class GaiaAquaticTamingProcess extends TamingProcessItemGivingProgress {
     }
 
     @Override
-    public void tamableInit(CNFFTamable cnffTamable) {
+    public void tamableInit(NFFTamableComponent cnffTamable) {
     }
 
     @Override
@@ -65,7 +65,7 @@ public class GaiaAquaticTamingProcess extends TamingProcessItemGivingProgress {
             positions.add(mob.getBoundingBox().getCenter());
         for (int i = 0; i < amount * 3; ++i) {
             Vec3 pos = NFUMathStatics.rndPosition(summonBB);
-            if (mob.level.getBlockStates(new AABB(pos.subtract(4d, 4d, 4d), pos.add(3d, 3d, 3d)))
+            if (mob.level().getBlockStates(new AABB(pos.subtract(4d, 4d, 4d), pos.add(3d, 3d, 3d)))
                 .filter(bs -> bs.is(Blocks.WATER))
                 .count() >= 108)   // Half are water
                 positions.add(pos);
@@ -83,7 +83,7 @@ public class GaiaAquaticTamingProcess extends TamingProcessItemGivingProgress {
         vortex.setPos(pos);
         vortex.setLifetime(15 * 20);
         vortex.setDeltaMovement(Vec3.ZERO);
-        mob.level.addFreshEntity(vortex);
+        mob.level().addFreshEntity(vortex);
     }
 
 

@@ -407,7 +407,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 proj.discard();
             })
             .setOnTick(proj -> {
-                EntityComponentAPI.getDynamicDataComponent(proj).getVariable("target", Entity.class).ifPresent(e -> {
+                EntityComponentAPI.getDataComponent(proj).getVariable("target", Entity.class).ifPresent(e -> {
                     // Add a hit check tolerance, as there's an issue that the projectile flashes on the screen
                     // maybe due to hit check
                     if (e instanceof LivingEntity le &&

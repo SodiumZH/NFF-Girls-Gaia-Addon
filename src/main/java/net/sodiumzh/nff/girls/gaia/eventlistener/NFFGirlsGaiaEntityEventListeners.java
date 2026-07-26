@@ -43,6 +43,7 @@ import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaItems;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaTags;
 import net.sodiumzh.nff.services.entity.taming.INFFTamed;
+import net.sodiumzh.nff.services.entity.taming.NFFTamableComponent;
 import net.sodiumzh.nff.services.entity.taming.NFFTamedStatics;
 import net.sodiumzh.nff.services.event.entity.NFFMobTamedEvent;
 import net.sodiumzh.nfu.exception.ReflectionFailedException;
@@ -98,9 +99,9 @@ public class NFFGirlsGaiaEntityEventListeners
 		if (event.getEffectInstance().getEffect().equals(MobEffects.WITHER)) {
 			LivingEntity var2 = event.getEntity();
 			if (var2 instanceof Mob e) {
-				if (CNFFTamable.getOptional(e).map((tamable) -> {
+				if ((Boolean) NFFTamableComponent.getOptional(e).map((tamable) -> {
 					return tamable.getTamingProcess() instanceof HmagBansheeTamingProcess;
-				}).orElse(false) && CNFFTamable.get(e).getTamingProcess().isInAnyProcess(e)) {
+				}).orElse(false) && NFFTamableComponent.getOrDefault(e).getTamingProcess().isInAnyProcess(e)) {
 					event.setResult(Event.Result.DENY);
 				}
 			}
@@ -202,8 +203,8 @@ public class NFFGirlsGaiaEntityEventListeners
 				else if (event.getItemStack().is(GaiaRegistry.PREMIUM_MONSTER_FEED.get()))
 					amount = 100;
 				if (amount > 0) {
-					if (!event.getEntity().level.isClientSide) {
-						t.getLevelHandler().addExp(amount);
+					if (!event.getEntity().getLevel().isClientSide) {
+						t.getDataAccessor().addXP(amount);
 						NFUParticleStatics.sendGlintParticlesToEntityDefault(t.asMob());
 						event.getEntityLiving().getItemInHand(event.getHand()).shrink(1);
 					}
