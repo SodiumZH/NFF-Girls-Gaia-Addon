@@ -1,46 +1,67 @@
 [
+  "General humanoid taming items - for GaiaSiren",
   {
-    "item": "minecraft:note_block",
-    "amount": [0.03, 0.06]
+    "item": "minecraft:bread",
+    "amount": [0.02, 0.04]
+  },
+  {
+    "item": "minecraft:apple",
+    "amount": [0.02, 0.04]
+  },
+  {
+    "item": "minecraft:cookie",
+    "amount": [0.03, 0.05]
+  },
+  {
+    "item": "minecraft:pumpkin_pie",
+    "amount": [0.04, 0.06]
+  },
+  {
+    "item": "hmag:lemon",
+    "amount": [0.03, 0.05]
+  },
+  {
+    "item": "hmag:honeyed_apple",
+    "amount": [0.05, 0.08]
+  },
+  {
+    "item": "grimoireofgaia:food_small_apple_gold",
+    "amount": [0.06, 0.10]
+  },
+  {
+    "item": "grimoireofgaia:food_pie_meat",
+    "amount": [0.06, 0.10]
   },
   {
     "item": "minecraft:emerald",
     "amount": [0.04, 0.07]
   },
   {
+    "item": "minecraft:diamond",
+    "amount": [0.06, 0.10]
+  },
+  {
     "tag": "nffgirls:hmag_berries",
-    "amount": [0.05, 0.09]
-  },
-  {
-    "item": "minecraft:music_disc_13",
-    "amount": [0.06, 0.10]
-  },
-  {
-    "item": "minecraft:music_disc_cat",
-    "amount": [0.06, 0.10]
-  },
-  {
-    "item": "minecraft:nautilus_shell",
     "amount": [0.08, 0.14]
   },
   {
-    "tag": "forge:gems/diamond",
-    "amount": [0.08, 0.13]
+    "tag": "minecraft:music_discs",
+    "amount": [0.20, 0.35]
   },
   {
-    "item": "grimoireofgaia:misc_pearl",
-    "amount": [0.12, 0.20]
+    "item": "hmag:golden_tropical_fish",
+    "amount": [0.15, 0.25]
   },
   {
-    "item": "minecraft:heart_of_the_sea",
-    "amount": [0.30, 0.50]
+    "item": "minecraft:golden_apple",
+    "amount": [0.15, 0.25]
   },
   {
-    "item": "minecraft:echo_shard",
-    "amount": [0.30, 0.50]
+    "item": "minecraft:enchanted_golden_apple",
+    "amount": [0.50, [1.01, 0.30]]
   },
   {
     "item": "minecraft:nether_star",
-    "amount": [0.50, [0.75, 0.30], [1.00, 0.10]]
+    "amount": [0.50, [1.01, 0.30]]
   }
 ]
