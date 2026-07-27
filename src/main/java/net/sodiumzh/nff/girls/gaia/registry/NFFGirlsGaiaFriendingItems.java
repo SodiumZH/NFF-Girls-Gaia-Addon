@@ -34,7 +34,7 @@ public class NFFGirlsGaiaFriendingItems {
                     .build());
 
     public static NFURegistry.Accessor<MobApplicableItemTable> HUMANOID_A =
-            COLLECTION.register("siren", () -> MobApplicableItemTable.builder()
+            COLLECTION.register("humanoid_a", () -> MobApplicableItemTable.builder()
                     .readData(new ResourceLocation(NFFGirlsGaia.MOD_ID, "friending/humanoid_a.json"), NFFGirlsDataReaders::readMobApplicableItemTable)
                     .build());
 }
