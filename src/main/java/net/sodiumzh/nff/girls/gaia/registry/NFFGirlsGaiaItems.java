@@ -10,7 +10,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.item.EvilGrindstoneItem;
-import net.sodiumzh.nff.girls.item.CitadelBasedMobDictionaryItem;
 import net.sodiumzh.nff.girls.registry.NFFGirlsTabs;
 import net.sodiumzh.nfu.compat.ModDependencyFallbackItem;
 import net.sodiumzh.nfu.util.NFUCompatStatics;
@@ -49,15 +48,6 @@ public class  NFFGirlsGaiaItems {
         () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> WOODEN_STAFF = register("wooden_staff",
         () -> new Item(new Item.Properties().stacksTo(1)));
-
-    public static final RegistryObject<Item> MOB_DICT = registerModDependent("mob_dictionary", "citadel",
-        () -> new CitadelBasedMobDictionaryItem(new Item.Properties(),
-            new ResourceLocation("nffgirlsgaia","book/mob_dictionary/root.json"),
-            "dict.nffgirlsgaia.title", "nffgirlsgaia:book/mob_dictionary/")
-            .description(NFUInfoStatics.createText("Citadel book is outdated. Craft to convert to new Patchouli-based NFF: Girls book, and all contents " +
-                "are integrated in that book.")));
-    static {NO_TAB.add(MOB_DICT);}
-
 
     @SubscribeEvent
     public static void putTabs(BuildCreativeModeTabContentsEvent event) {
