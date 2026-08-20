@@ -1,0 +1,20 @@
+{
+  "jei.grimoireofgaia.friending_condition.ant": "Drop the gift on the ground and wait for her to pick it up like a Piglin.",
+  "jei.grimoireofgaia.friending_condition.arachne": "Stick yourself onto a Cobweb, then right-click her holding a gift.",
+  "jei.grimoireofgaia.friending_condition.cecaelia": "Give her gifts while both of you are in water (or rain); she keeps summoning vortexes that disturb your actions.",
+  "jei.grimoireofgaia.friending_condition.mermaid": "Give her gifts while both of you are in water (or rain); she keeps summoning vortexes that disturb your actions.",
+  "jei.grimoireofgaia.friending_condition.dryad": "Give her Regeneration III for over 10 seconds (e.g. with a splash potion), then right-click her holding a gift.",
+  "jei.grimoireofgaia.friending_condition.spriggan": "Give her Regeneration III for over 10 seconds first; unlike Dryads she is hostile and turns invisible, then right-click her holding a gift.",
+  "jei.grimoireofgaia.friending_condition.dullahan": "Have the Undead Affinity effect, then right-click her holding a gift.",
+  "jei.grimoireofgaia.friending_condition.harpy": "Right-click her holding a gift directly (do NOT drop it on the ground).",
+  "jei.grimoireofgaia.friending_condition.banshee": "Carry the Wither effect and keep at least 8 Wither Roses on the ground around, then right-click her holding a gift.",
+  "jei.grimoireofgaia.friending_condition.succubus": "Drop the gift on the ground and wait for her to pick it up like a Piglin.",
+  "jei.grimoireofgaia.friending_condition.mummy": "Have the Undead Affinity effect, then right-click her holding a gift.",
+  "jei.grimoireofgaia.friending_condition.bee": "Keep at least 8 honey blocks within a 9x9x9 area and avoid Poison, then right-click her holding a gift.",
+  "jei.grimoireofgaia.friending_condition.werecat": "Right-click her holding a gift.",
+  "jei.grimoireofgaia.friending_condition.witch": "Give her at least 5 different positive potion effects (without hurting her), then right-click her holding a gift.",
+  "jei.grimoireofgaia.friending_condition.shaman": "Give her at least 5 different positive potion effects (without hurting her), then right-click her holding a gift.",
+  "jei.grimoireofgaia.friending_condition.yuki_onna": "Give her gifts while enduring the snowstorm around her (heavy Slowness and continuous damage).",
+  "jei.grimoireofgaia.friending_condition.ender_dragon_girl": "Provoke her by making eye contact so she targets you, then right-click her holding a gift while bearing her attacks.",
+  "jei.grimoireofgaia.friending_condition.siren": "A Jukebox playing a music disc must be within an 8x6x8 area around her, then right-click her holding a gift; progress drops quickly without music."
+}
