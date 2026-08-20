@@ -72,5 +72,10 @@
   "dict.nffgirlsgaia.desc.friending.yuki_onna_1": "After friending, if you equip them a fan, the Yuki-Onna will be able to fight with powerful snowstorm magic.",
 
   "dict.nffgirlsgaia.desc.effect.ant_pheromone": "Given by friended Ant Worker (Grimoire of Gaia). Ants will be neutral to targets with this effect. (Entity tag \"nffgirlsgaia:ant_pheromone_affected\")",
-  "dict.nffgirlsgaia.desc.effect.cobweb_affinity": "Given by friended Arachne (Grimoire of Gaia). Players/mob with this effect will not be stuck by Cobweb."
+  "dict.nffgirlsgaia.desc.effect.cobweb_affinity": "Given by friended Arachne (Grimoire of Gaia). Players/mob with this effect will not be stuck by Cobweb.",
+  "jei.nffgirlsgaia.friending_condition.aquatic_a": "Give her items while both of you are in water (or rain). Beware: she keeps summoning vortexes that disturb your actions.",
+  "jei.nffgirlsgaia.friending_condition.witch": "She must have at least 5 different positive potion effects (buff her without hurting her), then right-click her holding a gift.",
+  "jei.nffgirlsgaia.friending_condition.enderman_b": "Provoke her by making eye contact so she targets you, then right-click her holding a gift while bearing her attacks.",
+  "jei.nffgirlsgaia.friending_condition.arthropod": "Ant: drop the gift on the ground and wait for her to pick it up like a Piglin. Arachne: stick yourself onto a Cobweb, then right-click her holding a gift.",
+  "jei.nffgirlsgaia.friending_condition.humanoid_a": "A Jukebox playing a music disc must be within an 8x6x8 area around her, then right-click her holding a gift. Without music the progress drops quickly."
 }

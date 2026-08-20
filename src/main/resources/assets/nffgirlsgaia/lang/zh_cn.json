@@ -82,5 +82,10 @@
   "dict.nffgirlsgaia.desc.friending.yuki_onna_1": "在友好化后，如果装备扇子，雪女将能够施放强力的暴风雪魔法攻击。",
 
   "dict.nffgirlsgaia.desc.effect.ant_pheromone": "由友好化的工兵蚁付与。蚂蚁类生物会拥有此效果的玩家/生物中立。(实体标签： \"nffgirlsgaia:ant_pheromone_affected\")",
-  "dict.nffgirlsgaia.desc.effect.cobweb_affinity": "由友好化的阿拉克涅付与。拥有此效果时不会被蛛网粘住。"
+  "dict.nffgirlsgaia.desc.effect.cobweb_affinity": "由友好化的阿拉克涅付与。拥有此效果时不会被蛛网粘住。",
+  "jei.nffgirlsgaia.friending_condition.aquatic_a": "玩家需要与她一同处于水中（或在雨中），然后手持礼物右键赠予。过程中她会不断制造漩涡干扰你的行动。",
+  "jei.nffgirlsgaia.friending_condition.witch": "需先同时给予目标5个不同的正面药水效果（且不能造成伤害），然后手持礼物右键赠予。",
+  "jei.nffgirlsgaia.friending_condition.enderman_b": "需先注视她将其激怒（使她的目标指向你），随后在承受她攻击的同时手持礼物右键赠予。",
+  "jei.nffgirlsgaia.friending_condition.arthropod": "蚂蚁：将礼物放在地上，等待她像猪灵一样捡起并收下。阿拉克涅：需自身黏在蜘蛛网中，然后手持礼物右键赠予。",
+  "jei.nffgirlsgaia.friending_condition.humanoid_a": "她周围8x6x8范围内必须有正在播放唱片的唱片机，然后手持礼物右键赠予；听不到音乐时进度会快速下降。"
 }
