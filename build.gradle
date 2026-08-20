@@ -202,9 +202,9 @@ dependencies {
 	implementation fg.deobf("curse.maven:patchouli-306770:6164575")
 	
 	// Testing compat mods
-	implementation fg.deobf("curse.maven:citadel-331936:6002521")
+	/*implementation fg.deobf("curse.maven:citadel-331936:6002521")
 	implementation fg.deobf("curse.maven:alexsmobs-426558:5698791")
-	implementation fg.deobf("curse.maven:iceandfire-264231:5633453")
+	implementation fg.deobf("curse.maven:iceandfire-264231:5633453")*/
     implementation fg.deobf("curse.maven:enigmatic-legacy-336184:5600004")
     implementation fg.deobf("curse.maven:curios-309927:6238756")
     implementation fg.deobf("curse.maven:patchouli-306770:6164575")
