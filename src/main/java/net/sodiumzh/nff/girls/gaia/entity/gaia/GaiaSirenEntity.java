@@ -91,9 +91,9 @@ public class GaiaSirenEntity extends Siren implements INFFGirlsTamed, IBlocksGai
 
     @Override
     public boolean canShoot() {
-        return !this.getAdditionalInventory().getItem(4).isEmpty()
-            && this.getAdditionalInventory().getItem(4).getItem() instanceof BowItem
-            && !this.getAdditionalInventory().getItem(8).isEmpty();
+        return !this.getAdditionalInventory().orElseThrow().getItem(4).isEmpty()
+            && this.getAdditionalInventory().orElseThrow().getItem(4).getItem() instanceof BowItem
+            && !this.getAdditionalInventory().orElseThrow().getItem(8).isEmpty();
     }
 
     @Override

@@ -181,7 +181,7 @@ public class GaiaValkyrieEntity extends Valkyrie implements INFFGirlsTamed, Rang
         }
         // super.aiStep() may replace the offhand item with a shield. Correct it here.
         if (!this.level().isClientSide()) {
-            this.getAdditionalInventory().syncToMob(this);
+            this.getAdditionalInventory().orElseThrow().syncToMob(this);
             this.setAnnoyed(this.getTarget() != null);
         }
     }
