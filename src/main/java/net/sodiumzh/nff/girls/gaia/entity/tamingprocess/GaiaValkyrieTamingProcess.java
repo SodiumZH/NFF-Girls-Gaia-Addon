@@ -77,6 +77,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
     private static final BiConsumer<NFUItemProjectileEntity, Mob> SHOOT_PROJECTILE_ACTION = (proj, m) -> {
         if (m.getTarget() != null) {
             float speed = proj.getIdentifier().equals(new ResourceLocation("nffgirlgaia:valkyrie_common_projectile")) ? 1.2f : 0.8f;
+            proj.setGravity(0.06f);
             proj.shootTo(m.getTarget().getBoundingBox().getCenter(), speed, 2f);
             proj.playSound(GaiaSounds.GAIA_SHOOT.get(), 1.0F, 1.0F / (m.getRandom().nextFloat() * 0.5F + 1.0F));
         } else proj.discard();
@@ -286,6 +287,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
                 .add(NFUMathStatics.rotateVectorY(forward, -90).normalize().scale(2.5d)));
         }
         for (int i = 0; i < amount; ++i) {
+            e.get(i).setGravity(0);
             e.get(i).scheduleServerActions(shootingDeltaTime * i + 15, proj -> SHOOT_PROJECTILE_ACTION.accept(proj, mob));
             mob.level().addFreshEntity(e.get(i));
         }
@@ -493,7 +495,8 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 
         @SubscribeEvent
         public static void onProjectileHit(ProjectileHitEvent event) {
-            if (event.getEntityHitResult() != null
+            if (!event.getEntity().level().isClientSide()
+                && event.getEntityHitResult() != null
                 && event.getEntityHitResult().getEntity() instanceof Valkyrie mob
                 && mob.getType().equals(GaiaRegistry.VALKYRIE.getEntityType())
                 && event.getEntity().getOwner() instanceof Player player

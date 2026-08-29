@@ -72,18 +72,18 @@ public class GaiaArachneEntity extends Arachne implements INFFGirlsTamed, IBlock
             @Override
             public void onStart() {
                 super.onStart();
-                this.getMob().getAdditionalInventory().syncToMob(this.getMob().asMob());
+                this.getMob().getAdditionalInventory().orElseThrow().syncToMob(this.getMob().asMob());
                 ItemStack mainHand = this.getMob().asMob().getItemInHand(InteractionHand.MAIN_HAND);
                 ItemStack offHand = this.getMob().asMob().getItemInHand(InteractionHand.OFF_HAND);
                 if (!mainHand.is(NFFGirlsGaiaTags.WEAPON_STAFFS) && offHand.is(NFFGirlsGaiaTags.WEAPON_STAFFS)) {
                     this.getMob().asMob().setItemInHand(InteractionHand.MAIN_HAND, offHand);
                     this.getMob().asMob().setItemInHand(InteractionHand.OFF_HAND, mainHand);
-                    this.getMob().getAdditionalInventory().getFromMob(this.getMob().asMob());
+                    this.getMob().getAdditionalInventory().orElseThrow().getFromMob(this.getMob().asMob());
                 }
             }
             @Override
             public boolean checkCanUse() {
-                this.getMob().getAdditionalInventory().syncToMob(this.getMob().asMob());
+                this.getMob().getAdditionalInventory().orElseThrow().syncToMob(this.getMob().asMob());
                 return super.checkCanUse() && NFFGirlsAIUtils.targetFurtherThan(this.getMob(), MELEE_ATTACK_THRESHOLD)
                     && (this.getMob().asMob().getItemInHand(InteractionHand.MAIN_HAND).is(NFFGirlsGaiaTags.WEAPON_STAFFS)
                     || this.getMob().asMob().getItemInHand(InteractionHand.OFF_HAND).is(NFFGirlsGaiaTags.WEAPON_STAFFS));
@@ -93,19 +93,19 @@ public class GaiaArachneEntity extends Arachne implements INFFGirlsTamed, IBlock
             @Override
             public void onStart() {
                 super.onStart();
-                this.getMob().getAdditionalInventory().syncToMob(this.getMob().asMob());
+                this.getMob().getAdditionalInventory().orElseThrow().syncToMob(this.getMob().asMob());
                 ItemStack mainHand = this.getMob().asMob().getItemInHand(InteractionHand.MAIN_HAND);
                 ItemStack offHand = this.getMob().asMob().getItemInHand(InteractionHand.OFF_HAND);
                 if (mainHand.getDamageValue() < offHand.getDamageValue()) {
                     this.getMob().asMob().setItemInHand(InteractionHand.MAIN_HAND, offHand);
                     this.getMob().asMob().setItemInHand(InteractionHand.OFF_HAND, mainHand);
-                    this.getMob().getAdditionalInventory().getFromMob(this.getMob().asMob());
+                    this.getMob().getAdditionalInventory().orElseThrow().getFromMob(this.getMob().asMob());
                 }
             }
 
             @Override
             public boolean checkCanUse() {
-                this.getMob().getAdditionalInventory().syncToMob(this.getMob().asMob());
+                this.getMob().getAdditionalInventory().orElseThrow().syncToMob(this.getMob().asMob());
                 return super.checkCanUse() && NFFGirlsAIUtils.targetCloserThan(this.getMob(), MELEE_ATTACK_THRESHOLD)
                 || (!this.getMob().asMob().getItemInHand(InteractionHand.MAIN_HAND).is(NFFGirlsGaiaTags.WEAPON_STAFFS)
                     && !this.getMob().asMob().getItemInHand(InteractionHand.OFF_HAND).is(NFFGirlsGaiaTags.WEAPON_STAFFS));
