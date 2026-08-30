@@ -38,7 +38,7 @@ public class GaiaYukiOnnaTamingProcess extends TamingProcessItemGivingProgress {
         super.serverTick(mob);
         if (this.isInAnyProcess(mob)) {
             // Add snowstorm field if absent
-            List<NFUEffectZoneEntity> effectZones = mob.level().getEntitiesOfClass(NFUEffectZoneEntity.class,
+            List<NFUEffectZoneEntity> effectZones = mob.getLevel().getEntitiesOfClass(NFUEffectZoneEntity.class,
                 mob.getBoundingBox().inflate(12d, 12d, 12d), z -> mob.equals(z.getOwner()));
             List<NFUEffectZoneEntity> outerZones = effectZones.stream()
                 .filter(e -> e.getIdentifier().equals(new ResourceLocation("nffgirlsgaia:yuki_onna_snow_zone_outer")))
@@ -50,7 +50,7 @@ public class GaiaYukiOnnaTamingProcess extends TamingProcessItemGivingProgress {
                 // Absent => create one
                 NFUEffectZoneEntity outer = NFFGirlsGaiaProjectileProviders.YUKI_ONNA_SNOW_ZONE_OUTER.apply(mob);
                 outer.alignCenterTo(mob.getBoundingBox().getCenter());
-                mob.level().addFreshEntity(outer);
+                mob.getLevel().addFreshEntity(outer);
             } else {
                 // Deduplicate
                 for (int i = 1; i < outerZones.size(); ++i)
@@ -60,7 +60,7 @@ public class GaiaYukiOnnaTamingProcess extends TamingProcessItemGivingProgress {
                 // Absent => create one
                 NFUEffectZoneEntity inner = NFFGirlsGaiaProjectileProviders.YUKI_ONNA_SNOW_ZONE_INNER.apply(mob);
                 inner.alignCenterTo(mob.getBoundingBox().getCenter());
-                mob.level().addFreshEntity(inner);
+                mob.getLevel().addFreshEntity(inner);
             } else {
                 // Deduplicate
                 for (int i = 1; i < innerZones.size(); ++i) {

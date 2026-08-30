@@ -12,6 +12,7 @@ import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
 import net.sodiumzh.nff.services.entity.taming.NFFTamableComponent;
 import net.sodiumzh.nff.services.entity.taming.TamingProcessItemGivingProgress;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
+import net.sodiumzh.nfu.reflection.CachedFieldSearchers;
 
 import java.util.List;
 import java.util.Objects;
@@ -52,11 +53,11 @@ public class GaiaSirenFriendingProcess extends TamingProcessItemGivingProgress {
     }
 
     protected boolean hasRunningJukebox(Mob mob) {
-        Level level = mob.level();
+        Level level = mob.getLevel();
         return BlockPos.betweenClosedStream(mob.getBoundingBox().inflate(8d, 6d, 8d))
                 .filter(pos -> level.getBlockState(pos).is(Blocks.JUKEBOX))
                 .map(level::getBlockEntity)
-                .filter(be -> be instanceof JukeboxBlockEntity j && j.isRecordPlaying())
+                .filter(be -> be instanceof JukeboxBlockEntity j && (Boolean) CachedFieldSearchers.getFieldValue(j, JukeboxBlockEntity.class, "f_238637_").orElseThrow())
                 .count() == 1;
     }
 }
