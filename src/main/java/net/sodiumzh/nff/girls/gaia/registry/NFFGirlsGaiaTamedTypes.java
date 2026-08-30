@@ -13,7 +13,7 @@ public class NFFGirlsGaiaTamedTypes {
 
     @SubscribeEvent
     public static void registerTamed(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> ForgeRegistries.ENTITY_TYPES.getKeys().stream()
+        event.enqueueWork(() -> ForgeRegistries.ENTITIES.getKeys().stream()
             .filter(key -> key.getNamespace().equals(NFFGirlsGaia.MOD_ID) && key.getPath().startsWith("gaia_"))
             .forEach(key -> NFFTamedTypeRegistry.add(key, NFFTamedTypeRegistry.SELF)));
     }
