@@ -13,7 +13,7 @@ public class GaiaArachneFriendingProcess extends TamingProcessItemGivingProgress
 
     @Override
     public boolean additionalConditions(Player player, Mob mob) {
-        return player.level().getBlockState(player.blockPosition()).is(Blocks.COBWEB);
+        return player.getLevel().getBlockState(player.blockPosition()).is(Blocks.COBWEB);
     }
 
     @Override

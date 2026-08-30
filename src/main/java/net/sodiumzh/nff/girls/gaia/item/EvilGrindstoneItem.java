@@ -34,7 +34,7 @@ public class EvilGrindstoneItem extends NFUItem {
             && hrv.isRareVariant())
         {
             hrv.setRareVariantID(-1);
-            return InteractionResult.sidedSuccess(player.level().isClientSide());
+            return InteractionResult.sidedSuccess(player.getLevel().isClientSide());
         }
         return InteractionResult.PASS;
     }

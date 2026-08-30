@@ -282,11 +282,11 @@ public class NFFGirlsGaiaEntityEventListeners
 			witch.getCapability(NFUCapabilities.CAP_ENTITY_DATA).ifPresent(e -> {
 				if (e.getTransientParameter("groundNavigation", PathNavigation.class).isEmpty()) {
 					e.putTransientParameter("groundNavigation", witch.getNavigation() instanceof GroundPathNavigation ?
-						witch.getNavigation() : new GroundPathNavigation(witch, witch.level()));
+						witch.getNavigation() : new GroundPathNavigation(witch, witch.getLevel()));
 				}
 				if (e.getTransientParameter("flyingNavigation", PathNavigation.class).isEmpty()) {
 					e.putTransientParameter("flyingNavigation", witch.getNavigation() instanceof FlyingPathNavigation ?
-						witch.getNavigation() : new FlyingPathNavigation(witch, witch.level()));
+						witch.getNavigation() : new FlyingPathNavigation(witch, witch.getLevel()));
 				}
 			});
 			PathNavigation nav = witch.getCapability(NFUCapabilities.CAP_ENTITY_DATA).resolve()

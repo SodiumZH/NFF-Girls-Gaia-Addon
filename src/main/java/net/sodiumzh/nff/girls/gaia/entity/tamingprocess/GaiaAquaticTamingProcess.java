@@ -65,7 +65,7 @@ public class GaiaAquaticTamingProcess extends TamingProcessItemGivingProgress {
             positions.add(mob.getBoundingBox().getCenter());
         for (int i = 0; i < amount * 3; ++i) {
             Vec3 pos = NFUMathStatics.rndPosition(summonBB);
-            if (mob.level().getBlockStates(new AABB(pos.subtract(4d, 4d, 4d), pos.add(3d, 3d, 3d)))
+            if (mob.getLevel().getBlockStates(new AABB(pos.subtract(4d, 4d, 4d), pos.add(3d, 3d, 3d)))
                 .filter(bs -> bs.is(Blocks.WATER))
                 .count() >= 108)   // Half are water
                 positions.add(pos);
@@ -83,7 +83,7 @@ public class GaiaAquaticTamingProcess extends TamingProcessItemGivingProgress {
         vortex.setPos(pos);
         vortex.setLifetime(15 * 20);
         vortex.setDeltaMovement(Vec3.ZERO);
-        mob.level().addFreshEntity(vortex);
+        mob.getLevel().addFreshEntity(vortex);
     }
 
 

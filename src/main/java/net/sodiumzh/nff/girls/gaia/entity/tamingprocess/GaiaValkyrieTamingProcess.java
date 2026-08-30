@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -121,18 +121,18 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
                 mob.setHealth(this.getMinHP(mob));
             // Handle action hint
             if (this.requiresActionNow(mob)
-                && (!displayers.containsKey(mob) || displayers.get(mob).level() != mob.level() || !displayers.get(mob).getItem().is(this.getRequiredAction(mob).hint.getItem()))) {
+                && (!displayers.containsKey(mob) || displayers.get(mob).getLevel() != mob.getLevel() || !displayers.get(mob).getItem().is(this.getRequiredAction(mob).hint.getItem()))) {
                 if (displayers.containsKey(mob)) {
                      displayers.get(mob).discard();
                     displayers.remove(mob);
                 }
                 AttachedItemDisplayerEntity displayer = new AttachedItemDisplayerEntity(
-                    NFUEntityTypes.ATTACHED_ITEM_DISPLAYER.get(), mob.level())
+                    NFUEntityTypes.ATTACHED_ITEM_DISPLAYER.get(), mob.getLevel())
                     .setItem(this.getRequiredAction(mob).hint)
                     .sineHovering(new Vec3(0, 1d, 0), 0.5d, 3 * 20)
                     .setAttachedEntity(mob);
                 this.displayers.put(mob, displayer);
-                mob.level().addFreshEntity(displayer);
+                mob.getLevel().addFreshEntity(displayer);
             } else if (!this.requiresActionNow(mob)) {
                 if (displayers.containsKey(mob)) {
                     displayers.get(mob).discard();
@@ -193,7 +193,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 
     private Optional<Player> getOngoingPlayer(Mob mob) {
         return isInAnyProcess(mob) ?
-            Optional.ofNullable(mob.level().getPlayerByUUID( NFFTamableComponent.getOrDefault(mob).getGeneralNBT().getUUID("ongoingPlayer")))
+            Optional.ofNullable(mob.getLevel().getPlayerByUUID( NFFTamableComponent.getOrDefault(mob).getGeneralNBT().getUUID("ongoingPlayer")))
             : Optional.empty();
     }
 
@@ -255,13 +255,13 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
     }
 
     private void thunderPunishment(Player player, Mob mob) {
-        if (player == null || mob == null || !player.level().equals(mob.level())) return;
+        if (player == null || mob == null || !player.getLevel().equals(mob.getLevel())) return;
         if (player.distanceToSqr(mob) > 32d * 32d) return;
         mob.swing(InteractionHand.MAIN_HAND);
-        LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, mob.level());
+        LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, mob.getLevel());
         lightning.setDamage(30f);
         lightning.setPos(Vec3.atBottomCenterOf(player.blockPosition()));
-        player.level().addFreshEntity(lightning);
+        player.getLevel().addFreshEntity(lightning);
         mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5 * 20));
     }
 
@@ -289,10 +289,10 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
         for (int i = 0; i < amount; ++i) {
             e.get(i).setGravity(0);
             e.get(i).scheduleServerActions(shootingDeltaTime * i + 15, proj -> SHOOT_PROJECTILE_ACTION.accept(proj, mob));
-            mob.level().addFreshEntity(e.get(i));
+            mob.getLevel().addFreshEntity(e.get(i));
         }
         mob.swing(InteractionHand.MAIN_HAND);
-        mob.level().playSound(mob, mob.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE,
+        mob.getLevel().playSound(null, mob.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE,
             mob.getSoundSource(), 1.0F, mob.getRandom().nextFloat() * 0.2F + 1.2F);
     }
 
@@ -445,7 +445,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
                 if (proc.getOngoingPlayer(mob).filter(p -> p.equals(player)).isPresent()
                     && proc.requiresActionNow(mob))
                 {
-                    if (event.getSource().is(DamageTypes.PLAYER_ATTACK)) {
+                    if (event.getSource().getEntity() instanceof Player) {
                         // Required Action #1 - sword attack
                         if (proc.getRequiredAction(mob).equals(RequiredAction.SWORD_ATTACK)
                             && player.getMainHandItem().getItem() instanceof SwordItem) {
@@ -495,7 +495,7 @@ public class GaiaValkyrieTamingProcess extends NFFTamingProcess {
 
         @SubscribeEvent
         public static void onProjectileHit(ProjectileHitEvent event) {
-            if (!event.getEntity().level().isClientSide()
+            if (!event.getEntity().getLevel().isClientSide()
                 && event.getEntityHitResult() != null
                 && event.getEntityHitResult().getEntity() instanceof Valkyrie mob
                 && mob.getType().equals(GaiaRegistry.VALKYRIE.getEntityType())

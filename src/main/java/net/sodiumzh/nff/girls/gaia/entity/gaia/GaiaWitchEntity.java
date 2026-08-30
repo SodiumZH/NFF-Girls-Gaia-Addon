@@ -38,7 +38,7 @@ import net.sodiumzh.nff.services.entity.ai.goal.preset.target.NFFHurtByTargetGoa
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventoryWithHandItems;
-import net.sodiumzh.nfu.capability.CEntityDataCapability;
+import net.sodiumzh.nfu.entity.component.EntityComponentAPI;
 import net.sodiumzh.nfu.mixin.event.entity.MobRegisterGoalsEvent;
 import net.sodiumzh.nfu.util.NFUReflectionStatics;
 import org.jetbrains.annotations.Nullable;
@@ -118,9 +118,9 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
                 this.setNoGravity(false);
             }
             this.moveControl = isRidingBroom ? this.flyingControl : this.normalControl;
-            CEntityDataCapability.get(this).getTransientParameter(
-                this.isRidingBroom() ? "flyingNavigation" : "groundNavigation", PathNavigation.class
-            ).ifPresent(nav -> this.navigation = nav);
+            EntityComponentAPI.getDataComponent(this)
+                .getVariable(this.isRidingBroom() ? "flyingNavigation" : "groundNavigation", PathNavigation.class)
+                .ifPresent(nav -> this.navigation = nav);
         }
     }
 
@@ -150,9 +150,9 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
     @SubscribeEvent
     public static void fixOriginalGaiaWitchAi_InitNav(EntityJoinWorldEvent event) {
         if (event.getEntity() instanceof Witch witch && !witch.level.isClientSide) {
-            CEntityDataCapability.get(witch).putTransientParameter("flyingNavigation",
+            EntityComponentAPI.getDataComponent(witch).putTransientVariable("flyingNavigation",
                 new FlyingPathNavigation(witch, witch.level));
-            CEntityDataCapability.get(witch).putTransientParameter("groundNavigation",
+            EntityComponentAPI.getDataComponent(witch).putTransientVariable("groundNavigation",
                 new GroundPathNavigation(witch, witch.level));
         }
     }
@@ -182,7 +182,7 @@ public class GaiaWitchEntity extends Witch implements INFFGirlsTamed, IPotionThr
     @SubscribeEvent
     public static void fixOriginalGaiaWitchAi_UpdateFlying(LivingEvent.LivingUpdateEvent event) {
         if (event.getEntity() instanceof Witch witch && !witch.level.isClientSide) {
-            CEntityDataCapability.get(witch).getTransientParameter(
+            EntityComponentAPI.getDataComponent(witch).getVariable(
                 witch.isRidingBroom() ? "flyingNavigation" : "groundNavigation", PathNavigation.class
             ).ifPresent(nav -> NFUReflectionStatics.setValue(MOB_NAVIGATION, witch, nav));
         }
