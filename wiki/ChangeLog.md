@@ -1,3 +1,17 @@
+### 0.2.33.2
+
+Fixed Valkyrie causing crash on starting the friending process.
+
+Fixed Valkyrie's action hint icon getting on fire.
+
+### 0.2.33.1
+
+Adapted to NFF: Girls 0.2.33.1 update.
+
+### 0.x.33
+
+Adapted to NFF: Girls 0.x.33 update.
+
 ### 0.x.32
 
 Added Ender Dragon Girl, Ant Worker, Arachne and Siren.
