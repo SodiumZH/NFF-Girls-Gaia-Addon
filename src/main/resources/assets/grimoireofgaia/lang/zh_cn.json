@@ -13,5 +13,24 @@
   "entity.grimoireofgaia.ender_girl": "末影女孩",
   "entity.grimoireofgaia.slime_girl": "史莱姆女孩",
   "entity.grimoireofgaia.gravemite": "墓穴螨",
-  "entity.grimoireofgaia.cyan_flower": "青花"
+  "entity.grimoireofgaia.cyan_flower": "青花",
+
+  "jei.grimoireofgaia.friending_condition.ant": "将礼物放在地上，等待她像猪灵一样捡起并收下。",
+  "jei.grimoireofgaia.friending_condition.arachne": "需自身黏在蜘蛛网中，然后手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.cecaelia": "需与她一同处于水中（或在雨中），然后手持礼物右键赠予。过程中她会不断制造漩涡干扰你的行动。",
+  "jei.grimoireofgaia.friending_condition.mermaid": "需与她一同处于水中（或在雨中），然后手持礼物右键赠予。过程中她会不断制造漩涡干扰你的行动。",
+  "jei.grimoireofgaia.friending_condition.dryad": "需先投掷喷溅型再生Ⅲ药水使其获得再生Ⅲ效果超过10秒，然后手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.spriggan": "需先使其获得再生Ⅲ效果超过10秒；她比树妖更凶猛且会隐身，然后手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.dullahan": "持有「亡灵亲和」效果后，手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.harpy": "手持礼物右键直接赠予（不要丢在地上）。",
+  "jei.grimoireofgaia.friending_condition.banshee": "需携带「凋零」效果，且周围地面有至少8朵凋零玫瑰，然后手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.succubus": "将礼物放在地上，等待她像猪灵一样捡起并收下。",
+  "jei.grimoireofgaia.friending_condition.mummy": "持有「亡灵亲和」效果后，手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.bee": "周围9x9x9空间内需保持至少8个蜂蜜块，且玩家不能中毒，然后手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.werecat": "手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.witch": "需先同时给予5个不同的正面药水效果（且不能伤害她），然后手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.shaman": "需先同时给予5个不同的正面药水效果（且不能伤害她），然后手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.yuki_onna": "在承受她周围暴风雪（高等级缓慢与持续伤害）的同时，手持礼物右键赠予。",
+  "jei.grimoireofgaia.friending_condition.ender_dragon_girl": "需先注视她将其激怒（使她的目标指向你），然后手持礼物右键赠予，同时承受她的攻击。",
+  "jei.grimoireofgaia.friending_condition.siren": "她周围8x6x8范围内必须有正在播放唱片的唱片机，然后手持礼物右键赠予；听不到音乐时进度会快速下降。"
 }
